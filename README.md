@@ -4,6 +4,9 @@
 # a.musical.field.theory
 
 <!-- badges: start -->
+
+[![Codecov test
+coverage](https://codecov.io/gh/homeymusic/a.musical.field.theory/branch/main/graph/badge.svg)](https://app.codecov.io/gh/homeymusic/a.musical.field.theory?branch=main)
 <!-- badges: end -->
 
 The goal of a.musical.field.theory is to …
