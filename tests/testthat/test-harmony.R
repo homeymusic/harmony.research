@@ -20,10 +20,10 @@ test_that('params are stored',{
   expect_equal(major_triad_root$reference_tone,0)
   expect_equal(major_triad_root$name,'major triad')
 })
-test_that('intervallic names are informative',{
+test_that('intervallic names are informative and maintain voice leading order',{
   expect_equal(major_triad_root$intervallic_name,"0\u0332:4:7\u21D1")
-  expect_equal(major_triad_first_inversion$intervallic_name,"4:7:1\u03322\u0332\u21D3")
-  expect_equal(major_triad_second_inversion$intervallic_name,"7:1\u03322\u0332:16\u21D3")
+  expect_equal(major_triad_first_inversion$intervallic_name,"1\u03322\u0332:4:7\u21D3")
+  expect_equal(major_triad_second_inversion$intervallic_name,"1\u03322\u0332:16:7\u21D3")
 })
 test_that('harmony will default to up and guess the reference tone',{
   h = h(c(0,4,7))

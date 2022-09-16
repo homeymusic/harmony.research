@@ -50,7 +50,7 @@ intervallic_name <- function(x, direction, reference_tone) {
   underlined_reference_tone = stringr::str_replace_all(reference_tone,
                                                        "(.)",
                                                        paste0("\\1",underline))
-  intervallic_name = x %>% sort %>% paste(collapse = ":")
+  intervallic_name = x %>% paste(collapse = ":")
   if (reference_tone %in% x) {
     intervallic_name=gsub(paste0("\\b",reference_tone,"\\b"),
                           underlined_reference_tone,intervallic_name)
