@@ -51,13 +51,6 @@ consonance <- function(x,direction,reference_tone) {
   c('affinity'=0,'brightness'=0)
 }
 
-# Up ratios
-just_intonation.up.numerators     <-  c(1,16,9,6,5,4,sqrt(2),3,8,5,16,15)
-just_intonation.up.denominator    <-  c(1,15,8,5,4,3,   1   ,2,5,3, 9, 8)
-# Down ratios
-just_intonation.down.numerator    <-  rev(just_intonation.up.denominator)
-just_intonation.down.denominator  <-  rev(just_intonation.up.numerators)
-
 reference_tone <- function(x,direction) {
   checkmate::assert_integerish(x)
   checkmate::assert_choice(direction,c(-1,+1))
@@ -138,13 +131,37 @@ intervallic_name <- function(x, direction, reference_tone) {
 # the difference between the octave complements in the current measure
 # is 2 which is the formula for the octave complement ri*r2=2
 # whereas for Euler and Vogel the differences in octave complements is 1
-dissonance <- function(.x,.y) {
+dissonance <- function(.x) {
   checkmate::assert_integerish(.x)
-  c(exponent_prime_factors_sum(.x),
-    exponent_prime_factors_sum(.y)) %>% sum
+  .x %>% sapply(exponent_prime_factors_sum) %>% sum
 }
+
+# we are using the semitone, the minor second m2 up, as the upper bound of dissonance
+# we will subtract dissonance from this number to give us ascending consonance
+#
+# the result would be the same if we used major 7th down
+#
+# m2, is 1 in integer notation but R vectors are indexed from 1
+# so that's why we have see + 1 notation
+dissonance_upper_bound.uncached <- function() {
+  minor_2nd = 1
+
+  dissonance(c(ratios$up.numerator[minor_2nd+1],
+               ratios$up.denominator[minor_2nd+1]))
+}
+dissonance_upper_bound <- memoise::memoise(dissonance_upper_bound.uncached)
 
 exponent_prime_factors_sum <- function(.x) {
   checkmate::assert_integerish(.x)
   numbers::primeFactors(.x) %>% .[.>1] %>% sum
+}
+rotate <- function(.x,.y,.angle) {
+  checkmate::assert_numeric(.angle)
+  coordinates = rbind(.x,.y)
+  R = tibble::frame_matrix(
+    ~.x, ~.y,
+    cos(.angle), -sin(.angle),
+    sin(.angle), cos(.angle)
+  )
+  (R %*% coordinates * cos(.angle)) %>% zapsmall
 }

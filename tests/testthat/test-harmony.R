@@ -47,16 +47,19 @@ test_that("exponent prime factors sum works as expected",{
   expect_equal(exponent_prime_factors_sum(10),7)
 })
 test_that("dissonance measure matches expectations", {
-  expected_up.dissonance = c(0,16,12,10,9,7,31,5,11,8,14,14,2)
+  expected_up.dissonance = c(0,16,12,10,9,7,12,5,11,8,14,14,2)
   intervals %>% purrr::pmap(~expect_equal(
-    dissonance(ratios$up.numerator[..1+1],ratios$up.denominator[..1+1]),
+    dissonance(c(ratios$up.numerator[..1+1],ratios$up.denominator[..1+1])),
     expected_up.dissonance[..1+1],
     info=paste(..1,..2,ratios$up.numerator[..1+1],ratios$up.denominator[..1+1]))
   )
-  expected_down.dissonance = c(2,14,14,8,11,5,31,7,9,10,12,16,0)
+  expected_down.dissonance = c(2,14,14,8,11,5,12,7,9,10,12,16,0)
   intervals %>% purrr::pmap(~expect_equal(
-    dissonance(ratios$down.numerator[..1+1],ratios$down.denominator[..1+1]),
+    dissonance(c(ratios$down.numerator[..1+1],ratios$down.denominator[..1+1])),
     expected_down.dissonance[..1+1],
     info=paste(..1,..2,ratios$down.numerator[..1+1],ratios$down.denominator[..1+1]))
   )
+})
+test_that('upper bound of dissonance makes sense',{
+  expect_equal(dissonance_upper_bound(),16)
 })
