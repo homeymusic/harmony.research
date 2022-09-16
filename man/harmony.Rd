@@ -5,18 +5,18 @@
 \alias{h}
 \title{Harmony}
 \usage{
-harmony(x, direction = +1, reference_tone = NULL, name = NULL)
+harmony(.x, .direction = +1, .reference_tone = NULL, .name = NULL)
 
-h(x, direction = +1, reference_tone = NULL, name = NULL)
+h(.x, .direction = +1, .reference_tone = NULL, .name = NULL)
 }
 \arguments{
-\item{x}{A note or chord expressed as an interval integer or vector of interval integers}
+\item{.x}{A note or chord expressed as an interval integer or vector of interval integers}
 
-\item{direction}{Harmonic direction +1 is up and -1 is down}
+\item{.direction}{Harmonic direction +1 is up and -1 is down}
 
-\item{reference_tone}{The reference tone of the chord or larger context}
+\item{.reference_tone}{The reference tone of the chord or larger context}
 
-\item{name}{A custom name for the note or chord}
+\item{.name}{A custom name for the note or chord}
 }
 \value{
 A tibble

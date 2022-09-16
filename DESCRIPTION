@@ -17,5 +17,7 @@ Imports:
     checkmate,
     magrittr,
     memoise,
+    numbers,
+    purrr,
     stringr,
     tibble

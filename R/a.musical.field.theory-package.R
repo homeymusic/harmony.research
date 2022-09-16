@@ -7,5 +7,8 @@
 #' @importFrom tibble tibble
 #' @importFrom magrittr %>%
 #' @importFrom stringr str_replace_all
+#' @importFrom purrr pmap
+#' @importFrom numbers primeFactors
 ## usethis namespace: end
 NULL
+
