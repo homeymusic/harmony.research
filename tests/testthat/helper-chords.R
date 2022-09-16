@@ -18,6 +18,8 @@ intervals <- tibble::tibble(
   name = c("tonic","minor 2nd","major 2nd","minor 3rd","major 3rd",
            "perfect 4th","tritone","perfect 5th","minor 6th",
            "major 6th","minor 7th","major 7th","octave"),
-  affinity = rep(0,13)
+  # affinity = c(15,1,3,7,6,10,4,10,6,7,3,1,15),
+  affinity = rep(0,13),
+  brightness = rep(0,13)
 )
 

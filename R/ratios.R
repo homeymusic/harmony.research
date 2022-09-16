@@ -7,9 +7,10 @@
 #
 # best choice with that rationale would be 17/12 and 24/17, 3.000 cents from 600
 # however the consonance measure is poor that it doesn't agree with any published
-# experimental data that we could find cf. Bowling, Plomp and Levitt and others.
+# experimental data that we could find cf. Bowling, Plomp and Levitt and others
+# like https://www.jneurosci.org/content/29/42/13165
 #
-# The tritone that seems to best match the research is 7/5 however its
+# The tritone that seems to best match the research is 7/5 10/7 however its
 # a full 17.488 cents from 600 which means it's 3x perceptibly different from
 # the ET tritone.
 #
@@ -19,6 +20,10 @@
 # https://en.wikipedia.org/wiki/Cent_(music)#Human_perception
 # https://en.xen.wiki/w/Tritone
 #
+# another issue is that the final affinity (rotated consonance) of all the
+# other intervals is the average consonance of the octave complements
+# so the tritone ought to be the average of 7/5 and 10/7
+# so we hammer that into the final function for dissonance
 
 ratios <- tibble::tibble(
   # Up ratios

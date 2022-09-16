@@ -36,9 +36,11 @@ test_that('harmony will default to up and guess the reference tone',{
   expect_equal(h$direction,-1)
   expect_equal(h$reference_tone,4)
 })
-test_that("intervals behave well",{
-  # up
+test_that("interval affinity behaves well",{
   intervals %>% purrr::pmap(~expect_equal(h(..1)$affinity,..3))
+})
+test_that("interval brightness behaves well",{
+  intervals %>% purrr::pmap(~expect_equal(h(..1)$brightness,..3))
 })
 test_that("exponent prime factors sum works as expected",{
   expect_equal(exponent_prime_factors_sum(1),0)
