@@ -56,24 +56,24 @@ test_that("interval brightness behaves well",{
   purrr::pmap(intervals(),~expect_equal(h(..1,1)$brightness,..3))
 })
 test_that("exponent prime factors sum works as expected",{
-  expect_equal(count_primes(1),0)
+  expect_equal(count_primes(1),1)
   expect_equal(count_primes(2),2)
   expect_equal(count_primes(6),5)
   expect_equal(count_primes(10),7)
 })
 test_that("dissonance measure matches expectations", {
-  expected_count_primes = c(0,16,12,10,9,7,12,5,11,8,14,14,2)
+  expected_up_primes = c(2,16,12,10,9,7,12,5,11,8,14,14,3)
   purrr::pmap(intervals(),~expect_equal(
-    dissonance(..1)[1],
-    expected_count_primes[..1+1],
-    info=paste('position: ',..1,..2,'up num: ',ratios$up.numerators[..1+1],'up denominator: ',ratios$up.denominators[..1+1]))
-  )
-  expected_down.dissonance = c(2,14,14,8,11,5,12,7,9,10,12,16,0)
+    dissonance(..1)[1,1],
+    expected_up_primes[..1+1],
+    info=paste('position:',..1,..2,'up num:',ratio(..1,1),'up denominator:',ratio(..1,1))
+  ))
+  expected_down_primes = c(3,14,14,8,11,5,12,7,9,10,12,16,2)
   intervals() %>% purrr::pmap(~expect_equal(
-    dissonance(..1)[2],
-    expected_down.dissonance[..1+1],
-    info=paste(..1,..2,ratios$down.numerators[..1+1],ratios$down.denominators[..1+1]))
-  )
+    dissonance(..1)[1,2],
+    expected_down_primes[..1+1],
+    info=paste('position:',..1,..2,'down num:',ratio(..1,1),'up denominator',ratio(..1,1))
+  ))
 })
 test_that('upper bound of dissonance makes sense',{
   expect_equal(max_dissonance(),16)

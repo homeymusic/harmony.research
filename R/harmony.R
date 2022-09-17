@@ -132,10 +132,7 @@ dissonance <- function(x) {
 count_primes <- function(x) {
   checkmate::assert_integerish(x)
 
-  primes = x %>% purrr::map(function(.x){numbers::primeFactors(.x) %>% .[.>1]})
-
-  x %>% purrr::map(function(.x){numbers::primeFactors(.x) %>% .[.>1]}) %>%
-    unlist %>% sum
+  x %>% purrr::map(numbers::primeFactors) %>% unlist %>% sum
 }
 
 # we are using the semitone, the minor second m2 up, as the upper bound of dissonance
