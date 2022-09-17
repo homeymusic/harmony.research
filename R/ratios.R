@@ -18,7 +18,7 @@
 #
 # see:
 # https://en.wikipedia.org/wiki/Cent_(music)#Human_perception
-# https://en.xen.wiki/w/Tritone
+# https://enxen.wiki/w/Tritone
 #
 # another issue is that the final affinity (rotated consonance) of all the
 # other intervals is the average consonance of the octave complements
@@ -28,48 +28,41 @@
 ratios.uncached <- function() {
   tibble::tibble(
     # Up ratios
-    up.numerator =     c(1,16,9,6,5,4,7,3,8,5,16,15,2),
-    up.denominator =   c(1,15,8,5,4,3,5,2,5,3, 9, 8,1),
+    up.numerators =     c(1,16,9,6,5,4,7,3,8,5,16,15,2),
+    up.denominators =   c(1,15,8,5,4,3,5,2,5,3, 9, 8,1),
     # Down ratios
-    down.numerator =   c(1, 8, 9,3,5,2,5,3,4,5,8,15,1),
-    down.denominator = c(2,15,16,5,8,3,7,4,5,6,9,16,1)
+    down.numerators =   c(1, 8, 9,3,5,2,5,3,4,5,8,15,1),
+    down.denominators = c(2,15,16,5,8,3,7,4,5,6,9,16,1)
   )
 }
 ratios <- memoise::memoise(ratios.uncached)
 
-ratio <- function(.x,.direction) {
-  checkmate::qassert(.x,'X1')
-  checkmate::assert_choice(.direction,c(-1,+1))
+ratio <- function(x,direction) {
+  checkmate::qassert(x,'X1')
+  checkmate::assert_choice(direction,c(-1,+1))
 
-  numerator=NULL
-  denominator=NULL
-  numerators=NULL
-  denominators=NULL
+  numerator=denominator=numerators=denominators=NULL
 
-  if (.direction > 0) {
-    numerators=ratios()$up.numerator
-    denominators=ratios()$up.denominator
+  if (direction > 0) {
+    numerators=ratios()$up.numerators
+    denominators=ratios()$up.denominators
   } else {
-    numerators=ratios()$down.numerator
-    denominators=ratios()$down.denominator
+    numerators=ratios()$down.numerators
+    denominators=ratios()$down.denominators
   }
 
-  interval = .x %% 12
-  octave = (.x / 12) %>% floor
-
+  interval = x %% 12
   numerator=numerators[interval+1]
   denominator=denominators[interval+1]
 
-  if (octave > 0) {
-    numerator = numerator * (2 ^ octave)
-  } else if (octave < 0) {
-    denominator = denominator * (2 ^ abs(octave))
+  octave_multiplier = 2 ^ abs((x / 12) %>% floor)
+  if (x > 0) {
+    numerator = numerator * octave_multiplier
+  } else if (x < 0) {
+    denominator = denominator * octave_multiplier
   }
 
   if(numerator==denominator){numerator=denominator=1}
 
   c(numerator=numerator,denominator=denominator)
 }
-
-# -------------------------------------------------------------------------
-

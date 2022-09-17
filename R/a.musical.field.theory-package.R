@@ -9,6 +9,7 @@
 #' @importFrom stringr str_replace_all
 #' @importFrom purrr pmap
 #' @importFrom numbers primeFactors
+#' @importFrom dplyr bind_cols
 ## usethis namespace: end
 NULL
 

@@ -25,16 +25,26 @@ test_that('intervallic names are informative and maintain voice leading order',{
   expect_equal(major_triad_first_inversion$intervallic_name,"1\u03322\u0332:4:7\u21D3")
   expect_equal(major_triad_second_inversion$intervallic_name,"1\u03322\u0332:16:7\u21D1\u21D3")
 })
+test_that('if implicit and explicit direction agree then do not flip it.',{
+  expect_gt(major_triad_first_inversion$brightness,0)
+})
+test_that('implicit reference tones make sense',{
+  expect_equal(major_triad_first_inversion$implicit_reference_tone,12)
+  expect_equal(h(c(1,2,3))$implicit_reference_tone,1)
+})
 test_that('harmony will default to up and guess the reference tone',{
   h = h(c(0,4,7))
   expect_equal(h$direction,+1)
   expect_equal(h$reference_tone,0)
-  h = h(c(0,4,7),.direction=-1)
+  h = h(c(0,4,7),direction=-1)
   expect_equal(h$direction,-1)
   expect_equal(h$reference_tone,7)
-  h = h(c(0,4,7),.direction=-1,.reference_tone=4)
+  h = h(c(0,4,7),direction=-1,reference_tone=4)
   expect_equal(h$direction,-1)
   expect_equal(h$reference_tone,4)
+  h = h(c(0,4,7,12))
+  expect_equal(h$direction,0)
+  expect_equal(h$reference_tone,0)
 })
 test_that("interval affinity behaves well",{
   purrr::pmap(intervals(),~expect_equal(h(..1)$affinity,..4,info=paste('..1',..1,'..3',..4)))
@@ -43,27 +53,27 @@ test_that("interval brightness behaves well",{
   purrr::pmap(intervals(),~expect_equal(h(..1)$brightness,..3))
 })
 test_that("exponent prime factors sum works as expected",{
-  expect_equal(exponent_prime_factors_sum(1),0)
-  expect_equal(exponent_prime_factors_sum(2),2)
-  expect_equal(exponent_prime_factors_sum(6),5)
-  expect_equal(exponent_prime_factors_sum(10),7)
+  expect_equal(count_primes(1),0)
+  expect_equal(count_primes(2),2)
+  expect_equal(count_primes(6),5)
+  expect_equal(count_primes(10),7)
 })
 test_that("dissonance measure matches expectations", {
-  expected_up.dissonance = c(0,16,12,10,9,7,12,5,11,8,14,14,2)
+  expected_count_primes = c(0,16,12,10,9,7,12,5,11,8,14,14,2)
   purrr::pmap(intervals(),~expect_equal(
     dissonance(..1)[1],
-    expected_up.dissonance[..1+1],
-    info=paste('position: ',..1,..2,'up num: ',ratios$up.numerator[..1+1],'up denominator: ',ratios$up.denominator[..1+1]))
+    expected_count_primes[..1+1],
+    info=paste('position: ',..1,..2,'up num: ',ratios$up.numerators[..1+1],'up denominator: ',ratios$up.denominators[..1+1]))
   )
   expected_down.dissonance = c(2,14,14,8,11,5,12,7,9,10,12,16,0)
   intervals() %>% purrr::pmap(~expect_equal(
     dissonance(..1)[2],
     expected_down.dissonance[..1+1],
-    info=paste(..1,..2,ratios$down.numerator[..1+1],ratios$down.denominator[..1+1]))
+    info=paste(..1,..2,ratios$down.numerators[..1+1],ratios$down.denominators[..1+1]))
   )
 })
 test_that('upper bound of dissonance makes sense',{
-  expect_equal(dissonance_upper_bound(),16)
+  expect_equal(max_dissonance(),16)
 })
 test_that("rotation works", {
   angle = pi/4

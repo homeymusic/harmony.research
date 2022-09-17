@@ -1,41 +1,34 @@
-# this is to stop R check command from complaining about magrittr
-globalVariables(".")
+harmony.uncached <- function(x, direction=NULL, reference_tone=NULL, name=NULL) {
+  checkmate::assert_integerish(x)
+  checkmate::assert_choice(direction,c(-1,0,+1),null.ok=TRUE)
+  checkmate::assert_integerish(reference_tone,null.ok=TRUE)
 
-harmony.uncached <- function(.x, .direction=NULL, .reference_tone=NULL, .name=NULL) {
-  checkmate::assert_integerish(.x)
-  checkmate::assert_choice(.direction,c(-1,0,+1),null.ok=TRUE)
-  checkmate::assert_integerish(.reference_tone,null.ok=TRUE)
+  # determine the implicit harmonic direction and the implicit reference tone
+  results         = direction_and_reference_tone(x,direction,reference_tone)
+  direction       = ifelse(is.null(results$explicit_direction),
+                          results$implicit_direction,
+                          results$explicit_direction)
+  reference_tone  = ifelse(is.null(results$explicit_reference_tone),
+                          results$implicit_reference_tone,
+                          results$explicit_reference_tone)
 
-  .direction_and_reference_tone = direction_and_reference_tone(
-    .x,.direction,.reference_tone)
+  # calculate consonance
+  consonance      = consonance(x,results$explicit_direction,
+                              results$implicit_direction,
+                              reference_tone)
 
-  .explicit_direction      = .direction_and_reference_tone$explicit_direction
-  .implicit_direction      = .direction_and_reference_tone$implicit_direction
-  .direction               = ifelse(is.null(.explicit_direction),
-                                    .implicit_direction,.explicit_direction)
-  .explicit_reference_tone = .direction_and_reference_tone$explicit_reference_tone
-  .implicit_reference_tone = .direction_and_reference_tone$implicit_reference_tone
-  .reference_tone          = ifelse(is.null(.explicit_reference_tone),
-                                    .implicit_reference_tone,
-                                    .explicit_reference_tone)
-
-  .consonance = consonance(.x,.explicit_direction,.implicit_direction,.reference_tone)
-
+  # assemble harmony table
   t = tibble::tibble(
-    position                = .x %>% mean,
-    direction               = .direction,
-    reference_tone          = .reference_tone,
-    name                    = .name,
-    intervallic_name        = intervallic_name(.x,.direction,.reference_tone),
-    brightness              = .consonance[['brightness']],
-    affinity                = .consonance[['affinity']],
-    explicit_direction      = .explicit_direction,
-    implicit_direction      = .implicit_direction,
-    explicit_reference_tone = .explicit_reference_tone,
-    implicit_reference_tone = .implicit_reference_tone,
+    position                = x %>% mean,
+    direction               = direction,
+    reference_tone          = reference_tone,
+    name                    = name,
+    intervallic_name        = intervallic_name(x,direction,reference_tone),
+    brightness              = consonance[['brightness']],
+    affinity                = consonance[['affinity']],
   )
-  attr(t,"chord") <- .x
-  t
+  attr(t,"chord") <- x
+  dplyr::bind_cols(t,results)
 }
 
 #' Harmony
@@ -43,10 +36,10 @@ harmony.uncached <- function(.x, .direction=NULL, .reference_tone=NULL, .name=NU
 #' Provides the musical harmony metrics of a note or chord.
 #'
 #'
-#' @param .x A note or chord expressed as an interval integer or vector of interval integers
-#' @param .direction Harmonic direction +1 is up and -1 is down
-#' @param .reference_tone The reference tone of the chord or larger context
-#' @param .name A custom name for the note or chord
+#' @param x A note or chord expressed as an interval integer or vector of interval integers
+#' @param direction Harmonic direction +1 is up and -1 is down
+#' @param reference_tone The reference tone of the chord or larger context
+#' @param name A custom name for the note or chord
 #' @return A tibble
 #'
 #' @export
@@ -84,7 +77,7 @@ h <- harmony
 # we start with ratios() expressed as prime factor exponents = product(p^n_p)
 # ratio = 1^n_1 * 2^n_2 * 3^n_3 * 5^n_5
 # where n_p is positive for numerator and negative for denominator
-# see examples here: https://en.xen.wiki/w/Monzo
+# see examples here: https://enxen.wiki/w/Monzo
 #
 # our dissonance measure is the sum of those sum(p*n_p) exponent prime factors
 # dissonance = 1*n_1 + 2*n_2 + 3*n_3 + 5*n_5
@@ -108,47 +101,47 @@ h <- harmony
 # the difference between the octave complements in the current measure
 # is 2 which is the formula for the octave complement ri*r2=2
 # whereas for Euler and Vogel the differences in octave complements is 1
-consonance <- function(.x,.explicit_direction,.implicit_direction,.reference_tone) {
-  checkmate::assert_integerish(.x)
-  checkmate::assert_choice(.explicit_direction,c(-1,0,+1),null.ok = TRUE)
-  checkmate::assert_choice(.implicit_direction,c(-1,0,+1),null.ok = TRUE)
-  checkmate::assert_integerish(.reference_tone)
+consonance <- function(x,explicit_direction,implicit_direction,reference_tone) {
+  checkmate::assert_integerish(x)
+  checkmate::assert_choice(explicit_direction,c(-1,0,+1),null.ok = TRUE)
+  checkmate::assert_choice(implicit_direction,c(-1,0,+1),null.ok = TRUE)
+  checkmate::assert_integerish(reference_tone)
 
-  .x = .x - .reference_tone
-  # we start with coordinates in up.dissonance - down.dissonance space
+  x = x - reference_tone
+  # we start with coordinates in count_primes - down.dissonance space
   # we subtract dissonance from the upper bound to get ascending consonance
-  # then we rotate 45 degrees from up.consonance - down.consonance space
+  # then we rotate 45 degrees from up-consonance - down-consonance space
   # to arrive at brightness - affinity space
 
-  .consonance = (dissonance_upper_bound() - dissonance(.x)) %>% rotate(pi/4)
-  .consonance= c(brightness=.consonance[1,1],affinity=.consonance[1,2])
-  # direction was given
-  if (!is.null(.explicit_direction)) {
-    if (.explicit_direction<0) {
-      .consonance['brightness'] <- -.consonance['brightness']
-    }
+  consonance = (max_dissonance() - dissonance(x)) %>%
+    rotate(pi/4) %>% c(brightness=.[1,1],affinity=.[1,2])
+
+  # if direction was given and it agrees with implied direction then leave it be
+  if (!is.null(explicit_direction) && (explicit_direction != implicit_direction)) {
+    consonance['brightness'] <- explicit_direction * consonance['brightness']
   }
-  .consonance
+
+  consonance
 }
 
-dissonance <- function(.x) {
-  checkmate::assert_integerish(.x)
+dissonance <- function(x) {
+  checkmate::assert_integerish(x)
 
-  up.dissonance   = .x %>% purrr::map(function(.interval){
-    exponent_prime_factors_sum(ratio(.interval,1))}) %>%
-    unlist %>% mean
+  cbind(
+    x %>% purrr::map(function(.x) {
+      count_primes(ratio(.x,1))}) %>% unlist %>% mean,
 
-  down.dissonance = .x %>% purrr::map(function(.interval){
-    exponent_prime_factors_sum(ratio(.interval,-1))}) %>%
-    unlist %>% mean
+    x %>% purrr::map(function(.x) {
+      count_primes(ratio(.x,-1))}) %>% unlist %>% mean
+  )
 
-  cbind(up.dissonance = up.dissonance, down.dissonance = down.dissonance)
 }
-exponent_prime_factors_sum <- function(.x) {
-  checkmate::assert_integerish(.x)
-  .x %>% purrr::map(function(.tone){
-    numbers::primeFactors(.tone) %>% .[.>1]
-  }) %>% unlist %>% sum
+
+count_primes <- function(x) {
+  checkmate::assert_integerish(x)
+
+  x %>% purrr::map(function(.x){numbers::primeFactors(.x) %>% .[.>1]}) %>%
+    unlist %>% sum
 }
 
 # we are using the semitone, the minor second m2 up, as the upper bound of dissonance
@@ -158,69 +151,20 @@ exponent_prime_factors_sum <- function(.x) {
 #
 # m2, is 1 in integer notation but R vectors are indexed from 1
 # so that's why we have see + 1 notation
-dissonance_upper_bound.uncached <- function() {
-  minor_2nd = 1
-
-  exponent_prime_factors_sum(c(ratios()$up.numerator[minor_2nd+1],
-                               ratios()$up.denominator[minor_2nd+1]))
+max_dissonance.uncached <- function() {
+  count_primes(c(ratio(1,1)))
 }
-dissonance_upper_bound <- memoise::memoise(dissonance_upper_bound.uncached)
+max_dissonance <- memoise::memoise(max_dissonance.uncached)
 
-direction_and_reference_tone <- function(.x,.direction,.reference_tone) {
-  checkmate::assert_integerish(.x)
-  checkmate::assert_choice(.direction,c(-1,0,+1),null.ok=TRUE)
-  checkmate::assert_integerish(.reference_tone,null.ok=TRUE)
+direction_and_reference_tone <- function(x,explicit_direction,explicit_reference_tone) {
+  checkmate::assert_integerish(x)
+  checkmate::assert_choice(explicit_direction,c(-1,0,+1),null.ok=TRUE)
+  checkmate::assert_integerish(explicit_reference_tone,null.ok=TRUE)
 
-  .explicit_direction = .direction
-  .implicit_direction = NULL
-
-  .explicit_reference_tone = .reference_tone
-  .implicit_reference_tone = NULL
-
-  if(!is.null(.explicit_direction)&&!is.null(.explicit_reference_tone)) {
-    # both are explicitly given
-    # we are done
-  } else if (is.null(.explicit_direction)&&is.null(.explicit_reference_tone)) {
-    # both are missing we will go with zero up bias
-    .implicit_direction = 1
-    .implicit_reference_tone = ifelse (length(.x)==1,0,min(.x))
-  } else {
-    # one of the other
-    if (is.null(.explicit_reference_tone)) {
-      # direction is given but not reference tone
-      if(!is.null(.explicit_direction)) {
-        if (length(.x)==1) {
-          .implicit_reference_tone = ifelse(.explicit_direction>0,0,12)
-        } else {
-          .implicit_reference_tone=ifelse(.explicit_direction>0,min(.x),max(.x))
-        }
-      }
-    }
-    if (is.null(.explicit_direction)) {
-      # reference tone is given but not direction
-      if (!is.null(.explicit_reference_tone)) {
-        if (length(.x)==1) {
-          .implicit_direction = ifelse(.explicit_reference_tone==0,1,-1)
-        } else {
-          if (.explicit_reference_tone==min(.x)) {
-            .implicit_direction = 1
-          } else if (.explicit_reference_tone==max(.x)) {
-            .implicit_direction = -1
-          } else {
-            # the reference tone is in the middle of the chord
-            # so now what? assume up bias? assume it's an inversion?
-            # don't guess :~)
-            .implicit_direction = 0
-          }
-        }
-      }
-    }
-  }
-
-  list(explicit_direction      = .explicit_direction,
-       implicit_direction      = .implicit_direction,
-       explicit_reference_tone = .explicit_reference_tone,
-       implicit_reference_tone = .implicit_reference_tone)
+  list(explicit_direction      = explicit_direction,
+       implicit_direction      = implicit_direction(x,explicit_reference_tone),
+       explicit_reference_tone = explicit_reference_tone,
+       implicit_reference_tone = implicit_reference_tone(x,explicit_direction))
 }
 
 intervallic_name <- function(x, direction, reference_tone) {
@@ -233,6 +177,11 @@ intervallic_name <- function(x, direction, reference_tone) {
   down_arrow = '\u21D3'  # ⇓
   mixed_arrow = paste0(up_arrow,down_arrow) # ⇑⇓
 
+  current_arrow = NULL
+  if      (direction == -1) {arrow = down_arrow}
+  else if (direction ==  0) {arrow = mixed_arrow}
+  else if (direction == +1) {arrow = up_arrow}
+
   underlined_reference_tone = stringr::str_replace_all(reference_tone,
                                                        "(.)",
                                                        paste0("\\1",underline))
@@ -243,21 +192,70 @@ intervallic_name <- function(x, direction, reference_tone) {
   } else {
     intervallic_name = paste(underlined_reference_tone,intervallic_name)
   }
-  arrow = NULL
-  if      (direction == -1) {arrow = down_arrow}
-  else if (direction ==  0) {arrow = mixed_arrow}
-  else if (direction == +1) {arrow = up_arrow}
 
   paste0(intervallic_name, arrow)
+}
+
+implicit_reference_tone <- function(x,explicit_direction) {
+  if (!is.null(explicit_direction)) {
+    if (length(x)==1) {
+      ifelse(explicit_direction<0,12,0)
+    } else {
+      ifelse(explicit_direction<0,max(x),min(x))
+    }
+  } else {
+    if (length(x)==1) {
+      0
+    } else {
+      if (c(0,12) %in% x %>% all) {
+        0
+      } else if (12 %in% x) {
+        12
+      } else {
+        min(x)
+      }
+    }
+  }
+}
+
+implicit_direction <- function(x,explicit_reference_tone) {
+  if (!is.null(explicit_reference_tone)) {
+    if (length(x)==1) {
+      ifelse(explicit_reference_tone==12,-1,1)
+    } else {
+      if (explicit_reference_tone<=min(x)) {
+        1
+      } else if (explicit_reference_tone>=max(x)) {
+        -1
+      } else {
+        0
+      }
+    }
+  } else {
+    if (c(0,12) %in% x %>% all) {
+      0
+    } else if (12 %in% x) {
+      -1
+    } else {
+      1
+    }
+  }
 }
 
 rotate <- function(.coordinates,.angle) {
   checkmate::assert_numeric(.angle)
   .coordinates = t(.coordinates)
   R = tibble::frame_matrix(
-    ~.x,          ~.y,
+    ~x,          ~.y,
     cos(.angle), -sin(.angle),
     sin(.angle),  cos(.angle)
   )
   (R %*% .coordinates * cos(.angle)) %>% zapsmall %>% t
 }
+
+# this is to stop R check command from complaining about magrittr
+globalVariables(".")
+
+# -------------------------------------------------------------------------
+
+
