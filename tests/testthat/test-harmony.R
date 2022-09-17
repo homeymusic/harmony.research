@@ -93,3 +93,10 @@ test_that('brightness and affinity are symmetrical with symmetrical chords',{
   expect_equal(h(c(0,3,7))$affinity,h(-c(0,3,7),-1)$affinity)
   expect_equal(h(c(0,3,7))$brightness,-h(-c(0,3,7),-1)$brightness)
 })
+test_that('consonance is the L1 of affinity and brightness',{
+  expect_equal(h(c(0,4,7))$consonance,
+               abs(h(c(0,4,7))$brightness)+abs(h(c(0,4,7),)$affinity))
+
+  expect_equal(h(c(0,4,7))$consonance,h(-c(0,4,7),-1)$consonance)
+
+})

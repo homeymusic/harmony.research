@@ -24,6 +24,7 @@ harmony.uncached <- function(x, direction=NULL, reference_tone=NULL, name=NULL) 
     intervallic_name        = intervallic_name(x,direction,reference_tone),
     brightness              = consonance[['brightness']],
     affinity                = consonance[['affinity']],
+    consonance              = abs(.data$brightness) + abs(.data$affinity)
   )
   attr(t,"chord") <- x
   # add the implicit results to the table
