@@ -3,7 +3,7 @@
 
 ## usethis namespace: start
 #' @importFrom memoise memoise
-#' @importFrom checkmate assert_integerish assert_choice
+#' @importFrom checkmate assert_integerish assert_choice qassert
 #' @importFrom tibble tibble
 #' @importFrom magrittr %>%
 #' @importFrom stringr str_replace_all

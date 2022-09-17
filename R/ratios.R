@@ -25,11 +25,51 @@
 # so the tritone ought to be the average of 7/5 and 10/7
 # so we hammer that into the final function for dissonance
 
-ratios <- tibble::tibble(
-  # Up ratios
-  up.numerator =     c(1,16,9,6,5,4,7,3,8,5,16,15,2),
-  up.denominator =   c(1,15,8,5,4,3,5,2,5,3, 9, 8,1),
-  # Down ratios
-  down.numerator =   rev(.data$up.denominator),
-  down.denominator = rev(.data$up.numerator)
-)
+ratios.uncached <- function() {
+  tibble::tibble(
+    # Up ratios
+    up.numerator =     c(1,16,9,6,5,4,7,3,8,5,16,15,2),
+    up.denominator =   c(1,15,8,5,4,3,5,2,5,3, 9, 8,1),
+    # Down ratios
+    down.numerator =   c(1, 8, 9,3,5,2,5,3,4,5,8,15,1),
+    down.denominator = c(2,15,16,5,8,3,7,4,5,6,9,16,1)
+  )
+}
+ratios <- memoise::memoise(ratios.uncached)
+
+ratio <- function(.x,.direction) {
+  checkmate::qassert(.x,'X1')
+  checkmate::assert_choice(.direction,c(-1,+1))
+
+  numerator=NULL
+  denominator=NULL
+  numerators=NULL
+  denominators=NULL
+
+  if (.direction > 0) {
+    numerators=ratios()$up.numerator
+    denominators=ratios()$up.denominator
+  } else {
+    numerators=ratios()$down.numerator
+    denominators=ratios()$down.denominator
+  }
+
+  interval = .x %% 12
+  octave = (.x / 12) %>% floor
+
+  numerator=numerators[interval+1]
+  denominator=denominators[interval+1]
+
+  if (octave > 0) {
+    numerator = numerator * (2 ^ octave)
+  } else if (octave < 0) {
+    denominator = denominator * (2 ^ abs(octave))
+  }
+
+  if(numerator==denominator){numerator=denominator=1}
+
+  c(numerator=numerator,denominator=denominator)
+}
+
+# -------------------------------------------------------------------------
+
