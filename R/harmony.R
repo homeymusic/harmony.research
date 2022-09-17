@@ -6,16 +6,14 @@ harmony.uncached <- function(x, direction=NULL, reference_tone=NULL, name=NULL) 
   # determine the implicit harmonic direction and the implicit reference tone
   results         = direction_and_reference_tone(x,direction,reference_tone)
   direction       = ifelse(is.null(results$explicit_direction),
-                          results$implicit_direction,
-                          results$explicit_direction)
+                           results$implicit_direction,
+                           results$explicit_direction)
   reference_tone  = ifelse(is.null(results$explicit_reference_tone),
-                          results$implicit_reference_tone,
-                          results$explicit_reference_tone)
+                           results$implicit_reference_tone,
+                           results$explicit_reference_tone)
 
   # calculate consonance
-  consonance      = consonance(x,results$explicit_direction,
-                              results$implicit_direction,
-                              reference_tone)
+  consonance      = consonance(x,direction,reference_tone)
 
   # assemble harmony table
   t = tibble::tibble(
@@ -28,6 +26,7 @@ harmony.uncached <- function(x, direction=NULL, reference_tone=NULL, name=NULL) 
     affinity                = consonance[['affinity']],
   )
   attr(t,"chord") <- x
+  # add the implicit results to the table
   dplyr::bind_cols(t,results)
 }
 
@@ -101,27 +100,20 @@ h <- harmony
 # the difference between the octave complements in the current measure
 # is 2 which is the formula for the octave complement ri*r2=2
 # whereas for Euler and Vogel the differences in octave complements is 1
-consonance <- function(x,explicit_direction,implicit_direction,reference_tone) {
+consonance <- function(x,direction,reference_tone) {
   checkmate::assert_integerish(x)
-  checkmate::assert_choice(explicit_direction,c(-1,0,+1),null.ok = TRUE)
-  checkmate::assert_choice(implicit_direction,c(-1,0,+1),null.ok = TRUE)
+  checkmate::assert_choice(direction,c(-1,0,+1),null.ok = TRUE)
   checkmate::assert_integerish(reference_tone)
 
   x = x - reference_tone
+  if (direction < 0) {x = x + 12}
   # we start with coordinates in count_primes - down.dissonance space
   # we subtract dissonance from the upper bound to get ascending consonance
   # then we rotate 45 degrees from up-consonance - down-consonance space
   # to arrive at brightness - affinity space
 
-  consonance = (max_dissonance() - dissonance(x)) %>%
+  (max_dissonance() - dissonance(x)) %>%
     rotate(pi/4) %>% c(brightness=.[1,1],affinity=.[1,2])
-
-  # if direction was given and it agrees with implied direction then leave it be
-  if (!is.null(explicit_direction) && (explicit_direction != implicit_direction)) {
-    consonance['brightness'] <- explicit_direction * consonance['brightness']
-  }
-
-  consonance
 }
 
 dissonance <- function(x) {
@@ -139,6 +131,8 @@ dissonance <- function(x) {
 
 count_primes <- function(x) {
   checkmate::assert_integerish(x)
+
+  primes = x %>% purrr::map(function(.x){numbers::primeFactors(.x) %>% .[.>1]})
 
   x %>% purrr::map(function(.x){numbers::primeFactors(.x) %>% .[.>1]}) %>%
     unlist %>% sum
@@ -167,6 +161,8 @@ direction_and_reference_tone <- function(x,explicit_direction,explicit_reference
        implicit_reference_tone = implicit_reference_tone(x,explicit_direction))
 }
 
+# TODO: underlining not working with negative numbers?
+# 0:-4:-7 didn't want to underline -7
 intervallic_name <- function(x, direction, reference_tone) {
   checkmate::assert_integerish(x)
   checkmate::assert_choice(direction,c(-1,0,+1))
@@ -209,8 +205,10 @@ implicit_reference_tone <- function(x,explicit_direction) {
     } else {
       if (c(0,12) %in% x %>% all) {
         0
-      } else if (12 %in% x) {
+      } else if (12 == min(x) || 12 == max(x)) {
         12
+      } else if (0 == min(x) || 0 == max(x)) {
+        0
       } else {
         min(x)
       }
@@ -234,7 +232,7 @@ implicit_direction <- function(x,explicit_reference_tone) {
   } else {
     if (c(0,12) %in% x %>% all) {
       0
-    } else if (12 %in% x) {
+    } else if (12 == max(x) || 0 == max(x)) {
       -1
     } else {
       1

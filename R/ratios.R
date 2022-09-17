@@ -38,6 +38,8 @@ ratios.uncached <- function() {
 ratios <- memoise::memoise(ratios.uncached)
 
 ratio <- function(x,direction) {
+  # print('interval passed into ratio')
+  # print(x)
   checkmate::qassert(x,'X1')
   checkmate::assert_choice(direction,c(-1,+1))
 

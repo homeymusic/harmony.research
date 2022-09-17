@@ -53,3 +53,9 @@ test_that('down ratio within and beyond the primary octave matches expectations'
   expect_equal(ratio(-25,-1)[['numerator']],15)
   expect_equal(ratio(-25,-1)[['denominator']],128)
 })
+test_that('up and down are the same',{
+  expect_equal(ratio(0,1),ratio(12,-1))
+  expect_equal(ratio(7,1)%>%sum,ratio(5,-1)%>%sum)
+  expect_equal(ratio(4,1)%>%sum,ratio(8,-1)%>%sum)
+  expect_equal(ratio(12,1)%>%sum,ratio(0,-1)%>%sum)
+})

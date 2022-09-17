@@ -45,12 +45,15 @@ test_that('harmony will default to up and guess the reference tone',{
   h = h(c(0,4,7,12))
   expect_equal(h$direction,0)
   expect_equal(h$reference_tone,0)
+  h = h(-c(0,4,7))
+  expect_equal(h$direction,-1)
+  expect_equal(h$reference_tone,0)
 })
 test_that("interval affinity behaves well",{
-  purrr::pmap(intervals(),~expect_equal(h(..1)$affinity,..4,info=paste('..1',..1,'..3',..4)))
+  purrr::pmap(intervals(),~expect_equal(h(..1,1)$affinity,..4,info=paste('interval:',..1,'affinity',..4)))
 })
 test_that("interval brightness behaves well",{
-  purrr::pmap(intervals(),~expect_equal(h(..1)$brightness,..3))
+  purrr::pmap(intervals(),~expect_equal(h(..1,1)$brightness,..3))
 })
 test_that("exponent prime factors sum works as expected",{
   expect_equal(count_primes(1),0)
@@ -82,4 +85,11 @@ test_that("rotation works", {
 })
 test_that('for 1 tone and no reference tone assume reference tone is zero',{
   expect_equal(h(6)$reference_tone,0)
+})
+test_that('brightness and affinity are symmetrical with symmetrical chords',{
+  expect_equal(h(c(0,4,7))$affinity,h(-c(0,4,7),-1)$affinity)
+  expect_equal(h(c(0,4,7))$brightness,-h(-c(0,4,7),-1)$brightness)
+
+  expect_equal(h(c(0,3,7))$affinity,h(-c(0,3,7),-1)$affinity)
+  expect_equal(h(c(0,3,7))$brightness,-h(-c(0,3,7),-1)$brightness)
 })
