@@ -1,34 +1,41 @@
+# TODO: change reference tone to root
 harmony.uncached <- function(x, direction=NULL, reference_tone=NULL, name=NULL) {
   checkmate::assert_integerish(x)
   checkmate::assert_choice(direction,c(-1,0,+1),null.ok=TRUE)
   checkmate::assert_integerish(reference_tone,null.ok=TRUE)
 
-  # determine the implicit harmonic direction and the implicit reference tone
-  results         = direction_and_reference_tone(x,direction,reference_tone)
-  direction       = ifelse(is.null(results$explicit_direction),
-                           results$implicit_direction,
-                           results$explicit_direction)
-  reference_tone  = ifelse(is.null(results$explicit_reference_tone),
-                           results$implicit_reference_tone,
-                           results$explicit_reference_tone)
+  # gather the harmonic parameters
+  p                = direction_and_reference_tone(x,direction,reference_tone)
+  p$direction      = ifelse(is.null(p$explicit_direction),
+                           p$implicit_direction,
+                           p$explicit_direction)
+  p$reference_tone = ifelse(is.null(p$explicit_reference_tone),
+                           p$implicit_reference_tone,
+                           p$explicit_reference_tone)
 
-  # calculate consonance
-  consonance      = consonance(x,direction,reference_tone)
+  # calculate the ABCs of affinity, brightness and consonance
+  # move the root to tonal center
+  x = x - p$reference_tone
+  # adjust the root in case of inversion
+  if (p$direction < 0) {x = x + 12}
+  # flip from up-down dissonance to up-down consonance
+  # rotate coordinate system to brightness-affinity
+  matrix             = (max_dissonance() - dissonance(x)) %>% rotate(pi/4)
+  # build the ABCs including L1 norm of affinity-brightness for consonance magnitude
+  p$affinity         = matrix[1,2]
+  p$brightness       = matrix[1,1]
+  p$consonance       = abs(p$brightness) + abs(p$affinity)
+  # create the intervallic name that shows root (underlines) and inversion (arrow)
+  p$intervallic_name = intervallic_name(x,p$direction,p$reference_tone)
 
-  # assemble harmony table
+  # stub out the harmony table
   t = tibble::tibble(
     position                = x %>% mean,
-    direction               = direction,
-    reference_tone          = reference_tone,
-    name                    = name,
-    intervallic_name        = intervallic_name(x,direction,reference_tone),
-    brightness              = consonance[['brightness']],
-    affinity                = consonance[['affinity']],
-    consonance              = abs(.data$brightness) + abs(.data$affinity)
+    name                    = name
   )
   attr(t,"chord") <- x
-  # add the implicit results to the table
-  dplyr::bind_cols(t,results)
+  # add the harmonic parameters to the table
+  dplyr::bind_cols(t,p)
 }
 
 #' Harmony
@@ -101,21 +108,6 @@ h <- harmony
 # the difference between the octave complements in the current measure
 # is 2 which is the formula for the octave complement ri*r2=2
 # whereas for Euler and Vogel the differences in octave complements is 1
-consonance <- function(x,direction,reference_tone) {
-  checkmate::assert_integerish(x)
-  checkmate::assert_choice(direction,c(-1,0,+1),null.ok = TRUE)
-  checkmate::assert_integerish(reference_tone)
-
-  x = x - reference_tone
-  if (direction < 0) {x = x + 12}
-  # we start with coordinates in count_primes - down.dissonance space
-  # we subtract dissonance from the upper bound to get ascending consonance
-  # then we rotate 45 degrees from up-consonance - down-consonance space
-  # to arrive at brightness - affinity space
-
-  (max_dissonance() - dissonance(x)) %>%
-    rotate(pi/4) %>% c(brightness=.[1,1],affinity=.[1,2])
-}
 
 dissonance <- function(x) {
   checkmate::assert_integerish(x)

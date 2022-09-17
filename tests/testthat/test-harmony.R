@@ -23,7 +23,7 @@ test_that('params are stored',{
 test_that('intervallic names are informative and maintain voice leading order',{
   expect_equal(major_triad_root$intervallic_name,"0\u0332:4:7\u21D1")
   expect_equal(major_triad_first_inversion$intervallic_name,"1\u03322\u0332:4:7\u21D3")
-  expect_equal(major_triad_second_inversion$intervallic_name,"1\u03322\u0332:16:7\u21D1\u21D3")
+  expect_equal(major_triad_second_inversion$intervallic_name,"1\u03322\u0332:16:7\u21D3")
 })
 test_that('if implicit and explicit direction agree then do not flip it.',{
   expect_gt(major_triad_first_inversion$brightness,0)
