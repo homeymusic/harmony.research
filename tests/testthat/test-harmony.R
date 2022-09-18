@@ -66,13 +66,13 @@ test_that("dissonance measure matches expectations", {
   purrr::pmap(intervals(),~expect_equal(
     dissonance(..1)[1,1],
     expected_up_primes[..1+1],
-    info=paste('position:',..1,..2,'up num:',ratio(..1,1),'up denominator:',ratio(..1,1))
+    info=paste('position:',..1,..2,'probe.freq:',frequency_ratio(..1,1),'ref.freq:',frequency_ratio(..1,1))
   ))
   expected_down_primes = c(3,14,14,8,11,5,12,7,9,10,12,16,2)
   intervals() %>% purrr::pmap(~expect_equal(
     dissonance(..1)[1,2],
     expected_down_primes[..1+1],
-    info=paste('position:',..1,..2,'down num:',ratio(..1,1),'up denominator',ratio(..1,1))
+    info=paste('position:',..1,..2,'probe.freq:',frequency_ratio(..1,1),'ref.freq',frequency_ratio(..1,1))
   ))
 })
 test_that('upper bound of dissonance makes sense',{

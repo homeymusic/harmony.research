@@ -111,12 +111,15 @@ h <- harmony
 dissonance <- function(x) {
   checkmate::assert_integerish(x)
 
+  # TODO: check for tritone 6 and return the average dissonance of the
+  # two tritones synmetrical around 600 cents
+
   cbind(
     x %>% purrr::map(function(.x) {
-      count_primes(ratio(.x,1))}) %>% unlist %>% mean,
+      count_primes(frequency_ratio(.x,1))}) %>% unlist %>% mean,
 
     x %>% purrr::map(function(.x) {
-      count_primes(ratio(.x,-1))}) %>% unlist %>% mean
+      count_primes(frequency_ratio(.x,-1))}) %>% unlist %>% mean
   )
 
 }
@@ -135,7 +138,7 @@ count_primes <- function(x) {
 # m2, is 1 in integer notation but R vectors are indexed from 1
 # so that's why we have see + 1 notation
 max_dissonance.uncached <- function() {
-  count_primes(c(ratio(1,1)))
+  count_primes(c(frequency_ratio(1,1)))
 }
 max_dissonance <- memoise::memoise(max_dissonance.uncached)
 
