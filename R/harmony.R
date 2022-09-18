@@ -11,17 +11,24 @@ harmony.uncached <- function(chord, direction=NULL, root=NULL, name=NULL) {
   checkmate::assert_choice(direction,c(-1,0,+1),null.ok=TRUE)
   checkmate::assert_integerish(root,null.ok=TRUE)
 
+  # stub out the harmony table
+  t = tibble::tibble(
+    position                = chord %>% mean,
+    name                    = name
+  )
+  attr(t,"chord") <- chord
+
   # gather the harmonic parameters
   p = direction_and_root(chord,direction,root)
 
   # calculate the ABCs of affinity, brightness and consonance
   # move the root to tonal center
-  chord = chord - p$root
+  aurally_centered_chord = chord - p$root
   # adjust the root in case of inversion
-  if (p$direction < 0) {chord = chord + 12}
+  if (p$direction < 0) {aurally_centered_chord = aurally_centered_chord + 12}
   # flip from up-down dissonance to up-down consonance
   # rotate coordinate system to brightness-affinity
-  matrix             = (max_dissonance() - dissonance(chord)) %>% rotate(pi/4)
+  matrix             = (max_dissonance() - dissonance(aurally_centered_chord)) %>% rotate(pi/4)
   # build the ABCs including L1 norm of affinity-brightness for consonance magnitude
   p$affinity         = matrix[1,2]
   p$brightness       = matrix[1,1]
@@ -29,12 +36,6 @@ harmony.uncached <- function(chord, direction=NULL, root=NULL, name=NULL) {
   # create the intervallic name that shows root (underlines) and inversion (arrow)
   p$intervallic_name = intervallic_name(chord,p$direction,p$root)
 
-  # stub out the harmony table
-  t = tibble::tibble(
-    position                = chord %>% mean,
-    name                    = name
-  )
-  attr(t,"chord") <- chord
   # add the harmonic parameters to the table
   dplyr::bind_cols(t,p)
 }

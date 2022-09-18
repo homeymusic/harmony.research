@@ -100,3 +100,11 @@ test_that('consonance is the L1 of affinity and brightness',{
   expect_equal(h(c(0,4,7))$consonance,h(-c(0,4,7),-1)$consonance)
 
 })
+test_that('aural centering works as expected',{
+  # do we detect the inversion when
+  # the tonal center (0) happens to be the same as the aural center (0)?
+  expect_equal(h(c(0+12,4,7))$implicit_direction,-1)
+  # do we detect the inversion when
+  # the tonal center (60) happens to be different tha the aural center (0)?
+  expect_equal(h(c(0+12,4,7)+60)$implicit_direction,-1)
+})
