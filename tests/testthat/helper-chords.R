@@ -1,15 +1,15 @@
 major_triads <- function() {
   list(
     "root"=h(c(0,4,7),
-             reference_tone=0,
+             root=0,
              direction=+1,
              name="major triad"),
     "1st inversion"=h(c(0+12,4,7),
-                      reference_tone=12,
+                      root=12,
                       direction=-1,
                       name="major triad 1st inversion"),
     "2nd inversion"=h(c(0+12,4+12,7),
-                      reference_tone=12,
+                      root=12,
                       direction=-1,
                       name="major triad 2nd inversion")
   )

@@ -1,21 +1,20 @@
-# TODO: change reference tone to root
-harmony.uncached <- function(x, direction=NULL, reference_tone=NULL, name=NULL) {
+harmony.uncached <- function(x, direction=NULL, root=NULL, name=NULL) {
   checkmate::assert_integerish(x)
   checkmate::assert_choice(direction,c(-1,0,+1),null.ok=TRUE)
-  checkmate::assert_integerish(reference_tone,null.ok=TRUE)
+  checkmate::assert_integerish(root,null.ok=TRUE)
 
   # gather the harmonic parameters
-  p                = direction_and_reference_tone(x,direction,reference_tone)
+  p                = direction_and_root(x,direction,root)
   p$direction      = ifelse(is.null(p$explicit_direction),
                            p$implicit_direction,
                            p$explicit_direction)
-  p$reference_tone = ifelse(is.null(p$explicit_reference_tone),
-                           p$implicit_reference_tone,
-                           p$explicit_reference_tone)
+  p$root = ifelse(is.null(p$explicit_root),
+                           p$implicit_root,
+                           p$explicit_root)
 
   # calculate the ABCs of affinity, brightness and consonance
   # move the root to tonal center
-  x = x - p$reference_tone
+  x = x - p$root
   # adjust the root in case of inversion
   if (p$direction < 0) {x = x + 12}
   # flip from up-down dissonance to up-down consonance
@@ -26,7 +25,7 @@ harmony.uncached <- function(x, direction=NULL, reference_tone=NULL, name=NULL) 
   p$brightness       = matrix[1,1]
   p$consonance       = abs(p$brightness) + abs(p$affinity)
   # create the intervallic name that shows root (underlines) and inversion (arrow)
-  p$intervallic_name = intervallic_name(x,p$direction,p$reference_tone)
+  p$intervallic_name = intervallic_name(x,p$direction,p$root)
 
   # stub out the harmony table
   t = tibble::tibble(
@@ -45,7 +44,7 @@ harmony.uncached <- function(x, direction=NULL, reference_tone=NULL, name=NULL) 
 #'
 #' @param x A note or chord expressed as an interval integer or vector of interval integers
 #' @param direction Harmonic direction +1 is up and -1 is down
-#' @param reference_tone The reference tone of the chord or larger context
+#' @param root The reference tone of the chord or larger context
 #' @param name A custom name for the note or chord
 #' @return A tibble
 #'
@@ -140,23 +139,23 @@ max_dissonance.uncached <- function() {
 }
 max_dissonance <- memoise::memoise(max_dissonance.uncached)
 
-direction_and_reference_tone <- function(x,explicit_direction,explicit_reference_tone) {
+direction_and_root <- function(x,explicit_direction,explicit_root) {
   checkmate::assert_integerish(x)
   checkmate::assert_choice(explicit_direction,c(-1,0,+1),null.ok=TRUE)
-  checkmate::assert_integerish(explicit_reference_tone,null.ok=TRUE)
+  checkmate::assert_integerish(explicit_root,null.ok=TRUE)
 
   list(explicit_direction      = explicit_direction,
-       implicit_direction      = implicit_direction(x,explicit_reference_tone),
-       explicit_reference_tone = explicit_reference_tone,
-       implicit_reference_tone = implicit_reference_tone(x,explicit_direction))
+       implicit_direction      = implicit_direction(x,explicit_root),
+       explicit_root = explicit_root,
+       implicit_root = implicit_root(x,explicit_direction))
 }
 
 # TODO: underlining not working with negative numbers?
 # 0:-4:-7 didn't want to underline -7
-intervallic_name <- function(x, direction, reference_tone) {
+intervallic_name <- function(x, direction, root) {
   checkmate::assert_integerish(x)
   checkmate::assert_choice(direction,c(-1,0,+1))
-  checkmate::assert_integerish(reference_tone)
+  checkmate::assert_integerish(root)
 
   underline =  '\u0332'  # 0̲ underlines the character preceding the unicode
   up_arrow =   '\u21D1'  # ⇑
@@ -168,21 +167,21 @@ intervallic_name <- function(x, direction, reference_tone) {
   else if (direction ==  0) {arrow = mixed_arrow}
   else if (direction == +1) {arrow = up_arrow}
 
-  underlined_reference_tone = stringr::str_replace_all(reference_tone,
+  underlined_root = stringr::str_replace_all(root,
                                                        "(.)",
                                                        paste0("\\1",underline))
   intervallic_name = x %>% paste(collapse = ":")
-  if (reference_tone %in% x) {
-    intervallic_name=gsub(paste0("\\b",reference_tone,"\\b"),
-                          underlined_reference_tone,intervallic_name)
+  if (root %in% x) {
+    intervallic_name=gsub(paste0("\\b",root,"\\b"),
+                          underlined_root,intervallic_name)
   } else {
-    intervallic_name = paste(underlined_reference_tone,intervallic_name)
+    intervallic_name = paste(underlined_root,intervallic_name)
   }
 
   paste0(intervallic_name, arrow)
 }
 
-implicit_reference_tone <- function(x,explicit_direction) {
+implicit_root <- function(x,explicit_direction) {
   if (!is.null(explicit_direction)) {
     if (length(x)==1) {
       ifelse(explicit_direction<0,12,0)
@@ -206,14 +205,14 @@ implicit_reference_tone <- function(x,explicit_direction) {
   }
 }
 
-implicit_direction <- function(x,explicit_reference_tone) {
-  if (!is.null(explicit_reference_tone)) {
+implicit_direction <- function(x,explicit_root) {
+  if (!is.null(explicit_root)) {
     if (length(x)==1) {
-      ifelse(explicit_reference_tone==12,-1,1)
+      ifelse(explicit_root==12,-1,1)
     } else {
-      if (explicit_reference_tone<=min(x)) {
+      if (explicit_root<=min(x)) {
         1
-      } else if (explicit_reference_tone>=max(x)) {
+      } else if (explicit_root>=max(x)) {
         -1
       } else {
         0
