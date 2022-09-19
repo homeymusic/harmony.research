@@ -101,10 +101,13 @@ test_that('consonance is the L1 of affinity and brightness',{
 
 })
 test_that('aural centering works as expected',{
-  # do we detect the inversion when
-  # the tonal center (0) happens to be the same as the aural center (0)?
-  expect_equal(h(c(0+12,4,7))$implicit_direction,-1)
-  # do we detect the inversion when
-  # the tonal center (60) happens to be different tha the aural center (0)?
-  expect_equal(h(c(0+12,4,7)+60)$implicit_direction,-1)
+  # do we detect the inversion when tonal center (0) same as the aural center (0)?
+  h = h(c(0,4,7))
+  expect_equal(h$implicit_direction,1)
+  expect_equal(attr(h,"aurally_centered_chord"),c(0,4,7))
+
+  # do we detect the inversion when tonal center (12) happens to be 12?
+  h = h(c(0+12,4,7))
+  expect_equal(h$implicit_direction,-1)
+  expect_equal(attr(h,"aurally_centered_chord"),c(12,4,7))
 })
