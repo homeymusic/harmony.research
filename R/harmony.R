@@ -63,22 +63,27 @@ direction_and_root <- function(chord,explicit_direction,explicit_root) {
   checkmate::assert_choice(explicit_direction,c(-1,0,+1),null.ok=TRUE)
   checkmate::assert_integerish(explicit_root,null.ok=TRUE)
 
-  p = list(explicit_direction      = explicit_direction,
-           implicit_direction      = implicit_direction(chord,explicit_root),
-           explicit_root = explicit_root,
-           implicit_root = implicit_root(chord,explicit_direction))
+  p = list(explicit_direction = explicit_direction,
+           implicit_direction = implicit_direction(chord,explicit_root),
+           explicit_root      = explicit_root,
+           implicit_root      = implicit_root(chord,explicit_direction))
 
-  p$direction      = ifelse(is.null(p$explicit_direction),
-                            p$implicit_direction,
-                            p$explicit_direction)
-  p$root = ifelse(is.null(p$explicit_root),
-                  p$implicit_root,
-                  p$explicit_root)
+  p$direction                 = ifelse(is.null(p$explicit_direction),
+                                       p$implicit_direction,
+                                       p$explicit_direction)
+  p$root                      = ifelse(is.null(p$explicit_root),
+                                       p$implicit_root,
+                                       p$explicit_root)
 
-  # move the root to tonal center
-  aurally_centered_chord = chord - p$root
-  # adjust the root in case of inversion
-  if (p$direction < 0) {aurally_centered_chord = aurally_centered_chord + 12}
+  # move the chord to the aural center
+  if(length(chord)>1) {
+    aurally_centered_chord = chord - p$root
+    # adjust the root in case of inversion
+    if (p$direction < 0) {aurally_centered_chord = aurally_centered_chord + 12}
+  } else {
+    aurally_centered_chord = chord
+  }
+  # store centered chord on the params object
   attr(p,"aurally_centered_chord") <- aurally_centered_chord
 
   p
@@ -86,7 +91,6 @@ direction_and_root <- function(chord,explicit_direction,explicit_root) {
 
 dissonance <- function(chord) {
   checkmate::assert_integerish(chord)
-
   # TODO: check for tritone 6 and return the average dissonance of the
   # two tritones synmetrical around 600 cents
 
@@ -176,7 +180,7 @@ implicit_root <- function(chord,explicit_direction) {
 implicit_direction <- function(chord,explicit_root) {
   if (!is.null(explicit_root)) {
     if (length(chord)==1) {
-      ifelse(explicit_root==12,-1,1)
+# ifelse(explicit_root==12,-1,1)
     } else {
       if (explicit_root<=min(chord)) {
         1

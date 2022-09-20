@@ -5,12 +5,12 @@
 \alias{h}
 \title{Harmony}
 \usage{
-harmony(x, direction = NULL, root = NULL, name = NULL)
+harmony(chord, direction = NULL, root = NULL, name = NULL)
 
-h(x, direction = NULL, root = NULL, name = NULL)
+h(chord, direction = NULL, root = NULL, name = NULL)
 }
 \arguments{
-\item{x}{A note or chord expressed as an interval integer or vector of interval integers}
+\item{chord}{A note or chord expressed as an interval integer or vector of interval integers}
 
 \item{direction}{Harmonic direction +1 is up and -1 is down}
 
