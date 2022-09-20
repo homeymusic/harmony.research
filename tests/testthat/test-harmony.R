@@ -2,6 +2,10 @@ major_triad_root = major_triads()[["root"]]
 major_triad_first_inversion = major_triads()[["1st inversion"]]
 major_triad_second_inversion = major_triads()[["2nd inversion"]]
 
+minor_triad_root = minor_triads()[["root"]]
+minor_triad_first_inversion = minor_triads()[["1st inversion"]]
+minor_triad_second_inversion = minor_triads()[["2nd inversion"]]
+
 test_that('harmony throws an error if params are wrong', {
   expect_error(harmony())
   expect_error(h())
@@ -21,9 +25,15 @@ test_that('params are stored',{
   expect_equal(major_triad_root$name,'major triad')
 })
 test_that('intervallic names are informative and maintain voice leading order',{
+  # major triads
   expect_equal(major_triad_root$intervallic_name,"0\u0332:4:7\u21D1")
   expect_equal(major_triad_first_inversion$intervallic_name,"1\u03322\u0332:4:7\u21D3")
   expect_equal(major_triad_second_inversion$intervallic_name,"1\u03322\u0332:16:7\u21D3")
+
+  # minor triads
+  expect_equal(minor_triad_root$intervallic_name,"0\u0332:3:7\u21D1")
+  expect_equal(minor_triad_first_inversion$intervallic_name,"1\u03322\u0332:3:7\u21D3")
+  expect_equal(minor_triad_second_inversion$intervallic_name,"1\u03322\u0332:15:7\u21D3")
 })
 test_that('if implicit and explicit direction agree then do not flip it.',{
   expect_gt(major_triad_first_inversion$brightness,0)
@@ -134,4 +144,9 @@ test_that('aural centering works as expected',{
   expect_equal(h$explicit_root,76)
   expect_equal(h$root,76)
   expect_equal(attr(h,"aurally_centered_chord"),c(8,12,3))
+})
+test_that('implicit direction for minor triad and inversions makes sense',{
+  expect_equal(h(c(0,3,7))$direction,1)
+  expect_equal(h(c(0+12,3,7))$direction,-1)
+  expect_equal(h(c(0+12,3+12,7))$direction,-1)
 })

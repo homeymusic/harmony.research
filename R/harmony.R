@@ -195,6 +195,10 @@ implicit_direction <- function(chord,explicit_root) {
       0
     } else if (12 == max(chord) || 0 == max(chord)) {
       -1
+    } else if (12 == min(chord) || 0 == min(chord)) {
+      1
+    } else if (12 %in% chord) {
+      -1
     } else {
       1
     }
