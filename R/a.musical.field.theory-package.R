@@ -2,7 +2,6 @@
 "_PACKAGE"
 
 ## usethis namespace: start
-#' @importFrom memoise memoise
 #' @importFrom checkmate assert_integerish assert_choice qassert
 #' @importFrom tibble tibble
 #' @importFrom magrittr %>%

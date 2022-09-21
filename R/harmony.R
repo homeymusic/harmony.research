@@ -1,12 +1,16 @@
-# TODO: dig into the distinction between the
-# receiving aural field, out tonic-octave space
-# and the transmitting tonal field
-# for example, we move the aural center to the root
-# and then adjust to the octave if it's an inversion
-# this is like saying that the human listener
-# is hearing a major triad whether it's C major or G major triad or whatever
-
-harmony.uncached <- function(chord, direction=NULL, root=NULL, name=NULL) {
+#' Harmony
+#'
+#' Provides the musical harmony metrics of a note or chord.
+#'
+#'
+#' @param chord A note or chord expressed as an interval integer or vector of interval integers
+#' @param direction Harmonic direction +1 is up and -1 is down
+#' @param root The reference tone of the chord or larger context
+#' @param name A custom name for the note or chord
+#' @return A tibble
+#'
+#' @export
+harmony <- function(chord, direction=NULL, root=NULL, name=NULL) {
   checkmate::assert_integerish(chord)
   checkmate::assert_choice(direction,c(-1,0,+1),null.ok=TRUE)
   checkmate::assert_integerish(root,null.ok=TRUE)
@@ -39,21 +43,6 @@ harmony.uncached <- function(chord, direction=NULL, root=NULL, name=NULL) {
   # add the harmonic parameters to the tibble
   dplyr::bind_cols(t,a)
 }
-
-#' Harmony
-#'
-#' Provides the musical harmony metrics of a note or chord.
-#'
-#'
-#' @param chord A note or chord expressed as an interval integer or vector of interval integers
-#' @param direction Harmonic direction +1 is up and -1 is down
-#' @param root The reference tone of the chord or larger context
-#' @param name A custom name for the note or chord
-#' @return A tibble
-#'
-#' @export
-harmony <- memoise::memoise(harmony.uncached)
-
 #' @rdname harmony
 #' @export
 h <- harmony
@@ -117,10 +106,9 @@ count_primes <- function(chord) {
 #
 # m2, is 1 in integer notation but R vectors are indexed from 1
 # so that's why we have see + 1 notation
-max_dissonance.uncached <- function() {
+max_dissonance <- function() {
   count_primes(c(frequency_ratio(1,1)))
 }
-max_dissonance <- memoise::memoise(max_dissonance.uncached)
 
 # TODO: underlining not working with negative numbers?
 # 0:-4:-7 didn't want to underline -7

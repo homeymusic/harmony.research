@@ -1,4 +1,4 @@
-frequency_ratios.uncached <- function() {
+frequency_ratios <- function() {
   tibble::tibble(
     #############################################
     # Tonic Frequency Ratios
@@ -15,7 +15,6 @@ frequency_ratios.uncached <- function() {
     ref.freq.octave = c(2,15,16,5,8,3,7,4,5,6,9,16,1)  # denominator
   )
 }
-frequency_ratios <- memoise::memoise(frequency_ratios.uncached)
 
 frequency_ratio <- function(x,direction) {
   # print('interval passed into frequency_ratio')
