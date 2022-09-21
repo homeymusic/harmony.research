@@ -69,21 +69,21 @@ test_that("interval brightness behaves well",{
   purrr::pmap(intervals(),~expect_equal(h(..1)$brightness,..3))
 })
 test_that("exponent prime factors sum works as expected",{
-  expect_equal(count_primes(1),1)
-  expect_equal(count_primes(2),2)
-  expect_equal(count_primes(6),5)
-  expect_equal(count_primes(10),7)
+  expect_equal(sum_primes(1),1)
+  expect_equal(sum_primes(2),2)
+  expect_equal(sum_primes(6),5)
+  expect_equal(sum_primes(10),7)
 })
 test_that("dissonance measure matches expectations", {
   expected_up_primes = c(2,16,12,10,9,7,12,5,11,8,14,14,3)
   purrr::pmap(intervals(),~expect_equal(
-    dissonance(..1)[1,1],
+    tonic_octave_dissonance(..1)[1,1],
     expected_up_primes[..1+1],
     info=paste('position:',..1,..2,'probe.freq:',frequency_ratio(..1,1),'ref.freq:',frequency_ratio(..1,1))
   ))
   expected_down_primes = c(3,14,14,8,11,5,12,7,9,10,12,16,2)
   intervals() %>% purrr::pmap(~expect_equal(
-    dissonance(..1)[1,2],
+    tonic_octave_dissonance(..1)[1,2],
     expected_down_primes[..1+1],
     info=paste('position:',..1,..2,'probe.freq:',frequency_ratio(..1,1),'ref.freq',frequency_ratio(..1,1))
   ))

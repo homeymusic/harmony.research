@@ -26,10 +26,11 @@ harmony <- function(chord, direction=NULL, root=NULL, name=NULL) {
   a = chord_analysis(chord,direction,root)
 
   # calculate the ABCs affinity, brightness and consonance
-  # flip from up-down dissonance to up-down consonance
+  # flip from tonic-octave dissonance to tonic-octave consonance
   # rotate coordinate system to brightness-affinity
   affinity_brightness = (max_dissonance() -
-              dissonance(attr(a,"aurally_centered_chord"))) %>% rotate(pi/4)
+                           tonic_octave_dissonance(
+                             attr(a,"aurally_centered_chord"))) %>% rotate(pi/4)
   # store the ABCs including L1 norm of affinity-brightness as consonance magnitude
   a$affinity         = affinity_brightness[1,2]
   a$brightness       = affinity_brightness[1,1]
@@ -47,22 +48,24 @@ harmony <- function(chord, direction=NULL, root=NULL, name=NULL) {
 #' @export
 h <- harmony
 
-dissonance <- function(chord) {
+tonic_octave_dissonance <- function(chord) {
   checkmate::assert_integerish(chord)
   # TODO: check for tritone 6 and return the average dissonance of the
   # two tritones 7:5, 10:7 symetrical around 600 cents
 
   cbind(
     chord %>% purrr::map(function(tone) {
-      count_primes(frequency_ratio(tone,1))}) %>% unlist %>% mean,
+      # tonic ascending ratios
+      sum_primes(frequency_ratio(tone,1))}) %>% unlist %>% mean,
 
     chord %>% purrr::map(function(tone) {
-      count_primes(frequency_ratio(tone,-1))}) %>% unlist %>% mean
+      # octave descending ratios
+      sum_primes(frequency_ratio(tone,-1))}) %>% unlist %>% mean
   )
 
 }
 
-count_primes <- function(ratios) {
+sum_primes <- function(ratios) {
   checkmate::assert_integerish(ratios)
 
   ratios %>% purrr::map(numbers::primeFactors) %>% unlist %>% sum
@@ -76,7 +79,7 @@ count_primes <- function(ratios) {
 # m2, is 1 in integer notation but R vectors are indexed from 1
 # so that's why we have see + 1 notation
 max_dissonance <- function() {
-  count_primes(c(frequency_ratio(1,1)))
+  sum_primes(c(frequency_ratio(1,1)))
 }
 
 rotate <- function(.coordinates,.angle) {
@@ -110,7 +113,7 @@ chord_analysis <- function(chord,explicit_direction,explicit_root) {
   # move the chord to the aural center
   if(length(chord)>1) {
     aurally_centered_chord = chord - a$root
-    # adjust the root in case of inversion
+    # adjust the aural root to the octave in case of inversion
     if (a$direction < 0) {aurally_centered_chord = aurally_centered_chord + 12}
   } else {
     aurally_centered_chord = chord
