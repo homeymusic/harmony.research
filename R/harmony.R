@@ -20,24 +20,24 @@ harmony.uncached <- function(chord, direction=NULL, root=NULL, name=NULL) {
   attr(t,"chord") <- chord
 
   # gather the harmonic parameters
-  p = direction_and_root(chord,direction,root)
+  a = chord_analysis(chord,direction,root)
 
   # calculate the ABCs of affinity, brightness and consonance
   # flip from up-down dissonance to up-down consonance
   # rotate coordinate system to brightness-affinity
   matrix = (max_dissonance() -
-              dissonance(attr(p,"aurally_centered_chord"))) %>% rotate(pi/4)
+              dissonance(attr(a,"aurally_centered_chord"))) %>% rotate(pi/4)
   # build the ABCs including L1 norm of affinity-brightness for consonance magnitude
-  p$affinity         = matrix[1,2]
-  p$brightness       = matrix[1,1]
-  p$consonance       = abs(p$brightness) + abs(p$affinity)
+  a$affinity         = matrix[1,2]
+  a$brightness       = matrix[1,1]
+  a$consonance       = abs(a$brightness) + abs(a$affinity)
   # create the intervallic name that shows root (underlines) and inversion (arrow)
-  p$intervallic_name = intervallic_name(chord,p$direction,p$root)
+  a$intervallic_name = intervallic_name(chord,a$direction,a$root)
 
   # store the aurally centered chord on the tibble
-  attr(t,"aurally_centered_chord") <- attr(p,"aurally_centered_chord")
+  attr(t,"aurally_centered_chord") <- attr(a,"aurally_centered_chord")
   # add the harmonic parameters to the tibble
-  dplyr::bind_cols(t,p)
+  dplyr::bind_cols(t,a)
 }
 
 #' Harmony
@@ -58,35 +58,35 @@ harmony <- memoise::memoise(harmony.uncached)
 #' @export
 h <- harmony
 
-direction_and_root <- function(chord,explicit_direction,explicit_root) {
+chord_analysis <- function(chord,explicit_direction,explicit_root) {
   checkmate::assert_integerish(chord)
   checkmate::assert_choice(explicit_direction,c(-1,0,+1),null.ok=TRUE)
   checkmate::assert_integerish(explicit_root,null.ok=TRUE)
 
-  p = list(explicit_direction = explicit_direction,
+  a = list(explicit_direction = explicit_direction,
            implicit_direction = implicit_direction(chord,explicit_root),
            explicit_root      = explicit_root,
            implicit_root      = implicit_root(chord,explicit_direction))
 
-  p$direction                 = ifelse(is.null(p$explicit_direction),
-                                       p$implicit_direction,
-                                       p$explicit_direction)
-  p$root                      = ifelse(is.null(p$explicit_root),
-                                       p$implicit_root,
-                                       p$explicit_root)
+  a$direction                 = ifelse(is.null(a$explicit_direction),
+                                       a$implicit_direction,
+                                       a$explicit_direction)
+  a$root                      = ifelse(is.null(a$explicit_root),
+                                       a$implicit_root,
+                                       a$explicit_root)
 
   # move the chord to the aural center
   if(length(chord)>1) {
-    aurally_centered_chord = chord - p$root
+    aurally_centered_chord = chord - a$root
     # adjust the root in case of inversion
-    if (p$direction < 0) {aurally_centered_chord = aurally_centered_chord + 12}
+    if (a$direction < 0) {aurally_centered_chord = aurally_centered_chord + 12}
   } else {
     aurally_centered_chord = chord
   }
   # store centered chord on the params object
-  attr(p,"aurally_centered_chord") <- aurally_centered_chord
+  attr(a,"aurally_centered_chord") <- aurally_centered_chord
 
-  p
+  a
 }
 
 dissonance <- function(chord) {
