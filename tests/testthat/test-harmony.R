@@ -6,6 +6,8 @@ minor_triad_root = minor_triads()[["root"]]
 minor_triad_first_inversion = minor_triads()[["1st inversion"]]
 minor_triad_second_inversion = minor_triads()[["2nd inversion"]]
 
+locrian = diatonic_scales()[['locrian']]
+
 test_that('harmony throws an error if params are wrong', {
   expect_error(harmony())
   expect_error(h())
@@ -149,4 +151,16 @@ test_that('implicit direction for minor triad and inversions makes sense',{
   expect_equal(h(c(0,3,7))$direction,1)
   expect_equal(h(c(0+12,3,7))$direction,-1)
   expect_equal(h(c(0+12,3+12,7))$direction,-1)
+})
+test_that('the similarities among major and minor triads under inversion are interesting',{
+  expect_equal(major_triad_root$affinity,major_triad_first_inversion$affinity)
+  expect_equal(major_triad_first_inversion$brightness,major_triad_second_inversion$brightness)
+
+  expect_equal(minor_triad_root$affinity,minor_triad_first_inversion$affinity)
+  expect_equal(minor_triad_first_inversion$brightness,minor_triad_second_inversion$brightness)
+})
+test_that('for solo tones that the intervallic name includes the tonic, octave and both arrows',{
+  expect_equal(h(c(7))$intervallic_name,'0\u0332 7\u21D1\u21D3 1\u03322\u0332')
+  expect_equal(locrian$intervallic_name,'0\u0332:1:3:5:6:8:10:1\u03322\u0332\u21D1\u21D3')
+  expect_equal(h(c(0,-4,-7),direction=1,root=-7)$intervallic_name,'0:-4:-\u03327\u0332\u21D1')
 })

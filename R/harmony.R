@@ -129,7 +129,6 @@ intervallic_name <- function(chord, direction, root) {
   checkmate::assert_choice(direction,c(-1,0,+1))
   checkmate::assert_integerish(root)
 
-  underline =  '\u0332'  # 0̲ underlines the character preceding the unicode
   up_arrow =   '\u21D1'  # ⇑
   down_arrow = '\u21D3'  # ⇓
   mixed_arrow = paste0(up_arrow,down_arrow) # ⇑⇓
@@ -139,18 +138,32 @@ intervallic_name <- function(chord, direction, root) {
   else if (direction ==  0) {arrow = mixed_arrow}
   else if (direction == +1) {arrow = up_arrow}
 
-  underlined_root = stringr::str_replace_all(root,
-                                                       "(.)",
-                                                       paste0("\\1",underline))
-  intervallic_name = chord %>% paste(collapse = ":")
-  if (root %in% chord) {
-    intervallic_name=gsub(paste0("\\b",root,"\\b"),
-                          underlined_root,intervallic_name)
-  } else {
-    intervallic_name = paste(underlined_root,intervallic_name)
+  underlined_chord = underline(chord,root)
+  if (direction==0) {
+    underlined_chord = underline(underlined_chord,root+12)
   }
-
-  paste0(intervallic_name, arrow)
+  underlined_chord %>% paste(collapse = ":") %>% paste0(arrow) %>%
+    add_roots_without_chord(root,chord,direction)
+}
+underline <- function(chord,tone) {
+  chord %>% sapply(function(x){
+    if (x==tone) {
+      stringr::str_replace_all(x,"(.)",paste0("\\1",'\u0332'))
+    } else {
+      x
+    }
+  })
+}
+add_roots_without_chord <- function(intervallic_name,root,chord,direction) {
+  if (root %in% chord) {
+    # do nothing
+  } else {
+    intervallic_name = paste(underline(root,root),intervallic_name)
+    if (direction==0) {
+      intervallic_name = paste(intervallic_name,underline(root+12,root+12))
+    }
+  }
+  intervallic_name
 }
 
 implicit_root <- function(chord,explicit_direction) {
@@ -179,6 +192,7 @@ implicit_root <- function(chord,explicit_direction) {
 
 implicit_direction <- function(chord,explicit_root) {
   if (!is.null(explicit_root)) {
+    # a root is given
     if (length(chord)==1) {
 # ifelse(explicit_root==12,-1,1)
     } else {
@@ -191,7 +205,9 @@ implicit_direction <- function(chord,explicit_root) {
       }
     }
   } else {
-    if (c(0,12) %in% chord %>% all) {
+    if (length(chord)==1) {
+      0
+    } else if (c(0,12) %in% chord %>% all) {
       0
     } else if (12 == max(chord) || 0 == max(chord)) {
       -1
