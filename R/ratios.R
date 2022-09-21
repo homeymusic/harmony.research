@@ -1,24 +1,5 @@
-frequency_ratios <- function() {
-  tibble::tibble(
-    #############################################
-    # Tonic Frequency Ratios
-    # probe frequency: ascending
-    probe.freq.asc  = c(1,16,9,6,5,4,7,3,8,5,16,15,2), # numerator
-    # reference frequency: tonic
-    ref.freq.tonic  = c(1,15,8,5,4,3,5,2,5,3, 9, 8,1), # denominator
-
-    #############################################
-    # Octave Frequency Ratios
-    # probe frequency: descending
-    probe.freq.desc = c(1, 8, 9,3,5,2,5,3,4,5,8,15,1), # numerator
-    # reference frequency: octave
-    ref.freq.octave = c(2,15,16,5,8,3,7,4,5,6,9,16,1)  # denominator
-  )
-}
-
 frequency_ratio <- function(x,direction) {
-  # print('interval passed into frequency_ratio')
-  # print(x)
+
   checkmate::qassert(x,'X1')
   checkmate::assert_choice(direction,c(-1,+1))
 
@@ -43,11 +24,30 @@ frequency_ratio <- function(x,direction) {
     ref.freq = ref.freq * octave_multiplier
   }
 
-# handle the case where doubling the frequency
-    if(probe.freq==ref.freq){probe.freq=ref.freq=1}
+  # handle the case where doubling the frequency
+  if(probe.freq==ref.freq){probe.freq=ref.freq=1}
 
   c(probe.freq=probe.freq,ref.freq=ref.freq)
 }
+
+frequency_ratios <- function() {
+  tibble::tibble(
+    #############################################
+    # Tonic Frequency Ratios
+    # probe frequency: ascending
+    probe.freq.asc  = c(1,16,9,6,5,4,7,3,8,5,16,15,2), # numerator
+    # reference frequency: tonic
+    ref.freq.tonic  = c(1,15,8,5,4,3,5,2,5,3, 9, 8,1), # denominator
+
+    #############################################
+    # Octave Frequency Ratios
+    # probe frequency: descending
+    probe.freq.desc = c(1, 8, 9,3,5,2,5,3,4,5,8,15,1), # numerator
+    # reference frequency: octave
+    ref.freq.octave = c(2,15,16,5,8,3,7,4,5,6,9,16,1)  # denominator
+  )
+}
+
 # ah the tritone, what a pain
 #
 # each octave complement is symmetrical wrt to ratios and distance in cents

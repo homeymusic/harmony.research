@@ -23,20 +23,20 @@ harmony <- function(chord, direction=NULL, root=NULL, name=NULL) {
   # store the original chord
   attr(t,"chord") <- chord
 
-  # gather the harmonic parameters
   a = chord_analysis(chord,direction,root)
 
-  # calculate the ABCs of affinity, brightness and consonance
+  # calculate the ABCs affinity, brightness and consonance
   # flip from up-down dissonance to up-down consonance
   # rotate coordinate system to brightness-affinity
-  matrix = (max_dissonance() -
+  affinity_brightness = (max_dissonance() -
               dissonance(attr(a,"aurally_centered_chord"))) %>% rotate(pi/4)
-  # build the ABCs including L1 norm of affinity-brightness for consonance magnitude
-  a$affinity         = matrix[1,2]
-  a$brightness       = matrix[1,1]
+  # store the ABCs including L1 norm of affinity-brightness as consonance magnitude
+  a$affinity         = affinity_brightness[1,2]
+  a$brightness       = affinity_brightness[1,1]
   a$consonance       = abs(a$brightness) + abs(a$affinity)
-  # create the intervallic name that shows root (underlines) and inversion (arrow)
-  a$intervallic_name = intervallic_name(chord,a$direction,a$root)
+
+  # create the integer name that shows root (underlines) and inversion (arrow)
+  a$integer_name = integer_name(chord,a$direction,a$root)
 
   # store the aurally centered chord on the tibble
   attr(t,"aurally_centered_chord") <- attr(a,"aurally_centered_chord")
@@ -46,6 +46,49 @@ harmony <- function(chord, direction=NULL, root=NULL, name=NULL) {
 #' @rdname harmony
 #' @export
 h <- harmony
+
+dissonance <- function(chord) {
+  checkmate::assert_integerish(chord)
+  # TODO: check for tritone 6 and return the average dissonance of the
+  # two tritones 7:5, 10:7 symetrical around 600 cents
+
+  cbind(
+    chord %>% purrr::map(function(tone) {
+      count_primes(frequency_ratio(tone,1))}) %>% unlist %>% mean,
+
+    chord %>% purrr::map(function(tone) {
+      count_primes(frequency_ratio(tone,-1))}) %>% unlist %>% mean
+  )
+
+}
+
+count_primes <- function(ratios) {
+  checkmate::assert_integerish(ratios)
+
+  ratios %>% purrr::map(numbers::primeFactors) %>% unlist %>% sum
+}
+
+# we are using the semitone, the minor second m2 up, as the upper bound of dissonance
+# we will subtract dissonance from this number to give us ascending consonance
+#
+# the result would be the same if we used major 7th M7 down
+#
+# m2, is 1 in integer notation but R vectors are indexed from 1
+# so that's why we have see + 1 notation
+max_dissonance <- function() {
+  count_primes(c(frequency_ratio(1,1)))
+}
+
+rotate <- function(.coordinates,.angle) {
+  checkmate::assert_numeric(.angle)
+  .coordinates = t(.coordinates)
+  R = tibble::frame_matrix(
+    ~chord,          ~.y,
+    cos(.angle), -sin(.angle),
+    sin(.angle),  cos(.angle)
+  )
+  (R %*% .coordinates * cos(.angle)) %>% zapsmall %>% t
+}
 
 chord_analysis <- function(chord,explicit_direction,explicit_root) {
   checkmate::assert_integerish(chord)
@@ -76,82 +119,6 @@ chord_analysis <- function(chord,explicit_direction,explicit_root) {
   attr(a,"aurally_centered_chord") <- aurally_centered_chord
 
   a
-}
-
-dissonance <- function(chord) {
-  checkmate::assert_integerish(chord)
-  # TODO: check for tritone 6 and return the average dissonance of the
-  # two tritones synmetrical around 600 cents
-
-  cbind(
-    chord %>% purrr::map(function(.chord) {
-      count_primes(frequency_ratio(.chord,1))}) %>% unlist %>% mean,
-
-    chord %>% purrr::map(function(.chord) {
-      count_primes(frequency_ratio(.chord,-1))}) %>% unlist %>% mean
-  )
-
-}
-
-count_primes <- function(chord) {
-  checkmate::assert_integerish(chord)
-
-  chord %>% purrr::map(numbers::primeFactors) %>% unlist %>% sum
-}
-
-# we are using the semitone, the minor second m2 up, as the upper bound of dissonance
-# we will subtract dissonance from this number to give us ascending consonance
-#
-# the result would be the same if we used major 7th down
-#
-# m2, is 1 in integer notation but R vectors are indexed from 1
-# so that's why we have see + 1 notation
-max_dissonance <- function() {
-  count_primes(c(frequency_ratio(1,1)))
-}
-
-# TODO: underlining not working with negative numbers?
-# 0:-4:-7 didn't want to underline -7
-intervallic_name <- function(chord, direction, root) {
-  checkmate::assert_integerish(chord)
-  checkmate::assert_choice(direction,c(-1,0,+1))
-  checkmate::assert_integerish(root)
-
-  up_arrow =   '\u21D1'  # ⇑
-  down_arrow = '\u21D3'  # ⇓
-  mixed_arrow = paste0(up_arrow,down_arrow) # ⇑⇓
-
-  current_arrow = NULL
-  if      (direction == -1) {arrow = down_arrow}
-  else if (direction ==  0) {arrow = mixed_arrow}
-  else if (direction == +1) {arrow = up_arrow}
-
-  underlined_chord = underline(chord,root)
-  if (direction==0) {
-    underlined_chord = underline(underlined_chord,root+12)
-  }
-  underlined_chord %>% paste(collapse = ":") %>% paste0(arrow) %>%
-    add_roots_without_chord(root,chord,direction)
-}
-underline <- function(chord,tone) {
-  chord %>% sapply(function(x){
-    if (x==tone) {
-      stringr::str_replace_all(x,"(.)",paste0("\\1",'\u0332'))
-    } else {
-      x
-    }
-  })
-}
-add_roots_without_chord <- function(intervallic_name,root,chord,direction) {
-  if (root %in% chord) {
-    # do nothing
-  } else {
-    intervallic_name = paste(underline(root,root),intervallic_name)
-    if (direction==0) {
-      intervallic_name = paste(intervallic_name,underline(root+12,root+12))
-    }
-  }
-  intervallic_name
 }
 
 implicit_root <- function(chord,explicit_direction) {
@@ -209,15 +176,46 @@ implicit_direction <- function(chord,explicit_root) {
   }
 }
 
-rotate <- function(.coordinates,.angle) {
-  checkmate::assert_numeric(.angle)
-  .coordinates = t(.coordinates)
-  R = tibble::frame_matrix(
-    ~chord,          ~.y,
-    cos(.angle), -sin(.angle),
-    sin(.angle),  cos(.angle)
-  )
-  (R %*% .coordinates * cos(.angle)) %>% zapsmall %>% t
+integer_name <- function(chord, direction, root) {
+  checkmate::assert_integerish(chord)
+  checkmate::assert_choice(direction,c(-1,0,+1))
+  checkmate::assert_integerish(root)
+
+  up_arrow =   '\u21D1'  # ⇑
+  down_arrow = '\u21D3'  # ⇓
+  mixed_arrow = paste0(up_arrow,down_arrow) # ⇑⇓
+
+  current_arrow = NULL
+  if      (direction == -1) {arrow = down_arrow}
+  else if (direction ==  0) {arrow = mixed_arrow}
+  else if (direction == +1) {arrow = up_arrow}
+
+  underlined_chord = underline(chord,root)
+  if (direction==0) {
+    underlined_chord = underline(underlined_chord,root+12)
+  }
+  underlined_chord %>% paste(collapse = ":") %>% paste0(arrow) %>%
+    add_roots_without_chord(root,chord,direction)
+}
+underline <- function(chord,tone) {
+  chord %>% sapply(function(x){
+    if (x==tone) {
+      stringr::str_replace_all(x,"(.)",paste0("\\1",'\u0332'))
+    } else {
+      x
+    }
+  })
+}
+add_roots_without_chord <- function(integer_name,root,chord,direction) {
+  if (root %in% chord) {
+    # do nothing
+  } else {
+    integer_name = paste(underline(root,root),integer_name)
+    if (direction==0) {
+      integer_name = paste(integer_name,underline(root+12,root+12))
+    }
+  }
+  integer_name
 }
 
 # this is to stop R check command from complaining about magrittr

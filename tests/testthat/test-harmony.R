@@ -26,16 +26,16 @@ test_that('params are stored',{
   expect_equal(major_triad_root$root,0)
   expect_equal(major_triad_root$name,'major triad')
 })
-test_that('intervallic names are informative and maintain voice leading order',{
+test_that('integer names are informative and maintain voice leading order',{
   # major triads
-  expect_equal(major_triad_root$intervallic_name,"0\u0332:4:7\u21D1")
-  expect_equal(major_triad_first_inversion$intervallic_name,"1\u03322\u0332:4:7\u21D3")
-  expect_equal(major_triad_second_inversion$intervallic_name,"1\u03322\u0332:16:7\u21D3")
+  expect_equal(major_triad_root$integer_name,"0\u0332:4:7\u21D1")
+  expect_equal(major_triad_first_inversion$integer_name,"1\u03322\u0332:4:7\u21D3")
+  expect_equal(major_triad_second_inversion$integer_name,"1\u03322\u0332:16:7\u21D3")
 
   # minor triads
-  expect_equal(minor_triad_root$intervallic_name,"0\u0332:3:7\u21D1")
-  expect_equal(minor_triad_first_inversion$intervallic_name,"1\u03322\u0332:3:7\u21D3")
-  expect_equal(minor_triad_second_inversion$intervallic_name,"1\u03322\u0332:15:7\u21D3")
+  expect_equal(minor_triad_root$integer_name,"0\u0332:3:7\u21D1")
+  expect_equal(minor_triad_first_inversion$integer_name,"1\u03322\u0332:3:7\u21D3")
+  expect_equal(minor_triad_second_inversion$integer_name,"1\u03322\u0332:15:7\u21D3")
 })
 test_that('if implicit and explicit direction agree then do not flip it.',{
   expect_gt(major_triad_first_inversion$brightness,0)
@@ -159,10 +159,10 @@ test_that('the similarities among major and minor triads under inversion are int
   expect_equal(minor_triad_root$affinity,minor_triad_first_inversion$affinity)
   expect_equal(minor_triad_first_inversion$brightness,minor_triad_second_inversion$brightness)
 })
-test_that('for solo tones that the intervallic name includes the tonic, octave and both arrows',{
-  expect_equal(h(c(7))$intervallic_name,'0\u0332 7\u21D1\u21D3 1\u03322\u0332')
-  expect_equal(locrian$intervallic_name,'0\u0332:1:3:5:6:8:10:1\u03322\u0332\u21D1\u21D3')
-  expect_equal(h(c(0,-4,-7),direction=1,root=-7)$intervallic_name,'0:-4:-\u03327\u0332\u21D1')
+test_that('for solo tones that the integer name includes the tonic, octave and both arrows',{
+  expect_equal(h(c(7))$integer_name,'0\u0332 7\u21D1\u21D3 1\u03322\u0332')
+  expect_equal(locrian$integer_name,'0\u0332:1:3:5:6:8:10:1\u03322\u0332\u21D1\u21D3')
+  expect_equal(h(c(0,-4,-7),direction=1,root=-7)$integer_name,'0:-4:-\u03327\u0332\u21D1')
 })
 test_that("tonic-octave symmetrical chords have identical consonance regardless of direction",{
   chord = c(0,4,7,12)
