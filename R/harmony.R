@@ -36,12 +36,13 @@ harmony <- function(chord, direction=NULL, root=NULL, name=NULL) {
   a$brightness       = affinity_brightness[1,1]
   a$consonance       = abs(a$brightness) + abs(a$affinity)
 
-  # create the integer name that shows root (underlines) and inversion (arrow)
+  # create the integer name that shows root (underline) and direction (arrow)
   a$integer_name = integer_name(chord,a$direction,a$root)
 
   # store the aurally centered chord on the tibble
   attr(t,"aurally_centered_chord") <- attr(a,"aurally_centered_chord")
-  # add the harmonic parameters to the tibble
+
+  # add the chord analysis to the tibble
   dplyr::bind_cols(t,a)
 }
 #' @rdname harmony
@@ -55,11 +56,11 @@ tonic_octave_dissonance <- function(chord) {
 
   cbind(
     chord %>% purrr::map(function(tone) {
-      # tonic ascending ratios
-      sum_primes(frequency_ratio(tone,1))}) %>% unlist %>% mean,
+      # tonic ascending ratios +1
+      sum_primes(frequency_ratio(tone,+1))}) %>% unlist %>% mean,
 
     chord %>% purrr::map(function(tone) {
-      # octave descending ratios
+      # octave descending ratios -1
       sum_primes(frequency_ratio(tone,-1))}) %>% unlist %>% mean
   )
 
