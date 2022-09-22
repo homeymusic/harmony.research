@@ -183,3 +183,7 @@ test_that("tonic-octave symmetrical chords have identical consonance regardless 
   expect_equal(h(chord,direction=0)$affinity,h(chord,direction=-1)$affinity)
   expect_equal(h(chord,direction=0)$brightness,h(chord,direction=-1)$brightness)
 })
+test_that('tonic and octave consonance make sense',{
+  expect_gt(h(0)$tonic_consonance,h(0)$octave_consonance)
+  expect_gt(h(12)$octave_consonance,h(12)$tonic_consonance)
+})

@@ -15,36 +15,43 @@ harmony <- function(chord, direction=NULL, root=NULL, name=NULL) {
   checkmate::assert_choice(direction,c(-1,0,+1),null.ok=TRUE)
   checkmate::assert_integerish(root,null.ok=TRUE)
 
-  # stub out the harmony table
+  # build the harmony table
   t = tibble::tibble(
     position                = chord %>% mean,
-    name                    = name
+    name                    = name,
+    explicit_direction      = direction,
+    implicit_direction      = implicit_direction(chord,root),
+    explicit_root           = root,
+    implicit_root           = implicit_root(chord,direction),
+    direction               = ifelse(is.null(direction),
+                                     implicit_direction,
+                                     direction),
+    root                    = ifelse(is.null(root),
+                                     implicit_root,
+                                     root),
+    integer_name            = integer_name(chord,direction,root)
   )
   # store the original chord
   attr(t,"chord") <- chord
-
-  a = chord_analysis(chord,direction,root)
-
-  # calculate the ABCs affinity, brightness and consonance
-  # flip from tonic-octave dissonance to tonic-octave consonance
-  # rotate coordinate system to brightness-affinity
-  affinity_brightness = (max_dissonance() -
-                           tonic_octave_dissonance(
-                             attr(a,"aurally_centered_chord"))) %>% rotate(pi/4)
-  # store the ABCs including L1 norm of affinity-brightness as consonance magnitude
-  a$affinity         = affinity_brightness[1,2]
-  a$brightness       = affinity_brightness[1,1]
-  a$consonance       = abs(a$brightness) + abs(a$affinity)
-
-  # create the integer name that shows root (underline) and direction (arrow)
-  a$integer_name = integer_name(chord,a$direction,a$root)
-
-  # store the aurally centered chord on the tibble
-  attr(t,"aurally_centered_chord") <- attr(a,"aurally_centered_chord")
-
-  # add the chord analysis to the tibble
-  dplyr::bind_cols(t,a)
+  # store the aurally centered chord
+  attr(t,"aurally_centered_chord") <- aurally_centered_chord(chord,t$direction,
+                                                             t$root)
+  # calculate tonic-octave dissonance
+  tonic_octave_dissonance = tonic_octave_dissonance(attr(t,"aurally_centered_chord"))
+  # flip orientation to tonic-octave consonance
+  tonic_octave_consonance = max_dissonance() - tonic_octave_dissonance
+  # rotate pi/4 (45 deg) to affinity-brightness
+  affinity_brightness = tonic_octave_consonance %>% rotate(pi/4)
+  # store the ABCs with L1 norm of affinity-brightness as consonance magnitude
+  t %>% tibble::add_column(
+    tonic_consonance  = tonic_octave_consonance[1,1],
+    octave_consonance = tonic_octave_consonance[1,2],
+    affinity          = affinity_brightness[1,2],
+    brightness        = affinity_brightness[1,1],
+    consonance        = abs(affinity_brightness[1,2]) + abs(affinity_brightness[1,1])
+  )
 }
+
 #' @rdname harmony
 #' @export
 h <- harmony
@@ -88,46 +95,30 @@ max_dissonance <- function() {
   sum_primes_ratio(c(frequency_ratio(1,1)))
 }
 
-rotate <- function(.coordinates,.angle) {
-  checkmate::assert_numeric(.angle)
-  .coordinates = t(.coordinates)
+rotate <- function(coordinates,angle) {
+  checkmate::assert_numeric(angle)
+  coordinates = t(coordinates)
   R = tibble::frame_matrix(
     ~chord,          ~.y,
-    cos(.angle), -sin(.angle),
-    sin(.angle),  cos(.angle)
+    cos(angle), -sin(angle),
+    sin(angle),  cos(angle)
   )
-  (R %*% .coordinates * cos(.angle)) %>% zapsmall %>% t
+  (R %*% coordinates * cos(angle)) %>% zapsmall %>% t
 }
 
-chord_analysis <- function(chord,explicit_direction,explicit_root) {
+aurally_centered_chord <- function(chord,direction,root) {
   checkmate::assert_integerish(chord)
-  checkmate::assert_choice(explicit_direction,c(-1,0,+1),null.ok=TRUE)
-  checkmate::assert_integerish(explicit_root,null.ok=TRUE)
-
-  a = list(explicit_direction = explicit_direction,
-           implicit_direction = implicit_direction(chord,explicit_root),
-           explicit_root      = explicit_root,
-           implicit_root      = implicit_root(chord,explicit_direction))
-
-  a$direction                 = ifelse(is.null(a$explicit_direction),
-                                       a$implicit_direction,
-                                       a$explicit_direction)
-  a$root                      = ifelse(is.null(a$explicit_root),
-                                       a$implicit_root,
-                                       a$explicit_root)
+  checkmate::qassert(root,'X1')
 
   # move the chord to the aural center
-  if(length(chord)>1) {
-    aurally_centered_chord = chord - a$root
-    # adjust the aural root to the octave in case of inversion
-    if (a$direction < 0) {aurally_centered_chord = aurally_centered_chord + 12}
+  if (length(chord)==1) {
+    chord
+  } else if (direction >= 0) {
+    chord - root
   } else {
-    aurally_centered_chord = chord
+    # adjust the aural root to the octave in case of inversion
+    chord - root + 12
   }
-  # store centered chord on the params object
-  attr(a,"aurally_centered_chord") <- aurally_centered_chord
-
-  a
 }
 
 implicit_root <- function(chord,explicit_direction) {
