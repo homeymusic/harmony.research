@@ -65,15 +65,15 @@ sum_primes_chord <- function(chord,ref.freq) {
   checkmate::assert_integerish(chord)
   checkmate::assert_choice(ref.freq,c('tonic','octave'))
 
-  chord %>% purrr::map(function(tone) {
-    sum_primes_ratio(
-      frequency_ratio(tone,ifelse(ref.freq=='tonic',+1,-1)))}) %>% unlist %>% mean
+  direction = ifelse(ref.freq=='tonic',+1,-1)
+
+  chord %>% purrr::map_dbl(~ frequency_ratio(.x,direction) %>% sum_primes_ratio) %>%
+    mean
 }
 
-sum_primes_ratio <- function(ratios) {
-  checkmate::assert_integerish(ratios)
-  ratios %>%
-    purrr::map_dbl(~ numbers::primeFactors(.x)[numbers::primeFactors(.x)>1] %>% sum) %>%
+sum_primes_ratio <- function(ratio) {
+  checkmate::assert_integerish(ratio)
+  ratio %>% purrr::map_dbl(~ numbers::primeFactors(.x)[numbers::primeFactors(.x)>1] %>% sum) %>%
     sum
 }
 
