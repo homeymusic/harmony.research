@@ -69,7 +69,10 @@ tonic_octave_dissonance <- function(chord) {
 sum_primes <- function(ratios) {
   checkmate::assert_integerish(ratios)
 
-  ratios %>% purrr::map(numbers::primeFactors) %>% unlist %>% sum
+  ratios %>%
+    purrr::map_dbl(~ numbers::primeFactors(.x)[numbers::primeFactors(.x)>1] %>% sum) %>%
+    sum
+
 }
 
 # we are using the semitone, the minor second m2 up, as the upper bound of dissonance

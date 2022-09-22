@@ -69,19 +69,19 @@ test_that("interval brightness behaves well",{
   purrr::pmap(intervals(),~expect_equal(h(..1)$brightness,..3))
 })
 test_that("exponent prime factors sum works as expected",{
-  expect_equal(sum_primes(1),1)
+  expect_equal(sum_primes(1),0)
   expect_equal(sum_primes(2),2)
   expect_equal(sum_primes(6),5)
   expect_equal(sum_primes(10),7)
 })
 test_that("dissonance measure matches expectations", {
-  expected_up_primes = c(2,16,12,10,9,7,12,5,11,8,14,14,3)
+  expected_up_primes = c(0,16,12,10,9,7,12,5,11,8,14,14,2)
   purrr::pmap(intervals(),~expect_equal(
     tonic_octave_dissonance(..1)[1,1],
     expected_up_primes[..1+1],
     info=paste('position:',..1,..2,'probe.freq:',frequency_ratio(..1,1),'ref.freq:',frequency_ratio(..1,1))
   ))
-  expected_down_primes = c(3,14,14,8,11,5,12,7,9,10,12,16,2)
+  expected_down_primes = c(2,14,14,8,11,5,12,7,9,10,12,16,0)
   intervals() %>% purrr::pmap(~expect_equal(
     tonic_octave_dissonance(..1)[1,2],
     expected_down_primes[..1+1],
@@ -151,6 +151,13 @@ test_that('implicit direction for minor triad and inversions makes sense',{
   expect_equal(h(c(0,3,7))$direction,1)
   expect_equal(h(c(0+12,3,7))$direction,-1)
   expect_equal(h(c(0+12,3+12,7))$direction,-1)
+})
+test_that('the major triad is perfectly bright. and the minor triad is a third', {
+  expect_equal(major_triad_root$brightness,1)
+  expect_equal(minor_triad_root$brightness,1/3,tolerance=0.00001)
+  # symetrical triads are interesting as well
+  expect_equal(h(c(0,4,7,12))$brightness,0.5)
+  expect_equal(h(c(0,3,7,12))$brightness,0.0)
 })
 test_that('the similarities among major and minor triads under inversion are interesting',{
   expect_equal(major_triad_root$affinity,major_triad_first_inversion$affinity)
