@@ -55,24 +55,26 @@ tonic_octave_dissonance <- function(chord) {
   # two tritones 7:5, 10:7 symetrical around 600 cents
 
   cbind(
-    chord %>% purrr::map(function(tone) {
-      # tonic ascending ratios +1
-      sum_primes(frequency_ratio(tone,+1))}) %>% unlist %>% mean,
-
-    chord %>% purrr::map(function(tone) {
-      # octave descending ratios -1
-      sum_primes(frequency_ratio(tone,-1))}) %>% unlist %>% mean
+    sum_primes_chord(chord,ref.freq='tonic'),
+    sum_primes_chord(chord,ref.freq='octave')
   )
 
 }
 
-sum_primes <- function(ratios) {
-  checkmate::assert_integerish(ratios)
+sum_primes_chord <- function(chord,ref.freq) {
+  checkmate::assert_integerish(chord)
+  checkmate::assert_choice(ref.freq,c('tonic','octave'))
 
+  chord %>% purrr::map(function(tone) {
+    sum_primes_ratio(
+      frequency_ratio(tone,ifelse(ref.freq=='tonic',+1,-1)))}) %>% unlist %>% mean
+}
+
+sum_primes_ratio <- function(ratios) {
+  checkmate::assert_integerish(ratios)
   ratios %>%
     purrr::map_dbl(~ numbers::primeFactors(.x)[numbers::primeFactors(.x)>1] %>% sum) %>%
     sum
-
 }
 
 # we are using the semitone, the minor second m2 up, as the upper bound of dissonance
@@ -83,7 +85,7 @@ sum_primes <- function(ratios) {
 # m2, is 1 in integer notation but R vectors are indexed from 1
 # so that's why we have see + 1 notation
 max_dissonance <- function() {
-  sum_primes(c(frequency_ratio(1,1)))
+  sum_primes_ratio(c(frequency_ratio(1,1)))
 }
 
 rotate <- function(.coordinates,.angle) {

@@ -69,10 +69,10 @@ test_that("interval brightness behaves well",{
   purrr::pmap(intervals(),~expect_equal(h(..1)$brightness,..3))
 })
 test_that("exponent prime factors sum works as expected",{
-  expect_equal(sum_primes(1),0)
-  expect_equal(sum_primes(2),2)
-  expect_equal(sum_primes(6),5)
-  expect_equal(sum_primes(10),7)
+  expect_equal(sum_primes_ratio(1),0)
+  expect_equal(sum_primes_ratio(2),2)
+  expect_equal(sum_primes_ratio(6),5)
+  expect_equal(sum_primes_ratio(10),7)
 })
 test_that("dissonance measure matches expectations", {
   expected_up_primes = c(0,16,12,10,9,7,12,5,11,8,14,14,2)
