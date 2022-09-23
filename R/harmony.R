@@ -15,8 +15,12 @@ harmony <- function(chord, direction=NULL, root=NULL, name=NULL) {
   checkmate::assert_choice(direction,c(-1,0,+1),null.ok=TRUE)
   checkmate::assert_integerish(root,null.ok=TRUE)
 
+  # TODO: assign chord positions to a variable for calculation of mean
+  # and storage later.
+
   # build the harmony table
   t = tibble::tibble(
+    # TODO: include integer_position and position in cents
     position                = chord %>% mean,
     name                    = name,
     explicit_direction      = direction,
@@ -33,6 +37,7 @@ harmony <- function(chord, direction=NULL, root=NULL, name=NULL) {
   )
   # store the original chord
   attr(t,"chord") <- chord
+  # TODO: store the chord positions as well?
   # store the aurally centered chord
   attr(t,"aurally_centered_chord") <- aurally_centered_chord(chord,t$direction,
                                                              t$root)

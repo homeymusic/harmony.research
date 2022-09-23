@@ -1,3 +1,4 @@
+# TODO: drop direction param and include up and down ratios in return value
 frequency_ratio <- function(x,direction) {
 
   checkmate::qassert(x,'X1')
@@ -13,25 +14,32 @@ frequency_ratio <- function(x,direction) {
     ref.freq=frequency_ratios()$ref.freq.octave
   }
 
-  interval = x %% 12
-  probe.freq=probe.freq[interval+1]
-  ref.freq=ref.freq[interval+1]
+  integer = x %% 12
+  probe.freq=probe.freq[integer+1]
+  ref.freq=ref.freq[integer+1]
 
-  octave_multiplier = 2 ^ abs((x / 12) %>% floor)
+  octave_freq_multiplier = 2 ^ abs((x / 12) %>% floor)
   if (x > 0) {
-    probe.freq = probe.freq * octave_multiplier
+    probe.freq = probe.freq * octave_freq_multiplier
+    # TODO: add 1,200 to position for every octave
   } else if (x < 0) {
-    ref.freq = ref.freq * octave_multiplier
+    ref.freq = ref.freq * octave_freq_multiplier
+    # TODO: subtract  1,200 to position for every octave
   }
 
-  # handle the case where doubling the frequency
+  # handle the case where doubling the frequency, 1:2 becomes 2:2
   if(probe.freq==ref.freq){probe.freq=ref.freq=1}
 
+  # TODO: include position in cents
+  # TODO: include up and down ratios in return value
   c(probe.freq=probe.freq,ref.freq=ref.freq)
 }
 
 frequency_ratios <- function() {
   tibble::tibble(
+
+    # TODO: add position column as cents
+
     #############################################
     # Tonic Frequency Ratios
     # probe frequency: ascending
@@ -71,6 +79,6 @@ frequency_ratios <- function() {
 # https://enxen.wiki/w/Tritone
 #
 # another issue is that the final affinity (rotated consonance) of all the
-# other intervals is the average consonance of the octave complements
+# other integers is the average consonance of the octave complements
 # so the tritone ought to be the average of 7/5 and 10/7
 # so we hammer that into the final function for dissonance
