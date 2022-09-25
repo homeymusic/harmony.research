@@ -21,7 +21,7 @@ test_that('harmony throws an error if params are wrong', {
 })
 test_that('params are stored',{
   expect_equal(attr(major_triad_root,'chord'),c(0,4,7))
-  expect_equal(major_triad_root$position,c(0,4,7)%>%mean)
+  expect_equal(major_triad_root$integer_position,c(0,4,7)%>%mean)
   expect_equal(major_triad_root$direction,+1)
   expect_equal(major_triad_root$root,0)
   expect_equal(major_triad_root$name,'major triad')
@@ -79,13 +79,13 @@ test_that("dissonance measure matches expectations", {
   purrr::pmap(intervals(),~expect_equal(
     tonic_octave_dissonance(..1)[1,1],
     expected_up_primes[..1+1],
-    info=paste('position:',..1,..2,'probe.freq:',frequency_ratio(..1,1),'ref.freq:',frequency_ratio(..1,1))
+    info=paste('integer_position:',..1,..2,'probe.freq:',frequency_ratio(..1,1),'ref.freq:',frequency_ratio(..1,1))
   ))
   expected_down_primes = c(2,14,14,8,11,5,12,7,9,10,12,16,0)
   intervals() %>% purrr::pmap(~expect_equal(
     tonic_octave_dissonance(..1)[1,2],
     expected_down_primes[..1+1],
-    info=paste('position:',..1,..2,'probe.freq:',frequency_ratio(..1,1),'ref.freq',frequency_ratio(..1,1))
+    info=paste('integer_position:',..1,..2,'probe.freq:',frequency_ratio(..1,1),'ref.freq',frequency_ratio(..1,1))
   ))
 })
 test_that('upper bound of dissonance makes sense',{

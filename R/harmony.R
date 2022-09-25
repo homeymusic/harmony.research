@@ -15,13 +15,13 @@ harmony <- function(chord, direction=NULL, root=NULL, name=NULL) {
   checkmate::assert_choice(direction,c(-1,0,+1),null.ok=TRUE)
   checkmate::assert_integerish(root,null.ok=TRUE)
 
-  # TODO: assign chord positions to a variable for calculation of mean
+  # TODO: assign chord integer_positions to a variable for calculation of mean
   # and storage later.
 
   # build the harmony table
   t = tibble::tibble(
-    # TODO: include integer_position and position in cents
-    position                = chord %>% mean,
+    # TODO: include integer_integer_position and integer_position in cents
+    integer_position        = chord %>% mean,
     name                    = name,
     explicit_direction      = direction,
     implicit_direction      = implicit_direction(chord,root),
@@ -37,15 +37,15 @@ harmony <- function(chord, direction=NULL, root=NULL, name=NULL) {
   )
   # store the original chord
   attr(t,"chord") <- chord
-  # TODO: store the chord positions as well?
+  # TODO: store the chord integer_positions as well?
   # store the aurally centered chord
   attr(t,"aurally_centered_chord") <- aurally_centered_chord(chord,t$direction,
                                                              t$root)
-  # calculate tonic-octave dissonance
+  # calculate 2-dimensional tonic-octave dissonance
   tonic_octave_dissonance = tonic_octave_dissonance(attr(t,"aurally_centered_chord"))
-  # flip orientation to tonic-octave consonance
+  # flip orientation to 2-dimensional tonic-octave consonance
   tonic_octave_consonance = max_dissonance() - tonic_octave_dissonance
-  # rotate pi/4 (45 deg) to affinity-brightness
+  # rotate pi/4 (45 deg) to 2-dimensional affinity-brightness
   affinity_brightness = tonic_octave_consonance %>% rotate(pi/4)
   # store the ABCs with L1 norm of affinity-brightness as consonance magnitude
   t %>% tibble::add_column(
@@ -63,8 +63,6 @@ h <- harmony
 
 tonic_octave_dissonance <- function(chord) {
   checkmate::assert_integerish(chord)
-  # TODO: check for tritone 6 and return the average dissonance of the
-  # two tritones 7:5, 10:7 symetrical around 600 cents
 
   cbind(
     sum_primes_chord(chord,ref.freq='tonic'),
@@ -79,13 +77,13 @@ sum_primes_chord <- function(chord,ref.freq) {
 
   direction = ifelse(ref.freq=='tonic',+1,-1)
 
-  chord %>% purrr::map_dbl(~ frequency_ratio(.x,direction) %>% sum_primes_ratio) %>%
+  chord %>% purrr::map_dbl(~frequency_ratio(.x,direction) %>% sum_primes_ratio) %>%
     mean
 }
 
 sum_primes_ratio <- function(ratio) {
   checkmate::assert_integerish(ratio)
-  ratio %>% purrr::map_dbl(~ numbers::primeFactors(.x)[numbers::primeFactors(.x)>1] %>% sum) %>%
+  ratio %>% purrr::map_dbl(~numbers::primeFactors(.x)[numbers::primeFactors(.x)>1] %>% sum) %>%
     sum
 }
 
