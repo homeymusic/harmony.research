@@ -3,7 +3,7 @@ test_that("melody is a tibble with appropriate number of rows", {
   m = melody(p)
   expect(tibble::is_tibble(m),
          'expected melody to be a tibble')
-  expect_equal(nrow(m),nrow(p)-1)
+  expect_equal(nrow(m),length(p)-1)
 })
 
 test_that("melody has m as synonym", {
@@ -22,4 +22,14 @@ test_that('melody stores the original progression',{
   p = major_triad_progression()
   m = m(p)
   expect_equal(attr(m,"progression"),p)
+})
+
+test_that('basic position and consonance changes make sense',{
+  p = major_triad_progression()
+  m = melody(p)
+  expect_equal(m$position_change,c(498,204,-702),tolerance = 1.0)
+  expect_equal(m$integer_position_change,c(5,2,-7))
+  expect_equal(m$affinity_change,c(0,0,0))
+  expect_equal(m$brightness_change,c(0,0,0))
+  expect_equal(m$consonance_change,c(0,0,0))
 })
