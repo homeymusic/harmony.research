@@ -1,6 +1,6 @@
 tone <- function(x) {
   checkmate::qassert(x,'X1')
-  t = tibble::tibble(
+  t <- tibble::tibble(
     integer_position = x,
     tonic.tone       = frequency_ratio(x,'tonic.tone'),      # numerator
     tonic.ref        = frequency_ratio(x,'tonic.ref'),       # denominator

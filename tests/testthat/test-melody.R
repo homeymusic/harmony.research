@@ -1,6 +1,9 @@
-test_that("melody is a tibble", {
-  expect(tibble::is_tibble(melody(major_triad_progression())),
+test_that("melody is a tibble with appropriate number of rows", {
+  p = major_triad_progression()
+  m = melody(p)
+  expect(tibble::is_tibble(m),
          'expected melody to be a tibble')
+  expect_equal(nrow(m),nrow(p)-1)
 })
 
 test_that("melody has m as synonym", {
@@ -13,4 +16,10 @@ test_that('melody requires more than one row in the progressions', {
 
 test_that('melody requires a tibble with min num of columns', {
   expect_error(m(rbind(tone(0),tone(1))))
+})
+
+test_that('melody stores the original progression',{
+  p = major_triad_progression()
+  m = m(p)
+  expect_equal(attr(m,"progression"),p)
 })

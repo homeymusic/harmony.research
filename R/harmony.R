@@ -17,7 +17,7 @@ harmony <- function(chord, direction=NULL, root=NULL, name=NULL) {
   checkmate::assert_character(name,null.ok=TRUE)
 
   # build the harmony table
-  t = tibble::tibble(
+  t <- tibble::tibble(
     position                = position(chord), # cents
     integer_position        = chord %>% mean,
     name                    = name,
