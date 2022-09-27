@@ -14,13 +14,11 @@ harmony <- function(chord, direction=NULL, root=NULL, name=NULL) {
   checkmate::assert_integerish(chord)
   checkmate::assert_choice(direction,c(-1,0,+1),null.ok=TRUE)
   checkmate::assert_integerish(root,null.ok=TRUE)
-
-  # TODO: assign chord integer_positions to a variable for calculation of mean
-  # and storage later.
+  checkmate::assert_character(name,null.ok=TRUE)
 
   # build the harmony table
   t = tibble::tibble(
-    # TODO: include integer_integer_position and integer_position in cents
+    position                = position(chord), # cents
     integer_position        = chord %>% mean,
     name                    = name,
     explicit_direction      = direction,
@@ -37,16 +35,20 @@ harmony <- function(chord, direction=NULL, root=NULL, name=NULL) {
   )
   # store the original chord
   attr(t,"chord") <- chord
-  # TODO: store the chord integer_positions as well?
   # store the aurally centered chord
   attr(t,"aurally_centered_chord") <- aurally_centered_chord(chord,t$direction,
                                                              t$root)
-  # calculate 2-dimensional tonic-octave dissonance
+
+  ###################################################################################
+  # this is the heavy lifting for calculating affinity, brightness and consonance
+  #
+  # using the centered chord, calculate 2-dimensional tonic-octave dissonance
   tonic_octave_dissonance = tonic_octave_dissonance(attr(t,"aurally_centered_chord"))
   # flip orientation to 2-dimensional tonic-octave consonance
   tonic_octave_consonance = max_dissonance() - tonic_octave_dissonance
   # rotate pi/4 (45 deg) to 2-dimensional affinity-brightness
   affinity_brightness = tonic_octave_consonance %>% rotate(pi/4)
+
   # store the ABCs with L1 norm of affinity-brightness as consonance magnitude
   t %>% tibble::add_column(
     tonic.consonance  = tonic_octave_consonance[1,1],
@@ -113,6 +115,11 @@ aurally_centered_chord <- function(chord,direction,root) {
     # adjust the aural root to the octave in case of inversion
     chord - root + 12
   }
+}
+
+position <- function(chord) {
+  checkmate::assert_integerish(chord)
+  chord %>% purrr::map(~tone(.x)['tonic.position']) %>% unlist %>% mean
 }
 
 implicit_root <- function(chord,explicit_direction) {

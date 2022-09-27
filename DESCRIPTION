@@ -20,4 +20,5 @@ Imports:
     numbers,
     purrr,
     stringr,
-    tibble
+    tibble,
+    rlang

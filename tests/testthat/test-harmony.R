@@ -181,3 +181,8 @@ test_that('tonic and octave consonance make sense',{
   expect_gt(h(0)$tonic.consonance,h(0)$octave.consonance)
   expect_gt(h(12)$octave.consonance,h(12)$tonic.consonance)
 })
+test_that('position from the tonic in cents makes sense',{
+  expect_equal(h(c(0,4,7))$position,362.7562,tolerance=0.001)
+  expect_equal(h(c(0,3,7))$position,339.1988,tolerance=0.001)
+  expect_equal(h(c(4))$position,tone(4)$tonic.position)
+})

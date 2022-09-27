@@ -9,6 +9,7 @@
 #' @importFrom purrr pmap
 #' @importFrom numbers primeFactors
 #' @importFrom dplyr bind_cols
+#' @importFrom rlang .data
 ## usethis namespace: end
 NULL
 

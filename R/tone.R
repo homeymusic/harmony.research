@@ -4,21 +4,21 @@ tone <- function(x) {
     integer_position = x,
     tonic.tone       = frequency_ratio(x,'tonic.tone'),      # numerator
     tonic.ref        = frequency_ratio(x,'tonic.ref'),       # denominator
-    tonic.primes     = prime_factors_sum(tonic.tone, tonic.ref),
-    tonic.position   = 1200 * log2(tonic.tone  / tonic.ref), # cents
+    tonic.primes     = prime_factors_sum(.data$tonic.tone, .data$tonic.ref),
+    tonic.position   = 1200 * log2(.data$tonic.tone  / .data$tonic.ref), # cents
     octave.tone      = frequency_ratio(x,'octave.tone'),     # numerator
     octave.ref       = frequency_ratio(x,'octave.ref'),      # denominator
-    octave.primes    = prime_factors_sum(octave.tone, octave.ref),
-    octave.position  = 1200 * log2(octave.tone / octave.ref) # cents
+    octave.primes    = prime_factors_sum(.data$octave.tone, .data$octave.ref),
+    octave.position  = 1200 * log2(.data$octave.tone / .data$octave.ref) # cents
   )
 }
 
 prime_factors_sum <- function(tone,ref) {
   checkmate::assert_integerish(tone,ref)
 
-  c(numbers::primeFactors(tone), numbers::primeFactors(ref)) %>% purrr::map_dbl(
-    ~numbers::primeFactors(.x)[numbers::primeFactors(.x)>1] %>% sum) %>%
-    sum
+  ratio = c(tone,ref)
+
+  ratio[ratio>1] %>% purrr::map(~numbers::primeFactors(.x)) %>% unlist %>% sum
 }
 
 frequency_ratio <- function(x,dimension) {
@@ -27,18 +27,23 @@ frequency_ratio <- function(x,dimension) {
                                        'octave.tone','octave.ref'))
 
   if (x>=0 && x<=12) {
+    # ratios in the primary octave
     (primary_frequency_ratios()[dimension] %>% unlist)[[x+1]]
   } else {
+    # ratios above or below the primary octave
     integer = x %% 12
     octave_freq_multiplier = 2 ^ abs((x / 12) %>% floor)
-    compound_ratio = (primary_frequency_ratios()[dimension] %>% unlist)[[integer+1]]
+    compound_freq = (primary_frequency_ratios()[dimension] %>% unlist)[[integer+1]]
 
     if (x>12 && (dimension == 'tonic.tone' || dimension == 'octave.tone')) {
-      compound_ratio * octave_freq_multiplier
+      # above the primary octave
+      compound_freq * octave_freq_multiplier
     } else if (x<0 && (dimension == 'tonic.ref' || dimension == 'octave.ref')) {
-      compound_ratio * octave_freq_multiplier
+      # below the primary octave
+      compound_freq * octave_freq_multiplier
     } else {
-      compound_ratio
+      # the current dimension doesn't need to change
+      compound_freq
     }
   }
 }
