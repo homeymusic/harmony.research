@@ -68,12 +68,6 @@ test_that("interval affinity behaves well",{
 test_that("interval brightness behaves well",{
   purrr::pmap(intervals(),~expect_equal(h(..1)$brightness,..3))
 })
-test_that("exponent prime factors sum works as expected",{
-  expect_equal(sum_primes_ratio(1),0)
-  expect_equal(sum_primes_ratio(2),2)
-  expect_equal(sum_primes_ratio(6),5)
-  expect_equal(sum_primes_ratio(10),7)
-})
 test_that("dissonance measure matches expectations", {
   expected_up_primes = c(0,16,12,10,9,7,12,5,11,8,14,14,2)
   purrr::pmap(intervals(),~expect_equal(
@@ -184,6 +178,6 @@ test_that("tonic-octave symmetrical chords have identical consonance regardless 
   expect_equal(h(chord,direction=0)$brightness,h(chord,direction=-1)$brightness)
 })
 test_that('tonic and octave consonance make sense',{
-  expect_gt(h(0)$tonic_consonance,h(0)$octave_consonance)
-  expect_gt(h(12)$octave_consonance,h(12)$tonic_consonance)
+  expect_gt(h(0)$tonic.consonance,h(0)$octave.consonance)
+  expect_gt(h(12)$octave.consonance,h(12)$tonic.consonance)
 })
