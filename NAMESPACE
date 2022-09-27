@@ -2,10 +2,11 @@
 
 export(h)
 export(harmony)
+export(m)
+export(melody)
 importFrom(checkmate,assert_choice)
 importFrom(checkmate,assert_integerish)
 importFrom(checkmate,qassert)
-importFrom(dplyr,bind_cols)
 importFrom(magrittr,"%>%")
 importFrom(numbers,primeFactors)
 importFrom(purrr,pmap)

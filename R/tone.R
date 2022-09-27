@@ -36,13 +36,13 @@ frequency_ratio <- function(x,dimension) {
     compound_freq = (primary_frequency_ratios()[dimension] %>% unlist)[[integer+1]]
 
     if (x>12 && (dimension == 'tonic.tone' || dimension == 'octave.tone')) {
-      # above the primary octave
+      # above the primary octave and the current dimension is the numerator
       compound_freq * octave_freq_multiplier
     } else if (x<0 && (dimension == 'tonic.ref' || dimension == 'octave.ref')) {
-      # below the primary octave
+      # below the primary octave and the current dimension is the denominator
       compound_freq * octave_freq_multiplier
     } else {
-      # the current dimension doesn't need to change
+      # the current dimension does not need to change
       compound_freq
     }
   }

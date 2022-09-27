@@ -22,5 +22,5 @@ h(chord, direction = NULL, root = NULL, name = NULL)
 A tibble
 }
 \description{
-Provides the musical harmony metrics of a note or chord.
+Provides the harmonic metrics of a note or chord.
 }

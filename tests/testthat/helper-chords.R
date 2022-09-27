@@ -51,4 +51,12 @@ diatonic_scales <- function() {
     'lydian'=h(c(0,2,4,6,7,9,11,12), name = 'lydian')
   )
 }
-
+major_triad_progression <- function(){
+  major_triad = c(0,4,7)
+  rbind(
+    h(major_triad  , direction = +1),
+    h(major_triad+5, direction = +1),
+    h(major_triad+7, direction = +1),
+    h(major_triad  , direction = +1)
+  )
+}

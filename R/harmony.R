@@ -1,6 +1,6 @@
 #' Harmony
 #'
-#' Provides the musical harmony metrics of a note or chord.
+#' Provides the harmonic metrics of a note or chord.
 #'
 #'
 #' @param chord A note or chord expressed as an interval integer or vector of interval integers
