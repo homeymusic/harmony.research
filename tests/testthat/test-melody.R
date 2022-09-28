@@ -3,7 +3,7 @@ test_that("melody is a tibble with appropriate number of rows", {
   m = melody(p)
   expect(tibble::is_tibble(m),
          'expected melody to be a tibble')
-  expect_equal(nrow(m),length(p)-1)
+  expect_equal(nrow(m),length(p))
 })
 
 test_that("melody has m as synonym", {
@@ -27,11 +27,11 @@ test_that('melody stores the original progression',{
 test_that('basic position and consonance changes make sense',{
   p = major_triad_progression()
   m = melody(p)
-  expect_equal(m$position_change,c(498,204,-702),tolerance = 1.0)
-  expect_equal(m$integer_position_change,c(5,2,-7))
-  expect_equal(m$affinity_change,c(0,0,0))
-  expect_equal(m$brightness_change,c(0,0,0))
-  expect_equal(m$consonance_change,c(0,0,0))
+  expect_equal(m$position_change,c(0,498,204,-702),tolerance = 1.0)
+  expect_equal(m$integer_position_change,c(0,5,2,-7))
+  expect_equal(m$affinity_change,c(0,0,0,0))
+  expect_equal(m$brightness_change,c(0,0,0,0))
+  expect_equal(m$consonance_change,c(0,0,0,0))
 })
 test_that('if no reference harmony is given the first harmony in the progression is chosen',{
   p = major_triad_progression()
@@ -43,4 +43,11 @@ test_that('if a reference harmony is given then it gets stored',{
   r = h(c(0))
   m = melody(p,r)
   expect_equal(attr(m,'reference'),r)
+})
+test_that('potential energy makes sense',{
+  p = major_triad_progression()
+  m = melody(p)
+  expect_equal(m$potential_energy[1],0)
+  expect_equal(m$potential_energy[4],0)
+  expect_gt(m$potential_energy[3],m$potential_energy[2])
 })

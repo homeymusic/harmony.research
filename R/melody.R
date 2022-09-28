@@ -16,12 +16,12 @@ melody <- function(progression, reference=NULL) {
   if (is.null(reference)) {reference = progression[[1]]}
   # build the melody table
   t <- tibble::tibble(
-    position_change         = progression_tibble$position         %>% diff,
-    integer_position_change = progression_tibble$integer_position %>% diff,
-    affinity_change         = progression_tibble$affinity         %>% diff,
-    brightness_change       = progression_tibble$brightness       %>% diff,
-    consonance_change       = progression_tibble$consonance       %>% diff,
-    potential_energy        = progression                         %>% potential_energy
+    position_change         = c(0,(progression_tibble$position         %>% diff)),
+    integer_position_change = c(0,(progression_tibble$integer_position %>% diff)),
+    affinity_change         = c(0,(progression_tibble$affinity         %>% diff)),
+    brightness_change       = c(0,(progression_tibble$brightness       %>% diff)),
+    consonance_change       = c(0,(progression_tibble$consonance       %>% diff)),
+    potential_energy        = potential_energy(progression, reference)
   )
   # store the original progression
   attr(t,"progression") <- progression
@@ -33,7 +33,21 @@ melody <- function(progression, reference=NULL) {
 #' @export
 m <- melody
 
-potential_energy <- function(progression) {
-  # print(progression[[2]] %>% attributes)
-  0
+potential_energy <- function(progression,reference) {
+  purrr::map(progression,function(x) {
+    pitches = attr(x,"chord")
+    reference_pitches = attr(reference,"chord")
+
+    pe = tidyr::expand_grid(pitches,reference_pitches) %>% dplyr::rowwise() %>%
+      dplyr::mutate(
+        pe=energy(h(pitches,direction=x$direction,root=x$root),
+                  h(reference_pitches,direction=reference$direction,root=reference$root)))
+    pe$pe %>% unlist %>% mean %>% abs
+  }) %>% unlist
+}
+##########
+# energy
+#
+energy <- function(x,y) {
+  abs(x$consonance-y$consonance)*(x$position-y$position)
 }
