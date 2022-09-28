@@ -4,13 +4,16 @@
 #'
 #'
 #' @param progression A progression of chords as a multiple row tibble.
+#' @param reference The reference harmony for calculating potential energy
 #' @return A tibble
 #'
 #' @export
-melody <- function(progression) {
+melody <- function(progression, reference=NULL) {
   checkmate::assert_list(progression,min.len=2)
+  checkmate::assert_tibble(reference,null.ok=TRUE)
   progression_tibble = dplyr::bind_rows(progression)
   checkmate::assert_tibble(progression_tibble, min.cols=11, min.rows=2, any.missing = FALSE)
+  if (is.null(reference)) {reference = progression[[1]]}
   # build the melody table
   t <- tibble::tibble(
     position_change         = progression_tibble$position         %>% diff,
@@ -22,6 +25,7 @@ melody <- function(progression) {
   )
   # store the original progression
   attr(t,"progression") <- progression
+  attr(t,"reference") <- reference
   t
 }
 

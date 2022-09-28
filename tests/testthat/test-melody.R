@@ -33,3 +33,14 @@ test_that('basic position and consonance changes make sense',{
   expect_equal(m$brightness_change,c(0,0,0))
   expect_equal(m$consonance_change,c(0,0,0))
 })
+test_that('if no reference harmony is given the first harmony in the progression is chosen',{
+  p = major_triad_progression()
+  m = melody(p)
+  expect_equal(attr(m,'reference'),p[[1]])
+})
+test_that('if a reference harmony is given then it gets stored',{
+  p = major_triad_progression()
+  r = h(c(0))
+  m = melody(p,r)
+  expect_equal(attr(m,'reference'),r)
+})
