@@ -67,3 +67,6 @@ test_that('position in cents makes sense within primary octave',{
   expect_equal(abs(pitch(5)$tonic.position) + abs(pitch(5)$octave.position),1200)
   expect_equal(abs(pitch(7)$tonic.position) + abs(pitch(7)$octave.position),1200)
 })
+test_that('p is a synonym for pitch',{
+  expect_equal(pitch(7),p(7))
+})

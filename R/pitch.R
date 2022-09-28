@@ -1,3 +1,12 @@
+#' Pitch
+#'
+#' Provides the metrics of a pitch
+#'
+#'
+#' @param x A pitch expressed as an interval integer
+#' @return A tibble
+#'
+#' @export
 pitch <- function(x) {
   checkmate::qassert(x,'X1')
   t <- tibble::tibble(
@@ -12,6 +21,10 @@ pitch <- function(x) {
     octave.position  = 1200 * log2(.data$octave.pitch / .data$octave.ref) # cents
   )
 }
+
+#' @rdname pitch
+#' @export
+p <- pitch
 
 prime_factors_sum <- function(pitch,ref) {
   checkmate::assert_integerish(pitch,ref)
