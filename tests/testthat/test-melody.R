@@ -15,7 +15,7 @@ test_that('melody requires more than one row in the progressions', {
 })
 
 test_that('melody requires a tibble with min num of columns', {
-  expect_error(m(rbind(tone(0),tone(1))))
+  expect_error(m(rbind(pitch(0),pitch(1))))
 })
 
 test_that('melody stores the original progression',{

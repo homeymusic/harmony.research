@@ -40,11 +40,11 @@ test_that('integer names are informative and maintain voice leading order',{
 test_that('if implicit and explicit direction agree then do not flip it.',{
   expect_gt(major_triad_first_inversion$brightness,0)
 })
-test_that('implicit reference tones make sense',{
+test_that('implicit reference pitches make sense',{
   expect_equal(major_triad_first_inversion$implicit_root,12)
   expect_equal(h(c(1,2,3))$implicit_root,1)
 })
-test_that('harmony will default to up and guess the reference tone',{
+test_that('harmony will default to up and guess the reference pitch',{
   h = h(c(0,4,7))
   expect_equal(h$direction,+1)
   expect_equal(h$root,0)
@@ -90,7 +90,7 @@ test_that("rotation works", {
   expect_equal(rotate(cbind(x=1,y=0),angle),cbind(0.5,0.5))
   expect_equal(rotate(cbind(x=0,y=1),angle),cbind(-0.5,0.5))
 })
-test_that('for 1 tone and no reference tone assume reference tone is zero',{
+test_that('for 1 pitch and no reference pitch assume reference pitch is zero',{
   expect_equal(h(6)$root,0)
 })
 test_that('brightness and affinity are symmetrical with symmetrical chords',{
@@ -160,7 +160,7 @@ test_that('the similarities among major and minor triads under inversion are int
   expect_equal(minor_triad_root$affinity,minor_triad_first_inversion$affinity)
   expect_equal(minor_triad_first_inversion$brightness,minor_triad_second_inversion$brightness)
 })
-test_that('for solo tones that the integer name includes the tonic, octave and both arrows',{
+test_that('for solo pitches that the integer name includes the tonic, octave and both arrows',{
   expect_equal(h(c(7))$integer_name,'0\u0332 7\u21D1\u21D3 1\u03322\u0332')
   expect_equal(locrian$integer_name,'0\u0332:1:3:5:6:8:10:1\u03322\u0332\u21D1\u21D3')
   expect_equal(h(c(0,-4,-7),direction=1,root=-7)$integer_name,'0:-4:-\u03327\u0332\u21D1')
@@ -184,5 +184,5 @@ test_that('tonic and octave consonance make sense',{
 test_that('position from the tonic in cents makes sense',{
   expect_equal(h(c(0,4,7))$position,362.7562,tolerance=0.001)
   expect_equal(h(c(0,3,7))$position,339.1988,tolerance=0.001)
-  expect_equal(h(c(4))$position,tone(4)$tonic.position)
+  expect_equal(h(c(4))$position,pitch(4)$tonic.position)
 })

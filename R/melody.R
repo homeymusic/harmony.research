@@ -30,6 +30,6 @@ melody <- function(progression) {
 m <- melody
 
 potential_energy <- function(progression) {
-  print(progression[[2]] %>% attributes)
+  # print(progression[[2]] %>% attributes)
   0
 }

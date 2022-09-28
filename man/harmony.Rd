@@ -14,7 +14,7 @@ h(chord, direction = NULL, root = NULL, name = NULL)
 
 \item{direction}{Harmonic direction +1 is up and -1 is down}
 
-\item{root}{The reference tone of the chord or larger context}
+\item{root}{The reference pitch of the chord or larger context}
 
 \item{name}{A custom name for the note or chord}
 }

@@ -5,7 +5,7 @@
 #'
 #' @param chord A note or chord expressed as an interval integer or vector of interval integers
 #' @param direction Harmonic direction +1 is up and -1 is down
-#' @param root The reference tone of the chord or larger context
+#' @param root The reference pitch of the chord or larger context
 #' @param name A custom name for the note or chord
 #' @return A tibble
 #'
@@ -77,7 +77,7 @@ chord_primes <- function(chord,tonic_or_octave) {
   checkmate::assert_integerish(chord)
   checkmate::assert_choice(tonic_or_octave,c('tonic.primes','octave.primes'))
 
-  chord %>% purrr::map(~tone(.x)[tonic_or_octave]) %>% unlist %>% mean
+  chord %>% purrr::map(~pitch(.x)[tonic_or_octave]) %>% unlist %>% mean
 }
 
 # we are using the semitone, the minor second m2 up, as the upper bound of dissonance
@@ -88,7 +88,7 @@ chord_primes <- function(chord,tonic_or_octave) {
 # m2, is 1 in integer notation but R vectors are indexed from 1
 # so that's why we have see + 1 notation
 max_dissonance <- function() {
-  tone(1)$tonic.primes
+  pitch(1)$tonic.primes
 }
 
 rotate <- function(coordinates,angle) {
@@ -119,7 +119,7 @@ aurally_centered_chord <- function(chord,direction,root) {
 
 position <- function(chord) {
   checkmate::assert_integerish(chord)
-  chord %>% purrr::map(~tone(.x)['tonic.position']) %>% unlist %>% mean
+  chord %>% purrr::map(~pitch(.x)['tonic.position']) %>% unlist %>% mean
 }
 
 implicit_root <- function(chord,explicit_direction) {
@@ -198,9 +198,9 @@ integer_name <- function(chord, direction, root) {
   underlined_chord %>% paste(collapse = ":") %>% paste0(arrow) %>%
     add_roots_without_chord(root,chord,direction)
 }
-underline <- function(chord,tone) {
+underline <- function(chord,pitch) {
   chord %>% sapply(function(x){
-    if (x==tone) {
+    if (x==pitch) {
       stringr::str_replace_all(x,"(.)",paste0("\\1",'\u0332'))
     } else {
       x
