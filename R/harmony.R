@@ -106,10 +106,7 @@ aurally_centered_chord <- function(chord,direction,root) {
   checkmate::assert_integerish(chord)
   checkmate::qassert(root,'X1')
 
-  # move the chord to the aural center
-  if (length(chord)==1) {
-    chord
-  } else if (direction >= 0) {
+  if (direction >= 0) {
     chord - root
   } else {
     # adjust the aural root to the octave in case of inversion

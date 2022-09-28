@@ -60,3 +60,22 @@ major_triad_progression <- function(){
     h(major_triad  , direction = +1)
   )
 }
+voice_leading_progression <- function(){
+  major_triad = c(0,4,7)
+  list(
+    h(major_triad  , direction = +1),
+    h(major_triad+1, direction = +1),
+    h(major_triad+2, direction = +1),
+    h(major_triad+3, direction = +1),
+    h(major_triad+4, direction = +1),
+    h(major_triad+5, direction = +1),
+    h(major_triad+6, direction = +1),
+    h(major_triad+7, direction = +1),
+    h(major_triad+8, direction = +1),
+    h(major_triad+9, direction = +1),
+    h(major_triad+10, direction = +1),
+    h(major_triad+11, direction = +1),
+    h(major_triad+12, direction = +1)
+  )
+}
+

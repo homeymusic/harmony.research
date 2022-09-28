@@ -10,6 +10,8 @@
 #' @importFrom numbers primeFactors
 #' @importFrom rlang .data
 #' @importFrom dplyr bind_rows
+#' @importFrom tidyr expand_grid
+#' @importFrom utils head
 ## usethis namespace: end
 NULL
 

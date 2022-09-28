@@ -186,3 +186,10 @@ test_that('position from the tonic in cents makes sense',{
   expect_equal(h(c(0,3,7))$position,339.1988,tolerance=0.001)
   expect_equal(h(c(4))$position,pitch(4)$tonic.position)
 })
+test_that('the harmony of one pitch with non-zero explicit root behaves',{
+  expect_equal(h(5)$affinity,h(5,direction = +1,root = 0)$affinity)
+  expect_equal(h(5)$brightness,h(5,direction = +1,root = 0)$brightness)
+
+  expect_equal(h(5)$affinity,h(10,direction = +1,root = 5)$affinity)
+  expect_equal(h(5)$brightness,h(10,direction = +1,root = 5)$brightness)
+})

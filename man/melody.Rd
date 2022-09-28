@@ -5,12 +5,14 @@
 \alias{m}
 \title{Melody}
 \usage{
-melody(progression)
+melody(progression, reference = NULL)
 
-m(progression)
+m(progression, reference = NULL)
 }
 \arguments{
 \item{progression}{A progression of chords as a multiple row tibble.}
+
+\item{reference}{The reference harmony for calculating potential energy}
 }
 \value{
 A tibble

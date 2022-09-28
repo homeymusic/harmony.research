@@ -21,4 +21,6 @@ Imports:
     stringr,
     tibble,
     rlang,
-    dplyr
+    dplyr,
+    tidyr,
+    utils

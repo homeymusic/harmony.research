@@ -22,7 +22,8 @@ melody <- function(progression, reference=NULL) {
     brightness_change       = c(0,(progression_tibble$brightness       %>% diff)),
     consonance_change       = c(0,(progression_tibble$consonance       %>% diff)),
     potential_energy        = potential_energy(progression, reference),
-    kinetic_energy          = c(0,kinetic_energy(progression))
+    kinetic_energy          = c(0,kinetic_energy(progression)),
+    kinetic_energy_velocity = c(0,kinetic_energy_velocity(progression))
   )
   # store the original progression
   attr(t,"progression") <- progression
@@ -65,9 +66,30 @@ kinetic_energy <- function(progression) {
     }) %>% abs %>% mean
   })
 }
+kinetic_energy_velocity <- function(progression) {
+  from = progression[-length(progression)]
+  to   = progression[-1]
+
+  purrr::map2_dbl(from,to,function(x,y) {
+    from_chord = attr(x,"chord")
+    to_chord   = attr(y,"chord")
+
+    fewest_voices = min(length(from_chord),length(to_chord))
+    from_chord = head(from_chord,fewest_voices)
+    to_chord   = head(to_chord,fewest_voices)
+
+    purrr::map2_dbl(from_chord,to_chord,function(.x,.y){
+      velocity_energy(h(.x,direction=x$direction,root=x$root),
+             h(.y,direction=y$direction,root=y$root))
+    }) %>% abs %>% mean
+  })
+}
 ##########
 # energy
 #
 energy <- function(x,y) {
-  abs(x$consonance-y$consonance)*(x$position-y$position)
+  abs(x$consonance-y$consonance)*(x$integer_position-y$integer_position)
+}
+velocity_energy <- function(x,y) {
+  0.5*abs(x$consonance-y$consonance)*(x$integer_position-y$integer_position)^2
 }
