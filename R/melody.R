@@ -21,7 +21,8 @@ melody <- function(progression, reference=NULL) {
     affinity_change         = c(0,(progression_tibble$affinity         %>% diff)),
     brightness_change       = c(0,(progression_tibble$brightness       %>% diff)),
     consonance_change       = c(0,(progression_tibble$consonance       %>% diff)),
-    potential_energy        = potential_energy(progression, reference)
+    potential_energy        = potential_energy(progression, reference),
+    kinetic_energy          = c(0,kinetic_energy(progression))
   )
   # store the original progression
   attr(t,"progression") <- progression
@@ -34,16 +35,35 @@ melody <- function(progression, reference=NULL) {
 m <- melody
 
 potential_energy <- function(progression,reference) {
-  purrr::map(progression,function(x) {
-    pitches = attr(x,"chord")
-    reference_pitches = attr(reference,"chord")
+  purrr::map_dbl(progression,function(x) {
+    chord = attr(x,"chord")
+    reference_chord = attr(reference,"chord")
 
-    pe = tidyr::expand_grid(pitches,reference_pitches) %>% dplyr::rowwise() %>%
+    pitch_crossings = tidyr::expand_grid(chord,reference_chord) %>% dplyr::rowwise() %>%
       dplyr::mutate(
-        pe=energy(h(pitches,direction=x$direction,root=x$root),
-                  h(reference_pitches,direction=reference$direction,root=reference$root)))
-    pe$pe %>% unlist %>% mean %>% abs
-  }) %>% unlist
+        pe=energy(h(chord,direction=x$direction,root=x$root),
+                  h(reference_chord,direction=reference$direction,root=reference$root)))
+    pitch_crossings$pe %>% unlist %>% mean %>% abs
+  })
+}
+
+kinetic_energy <- function(progression) {
+  from = progression[-length(progression)]
+  to   = progression[-1]
+
+  purrr::map2_dbl(from,to,function(x,y) {
+    from_chord = attr(x,"chord")
+    to_chord   = attr(y,"chord")
+
+    fewest_voices = min(length(from_chord),length(to_chord))
+    from_chord = head(from_chord,fewest_voices)
+    to_chord   = head(to_chord,fewest_voices)
+
+    purrr::map2_dbl(from_chord,to_chord,function(.x,.y){
+      energy(h(.x,direction=x$direction,root=x$root),
+             h(.y,direction=y$direction,root=y$root))
+    }) %>% abs %>% mean
+  })
 }
 ##########
 # energy

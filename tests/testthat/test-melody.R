@@ -51,3 +51,11 @@ test_that('potential energy makes sense',{
   expect_equal(m$potential_energy[4],0)
   expect_gt(m$potential_energy[3],m$potential_energy[2])
 })
+test_that('kinetic energy makes sense',{
+  p = major_triad_progression()
+  m = melody(p)
+  expect_equal(m$kinetic_energy[1],0)
+  expect_gt(m$kinetic_energy[2],m$kinetic_energy[1])
+  expect_gt(m$kinetic_energy[2],m$kinetic_energy[3])
+  expect_gt(m$kinetic_energy[4],m$kinetic_energy[3])
+})
