@@ -19,6 +19,7 @@ pitch <- function(x,root=0) {
     tonic.ref        = compound_ratios(x,'tonic.ref'),       # denominator
     tonic.primes     = prime_factors_sum(.data$tonic.pitch, .data$tonic.ref),
     tonic.position   = 1200 * log2(.data$tonic.pitch  / .data$tonic.ref), # cents
+    position         = .data$tonic.position,
     octave.pitch     = compound_ratios(x,'octave.pitch'),     # numerator
     octave.ref       = compound_ratios(x,'octave.ref'),      # denominator
     octave.primes    = prime_factors_sum(.data$octave.pitch, .data$octave.ref),

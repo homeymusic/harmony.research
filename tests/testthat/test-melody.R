@@ -17,14 +17,6 @@ test_that('melody requires more than one row in the progressions', {
 test_that('melody requires a tibble with min num of columns', {
   expect_error(m(rbind(pitch(0),pitch(1))))
 })
-test_that('basic position and consonance changes make sense',{
-  p = major_triad_progression()
-  m = melody(p)
-  expect_equal(m$position_diff,c(0,498,204,-702),tolerance = 1.0)
-  expect_equal(m$integer_position_diff,c(0,5,2,-7))
-  expect_equal(m$affinity_diff,c(0,0,0,0))
-  expect_equal(m$brightness_diff,c(0,0,0,0))
-})
 test_that('if no reference harmony is given the first harmony in the progression is chosen',{
   p = major_triad_progression()
   m = melody(p)
@@ -42,9 +34,4 @@ test_that('melody tibble includes the harmony columns',{
   m = melody(p,r)
   expect_equal(m$brightness[1],p[[1]]$brightness)
 })
-test_that('different harmony specs will work with melody',{
-  p = list(h(c(0,4,7)),h(c(0,3,7),-1))
-  m = m(p)
-  expect_equal(m$affinity_diff[2],0)
-  expect_equal(m$brightness_diff[2],-2)
-})
+

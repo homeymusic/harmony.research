@@ -6,7 +6,7 @@
 #' @importFrom tibble tibble
 #' @importFrom magrittr %>%
 #' @importFrom stringr str_replace_all
-#' @importFrom purrr pmap
+#' @importFrom purrr pmap prepend
 #' @importFrom numbers primeFactors
 #' @importFrom rlang .data
 #' @importFrom dplyr bind_rows bind_cols

@@ -20,12 +20,8 @@ melody <- function(progression, reference=NULL) {
   # collapse =' \u21D2 '),
   # paste0('(',reference$integer_name,')')),
   t <- tibble::tibble(
-    position_diff           = c(0,(progression_tibble$position         %>% diff)),
-    integer_position_diff   = c(0,(progression_tibble$integer_position %>% diff)),
-    affinity_diff           = c(0,(progression_tibble$affinity         %>% diff)),
-    brightness_diff         = c(0,(progression_tibble$brightness       %>% diff)),
-    potential_energy        = potential_energy(progression, reference),
-    kinetic_energy          = c(0,kinetic_energy(progression, reference))
+    potential_energy = potential_energy(progression, reference),
+    kinetic_energy   = kinetic_energy(progression, reference)
   )
   # store the reference harmony
   attr(t,"reference") <- reference
@@ -50,8 +46,9 @@ potential_energy <- function(progression,reference) {
 }
 
 kinetic_energy <- function(progression,reference) {
-  from = progression[-length(progression)]
-  to   = progression[-1]
+
+  from = purrr::prepend(progression[-length(progression)],list(reference))
+  to   = progression
 
   purrr::map2_dbl(from,to,function(x,y) {
     from_chord = attr(x,"chord")
@@ -77,5 +74,5 @@ force <- function(x,y) {
 # TODO: account for changes in chord duration, tempo, etc
 # right now we are assuming 60 bpm and each chord gets one beat
 distance <- function(x,y) {
-  x$integer_position-y$integer_position
+  x$position-y$position
 }
