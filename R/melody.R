@@ -45,8 +45,8 @@ potential_energy <- function(progression,reference) {
     reference_chord = attr(reference,"chord")
     pitch_crossings = tidyr::expand_grid(chord,reference_chord) %>% dplyr::rowwise() %>%
       dplyr::mutate(
-        pe=energy(h(chord,root=reference$root),
-                  h(reference_chord,root=reference$root)))
+        pe=energy(pitch(chord,root=reference$root),
+                  pitch(reference_chord,root=reference$root)))
     pitch_crossings$pe %>% unlist %>% mean %>% abs
   })
 }
@@ -64,8 +64,8 @@ kinetic_energy <- function(progression,reference) {
     to_chord   = head(to_chord,fewest_voices)
 
     purrr::map2_dbl(from_chord,to_chord,function(.x,.y){
-      energy(h(.x,root=reference$root),
-             h(.y,root=reference$root))
+      energy(pitch(.x,root=reference$root),
+             pitch(.y,root=reference$root))
     }) %>% abs %>% mean
   })
 }
