@@ -12,9 +12,14 @@
 #' @export
 harmony <- function(chord, direction=NULL, root=NULL, name=NULL) {
   checkmate::assert_integerish(chord)
-  checkmate::assert_choice(direction,c(-1,0,+1),null.ok=TRUE)
+  if (length(chord)==1) {
+    checkmate::assert_choice(direction,0,null.ok=TRUE)
+  } else {
+    checkmate::assert_choice(direction,c(-1,0,+1),null.ok=TRUE)
+  }
   checkmate::assert_integerish(root,null.ok=TRUE)
   checkmate::assert_character(name,null.ok=TRUE)
+
 
   # build the harmony table
   t <- tibble::tibble(
@@ -144,23 +149,18 @@ implicit_root <- function(chord,explicit_direction) {
 }
 
 implicit_direction <- function(chord,explicit_root) {
-  if (!is.null(explicit_root)) {
-    # a root is given
-    if (length(chord)==1) {
-# ifelse(explicit_root==12,-1,1)
+  if (length(chord)==1) {
+    0
+  } else if (!is.null(explicit_root)) {
+    if (explicit_root<=min(chord)) {
+      1
+    } else if (explicit_root>=max(chord)) {
+      -1
     } else {
-      if (explicit_root<=min(chord)) {
-        1
-      } else if (explicit_root>=max(chord)) {
-        -1
-      } else {
-        0
-      }
+      0
     }
   } else {
-    if (length(chord)==1) {
-      0
-    } else if (c(0,12) %in% chord %>% all) {
+    if (c(0,12) %in% chord %>% all) {
       0
     } else if (12 == max(chord) || 0 == max(chord)) {
       -1

@@ -187,9 +187,12 @@ test_that('position from the tonic in cents makes sense',{
   expect_equal(h(c(4))$position,pitch(4)$tonic.position)
 })
 test_that('the harmony of one pitch with non-zero explicit root behaves',{
-  expect_equal(h(5)$affinity,h(5,direction = +1,root = 0)$affinity)
-  expect_equal(h(5)$brightness,h(5,direction = +1,root = 0)$brightness)
+  expect_equal(h(5)$affinity,h(5,direction = 0,root = 0)$affinity)
+  expect_equal(h(5)$brightness,h(5,direction = 0,root = 0)$brightness)
 
-  expect_equal(h(5)$affinity,h(10,direction = +1,root = 5)$affinity)
-  expect_equal(h(5)$brightness,h(10,direction = +1,root = 5)$brightness)
+  expect_equal(h(5)$affinity,h(10,direction = 0,root = 5)$affinity)
+  expect_equal(h(5)$brightness,h(10,direction = 0,root = 5)$brightness)
+})
+test_that('for chords of length 1 the direction must be 0',{
+  expect_error(h(7,-1))
 })

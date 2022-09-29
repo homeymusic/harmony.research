@@ -27,11 +27,11 @@ test_that('melody stores the original progression',{
 test_that('basic position and consonance changes make sense',{
   p = major_triad_progression()
   m = melody(p)
-  expect_equal(m$position_change,c(0,498,204,-702),tolerance = 1.0)
-  expect_equal(m$integer_position_change,c(0,5,2,-7))
-  expect_equal(m$affinity_change,c(0,0,0,0))
-  expect_equal(m$brightness_change,c(0,0,0,0))
-  expect_equal(m$consonance_change,c(0,0,0,0))
+  expect_equal(m$position_diff,c(0,498,204,-702),tolerance = 1.0)
+  expect_equal(m$integer_position_diff,c(0,5,2,-7))
+  expect_equal(m$affinity_diff,c(0,0,0,0))
+  expect_equal(m$brightness_diff,c(0,0,0,0))
+  expect_equal(m$consonance_diff,c(0,0,0,0))
 })
 test_that('if no reference harmony is given the first harmony in the progression is chosen',{
   p = major_triad_progression()
