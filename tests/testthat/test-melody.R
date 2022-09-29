@@ -43,3 +43,9 @@ test_that('melody tibble includes the harmony columns',{
   m = melody(p,r)
   expect_equal(m$brightness[1],p[[1]]$brightness)
 })
+test_that('different harmony specs will work with melody',{
+  p = list(h(c(0,4,7)),h(c(0,3,7),-1))
+  m = m(p)
+  expect_equal(m$affinity_diff[2],0)
+  expect_equal(m$brightness_diff[2],-2)
+})
