@@ -40,9 +40,10 @@ test_that('integer names are informative and maintain voice leading order',{
 test_that('if implicit and explicit direction agree then do not flip it.',{
   expect_gt(major_triad_first_inversion$brightness,0)
 })
-test_that('implicit reference pitches make sense',{
-  expect_equal(major_triad_first_inversion$implicit_root,12)
-  expect_equal(h(c(1,2,3))$implicit_root,1)
+test_that('guessed roots make sense',{
+  expect_equal(major_triad_first_inversion$guessed_root,12)
+  expect_equal(h(c(1,2,3))$guessed_root,1)
+  expect_equal(h(c(12,4,7),root=4)$guessed_root,12)
 })
 test_that('harmony will default to up and guess the reference pitch',{
   h = h(c(0,4,7))
@@ -61,38 +62,7 @@ test_that('harmony will default to up and guess the reference pitch',{
   expect_equal(h$direction,-1)
   expect_equal(h$root,0)
 })
-test_that("interval affinity behaves well",{
-  expect_equal(h(0)$affinity,h(12)$affinity)
-  purrr::pmap(intervals(),~expect_equal(h(..1)$affinity,..4,info=paste('interval:',..1,'affinity',..4)))
-})
-test_that("interval brightness behaves well",{
-  purrr::pmap(intervals(),~expect_equal(h(..1)$brightness,..3))
-})
-test_that("dissonance measure matches expectations", {
-  expected_up_primes = c(0,16,12,10,9,7,12,5,11,8,14,14,2)
-  purrr::pmap(intervals(),~expect_equal(
-    tonic_octave_dissonance(..1)[1,1],
-    expected_up_primes[..1+1],
-    info=paste('integer_position:',..1,..2,'probe.freq:',frequency_ratio(..1,1),'ref.freq:',frequency_ratio(..1,1))
-  ))
-  expected_down_primes = c(2,14,14,8,11,5,12,7,9,10,12,16,0)
-  intervals() %>% purrr::pmap(~expect_equal(
-    tonic_octave_dissonance(..1)[1,2],
-    expected_down_primes[..1+1],
-    info=paste('integer_position:',..1,..2,'probe.freq:',frequency_ratio(..1,1),'ref.freq',frequency_ratio(..1,1))
-  ))
-})
-test_that('upper bound of dissonance makes sense',{
-  expect_equal(max_dissonance(),16)
-})
-test_that("rotation works", {
-  angle = pi/4
-  expect_equal(rotate(cbind(x=1,y=0),angle),cbind(0.5,0.5))
-  expect_equal(rotate(cbind(x=0,y=1),angle),cbind(-0.5,0.5))
-})
-test_that('for 1 pitch and no reference pitch assume reference pitch is zero',{
-  expect_equal(h(6)$root,0)
-})
+
 test_that('brightness and affinity are symmetrical with symmetrical chords',{
   expect_equal(h(c(0,4,7))$affinity,h(-c(0,4,7),-1)$affinity)
   expect_equal(h(c(0,4,7))$brightness,-h(-c(0,4,7),-1)$brightness)
@@ -100,46 +70,40 @@ test_that('brightness and affinity are symmetrical with symmetrical chords',{
   expect_equal(h(c(0,3,7))$affinity,h(-c(0,3,7),-1)$affinity)
   expect_equal(h(c(0,3,7))$brightness,-h(-c(0,3,7),-1)$brightness)
 })
-test_that('consonance is the L1 of affinity and brightness',{
-  expect_equal(h(c(0,4,7))$consonance,
-               abs(h(c(0,4,7))$brightness)+abs(h(c(0,4,7),)$affinity))
 
-  expect_equal(h(c(0,4,7))$consonance,h(-c(0,4,7),-1)$consonance)
-
-})
 test_that('aural centering works as expected',{
   # do we detect the inversion when tonal center (0) same as the aural center (0)?
   h = h(c(0,4,7))
-  expect_equal(h$implicit_direction,1)
-  expect_equal(attr(h,"aurally_centered_chord"),c(0,4,7))
+  expect_equal(h$guessed_direction,1)
+  expect_equal(attr(h,"centered_chord"),c(0,4,7))
 
   # do we detect the inversion when tonal center (12) happens to be 12?
   h = h(c(0+12,4,7))
-  expect_equal(h$implicit_direction,-1)
-  expect_equal(attr(h,"aurally_centered_chord"),c(12,4,7))
+  expect_equal(h$guessed_direction,-1)
+  expect_equal(attr(h,"centered_chord"),c(12,4,7))
 
   # c major 2d inversion using midi notes and various levels of specificity
   h = h(c(12+0,12+4,7)+60)
-  expect_equal(h$implicit_direction,1)
+  expect_equal(h$guessed_direction,1)
   expect_equal(h$direction,1)
-  expect_equal(h$implicit_root,67)
+  expect_equal(h$guessed_root,67)
   expect_equal(h$root,67)
-  expect_equal(attr(h,"aurally_centered_chord"),c(5,9,0))
+  expect_equal(attr(h,"centered_chord"),c(5,9,0))
   h = h(c(12+0,12+4,7)+60,-1)
-  expect_equal(h$implicit_direction,1)
+  expect_equal(h$guessed_direction,1)
   expect_equal(h$explicit_direction,-1)
   expect_equal(h$direction,-1)
-  expect_equal(h$implicit_root,76)
+  expect_equal(h$guessed_root,76)
   expect_equal(h$root,76)
-  expect_equal(attr(h,"aurally_centered_chord"),c(8,12,3))
+  expect_equal(attr(h,"centered_chord"),c(8,12,3))
   h = h(c(12+0,12+4,7)+60,-1,76)
-  expect_equal(h$implicit_direction,-1)
+  expect_equal(h$guessed_direction,-1)
   expect_equal(h$explicit_direction,-1)
   expect_equal(h$direction,-1)
-  expect_equal(h$implicit_root,76)
+  expect_equal(h$guessed_root,76)
   expect_equal(h$explicit_root,76)
   expect_equal(h$root,76)
-  expect_equal(attr(h,"aurally_centered_chord"),c(8,12,3))
+  expect_equal(attr(h,"centered_chord"),c(8,12,3))
 })
 test_that('implicit direction for minor triad and inversions makes sense',{
   expect_equal(h(c(0,3,7))$direction,1)
@@ -177,10 +141,7 @@ test_that("tonic-octave symmetrical chords have identical consonance regardless 
   expect_equal(h(chord,direction=0)$affinity,h(chord,direction=-1)$affinity)
   expect_equal(h(chord,direction=0)$brightness,h(chord,direction=-1)$brightness)
 })
-test_that('tonic and octave consonance make sense',{
-  expect_gt(h(0)$tonic.consonance,h(0)$octave.consonance)
-  expect_gt(h(12)$octave.consonance,h(12)$tonic.consonance)
-})
+
 test_that('position from the tonic in cents makes sense',{
   expect_equal(h(c(0,4,7))$position,362.7562,tolerance=0.001)
   expect_equal(h(c(0,3,7))$position,339.1988,tolerance=0.001)
@@ -195,4 +156,9 @@ test_that('the harmony of one pitch with non-zero explicit root behaves',{
 })
 test_that('for chords of length 1 the direction must be 0',{
   expect_error(h(7,-1))
+})
+test_that('brightness and affinity of the diatonic scales makes sense',{
+  expect_true(!is.unsorted(dplyr::bind_rows(diatonic_scales())$brightness))
+  expect_true(!is.unsorted(dplyr::bind_rows(diatonic_scales()[c(1,2,3,4)])$affinity))
+  expect_true(!is.unsorted(dplyr::bind_rows(diatonic_scales()[c(7,6,5,4)])$affinity))
 })

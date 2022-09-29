@@ -101,5 +101,4 @@ test_that("rotation works", {
 })
 test_that('for 1 pitch and no reference pitch assume reference pitch is zero',{
   expect_equal(p(6)$root,0)
-  expect_equal(p(6)$direction,0)
 })

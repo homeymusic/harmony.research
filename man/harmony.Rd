@@ -10,7 +10,7 @@ harmony(chord, direction = NULL, root = NULL, name = NULL)
 h(chord, direction = NULL, root = NULL, name = NULL)
 }
 \arguments{
-\item{chord}{A note or chord expressed as an interval integer or vector of interval integers}
+\item{chord}{A pitch or chord expressed as an interval integer or vector of interval integers}
 
 \item{direction}{Harmonic direction +1 is up and -1 is down}
 

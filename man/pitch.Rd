@@ -5,12 +5,14 @@
 \alias{p}
 \title{Pitch}
 \usage{
-pitch(x)
+pitch(x, root = 0)
 
-p(x)
+p(x, root = 0)
 }
 \arguments{
 \item{x}{A pitch expressed as an interval integer}
+
+\item{root}{The aural root to evaluate the pitch}
 }
 \value{
 A tibble

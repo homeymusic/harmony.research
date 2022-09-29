@@ -12,7 +12,7 @@ melody <- function(progression, reference=NULL) {
   checkmate::assert_list(progression,min.len=2)
   checkmate::assert_tibble(reference,null.ok=TRUE)
   progression_tibble = dplyr::bind_rows(progression)
-  checkmate::assert_tibble(progression_tibble, min.cols=11, min.rows=2)
+  checkmate::assert_tibble(progression_tibble, min.cols=9, min.rows=2)
   if (is.null(reference)) {reference = progression[[1]]}
   # build the melody table
   # TODO:    include progression integer name for each row.
@@ -24,10 +24,8 @@ melody <- function(progression, reference=NULL) {
     integer_position_diff   = c(0,(progression_tibble$integer_position %>% diff)),
     affinity_diff           = c(0,(progression_tibble$affinity         %>% diff)),
     brightness_diff         = c(0,(progression_tibble$brightness       %>% diff)),
-    consonance_diff         = c(0,(progression_tibble$consonance       %>% diff)),
     potential_energy        = potential_energy(progression, reference),
-    kinetic_energy          = c(0,kinetic_energy(progression)),
-    kinetic_energy_velocity = c(0,kinetic_energy_velocity(progression))
+    kinetic_energy          = c(0,kinetic_energy(progression, reference))
   )
   # store the reference harmony
   attr(t,"reference") <- reference
@@ -51,7 +49,7 @@ potential_energy <- function(progression,reference) {
   })
 }
 
-kinetic_energy <- function(progression) {
+kinetic_energy <- function(progression,reference) {
   from = progression[-length(progression)]
   to   = progression[-1]
 
@@ -64,35 +62,20 @@ kinetic_energy <- function(progression) {
     to_chord   = head(to_chord,fewest_voices)
 
     purrr::map2_dbl(from_chord,to_chord,function(.x,.y){
-      energy(h(.x,root=x$root),
-             h(.y,root=y$root))
+      energy(h(.x,root=reference$root),
+             h(.y,root=reference$root))
     }) %>% abs %>% mean
   })
 }
-kinetic_energy_velocity <- function(progression) {
-  from = progression[-length(progression)]
-  to   = progression[-1]
 
-  purrr::map2_dbl(from,to,function(x,y) {
-    from_chord = attr(x,"chord")
-    to_chord   = attr(y,"chord")
-
-    fewest_voices = min(length(from_chord),length(to_chord))
-    from_chord = head(from_chord,fewest_voices)
-    to_chord   = head(to_chord,fewest_voices)
-
-    purrr::map2_dbl(from_chord,to_chord,function(.x,.y){
-      velocity_energy(h(.x,root=x$root),
-             h(.y,root=y$root))
-    }) %>% abs %>% mean
-  })
-}
-##########
-# energy
-#
 energy <- function(x,y) {
-  (abs(x$affinity-y$affinity)+abs(x$brightness-y$brightness))*(x$integer_position-y$integer_position)
+  harmonic_force(x,y)*distance(x,y)
 }
-velocity_energy <- function(x,y) {
-  0.5*abs(x$consonance-y$consonance)*(x$integer_position-y$integer_position)^2
+harmonic_force <- function(x,y) {
+  abs(x$affinity-y$affinity)+abs(x$brightness-y$brightness)
+}
+# TODO: account for changes in chord duration, tempo, etc
+# right now we are assuming 60 bpm and each chord gets one beat
+distance <- function(x,y) {
+  x$integer_position-y$integer_position
 }

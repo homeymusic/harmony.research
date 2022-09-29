@@ -3,7 +3,7 @@
 #' Provides the harmonic metrics of a note or chord.
 #'
 #'
-#' @param chord A note or chord expressed as an interval integer or vector of interval integers
+#' @param chord A pitch or chord expressed as an interval integer or vector of interval integers
 #' @param direction Harmonic direction +1 is up and -1 is down
 #' @param root The reference pitch of the chord or larger context
 #' @param name A custom name for the note or chord
@@ -23,44 +23,30 @@ harmony <- function(chord, direction=NULL, root=NULL, name=NULL) {
 
   # build the harmony table
   t <- tibble::tibble_row(
-    position                = position(chord), # cents
-    integer_position        = chord %>% mean,
-    name                    = name,
-    explicit_direction      = direction,
-    implicit_direction      = implicit_direction(chord,root),
-    explicit_root           = root,
-    implicit_root           = implicit_root(chord,direction),
-    direction               = ifelse(is.null(direction),
-                                     implicit_direction,
-                                     direction),
-    root                    = ifelse(is.null(root),
-                                     implicit_root,
-                                     root),
-    integer_name            = integer_name(chord,direction,root)
+    position           = position(chord), # cents
+    integer_position   = chord %>% mean,
+    name               = name,
+    explicit_direction = direction,
+    guessed_direction  = guessed_direction(chord,root),
+    explicit_root      = root,
+    guessed_root       = guessed_root(chord,direction),
+    direction          = ifelse(is.null(direction),
+                                guessed_direction,
+                                direction),
+    root               = ifelse(is.null(root),
+                                guessed_root,
+                                root),
+    integer_name       = integer_name(chord,direction,root)
   )
   # store the original chord
   attr(t,"chord") <- chord
   # store the aurally centered chord
-  attr(t,"aurally_centered_chord") <- aurally_centered_chord(chord,t$direction,
-                                                             t$root)
+  attr(t,"centered_chord") <- centered_chord <-
+    centered_chord(chord, t$direction, t$root)
 
-  ###################################################################################
-  # this is the heavy lifting for calculating affinity, brightness and consonance
-  #
-  # using the centered chord, calculate 2-dimensional tonic-octave dissonance
-  tonic_octave_dissonance = tonic_octave_dissonance(attr(t,"aurally_centered_chord"))
-  # flip orientation to 2-dimensional tonic-octave consonance
-  tonic_octave_consonance = max_dissonance() - tonic_octave_dissonance
-  # rotate pi/4 (45 deg) to 2-dimensional affinity-brightness
-  affinity_brightness = tonic_octave_consonance %>% rotate(pi/4)
-
-  # store the ABCs with L1 norm of affinity-brightness as consonance magnitude
   t %>% tibble::add_column(
-    tonic.consonance  = tonic_octave_consonance[1,1],
-    octave.consonance = tonic_octave_consonance[1,2],
-    affinity          = affinity_brightness[1,2],
-    brightness        = affinity_brightness[1,1],
-    consonance        = abs(affinity_brightness[1,2]) + abs(affinity_brightness[1,1])
+    affinity          = affinity(centered_chord),
+    brightness        = brightness(centered_chord),
   )
 }
 
@@ -68,63 +54,33 @@ harmony <- function(chord, direction=NULL, root=NULL, name=NULL) {
 #' @export
 h <- harmony
 
-tonic_octave_dissonance <- function(chord) {
-  checkmate::assert_integerish(chord)
-
-  cbind(
-    chord_primes(chord,'tonic.primes'),
-    chord_primes(chord,'octave.primes')
-  )
-
-}
-
-chord_primes <- function(chord,tonic_or_octave) {
-  checkmate::assert_integerish(chord)
-  checkmate::assert_choice(tonic_or_octave,c('tonic.primes','octave.primes'))
-
-  chord %>% purrr::map(~pitch(.x)[tonic_or_octave]) %>% unlist %>% mean
-}
-
-# we are using the semitone, the minor second m2 up, as the upper bound of dissonance
-# we will subtract dissonance from this number to give us ascending consonance
-#
-# the result would be the same if we used major 7th M7 down
-#
-# m2, is 1 in integer notation but R vectors are indexed from 1
-# so that's why we have see + 1 notation
-max_dissonance <- function() {
-  pitch(1)$tonic.primes
-}
-
-rotate <- function(coordinates,angle) {
-  checkmate::assert_numeric(angle)
-  coordinates = t(coordinates)
-  R = tibble::frame_matrix(
-    ~chord,          ~.y,
-    cos(angle), -sin(angle),
-    sin(angle),  cos(angle)
-  )
-  (R %*% coordinates * cos(angle)) %>% zapsmall %>% t
-}
-
-aurally_centered_chord <- function(chord,direction,root) {
+centered_chord <- function(chord,direction,root) {
   checkmate::assert_integerish(chord)
   checkmate::qassert(root,'X1')
 
   if (direction >= 0) {
     chord - root
   } else {
-    # adjust the aural root to the octave in case of inversion
     chord - root + 12
   }
 }
 
-position <- function(chord) {
+affinity <- function(chord) {
   checkmate::assert_integerish(chord)
-  chord %>% purrr::map(~pitch(.x)['tonic.position']) %>% unlist %>% mean
+  chord %>% purrr::map_dbl(~pitch(.x)$affinity) %>% mean
 }
 
-implicit_root <- function(chord,explicit_direction) {
+brightness <- function(chord) {
+  checkmate::assert_integerish(chord)
+  chord %>% purrr::map_dbl(~pitch(.x)$brightness) %>% mean
+}
+
+position <- function(chord) {
+  checkmate::assert_integerish(chord)
+  chord %>% purrr::map_dbl(~pitch(.x)$tonic.position) %>% mean
+}
+
+guessed_root <- function(chord,explicit_direction) {
   if (!is.null(explicit_direction)) {
     if (length(chord)==1) {
       ifelse(explicit_direction<0,12,0)
@@ -138,6 +94,7 @@ implicit_root <- function(chord,explicit_direction) {
       if (c(0,12) %in% chord %>% all) {
         0
       } else if (12 == min(chord) || 12 == max(chord)) {
+        print('12')
         12
       } else if (0 == min(chord) || 0 == max(chord)) {
         0
@@ -148,7 +105,7 @@ implicit_root <- function(chord,explicit_direction) {
   }
 }
 
-implicit_direction <- function(chord,explicit_root) {
+guessed_direction <- function(chord,explicit_root) {
   if (length(chord)==1) {
     0
   } else if (!is.null(explicit_root)) {
@@ -193,7 +150,7 @@ integer_name <- function(chord, direction, root) {
     underlined_chord = underline(underlined_chord,root+12)
   }
   underlined_chord %>% paste(collapse = ":") %>% paste0(arrow) %>%
-    add_roots_without_chord(root,chord,direction)
+    add_roots_outside_chord(root,chord,direction)
 }
 underline <- function(chord,pitch) {
   chord %>% sapply(function(x){
@@ -204,7 +161,7 @@ underline <- function(chord,pitch) {
     }
   })
 }
-add_roots_without_chord <- function(integer_name,root,chord,direction) {
+add_roots_outside_chord <- function(integer_name,root,chord,direction) {
   if (root %in% chord) {
     # do nothing
   } else {
