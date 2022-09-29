@@ -75,7 +75,9 @@ voice_leading_progression <- function(){
     h(major_triad+9, direction = +1),
     h(major_triad+10, direction = +1),
     h(major_triad+11, direction = +1),
-    h(major_triad+12, direction = +1)
+    h(major_triad+12, direction = +1),
+    h(major_triad+13, direction = +1),
+    h(major_triad  , direction = +1)
   )
 }
 

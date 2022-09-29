@@ -69,9 +69,9 @@ kinetic_energy <- function(progression,reference) {
 }
 
 energy <- function(x,y) {
-  harmonic_force(x,y)*distance(x,y)
+  force(x,y)*distance(x,y)
 }
-harmonic_force <- function(x,y) {
+force <- function(x,y) {
   abs(x$affinity-y$affinity)+abs(x$brightness-y$brightness)
 }
 # TODO: account for changes in chord duration, tempo, etc
