@@ -1,3 +1,5 @@
+# TODO: account for the aural centering of the chords in the progression
+
 #' Melody
 #'
 #' Provides the melodic metrics of a progression

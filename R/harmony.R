@@ -94,7 +94,6 @@ guessed_root <- function(chord,explicit_direction) {
       if (c(0,12) %in% chord %>% all) {
         0
       } else if (12 == min(chord) || 12 == max(chord)) {
-        print('12')
         12
       } else if (0 == min(chord) || 0 == max(chord)) {
         0
