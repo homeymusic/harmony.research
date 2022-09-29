@@ -22,7 +22,7 @@ harmony <- function(chord, direction=NULL, root=NULL, name=NULL) {
 
 
   # build the harmony table
-  t <- tibble::tibble(
+  t <- tibble::tibble_row(
     position                = position(chord), # cents
     integer_position        = chord %>% mean,
     name                    = name,

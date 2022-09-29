@@ -9,7 +9,7 @@
 #' @export
 pitch <- function(x) {
   checkmate::qassert(x,'X1')
-  t <- tibble::tibble(
+  t <- tibble::tibble_row(
     integer_position = x,
     tonic.pitch       = frequency_ratio(x,'tonic.pitch'),      # numerator
     tonic.ref        = frequency_ratio(x,'tonic.ref'),       # denominator

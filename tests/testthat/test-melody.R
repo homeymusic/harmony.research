@@ -17,13 +17,6 @@ test_that('melody requires more than one row in the progressions', {
 test_that('melody requires a tibble with min num of columns', {
   expect_error(m(rbind(pitch(0),pitch(1))))
 })
-
-test_that('melody stores the original progression',{
-  p = major_triad_progression()
-  m = m(p)
-  expect_equal(attr(m,"progression"),p)
-})
-
 test_that('basic position and consonance changes make sense',{
   p = major_triad_progression()
   m = melody(p)
@@ -43,4 +36,10 @@ test_that('if a reference harmony is given then it gets stored',{
   r = h(c(0))
   m = melody(p,r)
   expect_equal(attr(m,'reference'),r)
+})
+test_that('melody tibble includes the harmony columns',{
+  p = major_triad_progression()
+  r = h(c(0))
+  m = melody(p,r)
+  expect_equal(m$brightness[1],p[[1]]$brightness)
 })

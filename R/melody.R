@@ -12,7 +12,7 @@ melody <- function(progression, reference=NULL) {
   checkmate::assert_list(progression,min.len=2)
   checkmate::assert_tibble(reference,null.ok=TRUE)
   progression_tibble = dplyr::bind_rows(progression)
-  checkmate::assert_tibble(progression_tibble, min.cols=11, min.rows=2, any.missing = FALSE)
+  checkmate::assert_tibble(progression_tibble, min.cols=11, min.rows=2)
   if (is.null(reference)) {reference = progression[[1]]}
   # build the melody table
   # TODO:    include progression integer name for each row.
@@ -29,10 +29,9 @@ melody <- function(progression, reference=NULL) {
     kinetic_energy          = c(0,kinetic_energy(progression)),
     kinetic_energy_velocity = c(0,kinetic_energy_velocity(progression))
   )
-
-  # store the original progression
-  attr(t,"progression") <- progression
+  # store the reference harmony
   attr(t,"reference") <- reference
+  # store the original progression
   dplyr::bind_cols(t,progression_tibble)
 }
 
