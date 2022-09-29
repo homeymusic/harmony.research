@@ -1,7 +1,7 @@
-test_that("up primary_frequency_ratios within the primary octave match expectations", {
-  expect_equal(primary_frequency_ratios()$tonic.pitch,
+test_that("up pitch_class_ratios within the primary octave match expectations", {
+  expect_equal(pitch_class_ratios()$tonic.pitch,
                c(1,16,9,6,5,4,7,3,8,5,16,15,2))
-  expect_equal(primary_frequency_ratios()$tonic.ref,
+  expect_equal(pitch_class_ratios()$tonic.ref,
                c(1,15,8,5,4,3,5,2,5,3, 9, 8,1))
 })
 test_that('tonic frequency ratios within and beyond the primary octave matches expectations', {
@@ -26,9 +26,9 @@ test_that('tonic frequency ratios within and beyond the primary octave matches e
   expect_equal(pitch(-37)$tonic.pitch,15)
   expect_equal(pitch(-37)$tonic.ref,128)
 })
-test_that("down primary_frequency_ratios within the primary octave match expectations", {
-  expect_equal(primary_frequency_ratios()$octave.pitch, c(1, 8, 9,3,5,2,5,3,4,5,8,15,1))
-  expect_equal(primary_frequency_ratios()$octave.ref,  c(2,15,16,5,8,3,7,4,5,6,9,16,1))
+test_that("down pitch_class_ratios within the primary octave match expectations", {
+  expect_equal(pitch_class_ratios()$octave.pitch, c(1, 8, 9,3,5,2,5,3,4,5,8,15,1))
+  expect_equal(pitch_class_ratios()$octave.ref,  c(2,15,16,5,8,3,7,4,5,6,9,16,1))
 })
 test_that('octave frequency ratios within and beyond the primary octave matches expectations', {
   expect_equal(pitch(7)$octave.pitch,3)
@@ -69,4 +69,37 @@ test_that('position in cents makes sense within primary octave',{
 })
 test_that('p is a synonym for pitch',{
   expect_equal(pitch(7),p(7))
+})
+test_that("interval affinity behaves well",{
+  expect_equal(p(0)$affinity,p(12)$affinity)
+  purrr::pmap(intervals(),~expect_equal(p(..1)$affinity,..4,info=paste('interval:',..1,'affinity',..4)))
+})
+test_that("interval brightness behaves well",{
+  purrr::pmap(intervals(),~expect_equal(p(..1)$brightness,..3))
+})
+test_that("dissonance measure matches expectations", {
+  expected_tonic_primes = c(0,16,12,10,9,7,12,5,11,8,14,14,2)
+  purrr::pmap(intervals(),~expect_equal(
+    p(..1)$tonic.dissonance,
+    expected_tonic_primes[..1+1],
+    info=paste('integer_position:',..1,..2,'probe.freq:',compound_ratios(..1,1),'ref.freq:',compound_ratios(..1,1))
+  ))
+  expected_octave_primes = c(2,14,14,8,11,5,12,7,9,10,12,16,0)
+  intervals() %>% purrr::pmap(~expect_equal(
+    p(..1)$octave.dissonance,
+    expected_octave_primes[..1+1],
+    info=paste('integer_position:',..1,..2,'probe.freq:',compound_ratios(..1,1),'ref.freq',compound_ratios(..1,1))
+  ))
+})
+test_that('upper bound of dissonance makes sense',{
+  expect_equal(max_dissonance(),16)
+})
+test_that("rotation works", {
+  angle = pi/4
+  expect_equal(rotate(cbind(x=1,y=0),angle),cbind(0.5,0.5))
+  expect_equal(rotate(cbind(x=0,y=1),angle),cbind(-0.5,0.5))
+})
+test_that('for 1 pitch and no reference pitch assume reference pitch is zero',{
+  expect_equal(p(6)$root,0)
+  expect_equal(p(6)$direction,0)
 })
