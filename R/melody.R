@@ -15,17 +15,17 @@ melody <- function(progression, reference=NULL) {
   checkmate::assert_tibble(progression_tibble, min.cols=9, min.rows=2)
   if (is.null(reference)) {reference = progression[[1]]}
   # build the melody table
-  # TODO:    include progression integer name for each row.
-  # integer_name            = paste(paste(progression_tibble$integer_name,
-  # collapse =' \u21D2 '),
-  # paste0('(',reference$integer_name,')')),
+
   t <- tibble::tibble(
+    integer_name     = pe_integer_name(progression,reference),
     potential_energy = potential_energy(progression, reference),
     kinetic_energy   = kinetic_energy(progression, reference)
   )
+
   # store the reference harmony
   attr(t,"reference") <- reference
   # store the original progression
+  colnames(progression_tibble) = paste0(".", colnames(progression_tibble))
   dplyr::bind_cols(t,progression_tibble)
 }
 
@@ -75,4 +75,14 @@ force <- function(x,y) {
 # right now we are assuming 60 bpm and each chord gets one beat
 distance <- function(x,y) {
   x$position-y$position
+}
+
+pe_integer_name <- function(progression,reference) {
+  from = purrr::prepend(progression[-length(progression)],list(reference))
+  to   = progression
+  purrr::map2_chr(from,to,function(x,y){
+    paste(paste(x$integer_name, y$integer_name, sep =' \u21D2 '),
+          paste0('(',reference$integer_name,')'))
+
+  })
 }

@@ -160,6 +160,7 @@ underline <- function(chord,pitch) {
     }
   })
 }
+
 add_roots_outside_chord <- function(integer_name,root,chord,direction) {
   if (root %in% chord) {
     # do nothing
