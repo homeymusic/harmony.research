@@ -4,17 +4,14 @@
 #'
 #'
 #' @param x A pitch expressed as an interval integer
-#' @param root The aural root to evaluate the pitch
 #' @return A tibble
 #'
 #' @export
-pitch <- function(x,root=0) {
+pitch <- function(x) {
   checkmate::qassert(x,'X1')
-  checkmate::qassert(root,'X1')
 
   t <- tibble::tibble_row(
     integer_position = x,
-    root             = root,
     tonic.pitch      = compound_ratios(x,'tonic.pitch'),      # numerator
     tonic.ref        = compound_ratios(x,'tonic.ref'),       # denominator
     tonic.primes     = prime_factors_sum(.data$tonic.pitch, .data$tonic.ref),

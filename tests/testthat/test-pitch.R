@@ -99,6 +99,3 @@ test_that("rotation works", {
   expect_equal(rotate(cbind(x=1,y=0),angle),cbind(0.5,0.5))
   expect_equal(rotate(cbind(x=0,y=1),angle),cbind(-0.5,0.5))
 })
-test_that('for 1 pitch and no reference pitch assume reference pitch is zero',{
-  expect_equal(p(6)$root,0)
-})
