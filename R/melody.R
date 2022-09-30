@@ -1,3 +1,26 @@
+melody.uncached <- function(progression, reference=NULL) {
+  checkmate::assert_list(progression,min.len=2)
+  checkmate::assert_tibble(reference,null.ok=TRUE)
+  progression_tibble = dplyr::bind_rows(progression)
+  checkmate::assert_tibble(progression_tibble, min.cols=9, min.rows=2)
+  if (is.null(reference)) {reference = progression[[1]]}
+  # build the melody table
+
+  t <- tibble::tibble(
+    integer_name             = pe_integer_name(progression,reference),
+    potential_energy         = potential_energy(progression, reference),
+    potential_energy_density = potential_energy(progression, reference, density = TRUE),
+    kinetic_energy           = kinetic_energy(progression, reference),
+    kinetic_energy_density   = kinetic_energy(progression, reference, density = TRUE)
+  )
+
+  # store the reference harmony
+  attr(t,"reference") <- reference
+  # store the original progression
+  colnames(progression_tibble) = paste0(".", colnames(progression_tibble))
+  dplyr::bind_cols(t,progression_tibble)
+}
+
 #' Melody
 #'
 #' Provides the melodic metrics of a progression
@@ -8,32 +31,13 @@
 #' @return A tibble
 #'
 #' @export
-melody <- function(progression, reference=NULL) {
-  checkmate::assert_list(progression,min.len=2)
-  checkmate::assert_tibble(reference,null.ok=TRUE)
-  progression_tibble = dplyr::bind_rows(progression)
-  checkmate::assert_tibble(progression_tibble, min.cols=9, min.rows=2)
-  if (is.null(reference)) {reference = progression[[1]]}
-  # build the melody table
-
-  t <- tibble::tibble(
-    integer_name     = pe_integer_name(progression,reference),
-    potential_energy = potential_energy(progression, reference),
-    kinetic_energy   = kinetic_energy(progression, reference)
-  )
-
-  # store the reference harmony
-  attr(t,"reference") <- reference
-  # store the original progression
-  colnames(progression_tibble) = paste0(".", colnames(progression_tibble))
-  dplyr::bind_cols(t,progression_tibble)
-}
+melody <- memoise::memoise(melody.uncached)
 
 #' @rdname melody
 #' @export
 m <- melody
 
-potential_energy <- function(progression,reference) {
+potential_energy <- function(progression,reference,density=FALSE) {
   purrr::map_dbl(progression,function(x) {
     chord = attr(x,"chord")
     reference_chord = attr(reference,"chord")
@@ -41,11 +45,17 @@ potential_energy <- function(progression,reference) {
       dplyr::mutate(
         pe=energy(harmony(chord,root=reference$root),
                   harmony(reference_chord,root=reference$root)))
-    pitch_crossings$pe %>% unlist %>% mean %>% abs
-  })
+    pe_abs_mean = pitch_crossings$pe %>% unlist %>% mean %>% abs
+    if (density) {
+      distance = distance(x,reference) %>% abs
+      ifelse(distance==0,0,pe_abs_mean/distance)
+    } else {
+      pe_abs_mean
+    }
+  }) %>% unname
 }
 
-kinetic_energy <- function(progression,reference) {
+kinetic_energy <- function(progression,reference,density=FALSE) {
   from = prepend_reference(progression,reference)
   to   = progression
 
@@ -57,11 +67,17 @@ kinetic_energy <- function(progression,reference) {
     from_chord = head(from_chord,fewest_voices)
     to_chord   = head(to_chord,fewest_voices)
 
-    purrr::map2_dbl(from_chord,to_chord,function(.x,.y){
+    ke_abs_mean = purrr::map2_dbl(from_chord,to_chord,function(.x,.y){
       energy(harmony(.x,root=reference$root),
              harmony(.y,root=reference$root))
     }) %>% abs %>% mean
-  })
+    if (density) {
+      distance = distance(y,reference) %>% abs
+      ifelse(distance==0,0,ke_abs_mean/distance)
+    } else {
+      ke_abs_mean
+    }
+  }) %>% unname
 }
 
 energy <- function(x,y) {

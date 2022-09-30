@@ -1,16 +1,4 @@
-#' Harmony
-#'
-#' Provides the harmonic metrics of a note or chord.
-#'
-#'
-#' @param chord A pitch or chord expressed as an interval integer or vector of interval integers
-#' @param direction Harmonic direction +1 is up and -1 is down
-#' @param root The reference pitch of the chord or larger context
-#' @param name A custom name for the note or chord
-#' @return A tibble
-#'
-#' @export
-harmony <- function(chord, direction=NULL, root=NULL, name=NULL) {
+harmony.uncached <- function(chord, direction=NULL, root=NULL, name=NULL) {
   checkmate::assert_integerish(chord)
   if (length(chord)==1) {
     checkmate::assert_choice(direction,0,null.ok=TRUE)
@@ -49,6 +37,20 @@ harmony <- function(chord, direction=NULL, root=NULL, name=NULL) {
     brightness        = brightness(centered_chord),
   )
 }
+
+#' Harmony
+#'
+#' Provides the harmonic metrics of a note or chord.
+#'
+#'
+#' @param chord A pitch or chord expressed as an interval integer or vector of interval integers
+#' @param direction Harmonic direction +1 is up and -1 is down
+#' @param root The reference pitch of the chord or larger context
+#' @param name A custom name for the note or chord
+#' @return A tibble
+#'
+#' @export
+harmony <- memoise::memoise(harmony.uncached)
 
 #' @rdname harmony
 #' @export

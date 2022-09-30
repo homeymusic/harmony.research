@@ -101,7 +101,8 @@ ionian_tonic_chords <- function() {
        "IV"        =h(c( 5, 9,12),direction=+1,name='IV'),
        "V"         =h(c( 7,11,14),direction=+1,name='V'),
        "vi"        =h(c( 9,12,16),direction=+1,name='vi'),
-       "vii\u00B0" =h(c(11,14,17),direction=+1,name='vii\u00B0')
+       "vii\u00B0" =h(c(11,14,17),direction=+1,name='vii\u00B0'),
+       "VIII"      =h(c( 0, 4, 7)+12,direction=+1,name='VIII')
   )
 }
 mixolydian_tonic_chords <- function() {

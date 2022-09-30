@@ -12,6 +12,7 @@
 #' @importFrom dplyr bind_rows bind_cols
 #' @importFrom tidyr expand_grid
 #' @importFrom utils head
+#' @importFrom memoise memoise
 ## usethis namespace: end
 NULL
 

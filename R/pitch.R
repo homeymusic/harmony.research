@@ -1,13 +1,4 @@
-#' Pitch
-#'
-#' Provides the metrics of a pitch
-#'
-#'
-#' @param x A pitch expressed as an interval integer
-#' @return A tibble
-#'
-#' @export
-pitch <- function(x) {
+pitch.uncached <- function(x) {
   checkmate::qassert(x,'X1')
 
   t <- tibble::tibble_row(
@@ -42,6 +33,17 @@ pitch <- function(x) {
     brightness        = affinity_brightness[1,1]
   )
 }
+
+#' Pitch
+#'
+#' Provides the metrics of a pitch
+#'
+#'
+#' @param x A pitch expressed as an interval integer
+#' @return A tibble
+#'
+#' @export
+pitch <- memoise::memoise(pitch.uncached)
 
 #' @rdname pitch
 #' @export
