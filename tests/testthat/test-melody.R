@@ -32,3 +32,10 @@ test_that('melody tibble includes the harmony columns',{
 test_that('integer name looks good for progressions',{
   expect_equal(m$integer_name[3],'5̲:9:12⇑ ⇒ 7̲:11:14⇑ (0̲:4:7⇑)')
 })
+test_that('brightness and affinity of chords in progression match original',{
+  i=ionian_tonic_chords()
+  m=m(i)
+  expect_equal(m$.brightness[4],i[[4]]$brightness)
+  expect_equal(m$.affinity[4],i[[4]]$affinity)
+  expect_equal(m$.name[4],i[[4]]$name)
+})

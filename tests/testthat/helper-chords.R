@@ -81,3 +81,76 @@ voice_leading_progression <- function(){
   )
 }
 
+#################
+# tonic chords
+#
+lydian_tonic_chords <- function() {
+  list("I"=c(0,4,7),
+       "II"=c(2,6,9),
+       "iii"=c(4,7,11),
+       "iv\u00B0"=c(6,9,12),
+       "V"=c(7,11,14),
+       "vi"=c(9,12,16),
+       "vii"=c(11,14,18)
+  )
+}
+ionian_tonic_chords <- function() {
+  list("I"         =h(c( 0, 4, 7),direction=+1,name='I'),
+       "ii"        =h(c( 2, 5, 9),direction=+1,name='ii'),
+       "iii"       =h(c( 4, 7,11),direction=+1,name='iii'),
+       "IV"        =h(c( 5, 9,12),direction=+1,name='IV'),
+       "V"         =h(c( 7,11,14),direction=+1,name='V'),
+       "vi"        =h(c( 9,12,16),direction=+1,name='vi'),
+       "vii\u00B0" =h(c(11,14,17),direction=+1,name='vii\u00B0')
+  )
+}
+mixolydian_tonic_chords <- function() {
+  list("I"=c(0,4,7),
+       "ii"=c(2,5,9),
+       "iii\u00B0"=c(4,7,10),
+       "IV"=c(5,9,12),
+       "v"=c(7,10,14),
+       "vi"=c(9,12,16),
+       "VII"=c(10,14,17)
+  )
+}
+dorian_tonic_chords <- function() {
+  list("i"=c(0,3,7),
+       "ii"=c(2,5,9),
+       "III"=c(3,7,10),
+       "IV"=c(5,9,12),
+       "v"=c(7,10,14),
+       "vi\u00B0"=c(9,12,15),
+       "VII"=c(10,14,17)
+  )
+}
+aeolian_tonic_chords <- function() {
+  list("i"=c(0,3,7),
+       "ii\u00B0"=c(2,5,8),
+       "III"=c(3,7,10),
+       "iv"=c(5,8,12),
+       "v"=c(7,10,14),
+       "VI"=c(8,12,15),
+       "VII"=c(10,14,17)
+  )
+}
+phrygian_tonic_chords <- function() {
+  list("i"=c(0,3,7),
+       "II"=c(1,5,8),
+       "III"=c(3,7,10),
+       "iv"=c(5,8,12),
+       "v\u00B0"=c(7,10,13),
+       "VI"=c(8,12,15),
+       "vii"=c(10,13,17)
+  )
+}
+locrian_tonic_chords <- function() {
+  list("i\u00B0"=c(0,3,6),
+       "II"=c(1,5,8),
+       "iii"=c(3,6,10),
+       "iv"=c(5,8,12),
+       "V"=c(6,10,13),
+       "VI"=c(8,12,15),
+       "vii"=c(10,13,17)
+  )
+}

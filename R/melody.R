@@ -46,8 +46,7 @@ potential_energy <- function(progression,reference) {
 }
 
 kinetic_energy <- function(progression,reference) {
-
-  from = purrr::prepend(progression[-length(progression)],list(reference))
+  from = prepend_reference(progression,reference)
   to   = progression
 
   purrr::map2_dbl(from,to,function(x,y) {
@@ -78,11 +77,15 @@ distance <- function(x,y) {
 }
 
 pe_integer_name <- function(progression,reference) {
-  from = purrr::prepend(progression[-length(progression)],list(reference))
+  from = prepend_reference(progression,reference)
   to   = progression
   purrr::map2_chr(from,to,function(x,y){
     paste(paste(x$integer_name, y$integer_name, sep =' \u21D2 '),
           paste0('(',reference$integer_name,')'))
 
   })
+}
+
+prepend_reference <- function(progression,reference) {
+  purrr::prepend(progression[-length(progression)],list(reference))
 }
