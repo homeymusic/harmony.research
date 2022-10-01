@@ -24,7 +24,7 @@ harmony.uncached <- function(chord, direction=NULL, root=NULL, name=NULL) {
     root               = ifelse(is.null(root),
                                 guessed_root,
                                 root),
-    integer_name       = integer_name(chord,direction,root)
+    integer_name       = harmonic_integer_name(chord,direction,root)
   )
   # store the original chord
   attr(t,"chord") <- chord
@@ -132,7 +132,7 @@ guessed_direction <- function(chord,explicit_root) {
   }
 }
 
-integer_name <- function(chord, direction, root) {
+harmonic_integer_name <- function(chord, direction, root) {
   checkmate::assert_integerish(chord)
   checkmate::assert_choice(direction,c(-1,0,+1))
   checkmate::assert_integerish(root)

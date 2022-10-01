@@ -1,5 +1,5 @@
 p = major_triad_progression()
-r = h(c(0,4,7))
+r = p[[1]]
 m = melody(p,r)
 
 test_that("melody is a tibble with appropriate number of rows", {
@@ -38,8 +38,12 @@ test_that('progression fundamentals make sense',{
   expect_equal(m$.brightness[4],i[[4]]$brightness)
   expect_equal(m$.affinity[4],i[[4]]$affinity)
   expect_equal(m$.name[4],i[[4]]$name)
-  expect_equal(max(m$potential_energy_density),
-               m$potential_energy_density[[5]])
-  expect_equal(max(m$kinetic_energy_density),
-               m$kinetic_energy_density[[2]])
+  expect_equal(max(dplyr::filter(m,.brightness==1)$potential_energy),
+               m$potential_energy[[5]])
+  expect_equal(max(m$kinetic_energy),
+               m$kinetic_energy[[5]])
+})
+test_that('energy of chord witxh itself is zero',{
+  expect_equal(potential_energy(p,r)[1],0)
+  expect_equal(kinetic_energy(p,r)[1],0)
 })

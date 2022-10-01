@@ -7,11 +7,9 @@ melody.uncached <- function(progression, reference=NULL) {
   # build the melody table
 
   t <- tibble::tibble(
-    integer_name             = pe_integer_name(progression,reference),
-    potential_energy         = potential_energy(progression, reference),
-    potential_energy_density = potential_energy(progression, reference, density = TRUE),
-    kinetic_energy           = kinetic_energy(progression, reference),
-    kinetic_energy_density   = kinetic_energy(progression, reference, density = TRUE)
+    integer_name     = melodic_integer_name(progression,reference),
+    potential_energy = potential_energy(progression, reference),
+    kinetic_energy   = kinetic_energy(progression, reference)
   )
 
   # store the reference harmony
@@ -37,25 +35,19 @@ melody <- memoise::memoise(melody.uncached)
 #' @export
 m <- melody
 
-potential_energy <- function(progression,reference,density=FALSE) {
+potential_energy <- function(progression,reference) {
   purrr::map_dbl(progression,function(x) {
     chord = attr(x,"chord")
     reference_chord = attr(reference,"chord")
     pitch_crossings = tidyr::expand_grid(chord,reference_chord) %>% dplyr::rowwise() %>%
       dplyr::mutate(
-        pe=energy(harmony(chord,root=reference$root),
+        flux=harmonic_flux(harmony(chord,root=reference$root),
                   harmony(reference_chord,root=reference$root)))
-    pe_abs_mean = pitch_crossings$pe %>% unlist %>% mean %>% abs
-    if (density) {
-      distance = distance(x,reference) %>% abs
-      ifelse(distance==0,0,pe_abs_mean/distance)
-    } else {
-      pe_abs_mean
-    }
+    pitch_crossings$flux %>% unlist %>% mean %>% abs
   }) %>% unname
 }
 
-kinetic_energy <- function(progression,reference,density=FALSE) {
+kinetic_energy <- function(progression,reference) {
   from = prepend_reference(progression,reference)
   to   = progression
 
@@ -67,32 +59,28 @@ kinetic_energy <- function(progression,reference,density=FALSE) {
     from_chord = head(from_chord,fewest_voices)
     to_chord   = head(to_chord,fewest_voices)
 
-    ke_abs_mean = purrr::map2_dbl(from_chord,to_chord,function(.x,.y){
-      energy(harmony(.x,root=reference$root),
-             harmony(.y,root=reference$root))
+    purrr::map2_dbl(from_chord,to_chord,function(.x,.y){
+      harmonic_flux(harmony(.x,root=reference$root),
+                    harmony(.y,root=reference$root))
     }) %>% abs %>% mean
-    if (density) {
-      distance = distance(y,reference) %>% abs
-      ifelse(distance==0,0,ke_abs_mean/distance)
-    } else {
-      ke_abs_mean
-    }
   }) %>% unname
 }
 
-energy <- function(x,y) {
-  force(x,y)*distance(x,y)
-}
-force <- function(x,y) {
-  abs(x$affinity-y$affinity)+abs(x$brightness-y$brightness)
-}
-# TODO: account for changes in chord duration, tempo, etc
-# right now we are assuming 60 bpm and each chord gets one beat
-distance <- function(x,y) {
-  x$position-y$position
+harmonic_flux <- function(x,y) {
+  harmonic_divergence(x,y)*volume(x,y)
 }
 
-pe_integer_name <- function(progression,reference) {
+harmonic_divergence <- function(x,y) {
+  (y$affinity-x$affinity)+(y$brightness-x$brightness)
+}
+
+# TODO: account for changes in chord duration, tempo, etc
+# right now we are assuming 60 bpm and each chord gets one beat
+volume <- function(x,y) {
+  abs(y$position-x$position)
+}
+
+melodic_integer_name <- function(progression,reference) {
   from = prepend_reference(progression,reference)
   to   = progression
   purrr::map2_chr(from,to,function(x,y){
