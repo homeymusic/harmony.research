@@ -47,3 +47,10 @@ test_that('energy of chord witxh itself is zero',{
   expect_equal(potential_energy(p,r)[1],0)
   expect_equal(kinetic_energy(p,r)[1],0)
 })
+test_that('energy of intervals makes sense',{
+  p=0:12 %>% lapply(h)
+  m=m(p)
+  expect_equal(max(m$potential_energy),m$potential_energy[12])
+  expect_equal(min(m$kinetic_energy),m$kinetic_energy[12])
+
+})
