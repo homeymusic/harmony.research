@@ -155,3 +155,66 @@ locrian_tonic_chords <- function() {
        "vii"=c(10,13,17)
   )
 }
+salzer_schachter_1.1.a <- function() {
+  list(h(0),
+       h(2),
+       h(0),
+       h(-1),
+       h(0),
+       h(2),
+       h(0))
+}
+salzer_schachter_1.1.b <- function() {
+  list(h(0),
+       h(2),
+       h(5),
+       h(4),
+       h(2),
+       h(5),
+       h(4),
+       h(5),
+       h(4),
+       h(2),
+       h(0))
+}
+salzer_schachter_1.1.c <- function() {
+  list(h(0),
+       h(2),
+       h(5),
+       h(4),
+       h(9),
+       h(7),
+       h(5),
+       h(2),
+       h(4),
+       h(2),
+       h(0)
+  )
+}
+salzer_schachter_1.2 <- function() {
+  list(h(0),
+       h(9),
+       h(4),
+       h(11),
+       h(7),
+       h(16),
+       h(12),
+       h(9),
+       h(11),
+       h(7),
+       h(2),
+       h(0))
+}
+salzer_schachter_1.3 <- function() {
+  list(h(0),
+       h(2),
+       h(3),
+       h(5),
+       h(7),
+       h(8),
+       h(7),
+       h(5),
+       h(3),
+       h(2),
+       h(0))
+}

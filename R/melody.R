@@ -7,11 +7,12 @@ melody.uncached <- function(progression, reference=NULL) {
   # build the melody table
 
   t <- tibble::tibble(
+    time             = 1:length(progression),
     integer_name     = melodic_integer_name(progression,reference),
+    velocity         = c(0,progression_tibble$position %>% diff),
     potential_energy = potential_energy(progression, reference),
     kinetic_energy   = kinetic_energy(progression, reference)
   )
-
   # store the reference harmony
   attr(t,"reference") <- reference
   # store the original progression
@@ -41,9 +42,9 @@ potential_energy <- function(progression,reference) {
     reference_chord = attr(reference,"chord")
     pitch_crossings = tidyr::expand_grid(chord,reference_chord) %>% dplyr::rowwise() %>%
       dplyr::mutate(
-        flux=harmonic_flux(harmony(chord,root=reference$root),
-                  harmony(reference_chord,root=reference$root)))
-    pitch_crossings$flux %>% unlist %>% mean %>% abs
+        flux=melodic_flux(harmony(chord,root=reference$root),
+                           harmony(reference_chord,root=reference$root)))
+    pitch_crossings$flux %>% unlist %>% mean
   }) %>% unname
 }
 
@@ -60,17 +61,17 @@ kinetic_energy <- function(progression,reference) {
     to_chord   = head(to_chord,fewest_voices)
 
     purrr::map2_dbl(from_chord,to_chord,function(.x,.y){
-      harmonic_flux(harmony(.x,root=reference$root),
+      melodic_flux(harmony(.x,root=reference$root),
                     harmony(.y,root=reference$root))
     }) %>% abs %>% mean
   }) %>% unname
 }
 
-harmonic_flux <- function(x,y) {
-  harmonic_divergence(x,y)*volume(x,y)
+melodic_flux <- function(x,y) {
+  melodic_divergence(x,y)*volume(x,y)
 }
 
-harmonic_divergence <- function(x,y) {
+melodic_divergence <- function(x,y) {
   (y$affinity-x$affinity)+(y$brightness-x$brightness)
 }
 
