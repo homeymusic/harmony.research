@@ -1,13 +1,3 @@
-major_triad_root = major_triads()[["root"]]
-major_triad_first_inversion = major_triads()[["1st inversion"]]
-major_triad_second_inversion = major_triads()[["2nd inversion"]]
-
-minor_triad_root = minor_triads()[["root"]]
-minor_triad_first_inversion = minor_triads()[["1st inversion"]]
-minor_triad_second_inversion = minor_triads()[["2nd inversion"]]
-
-locrian = diatonic_scales()[['locrian']]
-
 test_that('harmony throws an error if params are wrong', {
   expect_error(harmony())
   expect_error(h())
@@ -63,14 +53,6 @@ test_that('harmony will default to up and guess the reference pitch',{
   expect_equal(h$root,0)
 })
 
-test_that('brightness and affinity are symmetrical with symmetrical chords',{
-  expect_equal(h(c(0,4,7))$affinity,h(-c(0,4,7),-1)$affinity)
-  expect_equal(h(c(0,4,7))$brightness,-h(-c(0,4,7),-1)$brightness)
-
-  expect_equal(h(c(0,3,7))$affinity,h(-c(0,3,7),-1)$affinity)
-  expect_equal(h(c(0,3,7))$brightness,-h(-c(0,3,7),-1)$brightness)
-})
-
 test_that('aural centering works as expected',{
   # do we detect the inversion when tonal center (0) same as the aural center (0)?
   h = h(c(0,4,7))
@@ -110,55 +92,21 @@ test_that('implicit direction for minor triad and inversions makes sense',{
   expect_equal(h(c(0+12,3,7))$direction,-1)
   expect_equal(h(c(0+12,3+12,7))$direction,-1)
 })
-test_that('the major triad is perfectly bright. and the minor triad is a third', {
-  expect_equal(major_triad_root$brightness,1)
-  expect_equal(minor_triad_root$brightness,1/3,tolerance=0.00001)
-  # symetrical triads are interesting as well
-  expect_equal(h(c(0,4,7,12))$brightness,0.5)
-  expect_equal(h(c(0,3,7,12))$brightness,0.0)
-})
-test_that('the similarities among major and minor triads under inversion are interesting',{
-  expect_equal(major_triad_root$affinity,major_triad_first_inversion$affinity)
-  expect_equal(major_triad_first_inversion$brightness,major_triad_second_inversion$brightness)
-
-  expect_equal(minor_triad_root$affinity,minor_triad_first_inversion$affinity)
-  expect_equal(minor_triad_first_inversion$brightness,minor_triad_second_inversion$brightness)
-})
 test_that('for solo pitches that the integer name includes the tonic, octave and both arrows',{
   expect_equal(h(c(7))$integer_name,'0\u0332 7\u21D1\u21D3 1\u03322\u0332')
   expect_equal(locrian$integer_name,'0\u0332:1:3:5:6:8:10:1\u03322\u0332\u21D1\u21D3')
   expect_equal(h(c(0,-4,-7),direction=1,root=-7)$integer_name,'0:-4:-\u03327\u0332\u21D1')
 })
-test_that("tonic-octave symmetrical chords have identical consonance regardless of direction",{
-  chord = c(0,4,7,12)
-  expect_equal(h(chord,direction=0)$affinity,h(chord,direction=+1)$affinity)
-  expect_equal(h(chord,direction=0)$brightness,h(chord,direction=+1)$brightness)
-  expect_equal(h(chord,direction=0)$affinity,h(chord,direction=-1)$affinity)
-  expect_equal(h(chord,direction=0)$brightness,h(chord,direction=-1)$brightness)
-  chord = c(0,3,7,12)
-  expect_equal(h(chord,direction=0)$affinity,h(chord,direction=+1)$affinity)
-  expect_equal(h(chord,direction=0)$brightness,h(chord,direction=+1)$brightness)
-  expect_equal(h(chord,direction=0)$affinity,h(chord,direction=-1)$affinity)
-  expect_equal(h(chord,direction=0)$brightness,h(chord,direction=-1)$brightness)
-})
-
 test_that('position from the tonic in cents makes sense',{
   expect_equal(h(c(0,4,7))$position,362.7562,tolerance=0.001)
   expect_equal(h(c(0,3,7))$position,339.1988,tolerance=0.001)
   expect_equal(h(c(4))$position,pitch(4)$tonic.position)
 })
-test_that('the harmony of one pitch with non-zero explicit root behaves',{
-  expect_equal(h(5)$affinity,h(5,direction = 0,root = 0)$affinity)
-  expect_equal(h(5)$brightness,h(5,direction = 0,root = 0)$brightness)
-
-  expect_equal(h(5)$affinity,h(10,direction = 0,root = 5)$affinity)
-  expect_equal(h(5)$brightness,h(10,direction = 0,root = 5)$brightness)
-})
 test_that('for chords of length 1 the direction must be 0',{
   expect_error(h(7,-1))
 })
-test_that('brightness and affinity of the diatonic scales makes sense',{
-  expect_true(!is.unsorted(dplyr::bind_rows(diatonic_scales())$brightness))
-  expect_true(!is.unsorted(dplyr::bind_rows(diatonic_scales()[c(1,2,3,4)])$affinity))
-  expect_true(!is.unsorted(dplyr::bind_rows(diatonic_scales()[c(7,6,5,4)])$affinity))
+test_that("rotation works", {
+  angle = pi/4
+  expect_equal(rotate(cbind(x=1,y=0),angle),cbind(0.5,0.5))
+  expect_equal(rotate(cbind(x=0,y=1),angle),cbind(-0.5,0.5))
 })

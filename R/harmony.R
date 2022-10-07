@@ -162,7 +162,6 @@ underline <- function(chord,pitch) {
     }
   })
 }
-
 add_roots_outside_chord <- function(integer_name,root,chord,direction) {
   if (root %in% chord) {
     # do nothing
@@ -174,7 +173,13 @@ add_roots_outside_chord <- function(integer_name,root,chord,direction) {
   }
   integer_name
 }
-
-# this is to stop R check command from complaining about magrittr
-globalVariables(".")
-
+rotate <- function(coordinates,angle) {
+  checkmate::assert_numeric(angle)
+  coordinates = t(coordinates)
+  R = tibble::frame_matrix(
+    ~chord,          ~.y,
+    cos(angle), -sin(angle),
+    sin(angle),  cos(angle)
+  )
+  (R %*% coordinates * cos(angle)) %>% zapsmall %>% t
+}

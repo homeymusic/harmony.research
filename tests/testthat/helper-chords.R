@@ -218,3 +218,14 @@ salzer_schachter_1.3 <- function() {
        h(2),
        h(0))
 }
+
+major_triad_root = major_triads()[["root"]]
+major_triad_first_inversion = major_triads()[["1st inversion"]]
+major_triad_second_inversion = major_triads()[["2nd inversion"]]
+
+minor_triad_root = minor_triads()[["root"]]
+minor_triad_first_inversion = minor_triads()[["1st inversion"]]
+minor_triad_second_inversion = minor_triads()[["2nd inversion"]]
+
+locrian = diatonic_scales()[['locrian']]
+

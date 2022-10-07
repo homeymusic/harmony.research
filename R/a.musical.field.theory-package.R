@@ -16,3 +16,5 @@
 ## usethis namespace: end
 NULL
 
+# this is to stop R check command from complaining about magrittr
+globalVariables(".")
