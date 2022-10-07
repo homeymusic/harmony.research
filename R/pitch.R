@@ -29,14 +29,17 @@ pitch <- memoise::memoise(pitch.uncached)
 p <- pitch
 
 pitch_class_ratios <- function() {
-  tonic.pitch  = c(1,16,9,6,5,4,7,3,8,5,16,15,2)
-  tonic.ref    = c(1,15,8,5,4,3,5,2,5,3, 9, 8,1)
+
+  pitch_ratios = 0:12 %>% sapply(pitch_ratio)
+
+  tonic.pitch  = pitch_ratios[1,]
+  tonic.ref    = pitch_ratios[2,]
 
   list(
     #############################################
     # Tonic Frequency Ratios
     # pitch frequency: ascending
-    tonic.pitch  = tonic.pitch, # numerator
+    tonic.pitch = tonic.pitch, # numerator
     # reference frequency: tonic
     tonic.ref   = tonic.ref, # denominator
 
@@ -45,7 +48,7 @@ pitch_class_ratios <- function() {
     # pitch frequency: descending
     octave.pitch = rev(tonic.ref), # numerator
     # reference frequency: octave
-    octave.ref  = rev(tonic.pitch)  # denominator
+    octave.ref   = rev(tonic.pitch)  # denominator
   )
 }
 
@@ -78,4 +81,42 @@ compound_ratios <- function(x,dimension) {
       pitch_class_ratio
     }
   }
+}
+
+# from https://github.com/pmcharrison/stolz15
+# See DOI: 10.1080/17459737.2015.1033024
+# @param x Number to approximate
+# @param d Tolerance ratio
+pitch_ratio <- function(x, d=0.0102) {
+  checkmate::qassert(x,'X1')
+
+  x = 2 ^ (x / 12)
+
+  x_min <- (1 - d) * x
+  x_max <- (1 + d) * x
+  a_l <- floor(x)
+  b_l <- 1
+  a_r <- floor(x) + 1
+  b_r <- 1
+  a <- round(x)
+  b <- 1
+  while(a / b < x_min || x_max < a / b) {
+    x_0 <- 2 * x - a / b
+    if (x < a / b) {
+      a_r <- a
+      b_r <- b
+      k <- floor((x_0 * b_l - a_l) / (a_r - x_0 * b_r))
+      a_l <- a_l + k * a_r
+      b_l <- b_l + k * b_r
+    } else {
+      a_l <- a
+      b_l <- b
+      k <- floor((a_r - x_0 * b_r) / (x_0 * b_l - a_l))
+      a_r <- a_r + k * a_l
+      b_r <- b_r + k * b_l
+    }
+    a <- a_l + a_r
+    b <- b_l + b_r
+  }
+  c(a, b)
 }
