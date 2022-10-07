@@ -27,7 +27,7 @@ test_that('if a reference harmony is given then it gets stored',{
   expect_equal(attr(m,'reference'),r)
 })
 test_that('melody tibble includes the harmony columns',{
-  expect_equal(m$.brightness[1],p[[1]]$brightness)
+  expect_equal(m$.primes.brightness[1],p[[1]]$primes.brightness)
 })
 test_that('integer name looks good for progressions',{
   expect_equal(m$integer_name[3],'5̲:9:12⇑ ⇒ 7̲:11:14⇑ (0̲:4:7⇑)')
@@ -35,10 +35,10 @@ test_that('integer name looks good for progressions',{
 test_that('progression fundamentals make sense',{
   i=ionian_tonic_chords()
   m=m(i)
-  expect_equal(m$.brightness[4],i[[4]]$brightness)
-  expect_equal(m$.affinity[4],i[[4]]$affinity)
+  expect_equal(m$.primes.brightness[4],i[[4]]$primes.brightness)
+  expect_equal(m$.primes.affinity[4],i[[4]]$primes.affinity)
   expect_equal(m$.name[4],i[[4]]$name)
-  expect_equal(max(dplyr::filter(m,.brightness==1)$potential_energy),
+  expect_equal(max(dplyr::filter(m,.primes.brightness==1)$potential_energy),
                m$potential_energy[[5]])
   expect_equal(max(m$kinetic_energy),
                m$kinetic_energy[[5]])

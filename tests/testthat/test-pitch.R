@@ -55,12 +55,6 @@ test_that('octave frequency ratios within and beyond the primary octave matches 
   expect_equal(pitch(-25)$octave.pitch,15)
   expect_equal(pitch(-25)$octave.ref,128)
 })
-test_that('octave complements match as expected',{
-  expect_equal(pitch(0)$tonic.pitch,pitch(12)$octave.pitch)
-  expect_equal(pitch(7)$tonic.primes,pitch(5)$octave.primes)
-  expect_equal(pitch(4)$tonic.primes,pitch(8)$octave.primes)
-  expect_equal(pitch(12)$tonic.primes,pitch(0)$octave.primes)
-})
 test_that('position in cents makes sense within primary octave',{
   expect_equal(abs(pitch(0)$tonic.position) + abs(pitch(0)$octave.position),1200)
   expect_equal(abs(pitch(1)$tonic.position) + abs(pitch(1)$octave.position),1200)
@@ -69,4 +63,7 @@ test_that('position in cents makes sense within primary octave',{
 })
 test_that('p is a synonym for pitch',{
   expect_equal(pitch(7),p(7))
+})
+test_that('octave complements match as expected',{
+  expect_equal(pitch(0)$tonic.pitch,pitch(12)$octave.pitch)
 })

@@ -228,4 +228,3 @@ minor_triad_first_inversion = minor_triads()[["1st inversion"]]
 minor_triad_second_inversion = minor_triads()[["2nd inversion"]]
 
 locrian = diatonic_scales()[['locrian']]
-

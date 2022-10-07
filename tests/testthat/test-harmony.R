@@ -28,7 +28,7 @@ test_that('integer names are informative and maintain voice leading order',{
   expect_equal(minor_triad_second_inversion$integer_name,"1\u03322\u0332:15:7\u21D3")
 })
 test_that('if implicit and explicit direction agree then do not flip it.',{
-  expect_gt(major_triad_first_inversion$brightness,0)
+  expect_gt(major_triad_first_inversion$primes.brightness,0)
 })
 test_that('guessed roots make sense',{
   expect_equal(major_triad_first_inversion$guessed_root,12)
@@ -105,8 +105,50 @@ test_that('position from the tonic in cents makes sense',{
 test_that('for chords of length 1 the direction must be 0',{
   expect_error(h(7,-1))
 })
-test_that("rotation works", {
-  angle = pi/4
-  expect_equal(rotate(cbind(x=1,y=0),angle),cbind(0.5,0.5))
-  expect_equal(rotate(cbind(x=0,y=1),angle),cbind(-0.5,0.5))
+
+
+test_that('brightness and affinity are symmetrical with symmetrical chords',{
+  expect_equal(h(c(0,4,7))$primes.affinity,h(-c(0,4,7),-1)$primes.affinity)
+  expect_equal(h(c(0,4,7))$primes.brightness,-h(-c(0,4,7),-1)$primes.brightness)
+
+  expect_equal(h(c(0,3,7))$primes.affinity,h(-c(0,3,7),-1)$primes.affinity)
+  expect_equal(h(c(0,3,7))$primes.brightness,-h(-c(0,3,7),-1)$primes.brightness)
+})
+test_that('the major triad is perfectly bright. and the minor triad is a third', {
+  expect_equal(major_triad_root$primes.brightness,1)
+  expect_equal(minor_triad_root$primes.brightness,1/3,tolerance=0.00001)
+  # symmetrical triads are interesting as well
+  expect_equal(h(c(0,4,7,12))$primes.brightness,0.5)
+  expect_equal(h(c(0,3,7,12))$primes.brightness,0.0)
+})
+test_that('the similarities among major and minor triads under inversion are interesting',{
+  expect_equal(major_triad_root$primes.affinity,major_triad_first_inversion$primes.affinity)
+  expect_equal(major_triad_first_inversion$primes.brightness,major_triad_second_inversion$primes.brightness)
+
+  expect_equal(minor_triad_root$primes.affinity,minor_triad_first_inversion$primes.affinity)
+  expect_equal(minor_triad_first_inversion$primes.brightness,minor_triad_second_inversion$primes.brightness)
+})
+test_that("tonic-octave symmetrical chords have identical consonance regardless of direction",{
+  chord = c(0,4,7,12)
+  expect_equal(h(chord,direction=0)$primes.affinity,h(chord,direction=+1)$primes.affinity)
+  expect_equal(h(chord,direction=0)$primes.brightness,h(chord,direction=+1)$primes.brightness)
+  expect_equal(h(chord,direction=0)$primes.affinity,h(chord,direction=-1)$primes.affinity)
+  expect_equal(h(chord,direction=0)$primes.brightness,h(chord,direction=-1)$primes.brightness)
+  chord = c(0,3,7,12)
+  expect_equal(h(chord,direction=0)$primes.affinity,h(chord,direction=+1)$primes.affinity)
+  expect_equal(h(chord,direction=0)$primes.brightness,h(chord,direction=+1)$primes.brightness)
+  expect_equal(h(chord,direction=0)$primes.affinity,h(chord,direction=-1)$primes.affinity)
+  expect_equal(h(chord,direction=0)$primes.brightness,h(chord,direction=-1)$primes.brightness)
+})
+test_that('the harmony of one pitch with non-zero explicit root behaves',{
+  expect_equal(h(5)$primes.affinity,h(5,direction = 0,root = 0)$primes.affinity)
+  expect_equal(h(5)$primes.brightness,h(5,direction = 0,root = 0)$primes.brightness)
+
+  expect_equal(h(5)$primes.affinity,h(10,direction = 0,root = 5)$primes.affinity)
+  expect_equal(h(5)$primes.brightness,h(10,direction = 0,root = 5)$primes.brightness)
+})
+test_that('brightness and affinity of the diatonic scales makes sense',{
+  expect_true(!is.unsorted(dplyr::bind_rows(diatonic_scales())$primes.brightness))
+  expect_true(!is.unsorted(dplyr::bind_rows(diatonic_scales()[c(1,2,3,4)])$primes.affinity))
+  expect_true(!is.unsorted(dplyr::bind_rows(diatonic_scales()[c(7,6,5,4)])$primes.affinity))
 })

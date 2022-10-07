@@ -31,11 +31,15 @@ harmony.uncached <- function(chord, direction=NULL, root=NULL, name=NULL) {
   # store the aurally centered chord
   attr(t,"centered_chord") <- centered_chord <-
     centered_chord(chord, t$direction, t$root)
-
-  t %>% tibble::add_column(
-    affinity          = affinity(centered_chord),
-    brightness        = brightness(centered_chord),
-  )
+  ################################
+  # store the consonance metrics
+  #
+  # sum of prime factors metric
+  consonance.primes = consonance.primes(centered_chord)
+  colnames(consonance.primes) = paste0("primes.", colnames(consonance.primes))
+  # stolzenburg2015
+  # ...
+  dplyr::bind_cols(t,consonance.primes)
 }
 
 #' Harmony
@@ -65,16 +69,6 @@ centered_chord <- function(chord,direction,root) {
   } else {
     chord - root + 12
   }
-}
-
-affinity <- function(chord) {
-  checkmate::assert_integerish(chord)
-  chord %>% purrr::map_dbl(~pitch(.x)$affinity) %>% mean
-}
-
-brightness <- function(chord) {
-  checkmate::assert_integerish(chord)
-  chord %>% purrr::map_dbl(~pitch(.x)$brightness) %>% mean
 }
 
 position <- function(chord) {
@@ -172,14 +166,4 @@ add_roots_outside_chord <- function(integer_name,root,chord,direction) {
     }
   }
   integer_name
-}
-rotate <- function(coordinates,angle) {
-  checkmate::assert_numeric(angle)
-  coordinates = t(coordinates)
-  R = tibble::frame_matrix(
-    ~chord,          ~.y,
-    cos(angle), -sin(angle),
-    sin(angle),  cos(angle)
-  )
-  (R %*% coordinates * cos(angle)) %>% zapsmall %>% t
 }

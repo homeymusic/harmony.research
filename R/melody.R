@@ -72,7 +72,7 @@ melodic_flux <- function(x,y) {
 }
 
 melodic_divergence <- function(x,y) {
-  (y$affinity-x$affinity)+(y$brightness-x$brightness)
+  (y$primes.affinity-x$primes.affinity)+(y$primes.brightness-x$primes.brightness)
 }
 
 # TODO: account for changes in chord duration, tempo, etc
