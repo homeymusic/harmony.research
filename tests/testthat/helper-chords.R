@@ -3,15 +3,15 @@ major_triads <- function() {
     "root"=h(c(0,4,7),
              root=0,
              direction=+1,
-             name="major triad"),
+             name="M"),
     "1st inversion"=h(c(0+12,4,7),
                       root=12,
                       direction=-1,
-                      name="major triad 1st inversion"),
+                      name="M'"),
     "2nd inversion"=h(c(0+12,4+12,7),
                       root=12,
                       direction=-1,
-                      name="major triad 2nd inversion")
+                      name="M''")
   )
 }
 minor_triads <- function() {
@@ -19,18 +19,18 @@ minor_triads <- function() {
     "root"=h(c(0,3,7),
              root=0,
              direction=+1,
-             name="minor triad"),
+             name="m"),
     "1st inversion"=h(c(0+12,3,7),
                       root=12,
                       direction=-1,
-                      name="minor triad 1st inversion"),
+                      name="m'"),
     "2nd inversion"=h(c(0+12,3+12,7),
                       root=12,
                       direction=-1,
-                      name="minor triad 2nd inversion")
+                      name="m''")
   )
 }
-intervals <- function() {
+interval_components <- function() {
   tibble::tibble(
     integer_position = 0:12,
     name = c("tonic","minor 2nd","major 2nd","minor 3rd","major 3rd",
@@ -39,6 +39,18 @@ intervals <- function() {
     brightness =  c(1,-1,1,-1,1,-1,0,1,-1,1,-1,1,-1),
     affinity =    c(15,1,3,7,6,10,4,10,6,7,3,1,15)
   )
+}
+intervals <- function() {
+  dplyr::bind_rows(0:12 %>% purrr::map(~h(.x,name=as.character(.x))))
+}
+triads <- function() {
+  list(
+    'M'=h(c(0,4,7),name='M'),
+    'm'=h(c(0,3,7),name='m'),
+    'm46'=h(c(0,5,8),name='m46'),
+    "m46'"=h(c(0,5,8),name="m46'",direction=-1),
+    'M46'=h(c(0,5,9),name='M46'),
+    "M46'"=h(c(0,5,9),name="M46'",direction=-1))
 }
 diatonic_scales <- function() {
   list(

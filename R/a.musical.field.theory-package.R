@@ -14,6 +14,7 @@
 #' @importFrom utils head
 #' @importFrom memoise memoise
 #' @importFrom phonTools reduce.fraction
+#' @importFrom gmp lcm.default
 ## usethis namespace: end
 NULL
 

@@ -25,4 +25,5 @@ Imports:
     tidyr,
     utils,
     memoise,
-    phonTools
+    phonTools,
+    gmp

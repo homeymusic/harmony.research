@@ -10,7 +10,7 @@ pitch(x)
 p(x)
 }
 \arguments{
-\item{x}{A pitch expressed as an interval integer}
+\item{x}{A pitch expressed as an integer}
 }
 \value{
 A tibble

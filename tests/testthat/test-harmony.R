@@ -14,7 +14,7 @@ test_that('params are stored',{
   expect_equal(major_triad_root$integer_position,c(0,4,7)%>%mean)
   expect_equal(major_triad_root$direction,+1)
   expect_equal(major_triad_root$root,0)
-  expect_equal(major_triad_root$name,'major triad')
+  expect_equal(major_triad_root$name,'M')
 })
 test_that('integer names are informative and maintain voice leading order',{
   # major triads
