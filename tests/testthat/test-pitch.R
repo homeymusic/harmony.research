@@ -67,3 +67,7 @@ test_that('p is a synonym for pitch',{
 test_that('octave complements match as expected',{
   expect_equal(pitch(0)$tonic.pitch,pitch(12)$octave.pitch)
 })
+test_that('octave spanning pitches are expressed in lowest terms',{
+  M10 = pitch(16)
+  expect_equal(c(M10$tonic.pitch,M10$tonic.ref),c(5,2))
+})

@@ -24,4 +24,5 @@ Imports:
     dplyr,
     tidyr,
     utils,
-    memoise
+    memoise,
+    phonTools

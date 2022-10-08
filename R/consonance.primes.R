@@ -42,10 +42,10 @@ consonance.primes.uncached <- function(chord) {
 #' @export
 consonance.primes <- memoise::memoise(consonance.primes.uncached)
 
-prime_factors_sum <- function(pitch,ref) {
-  checkmate::assert_integerish(pitch,ref)
+prime_factors_sum <- function(numerator,denominator) {
+  checkmate::assert_integerish(numerator,denominator)
 
-  ratio = c(pitch,ref)
+  ratio = c(numerator,denominator)
 
   ratio[ratio>1] %>% purrr::map(~numbers::primeFactors(.x)) %>% unlist %>% sum
 }

@@ -1,14 +1,17 @@
 pitch.uncached <- function(x) {
   checkmate::qassert(x,'X1')
 
+  tonic.ratio  = frequency_ratio(x,'tonic')
+  octave.ratio = frequency_ratio(x,'octave')
+
   t <- tibble::tibble_row(
     integer_position = x,
-    tonic.pitch      = compound_ratios(x,'tonic.pitch'),      # numerator
-    tonic.ref        = compound_ratios(x,'tonic.ref'),       # denominator
+    tonic.pitch      = tonic.ratio[1],
+    tonic.ref        = tonic.ratio[2],
     tonic.position   = 1200 * log2(.data$tonic.pitch  / .data$tonic.ref), # cents
     position         = .data$tonic.position,
-    octave.pitch     = compound_ratios(x,'octave.pitch'),     # numerator
-    octave.ref       = compound_ratios(x,'octave.ref'),      # denominator
+    octave.pitch     = octave.ratio[1],
+    octave.ref       = octave.ratio[2],
     octave.position  = 1200 * log2(.data$octave.pitch / .data$octave.ref) # cents
   )
 }
@@ -18,7 +21,7 @@ pitch.uncached <- function(x) {
 #' Provides the metrics of a pitch
 #'
 #'
-#' @param x A pitch expressed as an interval integer
+#' @param x A pitch expressed as an integer
 #' @return A tibble
 #'
 #' @export
@@ -28,31 +31,17 @@ pitch <- memoise::memoise(pitch.uncached)
 #' @export
 p <- pitch
 
-pitch_class_ratios <- function() {
+frequency_ratio <- function(x,dimension) {
+  checkmate::qassert(x,'X1')
+  checkmate::assert_choice(dimension,c('tonic','octave'))
 
-  pitch_ratios = 0:12 %>% sapply(pitch_ratio)
+  pitch = compound_ratio(x,paste0(dimension,'.pitch'))
+  ref   = compound_ratio(x,paste0(dimension,'.ref'))
 
-  tonic.pitch  = pitch_ratios[1,]
-  tonic.ref    = pitch_ratios[2,]
-
-  list(
-    #############################################
-    # Tonic Frequency Ratios
-    # pitch frequency: ascending
-    tonic.pitch = tonic.pitch, # numerator
-    # reference frequency: tonic
-    tonic.ref   = tonic.ref, # denominator
-
-    #############################################
-    # Octave Frequency Ratios
-    # pitch frequency: descending
-    octave.pitch = rev(tonic.ref), # numerator
-    # reference frequency: octave
-    octave.ref   = rev(tonic.pitch)  # denominator
-  )
+  phonTools::reduce.fraction(c(pitch,ref))
 }
 
-compound_ratios <- function(x,dimension) {
+compound_ratio <- function(x,dimension) {
   checkmate::qassert(x,'X1')
   checkmate::assert_choice(dimension,c('tonic.pitch','tonic.ref',
                                        'octave.pitch','octave.ref'))
@@ -81,6 +70,30 @@ compound_ratios <- function(x,dimension) {
       pitch_class_ratio
     }
   }
+}
+
+pitch_class_ratios <- function() {
+
+  pitch_ratios = 0:12 %>% sapply(pitch_ratio)
+
+  tonic.pitch  = pitch_ratios[1,]
+  tonic.ref    = pitch_ratios[2,]
+
+  list(
+    #############################################
+    # Tonic Frequency Ratios
+    # pitch frequency: ascending
+    tonic.pitch = tonic.pitch, # numerator
+    # reference frequency: tonic
+    tonic.ref   = tonic.ref, # denominator
+
+    #############################################
+    # Octave Frequency Ratios
+    # pitch frequency: descending
+    octave.pitch = rev(tonic.ref), # numerator
+    # reference frequency: octave
+    octave.ref   = rev(tonic.pitch)  # denominator
+  )
 }
 
 # from https://github.com/pmcharrison/stolz15

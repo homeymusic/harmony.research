@@ -31,14 +31,19 @@ harmony.uncached <- function(chord, direction=NULL, root=NULL, name=NULL) {
   # store the aurally centered chord
   attr(t,"centered_chord") <- centered_chord <-
     centered_chord(chord, t$direction, t$root)
-  ################################
-  # store the consonance metrics
+
+  ##########################################
+  # calculate various consonance values
   #
-  # sum of prime factors metric
-  consonance.primes = consonance.primes(centered_chord)
+  # mulloy2022      - sum of prime factors metric
+  consonance.primes           = consonance.primes(centered_chord)
   colnames(consonance.primes) = paste0("primes.", colnames(consonance.primes))
-  # stolzenburg2015
-  # ...
+  # stolzenburg2015 - smooth log periodicity metric
+  # consonance.stolzenburg2015  = consonance.stolzenburg2015(centered_chord)
+  # colnames(consonance.stolzenburg2015) = paste0("stolzenburg2015.",
+  #                                               colnames(consonance.stolzenburg2015))
+  # store the consonance metrics
+  # dplyr::bind_cols(t,consonance.primes,consonance.stolzenburg2015)
   dplyr::bind_cols(t,consonance.primes)
 }
 

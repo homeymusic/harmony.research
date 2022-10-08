@@ -13,6 +13,7 @@
 #' @importFrom tidyr expand_grid
 #' @importFrom utils head
 #' @importFrom memoise memoise
+#' @importFrom phonTools reduce.fraction
 ## usethis namespace: end
 NULL
 
