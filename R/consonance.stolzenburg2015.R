@@ -43,19 +43,25 @@ smoothed_relative_periodicity <- function(x,dimension) {
   checkmate::assert_integerish(x)
   checkmate::assert_choice(dimension,c('tonic','octave'))
 
-  seq_along(x) %>%
-    purrr::map_dbl(~log2(relative_periodicity(x-x[.x],dimension))) %>%
-    mean
+  if (dimension == 'tonic') {
+    seq_along(x) %>%
+      purrr::map_dbl(~log2(relative_periodicity(x-x[.x],dimension))) %>%
+      mean
+  } else if (dimension == 'octave') {
+
+  }
 }
 
 relative_periodicity <- function(x,dimension) {
   checkmate::assert_integerish(x)
   checkmate::assert_choice(dimension,c('tonic','octave'))
 
-  pitches = dplyr::bind_rows(x %>% sort %>% purrr::map(pitch))
-  lcm(pitches[[paste0(dimension,'.ref')]]) *
-    pitches[[paste0(dimension,'.pitch')]][1] /
-    pitches[[paste0(dimension,'.ref')]][1]
+  if (dimension == 'tonic') {
+    pitches = dplyr::bind_rows(x %>% sort %>% purrr::map(pitch))
+    lcm(pitches$tonic.ref) * pitches$tonic.pitch[1] / pitches$tonic.ref[1]
+  } else if (dimension == 'octave') {
+
+  }
 }
 
 lcm <- function(x) {
