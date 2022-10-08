@@ -1,8 +1,8 @@
 consonance.stolzenburg2015.uncached <- function(chord) {
   checkmate::assert_integerish(chord)
 
-  tonic.dissonance  = smoothed_relative_periodicity(chord,'tonic')
-  octave.dissonance = smoothed_relative_periodicity(chord,'octave')
+  tonic.dissonance  = log_relative_periodicity(chord,'tonic')
+  octave.dissonance = log_relative_periodicity(chord,'octave')
 
   ###################################################################################
   # this is the 'heavy lifting' for calculating affinity, brightness and consonance
@@ -12,8 +12,6 @@ consonance.stolzenburg2015.uncached <- function(chord) {
   # flip orientation to 2-dimensional tonic-octave consonance
   tonic_octave_consonance = consonance.stolzenburg2015.max_dissonance() - tonic_octave_dissonance
   # rotate pi/4 (45 deg) to 2-dimensional affinity-brightness
-
-  print(paste('tonic_octave_consonance',tonic_octave_consonance))
 
   affinity_brightness = tonic_octave_consonance %>% rotate(pi/4)
 
@@ -39,28 +37,17 @@ consonance.stolzenburg2015.uncached <- function(chord) {
 #' @export
 consonance.stolzenburg2015 <- memoise::memoise(consonance.stolzenburg2015.uncached)
 
-smoothed_relative_periodicity <- function(x,dimension) {
+log_relative_periodicity <- function(x,dimension) {
   checkmate::assert_integerish(x)
   checkmate::assert_choice(dimension,c('tonic','octave'))
-
-  if (dimension == 'tonic') {
-    seq_along(x) %>%
-      purrr::map_dbl(~log2(relative_periodicity(x-x[.x],dimension))) %>%
-      mean
-  } else if (dimension == 'octave') {
-
-  }
-}
-
-relative_periodicity <- function(x,dimension) {
-  checkmate::assert_integerish(x)
-  checkmate::assert_choice(dimension,c('tonic','octave'))
-
   if (dimension == 'tonic') {
     pitches = dplyr::bind_rows(x %>% sort %>% purrr::map(pitch))
-    lcm(pitches$tonic.ref) * pitches$tonic.pitch[1] / pitches$tonic.ref[1]
+    log2(lcm(pitches$tonic.ref) *
+           pitches$tonic.pitch[1] / pitches$tonic.ref[1])
   } else if (dimension == 'octave') {
-
+    pitches = dplyr::bind_rows(x %>% sort %>% purrr::map(pitch))
+    log2(lcm(pitches$octave.pitch) *
+           pitches$octave.ref[1] / pitches$octave.pitch[1] / 2)
   }
 }
 
@@ -73,5 +60,6 @@ lcm <- function(x) {
 # we are using the semitone, the minor second m2 from the tonic as max dissonance
 # the result would be the same if we used major 7th M7 from octave perspective
 consonance.stolzenburg2015.max_dissonance <- function() {
-  smoothed_relative_periodicity(c(0,1),'tonic')
+  log_relative_periodicity(c(0,1),'tonic')
+  10
 }
