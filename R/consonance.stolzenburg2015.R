@@ -44,12 +44,12 @@ relative_periodicity <- function(x,dimension) {
   checkmate::assert_choice(dimension,c('tonic','octave'))
   if (dimension == 'tonic') {
     pitches = dplyr::bind_rows(x %>% sort %>% purrr::map(pitch))
-    log2(lcm(pitches$tonic.ref) *
-      pitches$tonic.pitch[1] / pitches$tonic.ref[1])
+    log2(lcm(pitches$tonic.den.lo) *
+      pitches$tonic.num.hi[1] / pitches$tonic.den.lo[1])
   } else if (dimension == 'octave') {
     pitches = dplyr::bind_rows(x %>% sort %>% purrr::map(pitch))
-    log2(lcm(pitches$octave.pitch) *
-      pitches$octave.ref[1] / pitches$octave.pitch[1] / 2)
+    log2(lcm(pitches$octave.num.lo) *
+      pitches$octave.den.hi[1] / pitches$octave.num.lo[1] / 2)
   }
 }
 

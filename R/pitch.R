@@ -1,18 +1,18 @@
 pitch.uncached <- function(x) {
   checkmate::qassert(x,'X1')
 
-  tonic.ratio  = frequency_ratio(x,'tonic')
-  octave.ratio = frequency_ratio(x,'octave')
+  tonic.ratio  = frequency_ratio(x,observation_pitch=0)
+  octave.ratio = frequency_ratio(x,observation_pitch=12)
 
   t <- tibble::tibble_row(
     integer_position = x,
-    tonic.pitch      = tonic.ratio[1],
-    tonic.ref        = tonic.ratio[2],
-    tonic.position   = 1200 * log2(.data$tonic.pitch  / .data$tonic.ref), # cents
+    tonic.num.hi      = tonic.ratio[1],
+    tonic.den.lo        = tonic.ratio[2],
+    tonic.position   = 1200 * log2(.data$tonic.num.hi  / .data$tonic.den.lo), # cents
     position         = .data$tonic.position,
-    octave.pitch     = octave.ratio[1],
-    octave.ref       = octave.ratio[2],
-    octave.position  = 1200 * log2(.data$octave.pitch / .data$octave.ref) # cents
+    octave.num.lo     = octave.ratio[1],
+    octave.den.hi       = octave.ratio[2],
+    octave.position  = 1200 * log2(.data$octave.num.lo / .data$octave.den.hi) # cents
   )
 }
 
@@ -31,20 +31,25 @@ pitch <- memoise::memoise(pitch.uncached)
 #' @export
 p <- pitch
 
-frequency_ratio <- function(x,dimension) {
+frequency_ratio <- function(x,observation_pitch) {
   checkmate::qassert(x,'X1')
-  checkmate::assert_choice(dimension,c('tonic','octave'))
+  checkmate::assert_choice(observation_pitch,c(0,12))
+  num <- den <- NULL
 
-  pitch = compound_ratio(x,paste0(dimension,'.pitch'))
-  ref   = compound_ratio(x,paste0(dimension,'.ref'))
-
-  phonTools::reduce.fraction(c(pitch,ref))
+  if (observation_pitch == 0) {
+    num = compound_ratio(x,'tonic.num.hi')
+    den = compound_ratio(x,'tonic.den.lo')
+  } else if (observation_pitch == 12) {
+    num = compound_ratio(x,'octave.num.lo')
+    den = compound_ratio(x,'octave.den.hi')
+  }
+  phonTools::reduce.fraction(c(num,den))
 }
 
 compound_ratio <- function(x,dimension) {
   checkmate::qassert(x,'X1')
-  checkmate::assert_choice(dimension,c('tonic.pitch','tonic.ref',
-                                       'octave.pitch','octave.ref'))
+  checkmate::assert_choice(dimension,c('tonic.num.hi','tonic.den.lo',
+                                       'octave.num.lo','octave.den.hi'))
 
   if (x>=0 && x<=12) {
     # ratios are in the primary pitch class octave so all done
@@ -57,11 +62,11 @@ compound_ratio <- function(x,dimension) {
     # calculate the octave adjustment
     octave_multiplier = 2 ^ abs((x / 12) %>% floor)
 
-    if (x>12 && (dimension == 'tonic.pitch' || dimension == 'octave.pitch')) {
+    if (x>12 && (dimension == 'tonic.num.hi' || dimension == 'octave.num.lo')) {
       # above the primary octave and the current dimension is the numerator
       # apply octave adjustment to the numerator
       pitch_class_ratio * octave_multiplier
-    } else if (x<0 && (dimension == 'tonic.ref' || dimension == 'octave.ref')) {
+    } else if (x<0 && (dimension == 'tonic.den.lo' || dimension == 'octave.den.hi')) {
       # below the primary octave and the current dimension is the denominator
       # apply octave adjustment to the denominator
       pitch_class_ratio * octave_multiplier
@@ -76,23 +81,23 @@ pitch_class_ratios <- function() {
 
   pitch_ratios = 0:12 %>% sapply(pitch_ratio)
 
-  tonic.pitch  = pitch_ratios[1,]
-  tonic.ref    = pitch_ratios[2,]
+  tonic.num.hi  = pitch_ratios[1,]
+  tonic.den.lo    = pitch_ratios[2,]
 
   list(
     #############################################
     # Tonic Frequency Ratios
     # pitch frequency: ascending
-    tonic.pitch = tonic.pitch, # numerator
+    tonic.num.hi = tonic.num.hi, # numerator
     # reference frequency: tonic
-    tonic.ref   = tonic.ref, # denominator
+    tonic.den.lo   = tonic.den.lo, # denominator
 
     #############################################
     # Octave Frequency Ratios
     # pitch frequency: descending
-    octave.pitch = rev(tonic.ref), # numerator
+    octave.num.lo = rev(tonic.den.lo), # numerator
     # reference frequency: octave
-    octave.ref   = rev(tonic.pitch)  # denominator
+    octave.den.hi   = rev(tonic.num.hi)  # denominator
   )
 }
 

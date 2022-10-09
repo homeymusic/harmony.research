@@ -4,10 +4,10 @@ consonance.primes.uncached <- function(chord) {
   pitches = chord %>% purrr::map(~pitch(.x))
 
   tonic.dissonance  = pitches %>% purrr::map_dbl(
-    ~prime_factors_sum(.x$tonic.pitch, .x$tonic.ref))   %>% mean
+    ~prime_factors_sum(.x$tonic.num.hi, .x$tonic.den.lo))   %>% mean
 
   octave.dissonance = pitches %>% purrr::map_dbl(
-    ~prime_factors_sum(.x$octave.pitch, .x$octave.ref)) %>% mean
+    ~prime_factors_sum(.x$octave.num.lo, .x$octave.den.hi)) %>% mean
 
   ###################################################################################
   # this is the 'heavy lifting' for calculating affinity, brightness and consonance
@@ -54,5 +54,5 @@ prime_factors_sum <- function(numerator,denominator) {
 # the result would be the same if we used major 7th M7 from octave perspective
 consonance.primes.max_dissonance <- function() {
   m2 = pitch(1) # minor 2nd
-  prime_factors_sum(m2$tonic.pitch, m2$tonic.ref)
+  prime_factors_sum(m2$tonic.num.hi, m2$tonic.den.lo)
 }
