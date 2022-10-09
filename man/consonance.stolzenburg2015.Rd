@@ -4,12 +4,12 @@
 \alias{consonance.stolzenburg2015}
 \title{Consonance:}
 \usage{
-consonance.stolzenburg2015(chord, root = 0)
+consonance.stolzenburg2015(chord, observation_pitch = 0)
 }
 \arguments{
 \item{chord}{A chord expressed as an interval integers}
 
-\item{root}{The root of the chord expressed as an integer}
+\item{observation_pitch}{The dominant observation point expressed as an integer}
 }
 \value{
 A tibble

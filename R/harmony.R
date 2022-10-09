@@ -39,7 +39,9 @@ harmony.uncached <- function(chord, direction=NULL, root=NULL, name=NULL) {
   consonance.primes           = consonance.primes(centered_chord)
   colnames(consonance.primes) = paste0("primes.", colnames(consonance.primes))
   # akin to stolzenburg2015 - log periodicity metric
-  consonance.stolzenburg2015  = consonance.stolzenburg2015(centered_chord,root=t$root)
+  consonance.stolzenburg2015  =
+    consonance.stolzenburg2015(centered_chord,
+                               observation_pitch(t$direction))
   colnames(consonance.stolzenburg2015) = paste0("stolzenburg2015.",
                                                 colnames(consonance.stolzenburg2015))
   # store the consonance metrics
@@ -64,15 +66,17 @@ harmony <- memoise::memoise(harmony.uncached)
 #' @export
 h <- harmony
 
+observation_pitch <- function(direction) {
+  checkmate::assert_choice(direction,c(-1,0,+1))
+
+  ifelse(direction >= 0, 0, 12)
+}
+
 centered_chord <- function(chord,direction,root) {
   checkmate::assert_integerish(chord)
   checkmate::qassert(root,'X1')
 
-  if (direction >= 0) {
-    chord - root
-  } else {
-    chord - root + 12
-  }
+  chord - root + observation_pitch(direction)
 }
 
 position <- function(chord) {

@@ -1,9 +1,9 @@
-consonance.stolzenburg2015.uncached <- function(chord,root=0) {
+consonance.stolzenburg2015.uncached <- function(chord,observation_pitch=0) {
   checkmate::assert_integerish(chord)
-  checkmate::qassert(root,'X1')
+  checkmate::qassert(observation_pitch,'X1')
 
-  tonic.dissonance  = relative_periodicity(c(root,chord),'tonic')
-  octave.dissonance = relative_periodicity(c(root,chord),'octave')
+  tonic.dissonance  = relative_periodicity(c(observation_pitch,chord),'tonic')
+  octave.dissonance = relative_periodicity(c(observation_pitch,chord),'octave')
 
   ###################################################################################
   # this is the 'heavy lifting' for calculating affinity, brightness and consonance
@@ -33,7 +33,7 @@ consonance.stolzenburg2015.uncached <- function(chord,root=0) {
 #' Implements Stolzenburg's 2015 periodicity metric of consonance
 #'
 #' @param chord A chord expressed as an interval integers
-#' @param root The root of the chord expressed as an integer
+#' @param observation_pitch The dominant observation point expressed as an integer
 #' @return A tibble
 #'
 #' @export
