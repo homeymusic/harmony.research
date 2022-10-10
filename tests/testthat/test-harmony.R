@@ -18,14 +18,14 @@ test_that('params are stored',{
 })
 test_that('integer names are informative and maintain voice leading order',{
   # major triads
-  expect_equal(major_triad_root$integer_name,"0\u0332:4:7\u21D1")
-  expect_equal(major_triad_first_inversion$integer_name,"1\u03322\u0332:4:7\u21D3")
-  expect_equal(major_triad_second_inversion$integer_name,"1\u03322\u0332:16:7\u21D3")
+  expect_equal(major_triad_root$integer_name,"0\u0332:4:7↑")
+  expect_equal(major_triad_first_inversion$integer_name,"1\u03322\u0332:4:7↓")
+  expect_equal(major_triad_second_inversion$integer_name,"1\u03322\u0332:16:7↓")
 
   # minor triads
-  expect_equal(minor_triad_root$integer_name,"0\u0332:3:7\u21D1")
-  expect_equal(minor_triad_first_inversion$integer_name,"1\u03322\u0332:3:7\u21D3")
-  expect_equal(minor_triad_second_inversion$integer_name,"1\u03322\u0332:15:7\u21D3")
+  expect_equal(minor_triad_root$integer_name,"0\u0332:3:7↑")
+  expect_equal(minor_triad_first_inversion$integer_name,"1\u03322\u0332:3:7↓")
+  expect_equal(minor_triad_second_inversion$integer_name,"1\u03322\u0332:15:7↓")
 })
 test_that('if implicit and explicit direction agree then do not flip it.',{
   expect_gt(major_triad_first_inversion$primes.brightness,0)
@@ -93,9 +93,9 @@ test_that('implicit direction for minor triad and inversions makes sense',{
   expect_equal(h(c(0+12,3+12,7))$direction,-1)
 })
 test_that('for solo pitches that the integer name includes the tonic, octave and both arrows',{
-  expect_equal(h(c(7))$integer_name,'0\u0332 7\u21D1\u21D3 1\u03322\u0332')
-  expect_equal(locrian$integer_name,'0\u0332:1:3:5:6:8:10:1\u03322\u0332\u21D1\u21D3')
-  expect_equal(h(c(0,-4,-7),direction=1,root=-7)$integer_name,'0:-4:-\u03327\u0332\u21D1')
+  expect_equal(h(c(7))$integer_name,'0\u0332 7↑↓ 1\u03322\u0332')
+  expect_equal(locrian$integer_name,'0\u0332:1:3:5:6:8:10:1\u03322\u0332↑↓')
+  expect_equal(h(c(0,-4,-7),direction=1,root=-7)$integer_name,'0:-4:-\u03327\u0332↑')
 })
 test_that('position from the tonic in cents makes sense',{
   expect_equal(h(c(0,4,7))$position,362.7562,tolerance=0.001)

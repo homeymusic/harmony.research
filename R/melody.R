@@ -85,7 +85,7 @@ melodic_integer_name <- function(progression,reference) {
   from = prepend_reference(progression,reference)
   to   = progression
   purrr::map2_chr(from,to,function(x,y){
-    paste(paste(x$integer_name, y$integer_name, sep =' \u21D2 '),
+    paste(paste(x$integer_name, y$integer_name, sep =' \U2192 '),
           paste0('(',reference$integer_name,')'))
 
   })

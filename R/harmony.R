@@ -139,9 +139,9 @@ harmonic_integer_name <- function(chord, direction, root) {
   checkmate::assert_choice(direction,c(-1,0,+1))
   checkmate::assert_integerish(root)
 
-  up_arrow =   '\u21D1'  # ⇑
-  down_arrow = '\u21D3'  # ⇓
-  mixed_arrow = paste0(up_arrow,down_arrow) # ⇑⇓
+  up_arrow =   '\U2191'
+  down_arrow = '\U2193'
+  mixed_arrow = paste0(up_arrow,down_arrow)
 
   current_arrow = NULL
   if      (direction == -1) {arrow = down_arrow}
