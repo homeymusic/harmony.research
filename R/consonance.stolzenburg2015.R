@@ -1,14 +1,14 @@
 consonance.stolzenburg2015.uncached <- function(chord) {
   checkmate::assert_integerish(chord)
 
-  tonic.dissonance  = relative_periodicity(chord,'tonic')
-  octave.dissonance = relative_periodicity(chord,'octave')
+  tonic  = relative_periodicity(chord,'tonic')
+  octave = relative_periodicity(chord,'octave')
 
   ###################################################################################
   # this is the 'heavy lifting' for calculating affinity, brightness and consonance
   #
   # calculate 2-dimensional tonic-octave dissonance
-  tonic_octave_dissonance = cbind(tonic.dissonance,octave.dissonance)
+  tonic_octave_dissonance = cbind(tonic,octave)
   # flip orientation to 2-dimensional tonic-octave consonance
   tonic_octave_consonance = consonance.stolzenburg2015.max_dissonance() - tonic_octave_dissonance
   # rotate pi/4 (45 deg) to 2-dimensional affinity-brightness
@@ -42,13 +42,12 @@ relative_periodicity <- function(x,dimension) {
   checkmate::assert_choice(dimension,c('tonic','octave'))
   lowest_period_length <- ratios_lower_pitches <- minimum_ratio <- NULL
 
+  pitches = dplyr::bind_rows(c(x) %>% sort %>% purrr::map(pitch))
   if (dimension          == 'tonic') {
-    pitches = dplyr::bind_rows(c(0,x) %>% sort %>% purrr::map(pitch))
     lowest_period_length = pitches$tonic.den.lo[1]  / pitches$tonic.num.hi[1]
     lowest_pitches       = pitches$tonic.den.lo
     minimum_ratio        = pitches$tonic.num.hi[1]  / pitches$tonic.den.lo[1]
   } else if (dimension   == 'octave') {
-    pitches = dplyr::bind_rows(c(x,12) %>% sort %>% purrr::map(pitch))
     lowest_period_length = pitches$octave.den.hi[1] / pitches$octave.num.lo[1]
     lowest_pitches       = pitches$octave.num.lo
     minimum_ratio        = pitches$octave.num.lo[1] / pitches$octave.den.hi[1]
@@ -63,5 +62,9 @@ lcm <- function(x) {
 }
 
 consonance.stolzenburg2015.max_dissonance <- function() {
-  10
+  # this is started as completely arbitrary guess
+  # using the minor 2nd logarithmically
+  # but 15 is the same  max dissonance from the primes approach
+  # TODO: maybe there is something there?
+  2^(relative_periodicity(c(0,1),'tonic'))
 }

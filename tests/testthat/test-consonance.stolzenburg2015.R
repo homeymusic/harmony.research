@@ -32,3 +32,13 @@ test_that('modified relative periodicity of octave dyads is symmetrical',{
   expect_equal(inv_M3_down$stolzenburg2015.brightness,-inv_M3_up$stolzenburg2015.brightness)
   expect_equal(inv_m6_down$stolzenburg2015.brightness,-inv_m6_up$stolzenburg2015.brightness)
 })
+test_that('modified relative periodicity of tonic triads is up-down symmetrical',{
+  M_up = h(c(0,4,7),+1)
+  M_down = h(-c(0,4,7),-1)
+  expect_equal(M_up$stolzenburg2015.brightness,-M_down$stolzenburg2015.brightness)
+  expect_equal(M_up$stolzenburg2015.affinity,M_down$stolzenburg2015.affinity)
+  m_up = h(c(0,3,7),+1)
+  m_down = h(-c(0,3,7),-1)
+  expect_equal(m_up$stolzenburg2015.brightness,-m_down$stolzenburg2015.brightness)
+  expect_equal(m_up$stolzenburg2015.affinity,m_down$stolzenburg2015.affinity)
+})

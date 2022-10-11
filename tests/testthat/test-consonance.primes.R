@@ -45,3 +45,13 @@ test_that('primes consonance of tonic dyads is symmetrical',{
   expect_equal(M3_down$primes.brightness,-M3_up$primes.brightness)
   expect_equal(m6_down$primes.brightness,-m6_up$primes.brightness)
 })
+test_that('tonic triads are up-down symmetrical',{
+  M_up = h(c(0,4,7),+1)
+  M_down = h(-c(0,4,7),-1)
+  expect_equal(M_up$primes.brightness,-M_down$primes.brightness)
+  expect_equal(M_up$primes.affinity,M_down$primes.affinity)
+  m_up = h(c(0,3,7),+1)
+  m_down = h(-c(0,3,7),-1)
+  expect_equal(m_up$primes.brightness,-m_down$primes.brightness)
+  expect_equal(m_up$primes.affinity,m_down$primes.affinity)
+})

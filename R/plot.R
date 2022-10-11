@@ -14,12 +14,11 @@ harmony_plot <- function(x,columns,title=NULL, x_expansion_mult=0.1,
     ggrepel::geom_text_repel(ggplot2::aes(label=.data$integer_name), segment.color = colors_homey()$foreground,  max.overlaps = max_overlaps)
 }
 
-save_harmony_plots <- function(x) {
-  save_harmony_plot(x,'png')
-  save_harmony_plot(x,'svg')
+save_harmony_plots <- function(x,file_types=c('svg')) {
+  file_types %>% purrr::map(~save_harmony_plot(x,.x))
 }
 
-save_harmony_plot <- function(x,file_type='png') {
+save_harmony_plot <- function(x,file_type='svg') {
   filename=paste0(substr(paste0(
     getwd(),'/_plots/',fs::path_sanitize(gsub(' ', '', x$labels$title))),1,252),
     '.',file_type)
