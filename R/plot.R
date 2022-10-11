@@ -21,7 +21,7 @@ save_harmony_plots <- function(x) {
 
 save_harmony_plot <- function(x,file_type='png') {
   filename=paste0(substr(paste0(
-    getwd(),'/plots/',fs::path_sanitize(gsub(' ', '', x$labels$title))),1,252),
+    getwd(),'/_plots/',fs::path_sanitize(gsub(' ', '', x$labels$title))),1,252),
     '.',file_type)
   suppressMessages(ggplot2::ggsave(filename,plot=x))
 }

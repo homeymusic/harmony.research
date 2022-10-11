@@ -32,4 +32,3 @@ test_that('modified relative periodicity of octave dyads is symmetrical',{
   expect_equal(inv_M3_down$stolzenburg2015.brightness,-inv_M3_up$stolzenburg2015.brightness)
   expect_equal(inv_m6_down$stolzenburg2015.brightness,-inv_m6_up$stolzenburg2015.brightness)
 })
-
