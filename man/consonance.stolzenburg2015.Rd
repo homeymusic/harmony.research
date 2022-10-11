@@ -4,7 +4,7 @@
 \alias{consonance.stolzenburg2015}
 \title{Consonance:}
 \usage{
-consonance.stolzenburg2015(chord, observation_pitch = 0)
+consonance.stolzenburg2015(chord)
 }
 \arguments{
 \item{chord}{A chord expressed as an interval integers}

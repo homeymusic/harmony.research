@@ -1,9 +1,8 @@
-consonance.stolzenburg2015.uncached <- function(chord,observation_pitch=0) {
+consonance.stolzenburg2015.uncached <- function(chord) {
   checkmate::assert_integerish(chord)
-  checkmate::qassert(observation_pitch,'X1')
 
-  tonic.dissonance  = relative_periodicity(c(observation_pitch,chord),'tonic')
-  octave.dissonance = relative_periodicity(c(observation_pitch,chord),'octave')
+  tonic.dissonance  = relative_periodicity(chord,'tonic')
+  octave.dissonance = relative_periodicity(chord,'octave')
 
   ###################################################################################
   # this is the 'heavy lifting' for calculating affinity, brightness and consonance
@@ -44,12 +43,13 @@ relative_periodicity <- function(x,dimension) {
   checkmate::assert_choice(dimension,c('tonic','octave'))
   lowest_period_length <- ratios_lower_pitches <- minimum_ratio <- NULL
 
-  pitches = dplyr::bind_rows(x %>% sort %>% purrr::map(pitch))
   if (dimension          == 'tonic') {
+    pitches = dplyr::bind_rows(c(0,x) %>% sort %>% purrr::map(pitch))
     lowest_period_length = pitches$tonic.den.lo[1]  / pitches$tonic.num.hi[1]
     lowest_pitches       = pitches$tonic.den.lo
     minimum_ratio        = pitches$tonic.num.hi[1]  / pitches$tonic.den.lo[1]
   } else if (dimension   == 'octave') {
+    pitches = dplyr::bind_rows(c(x,12) %>% sort %>% purrr::map(pitch))
     lowest_period_length = pitches$octave.den.hi[1] / pitches$octave.num.lo[1]
     lowest_pitches       = pitches$octave.num.lo
     minimum_ratio        = pitches$octave.num.lo[1] / pitches$octave.den.hi[1]

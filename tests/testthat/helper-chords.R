@@ -40,7 +40,7 @@ interval_components <- function() {
     affinity =    c(15,1,3,7,6,10,4,10,6,7,3,1,15)
   )
 }
-intervals <- function() {
+core_pitches <- function() {
   dplyr::bind_rows(0:12 %>% purrr::map(~h(.x,name=as.character(.x))))
 }
 triads <- function() {

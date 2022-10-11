@@ -93,9 +93,17 @@ test_that('implicit direction for minor triad and inversions makes sense',{
   expect_equal(h(c(0+12,3+12,7))$direction,-1)
 })
 test_that('for solo pitches that the integer name includes the tonic, octave and both arrows',{
+  expect_equal(h(c(0))$integer_name,'0\u0332↑↓ 1\u03322\u0332')
+  expect_equal(h(c(12))$integer_name,'0\u0332 1\u03322\u0332↑↓')
   expect_equal(h(c(7))$integer_name,'0\u0332 7↑↓ 1\u03322\u0332')
   expect_equal(locrian$integer_name,'0\u0332:1:3:5:6:8:10:1\u03322\u0332↑↓')
   expect_equal(h(c(0,-4,-7),direction=1,root=-7)$integer_name,'0:-4:-\u03327\u0332↑')
+
+  expect_equal(h(c(0+60),root=60)$integer_name,'6\u03320\u0332↑↓ 7\u03322\u0332')
+  expect_equal(h(c(12+60),root=60)$integer_name,'6\u03320\u0332 7\u03322\u0332↑↓')
+  expect_equal(h(c(7+60),root=60)$integer_name,'6\u03320\u0332 67↑↓ 7\u03322\u0332')
+  expect_equal(h(attr(locrian,'chord')+60)$integer_name,'6\u03320\u0332:61:63:65:66:68:70:7\u03322\u0332↑↓')
+  expect_equal(h(c(0,-4,-7)+60,direction=1,root=-7+60)$integer_name,'60:56:5\u03323\u0332↑')
 })
 test_that('position from the tonic in cents makes sense',{
   expect_equal(h(c(0,4,7))$position,362.7562,tolerance=0.001)
@@ -105,8 +113,6 @@ test_that('position from the tonic in cents makes sense',{
 test_that('for chords of length 1 the direction must be 0',{
   expect_error(h(7,-1))
 })
-
-
 test_that('brightness and affinity are symmetrical with symmetrical chords',{
   expect_equal(h(c(0,4,7))$primes.affinity,h(-c(0,4,7),-1)$primes.affinity)
   expect_equal(h(c(0,4,7))$primes.brightness,-h(-c(0,4,7),-1)$primes.brightness)
@@ -151,4 +157,8 @@ test_that('brightness and affinity of the diatonic scales makes sense',{
   expect_true(!is.unsorted(dplyr::bind_rows(diatonic_scales())$primes.brightness))
   expect_true(!is.unsorted(dplyr::bind_rows(diatonic_scales()[c(1,2,3,4)])$primes.affinity))
   expect_true(!is.unsorted(dplyr::bind_rows(diatonic_scales()[c(7,6,5,4)])$primes.affinity))
+})
+test_that('harmony guesses that a chord containing root and root + 12 has direction = 0',{
+  expect_equal(locrian$direction,0)
+  expect_equal(h(attr(locrian,'chord')+60)$direction,0)
 })

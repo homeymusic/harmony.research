@@ -9,21 +9,26 @@ harmony.uncached <- function(chord, direction=NULL, root=NULL, name=NULL) {
   checkmate::assert_character(name,null.ok=TRUE)
 
 
+  explicit_root      = root
+  guessed_root       = guessed_root(chord,direction)
+  explicit_direction = direction
+  guessed_direction  = guessed_direction(chord,explicit_root,guessed_root)
+
   # build the harmony table
   t <- tibble::tibble_row(
     position           = position(chord), # cents
     integer_position   = chord %>% mean,
     name               = name,
-    explicit_direction = direction,
-    guessed_direction  = guessed_direction(chord,root),
-    explicit_root      = root,
-    guessed_root       = guessed_root(chord,direction),
-    direction          = ifelse(is.null(direction),
-                                guessed_direction,
-                                direction),
+    explicit_root      = explicit_root,
+    guessed_root       = guessed_root,
     root               = ifelse(is.null(root),
                                 guessed_root,
                                 root),
+    explicit_direction = explicit_direction,
+    guessed_direction  = guessed_direction,
+    direction          = ifelse(is.null(direction),
+                                guessed_direction,
+                                direction),
     integer_name       = harmonic_integer_name(chord,direction,root)
   )
   # store the original chord
@@ -40,8 +45,7 @@ harmony.uncached <- function(chord, direction=NULL, root=NULL, name=NULL) {
   colnames(consonance.primes) = paste0("primes.", colnames(consonance.primes))
   # akin to stolzenburg2015 - log periodicity metric
   consonance.stolzenburg2015  =
-    consonance.stolzenburg2015(centered_chord,
-                               observation_pitch(t$direction))
+    consonance.stolzenburg2015(centered_chord)
   colnames(consonance.stolzenburg2015) = paste0("stolzenburg2015.",
                                                 colnames(consonance.stolzenburg2015))
   # store the consonance metrics
@@ -108,7 +112,7 @@ guessed_root <- function(chord,explicit_direction) {
   }
 }
 
-guessed_direction <- function(chord,explicit_root) {
+guessed_direction <- function(chord,explicit_root,guessed_root) {
   if (length(chord)==1) {
     0
   } else if (!is.null(explicit_root)) {
@@ -120,7 +124,7 @@ guessed_direction <- function(chord,explicit_root) {
       0
     }
   } else {
-    if (c(0,12) %in% chord %>% all) {
+    if (c(guessed_root,guessed_root+12) %in% chord %>% all) {
       0
     } else if (12 == max(chord) || 0 == max(chord)) {
       -1
@@ -165,13 +169,22 @@ underline <- function(chord,pitch) {
   })
 }
 add_roots_outside_chord <- function(integer_name,root,chord,direction) {
-  if (root %in% chord) {
-    # do nothing
-  } else {
-    integer_name = paste(underline(root,root),integer_name)
-    if (direction==0) {
-      integer_name = paste(integer_name,underline(root+12,root+12))
+  if (direction == 0) {
+    if (c(root, root+12) %in% chord %>% all) {
+      # do nothing
+      integer_name
+    } else if (root %in% chord) {
+      paste(integer_name,underline(root+12,root+12))
+    } else if ((root + 12) %in% chord) {
+      paste(underline(root,root),integer_name)
+    } else {
+      integer_name = paste(underline(root,root),integer_name)
+      paste(integer_name,underline(root+12,root+12))
     }
+  } else if (root %in% chord) {
+    # do nothing
+    integer_name
+  } else {
+    paste(underline(root,root),integer_name)
   }
-  integer_name
 }

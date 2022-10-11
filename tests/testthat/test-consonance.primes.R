@@ -25,3 +25,23 @@ test_that('octave complements match as expected',{
   expect_equal(consonance.primes(12)$tonic.dissonance %>% unname,
                consonance.primes(0)$octave.dissonance %>% unname)
 })
+test_that('primes consonance of pitches is symmetrical',{
+  M3 = h(c(4))
+  m6 = h(c(8))
+  expect_equal(M3$primes.affinity,m6$primes.affinity)
+  expect_equal(M3$primes.brightness,-m6$primes.brightness)
+})
+test_that('primes consonance of tonic dyads is symmetrical',{
+  M3_up = h(c(0,4),+1)
+  m6_down = h(c(8,12),-1)
+  expect_equal(M3_up$primes.affinity,m6_down$primes.affinity)
+  expect_equal(M3_up$primes.brightness,-m6_down$primes.brightness)
+
+  M3_down = h(c(0,4),-1)
+  m6_up = h(c(8,12),+1)
+  expect_equal(M3_down$primes.affinity, m6_up$primes.affinity)
+  expect_equal(M3_down$primes.brightness,-m6_up$primes.brightness)
+
+  expect_equal(M3_down$primes.brightness,-M3_up$primes.brightness)
+  expect_equal(m6_down$primes.brightness,-m6_up$primes.brightness)
+})
