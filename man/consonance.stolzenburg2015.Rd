@@ -8,8 +8,6 @@ consonance.stolzenburg2015(chord)
 }
 \arguments{
 \item{chord}{A chord expressed as an interval integers}
-
-\item{observation_pitch}{The dominant observation point expressed as an integer}
 }
 \value{
 A tibble
