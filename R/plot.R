@@ -11,7 +11,7 @@ harmony_plot <- function(x,columns,title=NULL, x_expansion_mult=0.1,
                                 limits=c((0-max(abs(x[columns[1]]))),(0+max(abs(x[columns[1]]))))) +
     ggplot2::ggtitle(title) +
     theme_homey() +
-    ggrepel::geom_text_repel(ggplot2::aes(label=.data$integer_name), segment.color = colors_homey()$foreground,  max.overlaps = max_overlaps)
+    ggrepel::geom_text_repel(ggplot2::aes(label=.data$integer_name), segment.color = colors_homey()$subtle_foreground,  max.overlaps = max_overlaps)
 }
 
 save_harmony_plots <- function(x,file_types=c('svg','png')) {
@@ -29,6 +29,7 @@ colors_homey <- function() {
   list(
     'background' = '#664433',
     'foreground' = '#F3DDAB',
+    'subtle_foreground' = '#7F745A',
     'minor' = '#ABDAF3',
     'neutral' = '#FF5500',
     'major' = '#F3A904'

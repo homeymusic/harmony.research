@@ -30,7 +30,7 @@ consonance.stolzenburg2015.uncached <- function(chord) {
 #'
 #' Implements Stolzenburg's 2015 periodicity metric of consonance
 #'
-#' @param chord A chord expressed as an interval integers
+#' @param chord A chord expressed as a vector of integers
 #' @return A tibble
 #'
 #' @export
