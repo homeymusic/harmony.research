@@ -12,7 +12,6 @@ consonance.stolzenburg2015.uncached <- function(chord) {
   # flip orientation to 2-dimensional tonic-octave consonance
   tonic_octave_consonance = consonance.stolzenburg2015.max_dissonance() - tonic_octave_dissonance
   # rotate pi/4 (45 deg) to 2-dimensional affinity-brightness
-
   affinity_brightness = tonic_octave_consonance %>% rotate(pi/4)
 
   # store the ABCDs: affinity brightness consonance dissonance
@@ -62,9 +61,8 @@ lcm <- function(x) {
 }
 
 consonance.stolzenburg2015.max_dissonance <- function() {
-  # this is started as completely arbitrary guess
+  # this is completely arbitrary
   # using the minor 2nd logarithmically
-  # but 15 is the same  max dissonance from the primes approach
-  # TODO: maybe there is something there?
+  # it does turn out to be exactly 15, like the max from the primes measure
   2^(relative_periodicity(c(0,1),'tonic'))
 }
