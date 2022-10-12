@@ -1,8 +1,8 @@
 consonance.stolzenburg2015.uncached <- function(chord) {
   checkmate::assert_integerish(chord)
 
-  tonic  = relative_periodicity(chord,0)
-  octave = relative_periodicity(chord,12)
+  tonic  = relative_periodicity(chord,observation_point=0)
+  octave = relative_periodicity(chord,observation_point=12)
 
   ###################################################################################
   # this is the 'heavy lifting' for calculating affinity, brightness and consonance
