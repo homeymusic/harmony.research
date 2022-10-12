@@ -7,11 +7,11 @@ consonance.stolzenburg2015.uncached <- function(chord) {
   ###################################################################################
   # this is the 'heavy lifting' for calculating affinity, brightness and consonance
   #
-  # calculate 2-dimensional tonic-octave dissonance
+  # calculate 2-observation_pointal tonic-octave dissonance
   tonic_octave_dissonance = cbind(tonic,octave)
-  # flip orientation to 2-dimensional tonic-octave consonance
+  # flip orientation to 2-observation_pointal tonic-octave consonance
   tonic_octave_consonance = consonance.stolzenburg2015.max_dissonance() - tonic_octave_dissonance
-  # rotate pi/4 (45 deg) to 2-dimensional affinity-brightness
+  # rotate pi/4 (45 deg) to 2-observation_pointal affinity-brightness
   affinity_brightness = tonic_octave_consonance %>% rotate(pi/4)
 
   # store the ABCDs: affinity brightness consonance dissonance
@@ -36,17 +36,17 @@ consonance.stolzenburg2015.uncached <- function(chord) {
 #' @export
 consonance.stolzenburg2015 <- memoise::memoise(consonance.stolzenburg2015.uncached)
 
-relative_periodicity <- function(x,dimension) {
+relative_periodicity <- function(x,observation_point) {
   checkmate::assert_integerish(x)
-  checkmate::assert_choice(dimension,c('tonic','octave'))
+  checkmate::assert_choice(observation_point,c('tonic','octave'))
   lowest_period_length <- ratios_lower_pitches <- minimum_ratio <- NULL
 
   pitches = dplyr::bind_rows(x %>% sort %>% purrr::map(pitch))
-  if (dimension          == 'tonic') {
+  if (observation_point          == 'tonic') {
     lowest_period_length = pitches$tonic.den.lo[1]  / pitches$tonic.num.hi[1]
     lowest_pitches       = pitches$tonic.den.lo
     minimum_ratio        = pitches$tonic.num.hi[1]  / pitches$tonic.den.lo[1]
-  } else if (dimension   == 'octave') {
+  } else if (observation_point   == 'octave') {
     lowest_period_length = pitches$octave.den.hi[1] / pitches$octave.num.lo[1]
     lowest_pitches       = pitches$octave.num.lo
     minimum_ratio        = pitches$octave.num.lo[1] / pitches$octave.den.hi[1]
