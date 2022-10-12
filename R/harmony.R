@@ -8,27 +8,21 @@ harmony.uncached <- function(chord, direction=NULL, root=NULL, name=NULL) {
   checkmate::assert_integerish(root,null.ok=TRUE)
   checkmate::assert_character(name,null.ok=TRUE)
 
-
-  explicit_root      = root
-  guessed_root       = guessed_root(chord,direction)
-  explicit_direction = direction
-  guessed_direction  = guessed_direction(chord,explicit_root,guessed_root)
-
   # build the harmony table
   t <- tibble::tibble_row(
     cents              = cents(chord),   # position in cents
     integer            = chord %>% mean, # integer position
     name               = name,
-    explicit_root      = explicit_root,
-    guessed_root       = guessed_root,
-    root               = ifelse(is.null(root),
+    explicit_root      = ifelse(is.null(root),NA,root),
+    explicit_direction = ifelse(is.null(direction),NA,direction),
+    guessed_root       = guessed_root(chord,explicit_direction),
+    root               = ifelse(is.na(explicit_root),
                                 guessed_root,
-                                root),
-    explicit_direction = explicit_direction,
-    guessed_direction  = guessed_direction,
-    direction          = ifelse(is.null(direction),
+                                explicit_root),
+    guessed_direction  = guessed_direction(chord,explicit_root,guessed_root),
+    direction          = ifelse(is.na(explicit_direction),
                                 guessed_direction,
-                                direction),
+                                explicit_direction),
     integer_name       = harmonic_integer_name(chord,direction,root)
   )
   # store the original chord
@@ -89,7 +83,7 @@ cents <- function(chord) {
 }
 
 guessed_root <- function(chord,explicit_direction) {
-  if (!is.null(explicit_direction)) {
+  if (!is.na(explicit_direction)) {
     if (length(chord)==1) {
       ifelse(explicit_direction<0,12,0)
     } else {
@@ -115,7 +109,7 @@ guessed_root <- function(chord,explicit_direction) {
 guessed_direction <- function(chord,explicit_root,guessed_root) {
   if (length(chord)==1) {
     0
-  } else if (!is.null(explicit_root)) {
+  } else if (!is.na(explicit_root)) {
     if (explicit_root<=min(chord)) {
       1
     } else if (explicit_root>=max(chord)) {
