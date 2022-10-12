@@ -1,35 +1,35 @@
-harmony.uncached <- function(chord, direction=NULL, root=NULL, name=NULL) {
+harmony.uncached <- function(chord, observation_point=NA, root=NA, name=NA) {
   checkmate::assert_integerish(chord)
   if (length(chord)==1) {
-    checkmate::assert_choice(direction,0,null.ok=TRUE)
+    checkmate::assert_choice(observation_point,NA)
   } else {
-    checkmate::assert_choice(direction,c(-1,0,+1),null.ok=TRUE)
+    checkmate::assert_choice(observation_point,c(0,NA,12))
   }
-  checkmate::assert_integerish(root,null.ok=TRUE)
-  checkmate::assert_character(name,null.ok=TRUE)
+  checkmate::assert_integerish(root)
+  checkmate::assert_character(name)
 
   # build the harmony table
   t <- tibble::tibble_row(
     cents              = cents(chord),   # position in cents
     integer            = chord %>% mean, # integer position
     name               = name,
-    explicit_root      = ifelse(is.null(root),NA,root),
-    explicit_direction = ifelse(is.null(direction),NA,direction),
-    guessed_root       = guessed_root(chord,explicit_direction),
+    explicit_root      = root,
+    explicit_observation_point = observation_point,
+    guessed_root       = guessed_root(chord,explicit_observation_point),
     root               = ifelse(is.na(explicit_root),
                                 guessed_root,
                                 explicit_root),
-    guessed_direction  = guessed_direction(chord,explicit_root,guessed_root),
-    direction          = ifelse(is.na(explicit_direction),
-                                guessed_direction,
-                                explicit_direction),
-    integer_name       = harmonic_integer_name(chord,direction,root)
+    guessed_observation_point = guessed_observation_point(chord,explicit_root,guessed_root),
+    observation_point  = ifelse(is.na(explicit_observation_point),
+                                guessed_observation_point,
+                                explicit_observation_point),
+    integer_name       = harmonic_integer_name(chord,observation_point,root)
   )
   # store the original chord
   attr(t,"chord") <- chord
   # store the aurally centered chord
   attr(t,"centered_chord") <- centered_chord <-
-    centered_chord(chord, t$direction, t$root)
+    centered_chord(chord, t$observation_point, t$root)
 
   ##########################################
   # calculate various consonance values
@@ -52,7 +52,7 @@ harmony.uncached <- function(chord, direction=NULL, root=NULL, name=NULL) {
 #'
 #'
 #' @param chord A pitch or chord expressed as an interval integer or vector of interval integers
-#' @param direction Harmonic direction +1 is up and -1 is down
+#' @param observation_point Harmonic observation_point 0 is tonic, 12 is octave, NA is symmetrical
 #' @param root The reference pitch of the chord or larger context
 #' @param name A custom name for the note or chord
 #' @return A tibble
@@ -64,17 +64,11 @@ harmony <- memoise::memoise(harmony.uncached)
 #' @export
 h <- harmony
 
-observation_pitch <- function(direction) {
-  checkmate::assert_choice(direction,c(-1,0,+1))
-
-  ifelse(direction >= 0, 0, 12)
-}
-
-centered_chord <- function(chord,direction,root) {
+centered_chord <- function(chord,observation_point,root) {
   checkmate::assert_integerish(chord)
   checkmate::qassert(root,'X1')
 
-  chord - root + observation_pitch(direction)
+  chord - root + coalesced_observation_point(observation_point)
 }
 
 cents <- function(chord) {
@@ -82,12 +76,12 @@ cents <- function(chord) {
   chord %>% purrr::map_dbl(~pitch(.x)$cents) %>% mean
 }
 
-guessed_root <- function(chord,explicit_direction) {
-  if (!is.na(explicit_direction)) {
+guessed_root <- function(chord,explicit_observation_point) {
+  if (!is.na(explicit_observation_point)) {
     if (length(chord)==1) {
-      ifelse(explicit_direction<0,12,0)
+      explicit_observation_point
     } else {
-      ifelse(explicit_direction<0,max(chord),min(chord))
+      ifelse(explicit_observation_point==12,max(chord),min(chord))
     }
   } else {
     if (length(chord)==1) {
@@ -106,35 +100,35 @@ guessed_root <- function(chord,explicit_direction) {
   }
 }
 
-guessed_direction <- function(chord,explicit_root,guessed_root) {
+guessed_observation_point <- function(chord,explicit_root,guessed_root) {
   if (length(chord)==1) {
-    0
+    NA
   } else if (!is.na(explicit_root)) {
     if (explicit_root<=min(chord)) {
-      1
-    } else if (explicit_root>=max(chord)) {
-      -1
-    } else {
       0
+    } else if (explicit_root>=max(chord)) {
+      12
+    } else {
+      NA
     }
   } else {
     if (c(guessed_root,guessed_root+12) %in% chord %>% all) {
-      0
+      NA
     } else if (12 == max(chord) || 0 == max(chord)) {
-      -1
+      12
     } else if (12 == min(chord) || 0 == min(chord)) {
-      1
+      0
     } else if (12 %in% chord) {
-      -1
+      12
     } else {
-      1
+      0
     }
   }
 }
 
-harmonic_integer_name <- function(chord, direction, root) {
+harmonic_integer_name <- function(chord, observation_point, root) {
   checkmate::assert_integerish(chord)
-  checkmate::assert_choice(direction,c(-1,0,+1))
+  checkmate::assert_choice(observation_point,c(0,NA,12))
   checkmate::assert_integerish(root)
 
   up_arrow =   '\U2191'
@@ -142,16 +136,16 @@ harmonic_integer_name <- function(chord, direction, root) {
   mixed_arrow = paste0(up_arrow,down_arrow)
 
   current_arrow = NULL
-  if      (direction == -1) {arrow = down_arrow}
-  else if (direction ==  0) {arrow = mixed_arrow}
-  else if (direction == +1) {arrow = up_arrow}
+  if      (is.na(observation_point)) {arrow = mixed_arrow}
+  else if (observation_point == 12)  {arrow = down_arrow}
+  else if (observation_point ==  0)  {arrow = up_arrow}
 
   underlined_chord = underline(chord,root)
-  if (direction==0) {
+  if (!is.na(observation_point) && observation_point==0) {
     underlined_chord = underline(underlined_chord,root+12)
   }
   underlined_chord %>% paste(collapse = ":") %>% paste0(arrow) %>%
-    add_roots_outside_chord(root,chord,direction)
+    add_roots_outside_chord(root,chord,observation_point)
 }
 underline <- function(chord,pitch) {
   chord %>% sapply(function(x){
@@ -162,8 +156,8 @@ underline <- function(chord,pitch) {
     }
   })
 }
-add_roots_outside_chord <- function(integer_name,root,chord,direction) {
-  if (direction == 0) {
+add_roots_outside_chord <- function(integer_name,root,chord,observation_point) {
+  if (is.na(observation_point)) {
     if (c(root, root+12) %in% chord %>% all) {
       integer_name
     } else if (root %in% chord) {
@@ -180,4 +174,8 @@ add_roots_outside_chord <- function(integer_name,root,chord,direction) {
   } else {
     paste(underline(root,root),integer_name)
   }
+}
+
+coalesced_observation_point <- function(observation_point) {
+  dplyr::coalesce(observation_point,0)
 }

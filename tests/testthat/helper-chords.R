@@ -2,15 +2,15 @@ major_triads <- function() {
   list(
     "root"=h(c(0,4,7),
              root=0,
-             direction=+1,
+             observation_point=0,
              name="M"),
     "1st inversion"=h(c(0+12,4,7),
                       root=12,
-                      direction=-1,
+                      observation_point=12,
                       name="M'"),
     "2nd inversion"=h(c(0+12,4+12,7),
                       root=12,
-                      direction=-1,
+                      observation_point=12,
                       name="M''")
   )
 }
@@ -18,15 +18,15 @@ minor_triads <- function() {
   list(
     "root"=h(c(0,3,7),
              root=0,
-             direction=+1,
+             observation_point=0,
              name="m"),
     "1st inversion"=h(c(0+12,3,7),
                       root=12,
-                      direction=-1,
+                      observation_point=12,
                       name="m'"),
     "2nd inversion"=h(c(0+12,3+12,7),
                       root=12,
-                      direction=-1,
+                      observation_point=12,
                       name="m''")
   )
 }
@@ -48,9 +48,9 @@ triads <- function() {
     'M'=h(c(0,4,7),name='M'),
     'm'=h(c(0,3,7),name='m'),
     'm46'=h(c(0,5,8),name='m46'),
-    "m46'"=h(c(0,5,8),name="m46'",direction=-1),
+    "m46'"=h(c(0,5,8),name="m46'",observation_point=12),
     'M46'=h(c(0,5,9),name='M46'),
-    "M46'"=h(c(0,5,9),name="M46'",direction=-1))
+    "M46'"=h(c(0,5,9),name="M46'",observation_point=12))
 }
 diatonic_scales <- function() {
   list(
@@ -66,30 +66,30 @@ diatonic_scales <- function() {
 major_triad_progression <- function(){
   major_triad = c(0,4,7)
   list(
-    h(major_triad  , direction = +1),
-    h(major_triad+5, direction = +1),
-    h(major_triad+7, direction = +1),
-    h(major_triad  , direction = +1)
+    h(major_triad  , observation_point=0),
+    h(major_triad+5, observation_point=0),
+    h(major_triad+7, observation_point=0),
+    h(major_triad  , observation_point=0)
   )
 }
 voice_leading_progression <- function(){
   major_triad = c(0,4,7)
   list(
-    h(major_triad  , direction = +1),
-    h(major_triad+1, direction = +1),
-    h(major_triad+2, direction = +1),
-    h(major_triad+3, direction = +1),
-    h(major_triad+4, direction = +1),
-    h(major_triad+5, direction = +1),
-    h(major_triad+6, direction = +1),
-    h(major_triad+7, direction = +1),
-    h(major_triad+8, direction = +1),
-    h(major_triad+9, direction = +1),
-    h(major_triad+10, direction = +1),
-    h(major_triad+11, direction = +1),
-    h(major_triad+12, direction = +1),
-    h(major_triad+13, direction = +1),
-    h(major_triad  , direction = +1)
+    h(major_triad  , observation_point=0),
+    h(major_triad+1, observation_point=0),
+    h(major_triad+2, observation_point=0),
+    h(major_triad+3, observation_point=0),
+    h(major_triad+4, observation_point=0),
+    h(major_triad+5, observation_point=0),
+    h(major_triad+6, observation_point=0),
+    h(major_triad+7, observation_point=0),
+    h(major_triad+8, observation_point=0),
+    h(major_triad+9, observation_point=0),
+    h(major_triad+10, observation_point=0),
+    h(major_triad+11, observation_point=0),
+    h(major_triad+12, observation_point=0),
+    h(major_triad+13, observation_point=0),
+    h(major_triad  , observation_point=0)
   )
 }
 
@@ -107,14 +107,14 @@ lydian_tonic_chords <- function() {
   )
 }
 ionian_tonic_chords <- function() {
-  list("I"         =h(c( 0, 4, 7),direction=+1,name='I'),
-       "ii"        =h(c( 2, 5, 9),direction=+1,name='ii'),
-       "iii"       =h(c( 4, 7,11),direction=+1,name='iii'),
-       "IV"        =h(c( 5, 9,12),direction=+1,name='IV'),
-       "V"         =h(c( 7,11,14),direction=+1,name='V'),
-       "vi"        =h(c( 9,12,16),direction=+1,name='vi'),
-       "vii\u00B0" =h(c(11,14,17),direction=+1,name='vii\u00B0'),
-       "VIII"      =h(c( 0, 4, 7)+12,direction=+1,name='VIII')
+  list("I"         =h(c( 0, 4, 7),observation_point=0,name='I'),
+       "ii"        =h(c( 2, 5, 9),observation_point=0,name='ii'),
+       "iii"       =h(c( 4, 7,11),observation_point=0,name='iii'),
+       "IV"        =h(c( 5, 9,12),observation_point=0,name='IV'),
+       "V"         =h(c( 7,11,14),observation_point=0,name='V'),
+       "vi"        =h(c( 9,12,16),observation_point=0,name='vi'),
+       "vii\u00B0" =h(c(11,14,17),observation_point=0,name='vii\u00B0'),
+       "VIII"      =h(c( 0, 4, 7)+12,observation_point=0,name='VIII')
   )
 }
 mixolydian_tonic_chords <- function() {

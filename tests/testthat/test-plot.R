@@ -13,8 +13,8 @@ test_that("plot all dyads", {
   combos = utils::combn(1:11,1,function(x){c(0,x)},simplify=FALSE)
   inverted_combos = utils::combn(1:11,1,function(x){c(x,12)},simplify=FALSE)
 
-  chords_up            = combos %>% purrr::map(h,direction=+1)
-  inverted_chords_down = inverted_combos %>% purrr::map(h,direction=-1)
+  chords_up            = combos %>% purrr::map(~h(.x,observation_point=0))
+  inverted_chords_down = inverted_combos %>% purrr::map(~h(.x,observation_point=12))
   chords = dplyr::bind_rows(
     dplyr::bind_rows(chords_up),dplyr::bind_rows(inverted_chords_down))
 
@@ -32,10 +32,13 @@ test_that("plot all triads", {
   combos = utils::combn(1:11,2,function(x){c(0,x)},simplify=FALSE)
   inverted_combos = utils::combn(1:11,2,function(x){c(x,12)},simplify=FALSE)
 
-  chords_up            =  combos %>% purrr::map(h,direction=+1)
-  inverted_chords_down =  inverted_combos %>% purrr::map(h,direction=-1)
+  chords_up            =  combos %>% purrr::map(~h(.x,observation_point=0))
+  inverted_chords_down =  inverted_combos %>% purrr::map(~h(.x,observation_point=12))
+  chords_down          =  combos %>% purrr::map(~h(.x,observation_point=12))
+  inverted_chords_up   =  inverted_combos %>% purrr::map(~h(.x,observation_point=0))
   chords = dplyr::bind_rows(
-    dplyr::bind_rows(chords_up),dplyr::bind_rows(inverted_chords_down))
+    dplyr::bind_rows(chords_up),dplyr::bind_rows(inverted_chords_down),
+    dplyr::bind_rows(chords_down),dplyr::bind_rows(inverted_chords_up))
 
   title='Periodicity: Triads Affinity v Brightness'
   p=harmony_plot(chords,c('stolzenburg2015.brightness','stolzenburg2015.affinity'),title=title)
@@ -51,10 +54,10 @@ test_that("plot compound dyads", {
   combos = utils::combn(1:11,1,function(x){c(-12,x)},simplify=FALSE)
   inverted_combos = utils::combn(1:11,1,function(x){c(x,24)},simplify=FALSE)
 
-  chords_up            =  combos %>% purrr::map(h,direction=+1)
-  inverted_chords_up   =  inverted_combos %>% purrr::map(h,direction=+1)
-  chords_down          =  combos %>% purrr::map(h,direction=-1)
-  inverted_chords_down =  inverted_combos %>% purrr::map(h,direction=-1)
+  chords_up            =  combos %>% purrr::map(~h(.x,observation_point=0))
+  inverted_chords_up   =  inverted_combos %>% purrr::map(~h(.x,observation_point=0))
+  chords_down          =  combos %>% purrr::map(~h(.x,observation_point=12))
+  inverted_chords_down =  inverted_combos %>% purrr::map(~h(.x,observation_point=12))
   chords = dplyr::bind_rows(
     dplyr::bind_rows(chords_up),dplyr::bind_rows(inverted_chords_up),
     dplyr::bind_rows(chords_down),dplyr::bind_rows(inverted_chords_down)
@@ -74,10 +77,10 @@ test_that("plot compound triads", {
   combos = utils::combn(1:11,2,function(x){c(-12,x)},simplify=FALSE)
   inverted_combos = utils::combn(1:11,2,function(x){c(x,24)},simplify=FALSE)
 
-  chords_up            =  combos %>% purrr::map(h,direction=+1)
-  inverted_chords_up   =  inverted_combos %>% purrr::map(h,direction=+1)
-  chords_down          =  combos %>% purrr::map(h,direction=-1)
-  inverted_chords_down =  inverted_combos %>% purrr::map(h,direction=-1)
+  chords_up            =  combos %>% purrr::map(~h(.x,observation_point=0))
+  inverted_chords_up   =  inverted_combos %>% purrr::map(~h(.x,observation_point=0))
+  chords_down          =  combos %>% purrr::map(~h(.x,observation_point=12))
+  inverted_chords_down =  inverted_combos %>% purrr::map(~h(.x,observation_point=12))
   chords = dplyr::bind_rows(
     dplyr::bind_rows(chords_up),dplyr::bind_rows(inverted_chords_up),
     dplyr::bind_rows(chords_down),dplyr::bind_rows(inverted_chords_down)
