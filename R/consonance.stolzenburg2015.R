@@ -7,11 +7,11 @@ consonance.stolzenburg2015.uncached <- function(chord) {
   ###################################################################################
   # this is the 'heavy lifting' for calculating affinity, brightness and consonance
   #
-  # calculate 2-observation_pointal tonic-octave dissonance
+  # calculate 2-dimensional tonic-octave dissonance
   tonic_octave_dissonance = cbind(tonic,octave)
-  # flip orientation to 2-observation_pointal tonic-octave consonance
+  # flip orientation to 2-dimensional tonic-octave consonance
   tonic_octave_consonance = consonance.stolzenburg2015.max_dissonance() - tonic_octave_dissonance
-  # rotate pi/4 (45 deg) to 2-observation_pointal affinity-brightness
+  # rotate pi/4 (45 deg) to 2-dimensional affinity-brightness
   affinity_brightness = tonic_octave_consonance %>% rotate(pi/4)
 
   # store the ABCDs: affinity brightness consonance dissonance
