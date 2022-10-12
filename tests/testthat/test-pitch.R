@@ -1,7 +1,7 @@
 test_that("up pitch_class_ratios within the primary octave match expectations", {
-  expect_equal(pitch_class_ratios()$tonic.num.hi,
+  expect_equal(core_pitch_class_ratios()$tonic.num.hi,
                c(1,16,9,6,5,4,7,3,8,5,16,15,2))
-  expect_equal(pitch_class_ratios()$tonic.den.lo,
+  expect_equal(core_pitch_class_ratios()$tonic.den.lo,
                c(1,15,8,5,4,3,5,2,5,3, 9, 8,1))
 })
 test_that('tonic frequency ratios within and beyond the primary octave matches expectations', {
@@ -27,8 +27,8 @@ test_that('tonic frequency ratios within and beyond the primary octave matches e
   expect_equal(pitch(-37)$tonic.den.lo,128)
 })
 test_that("down pitch_class_ratios within the primary octave match expectations", {
-  expect_equal(pitch_class_ratios()$octave.num.lo, c(1, 8, 9,3,5,2,5,3,4,5,8,15,1))
-  expect_equal(pitch_class_ratios()$octave.den.hi,  c(2,15,16,5,8,3,7,4,5,6,9,16,1))
+  expect_equal(core_pitch_class_ratios()$octave.num.lo, c(1, 8, 9,3,5,2,5,3,4,5,8,15,1))
+  expect_equal(core_pitch_class_ratios()$octave.den.hi,  c(2,15,16,5,8,3,7,4,5,6,9,16,1))
 })
 test_that('octave frequency ratios within and beyond the primary octave matches expectations', {
   expect_equal(pitch(7)$octave.num.lo,3)

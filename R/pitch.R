@@ -1,8 +1,8 @@
 pitch.uncached <- function(x) {
   checkmate::qassert(x,'X1')
 
-  tonic.ratio  = frequency_ratio(x,observation_point=0)
-  octave.ratio = frequency_ratio(x,observation_point=12)
+  tonic.ratio  = ratio(x,observation_point=0)
+  octave.ratio = ratio(x,observation_point=12)
 
   t <- tibble::tibble_row(
     integer         = x, # integer position
@@ -36,7 +36,7 @@ pitch <- memoise::memoise(pitch.uncached)
 #' @export
 p <- pitch
 
-frequency_ratio <- function(x,observation_point) {
+ratio <- function(x,observation_point) {
   checkmate::qassert(x,'X1')
   checkmate::assert_choice(observation_point,c(0,12))
   num <- den <- NULL
@@ -56,7 +56,7 @@ compound_ratio <- function(x,dimension) {
   checkmate::assert_choice(dimension,c('tonic.num.hi','tonic.den.lo',
                                        'octave.num.lo','octave.den.hi'))
 
-  pitch_class_ratios_for_dimension = pitch_class_ratios()[dimension] %>% unlist
+  pitch_class_ratios_for_dimension = core_pitch_class_ratios()[dimension] %>% unlist
   if (x>=0 && x<=12) {
     pitch_class_ratios_for_dimension[[x+1]]
   } else {
@@ -71,7 +71,7 @@ compound_ratio <- function(x,dimension) {
   }
 }
 
-pitch_class_ratios <- function() {
+core_pitch_class_ratios <- function() {
 
   pitch_ratios = 0:12 %>% sapply(pitch_ratio)
 
