@@ -5,7 +5,7 @@ pitch.uncached <- function(x) {
   octave.ratio = frequency_ratio(x,observation_point=12)
 
   t <- tibble::tibble_row(
-    position         = x, # integer position
+    integer         = x, # integer position
     # from the tonic observation point, the numerator of the frequency ratio
     # is the higher frequency for pitches above the tonic
     tonic.num.hi     = tonic.ratio[1],

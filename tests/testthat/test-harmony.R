@@ -11,7 +11,7 @@ test_that('harmony throws an error if params are wrong', {
 })
 test_that('params are stored',{
   expect_equal(attr(major_triad_root,'chord'),c(0,4,7))
-  expect_equal(major_triad_root$integer_position,c(0,4,7)%>%mean)
+  expect_equal(major_triad_root$integer,c(0,4,7)%>%mean)
   expect_equal(major_triad_root$direction,+1)
   expect_equal(major_triad_root$root,0)
   expect_equal(major_triad_root$name,'M')
@@ -106,9 +106,9 @@ test_that('for solo pitches that the integer name includes the tonic, octave and
   expect_equal(h(c(0,-4,-7)+60,direction=1,root=-7+60)$integer_name,'60:56:5\u03323\u0332↑')
 })
 test_that('position from the tonic in cents makes sense',{
-  expect_equal(h(c(0,4,7))$position,362.7562,tolerance=0.001)
-  expect_equal(h(c(0,3,7))$position,339.1988,tolerance=0.001)
-  expect_equal(h(c(4))$position,pitch(4)$tonic.position)
+  expect_equal(h(c(0,4,7))$cents,362.7562,tolerance=0.001)
+  expect_equal(h(c(0,3,7))$cents,339.1988,tolerance=0.001)
+  expect_equal(h(c(4))$cents,pitch(4)$cents)
 })
 test_that('for chords of length 1 the direction must be 0',{
   expect_error(h(7,-1))

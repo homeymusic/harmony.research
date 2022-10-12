@@ -9,7 +9,7 @@ melody.uncached <- function(progression, reference=NULL) {
   t <- tibble::tibble(
     time             = 1:length(progression),
     integer_name     = melodic_integer_name(progression,reference),
-    velocity         = c(0,progression_tibble$position %>% diff),
+    velocity         = c(0,progression_tibble$cents %>% diff),
     potential_energy = potential_energy(progression, reference),
     kinetic_energy   = kinetic_energy(progression, reference)
   )
@@ -78,7 +78,7 @@ melodic_divergence <- function(x,y) {
 # TODO: account for changes in chord duration, tempo, etc
 # right now we are assuming 60 bpm and each chord gets one beat
 volume <- function(x,y) {
-  abs(y$position-x$position)
+  abs(y$cents-x$cents)
 }
 
 melodic_integer_name <- function(progression,reference) {

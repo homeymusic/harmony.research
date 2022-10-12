@@ -16,8 +16,8 @@ harmony.uncached <- function(chord, direction=NULL, root=NULL, name=NULL) {
 
   # build the harmony table
   t <- tibble::tibble_row(
-    position           = position(chord), # cents
-    integer_position   = chord %>% mean,
+    cents              = cents(chord),   # position in cents
+    integer            = chord %>% mean, # integer position
     name               = name,
     explicit_root      = explicit_root,
     guessed_root       = guessed_root,
@@ -83,9 +83,9 @@ centered_chord <- function(chord,direction,root) {
   chord - root + observation_pitch(direction)
 }
 
-position <- function(chord) {
+cents <- function(chord) {
   checkmate::assert_integerish(chord)
-  chord %>% purrr::map_dbl(~pitch(.x)$tonic.position) %>% mean
+  chord %>% purrr::map_dbl(~pitch(.x)$cents) %>% mean
 }
 
 guessed_root <- function(chord,explicit_direction) {
