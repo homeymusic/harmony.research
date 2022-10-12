@@ -7,7 +7,7 @@
 consonance.stolzenburg2015(chord)
 }
 \arguments{
-\item{chord}{A chord expressed as an interval integers}
+\item{chord}{A chord expressed as a vector of integers}
 }
 \value{
 A tibble

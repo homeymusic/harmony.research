@@ -41,7 +41,7 @@ relative_periodicity <- function(x,dimension) {
   checkmate::assert_choice(dimension,c('tonic','octave'))
   lowest_period_length <- ratios_lower_pitches <- minimum_ratio <- NULL
 
-  pitches = dplyr::bind_rows(c(x) %>% sort %>% purrr::map(pitch))
+  pitches = dplyr::bind_rows(x %>% sort %>% purrr::map(pitch))
   if (dimension          == 'tonic') {
     lowest_period_length = pitches$tonic.den.lo[1]  / pitches$tonic.num.hi[1]
     lowest_pitches       = pitches$tonic.den.lo

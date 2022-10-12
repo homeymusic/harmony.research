@@ -1,5 +1,5 @@
 test_that("plot core pitches", {
-  title='Periodicty: Pitches Affinity v Brightness'
+  title='Periodicity: Pitches Affinity v Brightness'
   p=harmony_plot(core_pitches(),c('stolzenburg2015.brightness','stolzenburg2015.affinity'),title=title)
   save_harmony_plots(p)
   expect_true(!is.null(p))
@@ -18,7 +18,7 @@ test_that("plot all dyads", {
   chords = dplyr::bind_rows(
     dplyr::bind_rows(chords_up),dplyr::bind_rows(inverted_chords_down))
 
-  title='Periodicty: Dyads Affinity v Brightness'
+  title='Periodicity: Dyads Affinity v Brightness'
   p=harmony_plot(chords,c('stolzenburg2015.brightness','stolzenburg2015.affinity'),title=title)
   save_harmony_plots(p)
   expect_true(!is.null(p))
@@ -37,7 +37,7 @@ test_that("plot all triads", {
   chords = dplyr::bind_rows(
     dplyr::bind_rows(chords_up),dplyr::bind_rows(inverted_chords_down))
 
-  title='Periodicty: Triads Affinity v Brightness'
+  title='Periodicity: Triads Affinity v Brightness'
   p=harmony_plot(chords,c('stolzenburg2015.brightness','stolzenburg2015.affinity'),title=title)
   save_harmony_plots(p)
   expect_true(!is.null(p))
@@ -60,7 +60,7 @@ test_that("plot compound dyads", {
     dplyr::bind_rows(chords_down),dplyr::bind_rows(inverted_chords_down)
   )
 
-  title='Periodicty: Dyads Compound Affinity v Brightness'
+  title='Periodicity: Dyads Compound Affinity v Brightness'
   p=harmony_plot(chords,c('stolzenburg2015.brightness','stolzenburg2015.affinity'),title=title)
   save_harmony_plots(p)
   expect_true(!is.null(p))
@@ -83,7 +83,7 @@ test_that("plot compound triads", {
     dplyr::bind_rows(chords_down),dplyr::bind_rows(inverted_chords_down)
   )
 
-  title='Periodicty: Triads Compound Affinity v Brightness'
+  title='Periodicity: Triads Compound Affinity v Brightness'
   p=harmony_plot(chords,c('stolzenburg2015.brightness','stolzenburg2015.affinity'),title=title)
   save_harmony_plots(p)
   expect_true(!is.null(p))
