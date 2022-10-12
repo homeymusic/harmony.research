@@ -1,18 +1,23 @@
 pitch.uncached <- function(x) {
   checkmate::qassert(x,'X1')
 
-  tonic.ratio  = frequency_ratio(x,observation_pitch=0)
-  octave.ratio = frequency_ratio(x,observation_pitch=12)
+  tonic.ratio  = frequency_ratio(x,observation_point=0)
+  octave.ratio = frequency_ratio(x,observation_point=12)
 
   t <- tibble::tibble_row(
-    integer_position = x,
-    tonic.num.hi      = tonic.ratio[1],
-    tonic.den.lo        = tonic.ratio[2],
+    position         = x, # integer position
+    # from the tonic observation point, the numerator of the frequency ratio
+    # is the higher frequency for pitches above the tonic
+    tonic.num.hi     = tonic.ratio[1],
+    tonic.den.lo     = tonic.ratio[2],
     tonic.position   = 1200 * log2(.data$tonic.num.hi  / .data$tonic.den.lo), # cents
-    position         = .data$tonic.position,
-    octave.num.lo     = octave.ratio[1],
-    octave.den.hi       = octave.ratio[2],
-    octave.position  = 1200 * log2(.data$octave.num.lo / .data$octave.den.hi) # cents
+    # from the octave observation point, the numerator of the frequency ratio
+    # is the lower frequency for pitches below the octave
+    octave.num.lo    = octave.ratio[1],
+    octave.den.hi    = octave.ratio[2],
+    octave.position  = 1200 * log2(.data$octave.num.lo / .data$octave.den.hi), # cents
+    # use the tonic position as the primary position in cents
+    cents            = .data$tonic.position # position in cents
   )
 }
 
@@ -31,15 +36,15 @@ pitch <- memoise::memoise(pitch.uncached)
 #' @export
 p <- pitch
 
-frequency_ratio <- function(x,observation_pitch) {
+frequency_ratio <- function(x,observation_point) {
   checkmate::qassert(x,'X1')
-  checkmate::assert_choice(observation_pitch,c(0,12))
+  checkmate::assert_choice(observation_point,c(0,12))
   num <- den <- NULL
 
-  if (observation_pitch == 0) {
+  if (observation_point == 0) {
     num = compound_ratio(x,'tonic.num.hi')
     den = compound_ratio(x,'tonic.den.lo')
-  } else if (observation_pitch == 12) {
+  } else if (observation_point == 12) {
     num = compound_ratio(x,'octave.num.lo')
     den = compound_ratio(x,'octave.den.hi')
   }
@@ -81,8 +86,8 @@ pitch_class_ratios <- function() {
 
   pitch_ratios = 0:12 %>% sapply(pitch_ratio)
 
-  tonic.num.hi  = pitch_ratios[1,]
-  tonic.den.lo    = pitch_ratios[2,]
+  tonic.num.hi = pitch_ratios[1,]
+  tonic.den.lo = pitch_ratios[2,]
 
   list(
     #############################################

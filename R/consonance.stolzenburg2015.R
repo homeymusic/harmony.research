@@ -1,8 +1,8 @@
 consonance.stolzenburg2015.uncached <- function(chord) {
   checkmate::assert_integerish(chord)
 
-  tonic  = relative_periodicity(chord,'tonic')
-  octave = relative_periodicity(chord,'octave')
+  tonic  = relative_periodicity(chord,0)
+  octave = relative_periodicity(chord,12)
 
   ###################################################################################
   # this is the 'heavy lifting' for calculating affinity, brightness and consonance
@@ -38,15 +38,15 @@ consonance.stolzenburg2015 <- memoise::memoise(consonance.stolzenburg2015.uncach
 
 relative_periodicity <- function(x,observation_point) {
   checkmate::assert_integerish(x)
-  checkmate::assert_choice(observation_point,c('tonic','octave'))
+  checkmate::assert_choice(observation_point,c(0,12))
   lowest_period_length <- ratios_lower_pitches <- minimum_ratio <- NULL
 
   pitches = dplyr::bind_rows(x %>% sort %>% purrr::map(pitch))
-  if (observation_point          == 'tonic') {
+  if (observation_point        == 0) {
     lowest_period_length = pitches$tonic.den.lo[1]  / pitches$tonic.num.hi[1]
     lowest_pitches       = pitches$tonic.den.lo
     minimum_ratio        = pitches$tonic.num.hi[1]  / pitches$tonic.den.lo[1]
-  } else if (observation_point   == 'octave') {
+  } else if (observation_point == 12) {
     lowest_period_length = pitches$octave.den.hi[1] / pitches$octave.num.lo[1]
     lowest_pitches       = pitches$octave.num.lo
     minimum_ratio        = pitches$octave.num.lo[1] / pitches$octave.den.hi[1]
@@ -64,5 +64,5 @@ consonance.stolzenburg2015.max_dissonance <- function() {
   # this is completely arbitrary
   # using the minor 2nd logarithmically
   # it does turn out to be exactly 15, like the max from the primes measure
-  2^(relative_periodicity(c(0,1),'tonic'))
+  2^(relative_periodicity(c(0,1),observation_point=0))
 }
