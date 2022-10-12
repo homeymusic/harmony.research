@@ -56,27 +56,16 @@ compound_ratio <- function(x,dimension) {
   checkmate::assert_choice(dimension,c('tonic.num.hi','tonic.den.lo',
                                        'octave.num.lo','octave.den.hi'))
 
+  pitch_class_ratios_for_dimension = pitch_class_ratios()[dimension] %>% unlist
   if (x>=0 && x<=12) {
-    # ratios are in the primary pitch class octave so all done
-    (pitch_class_ratios()[dimension] %>% unlist)[[x+1]]
+    pitch_class_ratios_for_dimension[[x+1]]
   } else {
-    # else ratios are above or below the primary octave
-    # start with the pitch class ratio
     integer = x %% 12
-    pitch_class_ratio = (pitch_class_ratios()[dimension] %>% unlist)[[integer+1]]
-    # calculate the octave adjustment
-    octave_multiplier = 2 ^ abs((x / 12) %>% floor)
-
-    if (x>12 && (dimension == 'tonic.num.hi' || dimension == 'octave.num.lo')) {
-      # above the primary octave and the current dimension is the numerator
-      # apply octave adjustment to the numerator
-      pitch_class_ratio * octave_multiplier
-    } else if (x<0 && (dimension == 'tonic.den.lo' || dimension == 'octave.den.hi')) {
-      # below the primary octave and the current dimension is the denominator
-      # apply octave adjustment to the denominator
-      pitch_class_ratio * octave_multiplier
+    pitch_class_ratio = pitch_class_ratios_for_dimension[[integer+1]]
+    if ((x<0 && (dimension == 'tonic.den.lo' || dimension == 'octave.den.hi')) ||
+        (x>12 && (dimension == 'tonic.num.hi' || dimension == 'octave.num.lo'))) {
+      pitch_class_ratio * (2 ^ abs((x / 12) %>% floor))
     } else {
-      # the current dimension does not need to change
       pitch_class_ratio
     }
   }

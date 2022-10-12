@@ -171,7 +171,6 @@ underline <- function(chord,pitch) {
 add_roots_outside_chord <- function(integer_name,root,chord,direction) {
   if (direction == 0) {
     if (c(root, root+12) %in% chord %>% all) {
-      # do nothing
       integer_name
     } else if (root %in% chord) {
       paste(integer_name,underline(root+12,root+12))
