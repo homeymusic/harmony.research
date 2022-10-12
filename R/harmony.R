@@ -15,14 +15,14 @@ harmony.uncached <- function(chord, observation_point=NA, root=NA, name=NA) {
     name               = name,
     explicit_root      = root,
     explicit_observation_point = observation_point,
-    guessed_root       = guessed_root(chord,explicit_observation_point),
-    root               = ifelse(is.na(explicit_root),
+    guessed_root       = guessed_root(chord,.data$explicit_observation_point),
+    root               = ifelse(is.na(.data$explicit_root),
                                 guessed_root,
-                                explicit_root),
-    guessed_observation_point = guessed_observation_point(chord,explicit_root,guessed_root),
-    observation_point  = ifelse(is.na(explicit_observation_point),
+                                .data$explicit_root),
+    guessed_observation_point = guessed_observation_point(chord,.data$explicit_root,guessed_root),
+    observation_point  = ifelse(is.na(.data$explicit_observation_point),
                                 guessed_observation_point,
-                                explicit_observation_point),
+                                .data$explicit_observation_point),
     integer_name       = harmonic_integer_name(chord,observation_point,root)
   )
   # store the original chord

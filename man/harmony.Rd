@@ -5,14 +5,14 @@
 \alias{h}
 \title{Harmony}
 \usage{
-harmony(chord, observation_point = NULL, root = NULL, name = NULL)
+harmony(chord, observation_point = NA, root = NA, name = NA)
 
-h(chord, observation_point = NULL, root = NULL, name = NULL)
+h(chord, observation_point = NA, root = NA, name = NA)
 }
 \arguments{
 \item{chord}{A pitch or chord expressed as an interval integer or vector of interval integers}
 
-\item{observation_point}{Harmonic observation_point +1 is up and -1 is down}
+\item{observation_point}{Harmonic observation_point 0 is tonic, 12 is octave, NA is symmetrical}
 
 \item{root}{The reference pitch of the chord or larger context}
 
