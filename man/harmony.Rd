@@ -5,9 +5,21 @@
 \alias{h}
 \title{Harmony}
 \usage{
-harmony(chord, observation_point = NA, root = NA, name = NA)
+harmony(
+  chord,
+  observation_point = NA,
+  root = NA,
+  name = NA,
+  default_consonance_metric = "stolzenburg2015"
+)
 
-h(chord, observation_point = NA, root = NA, name = NA)
+h(
+  chord,
+  observation_point = NA,
+  root = NA,
+  name = NA,
+  default_consonance_metric = "stolzenburg2015"
+)
 }
 \arguments{
 \item{chord}{A pitch or chord expressed as an interval integer or vector of interval integers}

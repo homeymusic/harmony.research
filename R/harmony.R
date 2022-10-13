@@ -1,4 +1,5 @@
-harmony.uncached <- function(chord, observation_point=NA, root=NA, name=NA) {
+harmony.uncached <- function(chord, observation_point=NA, root=NA, name=NA,
+                             default_consonance_metric='stolzenburg2015') {
   checkmate::assert_integerish(chord)
   if (length(chord)==1) {
     checkmate::assert_choice(observation_point,NA)
@@ -12,7 +13,7 @@ harmony.uncached <- function(chord, observation_point=NA, root=NA, name=NA) {
   t <- tibble::tibble_row(
     cents              = cents(chord),   # position in cents
     integer            = chord %>% mean, # integer position
-    name               = name,
+    name               = ifelse(is.na(name),as.character(integer),name),
     explicit_root      = root,
     explicit_observation_point = observation_point,
     guessed_root       = guessed_root(chord,.data$explicit_observation_point),
@@ -22,8 +23,7 @@ harmony.uncached <- function(chord, observation_point=NA, root=NA, name=NA) {
     guessed_observation_point = guessed_observation_point(chord,.data$explicit_root,guessed_root),
     observation_point  = ifelse(is.na(.data$explicit_observation_point),
                                 guessed_observation_point,
-                                .data$explicit_observation_point),
-    integer_name       = harmonic_integer_name(chord,observation_point,root)
+                                .data$explicit_observation_point)
   )
   # store the original chord
   attr(t,"chord") <- chord
@@ -42,8 +42,14 @@ harmony.uncached <- function(chord, observation_point=NA, root=NA, name=NA) {
     consonance.stolzenburg2015(centered_chord)
   colnames(consonance.stolzenburg2015) = paste0("stolzenburg2015.",
                                                 colnames(consonance.stolzenburg2015))
-  # store the consonance metrics
-  dplyr::bind_cols(t,consonance.primes,consonance.stolzenburg2015)
+  # store all the consonance metrics
+  t=tibble::add_column(t,consonance.primes,consonance.stolzenburg2015)
+  # store the integer_name and the default consonance metric's affinity and brightness
+  tibble::add_column(t,
+                     integer_name = harmonic_integer_name(chord,t$observation_point,t$root),
+                     brightness   = t[[paste0(default_consonance_metric,'.brightness')]],
+                     affinity     = t[[paste0(default_consonance_metric,'.affinity')]],
+                     .after='name')
 }
 
 #' Harmony

@@ -162,3 +162,25 @@ test_that('harmony guesses that a chord containing root and root + 12 has observ
   expect_equal(locrian$observation_point,NA)
   expect_equal(h(attr(locrian,'chord')+60)$observation_point,NA)
 })
+test_that('default consonance metric woks as expected',{
+  minor_triad_stolzenburg2015 = h(c(0,3,7))
+  # stolzenburg is default
+  expect_equal(minor_triad_stolzenburg2015$affinity,minor_triad_stolzenburg2015$stolzenburg2015.affinity)
+  expect_equal(minor_triad_stolzenburg2015$brightness,minor_triad_stolzenburg2015$stolzenburg2015.brightness)
+  # integer_name, affinity, brightness start at column 4
+  expect_equal(minor_triad_stolzenburg2015$integer_name,minor_triad_stolzenburg2015[[4]])
+  expect_equal(minor_triad_stolzenburg2015$brightness,minor_triad_stolzenburg2015[[5]])
+  expect_equal(minor_triad_stolzenburg2015$affinity,minor_triad_stolzenburg2015[[6]])
+  # can switch default to some other consonance metric and it workd
+  minor_triad_primes = h(c(0,3,7),default_consonance_metric = 'primes')
+  expect_equal(minor_triad_primes$affinity,minor_triad_primes$primes.affinity)
+  expect_equal(minor_triad_primes$brightness,minor_triad_primes$primes.brightness)
+  expect_equal(minor_triad_primes$brightness,minor_triad_primes$primes.brightness)
+})
+test_that('default name works',{
+  minor_triad = h(c(0,3,7))
+  expect_equal(minor_triad$name,as.character(minor_triad$integer))
+  explicit_name = 'minor triad'
+  minor_triad = h(c(0,3,7),name=explicit_name)
+  expect_equal(minor_triad$name,explicit_name)
+})

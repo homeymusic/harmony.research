@@ -41,7 +41,7 @@ interval_components <- function() {
   )
 }
 core_pitches <- function() {
-  dplyr::bind_rows(0:12 %>% purrr::map(~h(.x,name=as.character(.x))))
+  dplyr::bind_rows(0:12 %>% purrr::map(~h(.x)))
 }
 triads <- function() {
   list(
