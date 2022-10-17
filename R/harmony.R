@@ -61,6 +61,7 @@ harmony.uncached <- function(chord, observation_point=NA, root=NA, name=NA,
 #' @param observation_point Harmonic observation_point 0 is tonic, 12 is octave, NA is symmetrical
 #' @param root The reference pitch of the chord or larger context
 #' @param name A custom name for the note or chord
+#' @param default_consonance_metric The metric that will populate affinity and brightness values
 #' @return A tibble
 #'
 #' @export
@@ -147,7 +148,7 @@ harmonic_integer_name <- function(chord, observation_point, root) {
   else if (observation_point ==  0)  {arrow = up_arrow}
 
   underlined_chord = underline(chord,root)
-  if (!is.na(observation_point) && observation_point==0) {
+  if (is.na(observation_point) && (root==0)) {
     underlined_chord = underline(underlined_chord,root+12)
   }
   underlined_chord %>% paste(collapse = ":") %>% paste0(arrow) %>%

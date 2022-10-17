@@ -1,98 +1,45 @@
+plot_affinity_brightness_up_down <- function(combos,combos_name) {
+  chords_up   = combos %>% purrr::map(~h(.x,observation_point=0))
+  chords_down = combos %>% purrr::map(~h(.x,observation_point=12))
+  chords = dplyr::bind_rows(dplyr::bind_rows(chords_up),dplyr::bind_rows(chords_down))
+  plot_affinity_brightness(chords,combos_name)
+}
+plot_affinity_brightness <- function(chords,chords_name) {
+  dimensions = 'Affinity-Brightness'
+  title = paste('Periodicity:',chords_name,dimensions)
+  p=harmony_plot(chords,c('stolzenburg2015.brightness','stolzenburg2015.affinity'),title=title)
+  save_harmony_plots(p)
+  expect_true(!is.null(p))
+  title = paste('Primes:',chords_name,dimensions)
+  p=harmony_plot(chords,c('primes.brightness','primes.affinity'),title=title)
+  save_harmony_plots(p)
+  expect_true(!is.null(p))
+}
 test_that("plot core pitches", {
-  title='Periodicity: Pitches Affinity v Brightness'
-  p=harmony_plot(core_pitches(),c('stolzenburg2015.brightness','stolzenburg2015.affinity'),title=title)
-  save_harmony_plots(p)
-  expect_true(!is.null(p))
-
-  title='Primes: Pitches Affinity v Brightness'
-  p=harmony_plot(core_pitches(),c('primes.brightness','primes.affinity'),title=title)
-  save_harmony_plots(p)
-  expect_true(!is.null(p))
+  chords = dplyr::bind_rows(0:12 %>% purrr::map(~h(.x,observation_point = NA)))
+  plot_affinity_brightness(chords,'Pitches')
 })
 test_that("plot all dyads", {
-  combos = utils::combn(1:11,1,function(x){c(0,x)},simplify=FALSE)
-  inverted_combos = utils::combn(1:11,1,function(x){c(x,12)},simplify=FALSE)
-
-  chords_up            = combos %>% purrr::map(~h(.x,observation_point=0))
-  inverted_chords_down = inverted_combos %>% purrr::map(~h(.x,observation_point=12))
-  chords = dplyr::bind_rows(
-    dplyr::bind_rows(chords_up),dplyr::bind_rows(inverted_chords_down))
-
-  title='Periodicity: Dyads Affinity v Brightness'
-  p=harmony_plot(chords,c('stolzenburg2015.brightness','stolzenburg2015.affinity'),title=title)
-  save_harmony_plots(p)
-  expect_true(!is.null(p))
-
-  title='Primes: Dyads Affinity v Brightness'
-  p=harmony_plot(chords,c('primes.brightness','primes.affinity'),title=title)
-  save_harmony_plots(p)
-  expect_true(!is.null(p))
+  combos  = utils::combn(1:12,1,function(x){c(0,x)} ,simplify=FALSE)
+  plot_affinity_brightness_up_down(combos,'Dyads')
 })
 test_that("plot all triads", {
-  combos = utils::combn(1:11,2,function(x){c(0,x)},simplify=FALSE)
-  inverted_combos = utils::combn(1:11,2,function(x){c(x,12)},simplify=FALSE)
-
-  chords_up            =  combos %>% purrr::map(~h(.x,observation_point=0))
-  inverted_chords_down =  inverted_combos %>% purrr::map(~h(.x,observation_point=12))
-  chords_down          =  combos %>% purrr::map(~h(.x,observation_point=12))
-  inverted_chords_up   =  inverted_combos %>% purrr::map(~h(.x,observation_point=0))
-  chords = dplyr::bind_rows(
-    dplyr::bind_rows(chords_up),dplyr::bind_rows(inverted_chords_down),
-    dplyr::bind_rows(chords_down),dplyr::bind_rows(inverted_chords_up))
-
-  title='Periodicity: Triads Affinity v Brightness'
-  p=harmony_plot(chords,c('stolzenburg2015.brightness','stolzenburg2015.affinity'),title=title)
-  save_harmony_plots(p)
-  expect_true(!is.null(p))
-
-  title='Primes: Triads Affinity v Brightness'
-  p=harmony_plot(chords,c('primes.brightness','primes.affinity'),title=title)
-  save_harmony_plots(p)
-  expect_true(!is.null(p))
+  combos  = utils::combn(1:11,2,function(x){c(0,x)} ,simplify=FALSE)
+  plot_affinity_brightness_up_down(combos,'Triads')
 })
-test_that("plot compound dyads", {
-  combos = utils::combn(1:11,1,function(x){c(-12,x)},simplify=FALSE)
-  inverted_combos = utils::combn(1:11,1,function(x){c(x,24)},simplify=FALSE)
-
-  chords_up            =  combos %>% purrr::map(~h(.x,observation_point=0))
-  inverted_chords_up   =  inverted_combos %>% purrr::map(~h(.x,observation_point=0))
-  chords_down          =  combos %>% purrr::map(~h(.x,observation_point=12))
-  inverted_chords_down =  inverted_combos %>% purrr::map(~h(.x,observation_point=12))
-  chords = dplyr::bind_rows(
-    dplyr::bind_rows(chords_up),dplyr::bind_rows(inverted_chords_up),
-    dplyr::bind_rows(chords_down),dplyr::bind_rows(inverted_chords_down)
-  )
-
-  title='Periodicity: Dyads Compound Affinity v Brightness'
-  p=harmony_plot(chords,c('stolzenburg2015.brightness','stolzenburg2015.affinity'),title=title)
-  save_harmony_plots(p)
-  expect_true(!is.null(p))
-
-  title='Primes: Dyads Compound Affinity v Brightness'
-  p=harmony_plot(chords,c('primes.brightness','primes.affinity'),title=title)
-  save_harmony_plots(p)
-  expect_true(!is.null(p))
+test_that("plot major and minor triads", {
+  combos  = list(
+    c(0,4,7), c(0,3,8), c(0,5,9), # major
+    c(0,3,7), c(0,4,9), c(0,5,8)) # minor
+  plot_affinity_brightness_up_down(combos,'Major and Minor Triads')
 })
-test_that("plot compound triads", {
-  combos = utils::combn(1:11,2,function(x){c(-12,x)},simplify=FALSE)
-  inverted_combos = utils::combn(1:11,2,function(x){c(x,24)},simplify=FALSE)
-
-  chords_up            =  combos %>% purrr::map(~h(.x,observation_point=0))
-  inverted_chords_up   =  inverted_combos %>% purrr::map(~h(.x,observation_point=0))
-  chords_down          =  combos %>% purrr::map(~h(.x,observation_point=12))
-  inverted_chords_down =  inverted_combos %>% purrr::map(~h(.x,observation_point=12))
+test_that("Major 1st Inversion", {
   chords = dplyr::bind_rows(
-    dplyr::bind_rows(chords_up),dplyr::bind_rows(inverted_chords_up),
-    dplyr::bind_rows(chords_down),dplyr::bind_rows(inverted_chords_down)
-  )
-
-  title='Periodicity: Triads Compound Affinity v Brightness'
-  p=harmony_plot(chords,c('stolzenburg2015.brightness','stolzenburg2015.affinity'),title=title)
-  save_harmony_plots(p)
-  expect_true(!is.null(p))
-
-  title='Primes: Triads Compound Affinity v Brightness'
-  p=harmony_plot(chords,c('primes.brightness','primes.affinity'),title=title)
-  save_harmony_plots(p)
-  expect_true(!is.null(p))
+    h(c(0,4,7),observation_point=0),
+    h(c(0,3,8),observation_point=12),
+    h(c(0,3,8),observation_point=0),
+    h(c(0,3)  ,observation_point=0),
+    h(c(0,8)  ,observation_point=0),
+    h(c(0,5)  ,observation_point=0))
+  plot_affinity_brightness(chords,'Major 1st Inversion')
 })

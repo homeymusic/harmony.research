@@ -29,6 +29,8 @@ h(
 \item{root}{The reference pitch of the chord or larger context}
 
 \item{name}{A custom name for the note or chord}
+
+\item{default_consonance_metric}{The metric that will populate affinity and brightness values}
 }
 \value{
 A tibble

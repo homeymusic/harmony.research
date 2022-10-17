@@ -20,19 +20,19 @@ save_harmony_plots <- function(x,file_types=c('svg','png')) {
 
 save_harmony_plot <- function(x,file_type='svg') {
   filename=paste0(substr(paste0(
-    getwd(),'/_plots/_',file_type,'/',fs::path_sanitize(gsub(' ', '', x$labels$title))),1,252),
+    getwd(),'/_plots/_',file_type,'/',fs::path_sanitize(gsub(' ', '', x$labels$title))),1,128),
     '.',file_type)
   suppressMessages(ggplot2::ggsave(filename,plot=x))
 }
 
 colors_homey <- function() {
   list(
-    'background' = '#664433',
-    'foreground' = '#F3DDAB',
+    'background'        = '#664433',
+    'foreground'        = '#F3DDAB',
     'subtle_foreground' = '#7F745A',
-    'minor' = '#ABDAF3',
-    'neutral' = '#FF5500',
-    'major' = '#F3A904'
+    'minor'             = '#ABDAF3',
+    'neutral'           = '#FF5500',
+    'major'             = '#F3A904'
   )
 }
 colour_factor_homey <- function(x,column_name) {

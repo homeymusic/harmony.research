@@ -94,9 +94,9 @@ test_that('implicit observation_point for minor triad and inversions makes sense
 })
 test_that('for solo pitches that the integer name includes the tonic, octave and both arrows',{
   expect_equal(h(c(0))$integer_name,'0\u0332↑↓ 1\u03322\u0332')
-  expect_equal(h(c(12))$integer_name,'0̲ 12↑↓')
+  expect_equal(h(c(12))$integer_name,'0̲ 1̲2̲↑↓')
   expect_equal(h(c(7))$integer_name,'0\u0332 7↑↓ 1\u03322\u0332')
-  expect_equal(locrian$integer_name,'0̲:1:3:5:6:8:10:12↑↓')
+  expect_equal(locrian$integer_name,'0̲:1:3:5:6:8:10:1\u03322\u0332↑↓')
   expect_equal(h(c(0,-4,-7),observation_point=0,root=-7)$integer_name,'0:-4:-\u03327\u0332↑')
 
   expect_equal(h(c(0+60),root=60)$integer_name,'6\u03320\u0332↑↓ 7\u03322\u0332')
