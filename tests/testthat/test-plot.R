@@ -27,6 +27,11 @@ test_that("plot all triads", {
   combos  = utils::combn(1:11,2,function(x){c(0,x)} ,simplify=FALSE)
   plot_affinity_brightness_up_down(combos,'Triads')
 })
+test_that("plot triads symmetrical", {
+  combos             = utils::combn(1:11,2,function(x){c(0,x,12)} ,simplify=FALSE)
+  chords_symmetrical = dplyr::bind_rows(combos %>% purrr::map(~h(.x,observation_point=NA)))
+  plot_affinity_brightness(chords_symmetrical,'Triads Symmetrical')
+})
 test_that("plot major and minor triads", {
   combos  = list(
     c(0,4,7), c(0,3,8), c(0,5,9), # major
@@ -38,8 +43,19 @@ test_that("Major 1st Inversion", {
     h(c(0,4,7),observation_point=0),
     h(c(0,3,8),observation_point=12),
     h(c(0,3,8),observation_point=0),
+    h(c(0,0)  ,observation_point=0),
     h(c(0,3)  ,observation_point=0),
     h(c(0,8)  ,observation_point=0),
     h(c(0,5)  ,observation_point=0))
   plot_affinity_brightness(chords,'Major 1st Inversion')
+})
+test_that("tonic octave pitch ratio space is interesting", {
+  midi_notes = 0:128
+  middle_c = 60
+  pitches = dplyr::bind_rows((midi_notes - middle_c) %>% purrr::map(p))
+  tonic_ratio = pitches$tonic.num.hi / pitches$tonic.den.lo
+  octave_ratio = pitches$octave.num.lo / pitches$octave.den.hi
+  plot(tonic_ratio,octave_ratio)
+  text(tonic_ratio,octave_ratio,midi_notes,pos=1)
+  expect_true(TRUE)
 })

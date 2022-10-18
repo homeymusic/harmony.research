@@ -43,15 +43,11 @@ relative_periodicity <- function(x,observation_point) {
 
   pitches = dplyr::bind_rows(x %>% sort %>% purrr::map(pitch))
   if (observation_point        == 0) {
-    lowest_period_length = pitches$tonic.den.lo[1]  / pitches$tonic.num.hi[1]
     lowest_pitches       = pitches$tonic.den.lo
-    minimum_ratio        = pitches$tonic.num.hi[1]  / pitches$tonic.den.lo[1]
   } else if (observation_point == 12) {
-    lowest_period_length = pitches$octave.den.hi[1] / pitches$octave.num.lo[1]
     lowest_pitches       = pitches$octave.num.lo
-    minimum_ratio        = pitches$octave.num.lo[1] / pitches$octave.den.hi[1]
   }
-  log2(lowest_period_length * lcm(lowest_pitches) * minimum_ratio)
+  log2(lcm(lowest_pitches))
 }
 
 lcm <- function(x) {
