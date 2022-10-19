@@ -15,7 +15,18 @@ plot_affinity_brightness <- function(chords,chords_name) {
   save_harmony_plots(p)
   expect_true(!is.null(p))
 }
+plot_tonic_octave_dissonance <- function(chords,chords_name) {
+  dimensions = 'Tonic-Octave Dissonance'
+  title = paste('Periodicity:',chords_name,dimensions)
+  p=harmony_plot(chords,c('stolzenburg2015.tonic.dissonance','stolzenburg2015.octave.dissonance'),title=title)
+  save_harmony_plots(p)
+  expect_true(!is.null(p))
+}
 test_that("plot core pitches", {
+  chords = dplyr::bind_rows(0:12 %>% purrr::map(~h(.x,observation_point = NA)))
+  plot_tonic_octave_dissonance(chords,'Pitches')
+})
+test_that('plot of tonic-octave dissonance makes sense',{
   chords = dplyr::bind_rows(0:12 %>% purrr::map(~h(.x,observation_point = NA)))
   plot_affinity_brightness(chords,'Pitches')
 })
@@ -58,4 +69,8 @@ test_that("tonic octave pitch ratio space is interesting", {
   plot(tonic_ratio,octave_ratio)
   text(tonic_ratio,octave_ratio,midi_notes,pos=1)
   expect_true(TRUE)
+})
+test_that('diatonic modes look good',{
+  chords = dplyr::bind_rows(diatonic_scales())
+  plot_affinity_brightness(chords,'Diatonic Scales')
 })
