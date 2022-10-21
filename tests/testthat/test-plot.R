@@ -18,11 +18,12 @@ plot_affinity_brightness <- function(chords,chords_name) {
 plot_tonic_octave_dissonance <- function(chords,chords_name) {
   dimensions = 'Tonic-Octave Dissonance'
   title = paste('Periodicity:',chords_name,dimensions)
-  p=harmony_plot(chords,c('stolzenburg2015.tonic.dissonance','stolzenburg2015.octave.dissonance'),title=title)
+  chords = dplyr::bind_rows(0:12 %>% purrr::map(~h(.x,observation_point = NA)))
+  p=harmony_plot(chords,c('stolzenburg2015.octave.dissonance','stolzenburg2015.tonic.dissonance'),title=title)
   save_harmony_plots(p)
   expect_true(!is.null(p))
 }
-test_that("plot core pitches", {
+test_that("dissonance plot of core pitches", {
   chords = dplyr::bind_rows(0:12 %>% purrr::map(~h(.x,observation_point = NA)))
   plot_tonic_octave_dissonance(chords,'Pitches')
 })
@@ -38,10 +39,19 @@ test_that("plot all triads", {
   combos  = utils::combn(1:11,2,function(x){c(0,x)} ,simplify=FALSE)
   plot_affinity_brightness_up_down(combos,'Triads')
 })
+test_that("plot all tetrads", {
+  combos  = utils::combn(1:11,3,function(x){c(0,x)} ,simplify=FALSE)
+  plot_affinity_brightness_up_down(combos,'Tetrads')
+})
 test_that("plot triads symmetrical", {
   combos             = utils::combn(1:11,2,function(x){c(0,x,12)} ,simplify=FALSE)
   chords_symmetrical = dplyr::bind_rows(combos %>% purrr::map(~h(.x,observation_point=NA)))
   plot_affinity_brightness(chords_symmetrical,'Triads Symmetrical')
+})
+test_that("plot tetrads symmetrical", {
+  combos             = utils::combn(1:11,3,function(x){c(0,x,12)} ,simplify=FALSE)
+  chords_symmetrical = dplyr::bind_rows(combos %>% purrr::map(~h(.x,observation_point=NA)))
+  plot_affinity_brightness(chords_symmetrical,'Tetrads Symmetrical')
 })
 test_that("plot major and minor triads", {
   combos  = list(
