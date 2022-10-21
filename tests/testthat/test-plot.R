@@ -43,6 +43,18 @@ test_that("plot all tetrads", {
   combos  = utils::combn(1:11,3,function(x){c(0,x)} ,simplify=FALSE)
   plot_affinity_brightness_up_down(combos,'Tetrads')
 })
+test_that("plot tetrads up", {
+  combos  = utils::combn(1:11,3,function(x){c(0,x)} ,simplify=FALSE)
+  chords_up   = combos %>% purrr::map(~h(.x,observation_point=0))
+  chords = dplyr::bind_rows(chords_up)
+  plot_affinity_brightness(chords,'Tetrads Up')
+})
+test_that("plot tetrads down", {
+  combos  = utils::combn(1:11,3,function(x){c(0,x)} ,simplify=FALSE)
+  chords_down   = combos %>% purrr::map(~h(.x,observation_point=12))
+  chords = dplyr::bind_rows(chords_down)
+  plot_affinity_brightness(chords,'Tetrads Down')
+})
 test_that("plot triads symmetrical", {
   combos             = utils::combn(1:11,2,function(x){c(0,x,12)} ,simplify=FALSE)
   chords_symmetrical = dplyr::bind_rows(combos %>% purrr::map(~h(.x,observation_point=NA)))
@@ -58,6 +70,14 @@ test_that("plot major and minor triads", {
     c(0,4,7), c(0,3,8), c(0,5,9), # major
     c(0,3,7), c(0,4,9), c(0,5,8)) # minor
   plot_affinity_brightness_up_down(combos,'Major and Minor Triads')
+})
+test_that("plot all major and minor triads plus one", {
+  combos_major  = c(utils::combn(c(1:11)[c(-4,-7)],1,function(x){c(0,4,7,x) %>% sort} ,simplify=FALSE),
+                    utils::combn(c(1:11)[c(-4,-7)],1,function(x){-c(0,4,7,x) %>% sort} ,simplify=FALSE))
+  combos_minor  = c(utils::combn(c(1:11)[c(-3,-7)],1,function(x){c(0,3,7,x) %>% sort} ,simplify=FALSE),
+                    utils::combn(c(1:11)[c(-3,-7)],1,function(x){-c(0,3,7,x) %>% sort} ,simplify=FALSE))
+  combos = c(combos_major,combos_minor)
+  plot_affinity_brightness_up_down(combos,'Tetrads Major Minor Triads Plus One')
 })
 test_that("Major 1st Inversion", {
   chords = dplyr::bind_rows(
