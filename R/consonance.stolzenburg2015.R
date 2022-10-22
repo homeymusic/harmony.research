@@ -60,5 +60,5 @@ consonance.stolzenburg2015.max_dissonance <- function() {
   # this is completely arbitrary
   # using the minor 2nd logarithmically
   # it does turn out to be exactly 15, like the max from the primes measure
-  2^(relative_periodicity(c(0,1),observation_point=0))
+  relative_periodicity(c(0,1),observation_point=0)
 }
