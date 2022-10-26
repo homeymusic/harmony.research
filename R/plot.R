@@ -14,15 +14,15 @@ harmony_plot <- function(x,columns,title=NULL, x_expansion_mult=0.1,
     ggrepel::geom_text_repel(ggplot2::aes(label=.data$integer_name), segment.color = colors_homey()$subtle_foreground,  max.overlaps = max_overlaps)
 }
 
-save_harmony_plots <- function(x,file_types=c('svg','png','pdf')) {
-  file_types %>% purrr::map(~save_harmony_plot(x,.x))
+save_harmony_plots <- function(x,filetypes=c('svg','png','pdf')) {
+  filetypes %>% purrr::map(~save_harmony_plot(x,.x))
 }
 
-save_harmony_plot <- function(x,file_type='svg') {
+save_harmony_plot <- function(x,filetype='svg') {
   filename=paste0(substr(paste0(
-    getwd(),'/_plots/_',file_type,'/',fs::path_sanitize(gsub(' ', '', x$labels$title))),1,128),
-    '.',file_type)
-  if (file_type=='pdf') {
+    getwd(),'/_plots/_',filetype,'/',fs::path_sanitize(gsub(' ', '', x$labels$title))),1,128),
+    '.',filetype)
+  if (filetype=='pdf') {
     suppressMessages(ggplot2::ggsave(filename,plot=x,device=cairo_pdf))
   } else {
     suppressMessages(ggplot2::ggsave(filename,plot=x))
