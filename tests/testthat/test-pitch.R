@@ -71,3 +71,9 @@ test_that('octave spanning pitches are expressed in lowest terms',{
   M10 = pitch(16)
   expect_equal(c(M10$tonic.num.hi,M10$tonic.den.lo),c(5,2))
 })
+test_that('choose arbitrary frequency with tonic 0 at C4 and octave 12 at C5',{
+  expect_equal(p(0)$frequency,      261.63,     tolerance=0.1)
+  expect_equal(p(7)$frequency,      261.63*3/2, tolerance=0.1)
+  expect_equal(p(12)$frequency,     261.63*2,   tolerance=0.1)
+  expect_equal(p(127-60)$frequency, 261.63*48,   tolerance=0.1)
+})

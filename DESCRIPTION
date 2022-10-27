@@ -29,4 +29,9 @@ Imports:
     gmp,
     ggplot2,
     fs,
-    ggrepel
+    ggrepel,
+    hrep (>= 0.15.0),
+    dycon (>= 0.3.0)
+Remotes:  
+    pmcharrison/hrep,
+    pmcharrison/dycon

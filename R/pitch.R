@@ -17,7 +17,8 @@ pitch.uncached <- function(x) {
     octave.den.hi    = octave.ratio[2],
     octave.position  = 1200 * log2(.data$octave.num.lo / .data$octave.den.hi), # cents
     # use the tonic position as the primary position in cents
-    cents            = .data$tonic.position # position in cents
+    cents            = .data$tonic.position, # position in cents
+    frequency        = tonic.ratio[1] / tonic.ratio[2] * 261.63
   )
 }
 

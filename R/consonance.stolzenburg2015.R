@@ -1,12 +1,11 @@
 consonance.stolzenburg2015.uncached <- function(chord) {
   checkmate::assert_integerish(chord)
 
-  tonic  = relative_periodicity(chord,observation_point=0)
-  octave = relative_periodicity(chord,observation_point=12)
-
   ###################################################################################
   # this is the 'heavy lifting' for calculating affinity, brightness and consonance
   #
+  tonic  = relative_periodicity(chord,observation_point=0)
+  octave = relative_periodicity(chord,observation_point=12)
   # calculate 2-dimensional tonic-octave dissonance
   tonic_octave_dissonance = cbind(tonic,octave)
   # flip orientation to 2-dimensional tonic-octave consonance
@@ -15,7 +14,7 @@ consonance.stolzenburg2015.uncached <- function(chord) {
   affinity_brightness = tonic_octave_consonance %>% rotate(pi/4)
 
   # store the ABCDs: affinity brightness consonance dissonance
-  t = tibble::tibble_row(
+  tibble::tibble_row(
     tonic.dissonance  = tonic_octave_dissonance[1,1],
     octave.dissonance = tonic_octave_dissonance[1,2],
     tonic.consonance  = tonic_octave_consonance[1,1],
@@ -23,7 +22,6 @@ consonance.stolzenburg2015.uncached <- function(chord) {
     affinity          = affinity_brightness[1,2],
     brightness        = affinity_brightness[1,1]
   )
-  t
 }
 
 #' Consonance:
