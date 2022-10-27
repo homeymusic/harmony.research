@@ -181,3 +181,7 @@ test_that('default name works',{
   minor_triad = h(c(0,3,7),name=explicit_name)
   expect_equal(minor_triad$name,explicit_name)
 })
+test_that('labels make sense',{
+  expect_equal(h(0)$label,"0̲↑↓ 1̲2̲")
+  expect_equal(h(0,name='tonic')$label,"0̲↑↓ 1̲2̲\ntonic")
+})

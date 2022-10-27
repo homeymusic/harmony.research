@@ -65,6 +65,13 @@ test_that("plot tetrads symmetrical", {
 test_that("plot major and minor triads", {
   plot_affinity_brightness(major_minor_triads(),'Major and Minor Triads')
 })
+test_that("plot triads in harmonic dualism", {
+  chords  = dplyr::bind_rows(h(-c(0,4,7),observation_point=12, name = 'Major Down'),
+                             h(-c(0,3,7),observation_point=12, name = 'minor down'),
+                             h(c(0,4,7),observation_point=0,   name = 'Major Up'),
+                             h(c(0,3,7),observation_point=0,   name = 'minor up'))
+  plot_affinity_brightness(chords,'Major Minor Triads Harmonic Dualism')
+})
 test_that("plot all major and minor triads plus one", {
   combos_major  = c(utils::combn(c(1:11)[c(-4,-7)],1,function(x){c(0,4,7,x) %>% sort} ,simplify=FALSE),
                     utils::combn(c(1:11)[c(-4,-7)],1,function(x){-c(0,4,7,x) %>% sort} ,simplify=FALSE))
