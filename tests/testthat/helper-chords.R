@@ -3,15 +3,28 @@ major_triads <- function() {
     "root"=h(c(0,4,7),
              root=0,
              observation_point=0,
-             name="M"),
-    "1st inversion"=h(c(0+12,4,7),
-                      root=12,
+             name="Major Root"),
+    # TODO: put this chord back in if I can find a canonical name for it
+    # "major down"=h(c(0,4,7),
+    #                root=7,
+    #                observation_point=12,
+    #                name="Major 5/3 Down?"),
+    "6/3"=h(c(0,3,8),
+            root=0,
+            observation_point=0,
+            name="Major 6/3"),
+    "1st inversion"=h(c(0,3,8),
+                      root=8,
                       observation_point=12,
-                      name="M'"),
-    "2nd inversion"=h(c(0+12,4+12,7),
-                      root=12,
+                      name="Major 1st Inversion"),
+    "6/4"=h(c(0,5,9),
+            root=0,
+            observation_point=0,
+            name="Major 6/4"),
+    "2nd inversion"=h(c(0,5,9),
+                      root=9,
                       observation_point=12,
-                      name="M''")
+                      name="Major 2nd Inversion")
   )
 }
 minor_triads <- function() {
@@ -19,16 +32,32 @@ minor_triads <- function() {
     "root"=h(c(0,3,7),
              root=0,
              observation_point=0,
-             name="m"),
-    "1st inversion"=h(c(0+12,3,7),
-                      root=12,
+             name="minor root"),
+    # TODO: put this chord back in if I can find a canonical name for it
+    # "minor down"=h(c(0,3,7),
+    #                root=7,
+    #                observation_point=12,
+    #                name="minor 5/3 down?"),
+    "minor 6/3"=h(c(0,4,9),
+                  root=0,
+                  observation_point=0,
+                  name="minor 6/3"),
+    "1st inversion"=h(c(0,4,9),
+                      root=9,
                       observation_point=12,
-                      name="m'"),
-    "2nd inversion"=h(c(0+12,3+12,7),
-                      root=12,
+                      name="minor 1st inversion"),
+    "minor 6/4"=h(c(0,5,8),
+                  root=0,
+                  observation_point=0,
+                  name="minor 6/4"),
+    "2nd inversion"=h(c(0,5,8),
+                      root=8,
                       observation_point=12,
-                      name="m''")
+                      name="minor 2nd inversion")
   )
+}
+major_minor_triads <- function() {
+  dplyr::bind_rows(dplyr::bind_rows(major_triads()),dplyr::bind_rows(minor_triads()))
 }
 interval_components <- function() {
   tibble::tibble(
@@ -41,17 +70,19 @@ interval_components <- function() {
   )
 }
 core_pitches <- function() {
-  dplyr::bind_rows(0:12 %>% purrr::map(~h(.x)))
+  intervals = interval_components()
+  dplyr::bind_rows(purrr::map2(intervals$integer_position,intervals$name,
+                               ~h(.x,name=.y,observation_point = NA)))
 }
-triads <- function() {
-  list(
-    'M'=h(c(0,4,7),name='M'),
-    'm'=h(c(0,3,7),name='m'),
-    'm46'=h(c(0,5,8),name='m46'),
-    "m46'"=h(c(0,5,8),name="m46'",observation_point=12),
-    'M46'=h(c(0,5,9),name='M46'),
-    "M46'"=h(c(0,5,9),name="M46'",observation_point=12))
-}
+# triads <- function() {
+#   list(
+#     'M'=h(c(0,4,7),name='M'),
+#     'm'=h(c(0,3,7),name='m'),
+#     'm46'=h(c(0,5,8),name='m46'),
+#     "m46'"=h(c(0,5,8),name="m46'",observation_point=12),
+#     'M46'=h(c(0,5,9),name='M46'),
+#     "M46'"=h(c(0,5,9),name="M46'",observation_point=12))
+# }
 diatonic_scales <- function() {
   list(
     'locrian'=h(c(0,1,3,5,6,8,10,12), name = 'locrian'),

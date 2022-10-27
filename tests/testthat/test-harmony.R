@@ -14,24 +14,24 @@ test_that('params are stored',{
   expect_equal(major_triad_root$integer,c(0,4,7)%>%mean)
   expect_equal(major_triad_root$observation_point,0)
   expect_equal(major_triad_root$root,0)
-  expect_equal(major_triad_root$name,'M')
+  expect_equal(major_triad_root$name,'Major Root')
 })
 test_that('integer names are informative and maintain voice leading order',{
   # major triads
   expect_equal(major_triad_root$integer_name,"0\u0332:4:7↑")
-  expect_equal(major_triad_first_inversion$integer_name,"1\u03322\u0332:4:7↓")
-  expect_equal(major_triad_second_inversion$integer_name,"1\u03322\u0332:16:7↓")
+  expect_equal(major_triad_first_inversion$integer_name,"0:3:8̲↓")
+  expect_equal(major_triad_second_inversion$integer_name,"0:5:9̲↓")
 
   # minor triads
   expect_equal(minor_triad_root$integer_name,"0\u0332:3:7↑")
-  expect_equal(minor_triad_first_inversion$integer_name,"1\u03322\u0332:3:7↓")
-  expect_equal(minor_triad_second_inversion$integer_name,"1\u03322\u0332:15:7↓")
+  expect_equal(minor_triad_first_inversion$integer_name,"0:4:9̲↓")
+  expect_equal(minor_triad_second_inversion$integer_name,"0:5:8̲↓")
 })
 test_that('if implicit and explicit observation_point agree then do not flip it.',{
   expect_gt(major_triad_first_inversion$primes.brightness,0)
 })
 test_that('guessed roots make sense',{
-  expect_equal(major_triad_first_inversion$guessed_root,12)
+  expect_equal(major_triad_first_inversion$guessed_root,8)
   expect_equal(h(c(1,2,3))$guessed_root,1)
   expect_equal(h(c(12,4,7),root=4)$guessed_root,12)
 })
@@ -129,10 +129,8 @@ test_that('the major triad is perfectly bright. and the minor triad is a third',
 })
 test_that('the similarities among major and minor triads under inversion are interesting',{
   expect_equal(major_triad_root$primes.affinity,major_triad_first_inversion$primes.affinity)
-  expect_equal(major_triad_first_inversion$primes.brightness,major_triad_second_inversion$primes.brightness)
 
   expect_equal(minor_triad_root$primes.affinity,minor_triad_first_inversion$primes.affinity)
-  expect_equal(minor_triad_first_inversion$primes.brightness,minor_triad_second_inversion$primes.brightness)
 })
 test_that("tonic-octave symmetrical chords have identical consonance regardless of observation_point",{
   chord = c(0,4,7,12)
@@ -162,16 +160,15 @@ test_that('harmony guesses that a chord containing root and root + 12 has observ
   expect_equal(locrian$observation_point,NA)
   expect_equal(h(attr(locrian,'chord')+60)$observation_point,NA)
 })
-test_that('default consonance metric woks as expected',{
+test_that('default consonance metric works as expected',{
   minor_triad_stolzenburg2015 = h(c(0,3,7))
   # stolzenburg is default
   expect_equal(minor_triad_stolzenburg2015$affinity,minor_triad_stolzenburg2015$stolzenburg2015.affinity)
   expect_equal(minor_triad_stolzenburg2015$brightness,minor_triad_stolzenburg2015$stolzenburg2015.brightness)
-  # integer_name, affinity, brightness start at column 4
-  expect_equal(minor_triad_stolzenburg2015$integer_name,minor_triad_stolzenburg2015[[4]])
-  expect_equal(minor_triad_stolzenburg2015$brightness,minor_triad_stolzenburg2015[[5]])
-  expect_equal(minor_triad_stolzenburg2015$affinity,minor_triad_stolzenburg2015[[6]])
-  # can switch default to some other consonance metric and it workd
+  expect_equal(minor_triad_stolzenburg2015$integer_name,"0̲:3:7↑")
+  expect_equal(minor_triad_stolzenburg2015$brightness,-0.8684828,tolerance = 0.001)
+  expect_equal(minor_triad_stolzenburg2015$affinity,1.453445,tolerance = 0.001)
+  # can switch default to some other consonance metric and it works
   minor_triad_primes = h(c(0,3,7),default_consonance_metric = 'primes')
   expect_equal(minor_triad_primes$affinity,minor_triad_primes$primes.affinity)
   expect_equal(minor_triad_primes$brightness,minor_triad_primes$primes.brightness)
@@ -179,7 +176,7 @@ test_that('default consonance metric woks as expected',{
 })
 test_that('default name works',{
   minor_triad = h(c(0,3,7))
-  expect_equal(minor_triad$name,as.character(minor_triad$integer))
+  expect_equal(minor_triad$name,NA)
   explicit_name = 'minor triad'
   minor_triad = h(c(0,3,7),name=explicit_name)
   expect_equal(minor_triad$name,explicit_name)

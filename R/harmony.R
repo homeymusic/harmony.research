@@ -13,7 +13,7 @@ harmony.uncached <- function(chord, observation_point=NA, root=NA, name=NA,
   t <- tibble::tibble_row(
     cents              = cents(chord),   # position in cents
     integer            = chord %>% mean, # integer position
-    name               = ifelse(is.na(name),as.character(integer),name),
+    name               = name,
     explicit_root      = root,
     explicit_observation_point = observation_point,
     guessed_root       = guessed_root(chord,.data$explicit_observation_point),
@@ -47,6 +47,7 @@ harmony.uncached <- function(chord, observation_point=NA, root=NA, name=NA,
   # store the integer_name and the default consonance metric's affinity and brightness
   tibble::add_column(t,
                      integer_name = harmonic_integer_name(chord,t$observation_point,t$root),
+                     label        = stringr::str_trim(paste(integer_name,na.omit(name),sep="\n")),
                      brightness   = t[[paste0(default_consonance_metric,'.brightness')]],
                      affinity     = t[[paste0(default_consonance_metric,'.affinity')]],
                      .after='name')
