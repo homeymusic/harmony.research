@@ -32,22 +32,29 @@ harmony.uncached <- function(chord, observation_point=NA, root=NA, name=NA,
     centered_chord(chord, t$observation_point, t$root)
 
   ##########################################
-  # calculate various consonance values
+  # calculate various consonance metrics
   #
-  # mulloy2022      - sum of prime factors metric
+  # mulloy2022      - primes with boundary condition
   consonance.primes           = consonance.primes(centered_chord)
-  colnames(consonance.primes) = paste0("primes.", colnames(consonance.primes))
-  # akin to stolzenburg2015 - log periodicity metric
+  colnames(consonance.primes) = paste0("primes.",
+                                       colnames(consonance.primes))
+  # stolzenburg2015 - periodicity (without smoothing)
   consonance.stolzenburg2015  =
     consonance.stolzenburg2015(centered_chord)
   colnames(consonance.stolzenburg2015) = paste0("stolzenburg2015.",
                                                 colnames(consonance.stolzenburg2015))
+  # hutchinson1978 - roughness
+  consonance.hutchinson1978  =
+    consonance.hutchinson1978(centered_chord)
+  colnames(consonance.hutchinson1978) = paste0("hutchinson1978.",
+                                               colnames(consonance.hutchinson1978))
+
   # store all the consonance metrics
-  t=tibble::add_column(t,consonance.primes,consonance.stolzenburg2015)
+  t=tibble::add_column(t,consonance.primes,consonance.stolzenburg2015,consonance.hutchinson1978)
   # store the integer_name and the default consonance metric's affinity and brightness
   tibble::add_column(t,
                      integer_name = harmonic_integer_name(chord,t$observation_point,t$root),
-                     label        = stringr::str_trim(paste(integer_name,na.omit(name),sep="\n")),
+                     label        = stringr::str_trim(paste(.data$integer_name,stats::na.omit(name),sep="\n")),
                      brightness   = t[[paste0(default_consonance_metric,'.brightness')]],
                      affinity     = t[[paste0(default_consonance_metric,'.affinity')]],
                      .after='name')

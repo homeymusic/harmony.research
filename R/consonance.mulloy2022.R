@@ -52,7 +52,8 @@ prime_factors_sum <- function(numerator,denominator) {
 
 # we are using the semitone, the minor second m2 from the tonic as max dissonance
 # the result would be the same if we used major 7th M7 from octave perspective
-consonance.primes.max_dissonance <- function() {
+consonance.primes.max_dissonance.uncached <- function() {
   m2 = pitch(1) # minor 2nd
   prime_factors_sum(m2$tonic.num.hi, m2$tonic.den.lo)
 }
+consonance.primes.max_dissonance <- memoise::memoise(consonance.primes.max_dissonance.uncached)

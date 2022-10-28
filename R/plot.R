@@ -23,7 +23,7 @@ save_harmony_plot <- function(x,filetype='svg') {
     getwd(),'/_plots/_',filetype,'/',fs::path_sanitize(gsub(' ', '', x$labels$title))),1,128),
     '.',filetype)
   if (filetype=='pdf') {
-    suppressMessages(ggplot2::ggsave(filename,plot=x,device=cairo_pdf))
+    suppressMessages(ggplot2::ggsave(filename,plot=x,device=grDevices::cairo_pdf))
   } else {
     suppressMessages(ggplot2::ggsave(filename,plot=x))
   }

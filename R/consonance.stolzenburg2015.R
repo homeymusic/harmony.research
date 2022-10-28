@@ -41,11 +41,11 @@ relative_periodicity <- function(x,observation_point) {
 
   pitches = dplyr::bind_rows(x %>% sort %>% purrr::map(pitch))
   if (observation_point        == 0) {
-    lowest_pitches       = pitches$tonic.den.lo
+    lowest_pitches = pitches$tonic.den.lo
   } else if (observation_point == 12) {
-    lowest_pitches       = pitches$octave.num.lo
+    lowest_pitches = pitches$octave.num.lo
   }
-  log2(lcm(lowest_pitches))
+  log2(lcm(lowest_pitches %>% sort))
 }
 
 lcm <- function(x) {
@@ -54,9 +54,9 @@ lcm <- function(x) {
   } else lcm(c(x[1], lcm(x[-1])))
 }
 
-consonance.stolzenburg2015.max_dissonance <- function() {
+consonance.stolzenburg2015.max_dissonance.uncached <- function() {
   # this is completely arbitrary
   # using the minor 2nd
-  # it does turn out to be exactly 15, like the max from the primes measure
   relative_periodicity(c(0,1),observation_point=0)
 }
+consonance.stolzenburg2015.max_dissonance <- memoise::memoise(consonance.stolzenburg2015.max_dissonance.uncached)

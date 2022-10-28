@@ -31,7 +31,9 @@ Imports:
     fs,
     ggrepel,
     hrep (>= 0.15.0),
-    dycon (>= 0.3.0)
-Remotes:  
+    dycon (>= 0.3.0),
+    stats,
+    grDevices
+Remotes: 
     pmcharrison/hrep,
     pmcharrison/dycon

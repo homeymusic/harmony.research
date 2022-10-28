@@ -20,7 +20,7 @@ consonance.hutchinson1978.uncached <- function(chord) {
     tonic.consonance  = tonic_octave_consonance[1,1],
     octave.consonance = tonic_octave_consonance[1,2],
     affinity          = affinity_brightness[1,2],
-    brightness        = affinity_brightness[1,1] - consonance.hutchinson1978.brightness0()
+    brightness        = affinity_brightness[1,1]
   )
 }
 
@@ -45,20 +45,17 @@ roughness <- function(x,observation_point) {
   dycon::roughness_hutch(spectrum)
 }
 
-consonance.hutchinson1978.max_dissonance <- function() {
+consonance.hutchinson1978.max_dissonance.uncached <- function() {
   # this is completely arbitrary
   # using the minor 2nd
-  # it does turn out to be exactly 15, like the max from the primes measure
   roughness(c(0,1),observation_point=0)
 }
+consonance.hutchinson1978.max_dissonance <- memoise::memoise(consonance.hutchinson1978.max_dissonance.uncached)
 
-consonance.hutchinson1978.rotation_angle <- function() {
+consonance.hutchinson1978.rotation_angle.uncached <- function() {
   max_diss = consonance.hutchinson1978.max_dissonance()
   rise = ((max_diss - roughness(0,0))  + (max_diss - roughness(0 ,12))) / 2
   run =  ((max_diss - roughness(0,12)) + (max_diss - roughness(12,12))) / 2
-  atan(rise / run) # TODO: replace this with actual calculation based on core pitches
+  pi / 2 - atan(rise / run)
 }
-
-consonance.hutchinson1978.brightness0 <- function() {
-  0 # TODO: calculate based on core pitches
-}
+consonance.hutchinson1978.rotation_angle <- memoise::memoise(consonance.hutchinson1978.rotation_angle.uncached)
