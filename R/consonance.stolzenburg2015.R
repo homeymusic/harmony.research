@@ -37,17 +37,12 @@ consonance.stolzenburg2015 <- memoise::memoise(consonance.stolzenburg2015.uncach
 relative_periodicity <- function(x,observation_point) {
   checkmate::assert_integerish(x)
   checkmate::assert_choice(observation_point,c(0,12))
-  lowest_period_length <- ratios_lower_pitches <- minimum_ratio <- NULL
 
-  pitches = dplyr::bind_rows(x %>% sort %>% purrr::map(pitch))
-  if (observation_point        == 0) {
-    lowest_pitches = pitches$tonic.den.lo
-  } else if (observation_point == 12) {
-    lowest_pitches = pitches$octave.num.lo
-  }
-  log2(lcm(lowest_pitches %>% sort))
+  pitches = dplyr::bind_rows(x %>% purrr::map(pitch))
+  log2(lcm(if (observation_point==0) pitches$tonic.den.lo else pitches$octave.num.lo))
 }
 
+# from https://github.com/pmcharrison/stolz15
 lcm <- function(x) {
   if (length(x) == 1L) x else if (length(x) == 2L) {
     gmp::lcm.default(x[1], x[2])
@@ -55,8 +50,7 @@ lcm <- function(x) {
 }
 
 consonance.stolzenburg2015.max_dissonance.uncached <- function() {
-  # this is completely arbitrary
-  # using the minor 2nd
+  # this is arbitrary: using the minor 2nd
   relative_periodicity(c(0,1),observation_point=0)
 }
 consonance.stolzenburg2015.max_dissonance <- memoise::memoise(consonance.stolzenburg2015.max_dissonance.uncached)

@@ -46,16 +46,16 @@ test_that("plot all major and minor triads plus one", {
   combos_minor  = c(utils::combn(c(1:11)[c(-3,-7)],1,function(x){c(0,3,7,x) %>% sort} ,simplify=FALSE),
                     utils::combn(c(1:11)[c(-3,-7)],1,function(x){-c(0,3,7,x) %>% sort} ,simplify=FALSE))
   combos = c(combos_major,combos_minor)
-  plot_affinity_brightness_up_down(combos,'Tetrads Major Minor Triads Plus One')
+  plot_affinity_brightness_up_down(combos,'Tetrads (Major and Minor Triads Plus One)')
 })
 test_that("plot major and minor triads", {
   plot_affinity_brightness(major_minor_triads(),'Major and Minor Triads')
 })
 test_that("plot triads in harmonic dualism", {
-  chords  = dplyr::bind_rows(h(-c(0,4,7),observation_point=12, name = 'Major Down'),
-                             h(-c(0,3,7),observation_point=12, name = 'minor down'),
-                             h(c(0,4,7),observation_point=0,   name = 'Major Up'),
-                             h(c(0,3,7),observation_point=0,   name = 'minor up'))
+  chords  = dplyr::bind_rows(h(-c(0,4,7),observation_point=12, name = 'Major Triad Down'),
+                             h(-c(0,3,7),observation_point=12, name = 'minor triad down'),
+                             h(c(0,4,7),observation_point=0,   name = 'Major Triad Up'),
+                             h(c(0,3,7),observation_point=0,   name = 'minor triad up'))
   plot_affinity_brightness(chords,'Major Minor Triads Harmonic Dualism')
 })
 test_that("Major 1st Inversion", {
@@ -68,6 +68,9 @@ test_that("Major 1st Inversion", {
     h(c(0,8)  ,observation_point=0),
     h(c(0,5)  ,observation_point=0))
   plot_affinity_brightness(chords,'Major 1st Inversion')
+})
+test_that("plot all seventh chords", {
+  plot_affinity_brightness(dplyr::bind_rows(seventh_chords()),'Seventh Chords')
 })
 test_that("tonic octave pitch ratio space is interesting", {
   midi_notes = 0:128
