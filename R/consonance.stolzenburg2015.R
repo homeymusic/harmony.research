@@ -50,7 +50,8 @@ lcm <- function(x) {
 }
 
 consonance.stolzenburg2015.max_dissonance.uncached <- function() {
-  # this is arbitrary: using the minor 2nd
-  relative_periodicity(c(0,1),observation_point=0)
+  # this is arbitrary: using the augmented triad
+  # cf https://global.oup.com/us/companion.websites/9780199772698/
+  relative_periodicity(c(0,4,8),observation_point=0)
 }
 consonance.stolzenburg2015.max_dissonance <- memoise::memoise(consonance.stolzenburg2015.max_dissonance.uncached)

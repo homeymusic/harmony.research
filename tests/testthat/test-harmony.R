@@ -167,7 +167,7 @@ test_that('default consonance metric works as expected',{
   expect_equal(minor_triad_stolzenburg2015$brightness,minor_triad_stolzenburg2015$stolzenburg2015.brightness)
   expect_equal(minor_triad_stolzenburg2015$integer_name,"0̲:3:7↑")
   expect_equal(minor_triad_stolzenburg2015$brightness,-0.8684828,tolerance = 0.001)
-  expect_equal(minor_triad_stolzenburg2015$affinity,1.453445,tolerance = 0.001)
+  expect_equal(minor_triad_stolzenburg2015$affinity,1.868483,tolerance = 0.001)
   # can switch default to some other consonance metric and it works
   minor_triad_primes = h(c(0,3,7),default_consonance_metric = 'primes')
   expect_equal(minor_triad_primes$affinity,minor_triad_primes$primes.affinity)
