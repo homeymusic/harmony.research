@@ -1,9 +1,9 @@
 interval_components <- function() {
   tibble::tibble(
     integer_position = 0:12,
-    name = c("Tonic","minor 2nd","Major 2nd","minor 3rd","Major 3rd",
-             "Perfect 4th","tritone","Perfect 5th","minor 6th",
-             "Major 6th","minor 7th","Major 7th","Octave"),
+    name = c("Tonic","Minor 2nd","Major 2nd","Minor 3rd","Major 3rd",
+             "Perfect 4th","Tritone","Perfect 5th","Minor 6th",
+             "Major 6th","Minor 7th","Major 7th","Octave"),
     brightness =  c(1,-1,1,-1,1,-1,0,1,-1,1,-1,1,-1),
     affinity =    c(15,1,3,7,6,10,4,10,6,7,3,1,15)
   )
@@ -45,26 +45,26 @@ minor_triads <- function() {
     "root"=h(c(0,3,7),
              root=0,
              observation_point=0,
-             name="minor triad root"),
+             name="Minor Triad Root"),
     "minor down"=h(c(0,3,7),
                    root=7,
                    observation_point=12),
     "minor 6/3"=h(c(0,4,9),
                   root=0,
                   observation_point=0,
-                  name="minor triad 6/3"),
+                  name="Minor Triad 6/3"),
     "1st inversion"=h(c(0,4,9),
                       root=9,
                       observation_point=12,
-                      name="minor triad 1st inversion"),
+                      name="Minor Triad 1st Inversion"),
     "minor 6/4"=h(c(0,5,8),
                   root=0,
                   observation_point=0,
-                  name="minor triad 6/4"),
+                  name="Minor Triad 6/4"),
     "2nd inversion"=h(c(0,5,8),
                       root=8,
                       observation_point=12,
-                      name="minor triad 2nd inversion")
+                      name="Minor Triad 2nd Inversion")
   )
 }
 major_minor_triads <- function() {

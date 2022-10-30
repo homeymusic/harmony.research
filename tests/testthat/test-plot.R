@@ -40,6 +40,9 @@ test_that("plot all triads", {
   combos  = utils::combn(1:11,2,function(x){c(0,x)} ,simplify=FALSE)
   plot_affinity_brightness_up_down(combos,'Triads')
 })
+test_that("plot major and minor triads", {
+  plot_affinity_brightness(major_minor_triads(),'Major and Minor Triads')
+})
 test_that("plot all major and minor triads plus one", {
   combos_major  = c(utils::combn(c(1:11)[c(-4,-7)],1,function(x){c(0,4,7,x) %>% sort} ,simplify=FALSE),
                     utils::combn(c(1:11)[c(-4,-7)],1,function(x){-c(0,4,7,x) %>% sort} ,simplify=FALSE))
@@ -48,9 +51,7 @@ test_that("plot all major and minor triads plus one", {
   combos = c(combos_major,combos_minor)
   plot_affinity_brightness_up_down(combos,'Tetrads (Major and Minor Triads Plus One)')
 })
-test_that("plot major and minor triads", {
-  plot_affinity_brightness(major_minor_triads(),'Major and Minor Triads')
-})
+
 test_that("plot triads in harmonic dualism", {
   chords  = dplyr::bind_rows(h(-c(0,4,7),observation_point=12, name = 'Major Triad Down'),
                              h(-c(0,3,7),observation_point=12, name = 'minor triad down'),
