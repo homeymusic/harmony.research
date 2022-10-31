@@ -71,6 +71,7 @@ melodic_flux <- function(x,y) {
   melodic_divergence(x,y)*volume(x,y)
 }
 
+# consider using the manhattan distance
 melodic_divergence <- function(x,y) {
   (y$primes.affinity-x$primes.affinity)+(y$primes.brightness-x$primes.brightness)
 }

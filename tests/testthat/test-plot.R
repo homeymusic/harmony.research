@@ -36,9 +36,15 @@ test_that("plot all dyads", {
   combos  = utils::combn(1:12,1,function(x){c(0,x)} ,simplify=FALSE)
   plot_affinity_brightness_up_down(combos,'Dyads')
 })
-test_that("plot all triads", {
+test_that("plot all tonic triads", {
   combos  = utils::combn(1:11,2,function(x){c(0,x)} ,simplify=FALSE)
-  plot_affinity_brightness_up_down(combos,'Triads')
+  plot_affinity_brightness_up_down(combos,'Tonic Triads')
+})
+test_that("plot consonant floating triads", {
+  up_chords   = dplyr::bind_rows(utils::combn(0:11,3,function(x){h(x,observation_point=0,root=0)}  ,simplify=FALSE))
+  down_chords = dplyr::bind_rows(utils::combn(0:11,3,function(x){h(x,observation_point=12,root=0)} ,simplify=FALSE))
+  plot_affinity_brightness(dplyr::bind_rows(up_chords,down_chords) %>%
+                             dplyr::filter(affinity>=0.0),'Consonant Floating Triads')
 })
 test_that("plot major and minor triads", {
   plot_affinity_brightness(major_minor_triads(),'Major and Minor Triads')
