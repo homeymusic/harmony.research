@@ -62,7 +62,7 @@ test_that("map the augmented triad hood", {
     c(0,4,8-1),
     c(0,4,8+1)
   )
-  plot_affinity_brightness_up_down(combos,'Augmented Triad Neighborhood')
+  plot_affinity_brightness_up_down(combos,'Augmented Triad Neighborhood: One Semitone')
 })
 test_that("plot all major and minor triads plus one", {
   combos_major  = c(utils::combn(c(1:11)[c(-4,-7)],1,function(x){c(0,4,7,x) %>% sort} ,simplify=FALSE),
@@ -70,7 +70,7 @@ test_that("plot all major and minor triads plus one", {
   combos_minor  = c(utils::combn(c(1:11)[c(-3,-7)],1,function(x){c(0,3,7,x) %>% sort} ,simplify=FALSE),
                     utils::combn(c(1:11)[c(-3,-7)],1,function(x){-c(0,3,7,x) %>% sort} ,simplify=FALSE))
   combos = c(combos_major,combos_minor)
-  plot_affinity_brightness_up_down(combos,'Tetrads (Major and Minor Triads Plus One)')
+  plot_affinity_brightness_up_down(combos,'Tetrads: Major and Minor Triads Plus One')
 })
 
 test_that("plot triads in harmonic dualism", {
