@@ -55,18 +55,18 @@
 <circle cx='404.27' cy='199.11' r='1.95' style='stroke-width: 0.71; stroke: #F3A904; fill: #F3A904;' />
 <text x='446.52' y='452.77' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial";' textLength='96.80px' lengthAdjust='spacingAndGlyphs'>0̲:1:3:5:6:8:10:1̲2̲↑↓</text>
 <text x='446.52' y='468.67' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial";' textLength='36.17px' lengthAdjust='spacingAndGlyphs'>Locrian</text>
-<text x='426.53' y='225.27' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial";' textLength='96.80px' lengthAdjust='spacingAndGlyphs'>0̲:1:3:5:7:8:10:1̲2̲↑↓</text>
-<text x='426.53' y='241.16' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial";' textLength='43.53px' lengthAdjust='spacingAndGlyphs'>Phrygian</text>
-<text x='414.37' y='411.36' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial";' textLength='96.80px' lengthAdjust='spacingAndGlyphs'>0̲:2:3:5:7:8:10:1̲2̲↑↓</text>
-<text x='414.37' y='427.26' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial";' textLength='36.79px' lengthAdjust='spacingAndGlyphs'>Aeolian</text>
-<text x='406.52' y='376.22' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial";' textLength='96.80px' lengthAdjust='spacingAndGlyphs'>0̲:2:3:5:7:9:10:1̲2̲↑↓</text>
-<text x='406.52' y='392.12' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial";' textLength='32.49px' lengthAdjust='spacingAndGlyphs'>Dorian</text>
-<text x='432.61' y='278.34' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial";' textLength='96.80px' lengthAdjust='spacingAndGlyphs'>0̲:2:4:5:7:9:10:1̲2̲↑↓</text>
-<text x='432.61' y='294.24' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial";' textLength='52.10px' lengthAdjust='spacingAndGlyphs'>Mixolydian</text>
-<text x='369.49' y='56.35' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial";' textLength='96.80px' lengthAdjust='spacingAndGlyphs'>0̲:2:4:5:7:9:11:1̲2̲↑↓</text>
-<text x='369.49' y='72.24' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial";' textLength='30.05px' lengthAdjust='spacingAndGlyphs'>Ionian</text>
-<text x='351.32' y='193.67' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial";' textLength='96.80px' lengthAdjust='spacingAndGlyphs'>0̲:2:4:6:7:9:11:1̲2̲↑↓</text>
-<text x='351.32' y='209.56' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial";' textLength='32.50px' lengthAdjust='spacingAndGlyphs'>Lydian</text>
+<text x='392.90' y='258.45' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial";' textLength='96.80px' lengthAdjust='spacingAndGlyphs'>0̲:1:3:5:7:8:10:1̲2̲↑↓</text>
+<text x='392.90' y='274.35' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial";' textLength='43.53px' lengthAdjust='spacingAndGlyphs'>Phrygian</text>
+<text x='414.39' y='411.37' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial";' textLength='96.80px' lengthAdjust='spacingAndGlyphs'>0̲:2:3:5:7:8:10:1̲2̲↑↓</text>
+<text x='414.39' y='427.27' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial";' textLength='36.79px' lengthAdjust='spacingAndGlyphs'>Aeolian</text>
+<text x='406.54' y='376.24' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial";' textLength='96.80px' lengthAdjust='spacingAndGlyphs'>0̲:2:3:5:7:9:10:1̲2̲↑↓</text>
+<text x='406.54' y='392.13' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial";' textLength='32.49px' lengthAdjust='spacingAndGlyphs'>Dorian</text>
+<text x='399.00' y='311.51' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial";' textLength='96.80px' lengthAdjust='spacingAndGlyphs'>0̲:2:4:5:7:9:10:1̲2̲↑↓</text>
+<text x='399.00' y='327.41' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial";' textLength='52.10px' lengthAdjust='spacingAndGlyphs'>Mixolydian</text>
+<text x='369.46' y='56.36' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial";' textLength='96.80px' lengthAdjust='spacingAndGlyphs'>0̲:2:4:5:7:9:11:1̲2̲↑↓</text>
+<text x='369.46' y='72.26' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial";' textLength='30.05px' lengthAdjust='spacingAndGlyphs'>Ionian</text>
+<text x='421.10' y='178.51' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial";' textLength='96.80px' lengthAdjust='spacingAndGlyphs'>0̲:2:4:6:7:9:11:1̲2̲↑↓</text>
+<text x='421.10' y='194.41' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial";' textLength='32.50px' lengthAdjust='spacingAndGlyphs'>Lydian</text>
 </g>
 <g clip-path='url(#cpMC4wMHw1MDQuMDB8MC4wMHw1MDQuMDA=)'>
 <text x='38.60' y='427.97' text-anchor='end' style='font-size: 8.80px;fill: #F3DDAB; font-family: "Arial";' textLength='20.06px' lengthAdjust='spacingAndGlyphs'>-0.22</text>

@@ -68,11 +68,18 @@ minor_triads <- function() {
   )
 }
 major_minor_triads <- function() {
-  augmented_triad = h(c(0,4,8),
+  augmented_triad_up = h(c(0,4,8),
                       root=0,
                       observation_point=0,
-                      name='Augmented Triad')
-  dplyr::bind_rows(dplyr::bind_rows(major_triads()),augmented_triad,dplyr::bind_rows(minor_triads()))
+                      name='Augmented Triad Up')
+  augmented_triad_down = h(c(0,4,8),
+                      root=8,
+                      observation_point=12,
+                      name='Augmented Triad Down')
+  dplyr::bind_rows(
+    dplyr::bind_rows(major_triads()),
+    dplyr::bind_rows(augmented_triad_up,augmented_triad_down),
+    dplyr::bind_rows(minor_triads()))
 }
 seventh_chords <- function() {
   list(
