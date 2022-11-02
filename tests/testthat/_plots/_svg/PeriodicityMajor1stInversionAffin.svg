@@ -54,13 +54,21 @@
 <circle cx='198.55' cy='313.68' r='1.95' style='stroke-width: 0.71; stroke: #ABDAF3; fill: #ABDAF3;' />
 <circle cx='235.10' cy='342.35' r='1.95' style='stroke-width: 0.71; stroke: #ABDAF3; fill: #ABDAF3;' />
 <circle cx='211.94' cy='222.34' r='1.95' style='stroke-width: 0.71; stroke: #ABDAF3; fill: #ABDAF3;' />
-<text x='440.68' y='446.92' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial";' textLength='31.53px' lengthAdjust='spacingAndGlyphs'>0̲:4:7↑</text>
-<text x='422.44' y='464.52' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial";' textLength='31.53px' lengthAdjust='spacingAndGlyphs'>0:3:8̲↓</text>
-<text x='383.80' y='447.21' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial";' textLength='31.53px' lengthAdjust='spacingAndGlyphs'>0̲:3:8↑</text>
-<text x='254.34' y='56.36' text-anchor='middle' style='font-size: 11.04px;fill: #FF5500; font-family: "Arial";' textLength='22.33px' lengthAdjust='spacingAndGlyphs'>0̲:0̲↑</text>
-<text x='207.45' y='309.04' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial";' textLength='22.33px' lengthAdjust='spacingAndGlyphs'>0̲:3↑</text>
-<text x='226.00' y='354.96' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial";' textLength='22.33px' lengthAdjust='spacingAndGlyphs'>0̲:8↑</text>
-<text x='202.85' y='234.94' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial";' textLength='22.33px' lengthAdjust='spacingAndGlyphs'>0̲:5↑</text>
+<line x1='420.00' y1='439.49' x2='430.60' y2='451.03' style='stroke-width: 1.07; stroke: #7F745A;' />
+<text x='463.91' y='452.77' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial";' textLength='55.43px' lengthAdjust='spacingAndGlyphs'>C̲4̲:E4:G4↑</text>
+<text x='463.91' y='468.67' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial";' textLength='31.53px' lengthAdjust='spacingAndGlyphs'>0̲:4:7↑</text>
+<text x='407.76' y='421.79' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial";' textLength='55.43px' lengthAdjust='spacingAndGlyphs'>E3:G3:C̲4̲↓</text>
+<text x='407.76' y='437.69' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial";' textLength='31.53px' lengthAdjust='spacingAndGlyphs'>0:3:8̲↓</text>
+<text x='311.89' y='452.75' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial";' textLength='116.72px' lengthAdjust='spacingAndGlyphs'>C̲4̲:E♭4|D♯4:A♭4|G♯4↑</text>
+<text x='311.89' y='468.65' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial";' textLength='31.53px' lengthAdjust='spacingAndGlyphs'>0̲:3:8↑</text>
+<text x='246.13' y='56.31' text-anchor='middle' style='font-size: 11.04px;fill: #FF5500; font-family: "Arial";' textLength='38.25px' lengthAdjust='spacingAndGlyphs'>C̲4̲:C̲4̲↑</text>
+<text x='246.13' y='72.21' text-anchor='middle' style='font-size: 11.04px;fill: #FF5500; font-family: "Arial";' textLength='22.33px' lengthAdjust='spacingAndGlyphs'>0̲:0̲↑</text>
+<text x='181.19' y='293.09' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial";' textLength='68.59px' lengthAdjust='spacingAndGlyphs'>C̲4̲:E♭4|D♯4↑</text>
+<text x='181.19' y='308.98' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial";' textLength='22.33px' lengthAdjust='spacingAndGlyphs'>0̲:3↑</text>
+<text x='252.46' y='354.96' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial";' textLength='69.21px' lengthAdjust='spacingAndGlyphs'>C̲4̲:A♭4|G♯4↑</text>
+<text x='252.46' y='370.86' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial";' textLength='22.33px' lengthAdjust='spacingAndGlyphs'>0̲:8↑</text>
+<text x='229.33' y='201.72' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial";' textLength='37.03px' lengthAdjust='spacingAndGlyphs'>C̲4̲:F4↑</text>
+<text x='229.33' y='217.61' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial";' textLength='22.33px' lengthAdjust='spacingAndGlyphs'>0̲:5↑</text>
 </g>
 <g clip-path='url(#cpMC4wMHw1MDQuMDB8MC4wMHw1MDQuMDA=)'>
 <text x='23.44' y='367.75' text-anchor='end' style='font-size: 8.80px;fill: #F3DDAB; font-family: "Arial";' textLength='4.90px' lengthAdjust='spacingAndGlyphs'>2</text>

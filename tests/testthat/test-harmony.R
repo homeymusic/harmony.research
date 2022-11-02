@@ -65,20 +65,20 @@ test_that('aural centering works as expected',{
   expect_equal(attr(h,"centered_chord"),c(12,4,7))
 
   # c major 2d inversion using midi notes and various levels of specificity
-  h = h(c(12+0,12+4,7)+60)
+  h = h(c(12+0,12+4,7)+60,midi_root=12+60)
   expect_equal(h$guessed_observation_point,0)
   expect_equal(h$observation_point,0)
   expect_equal(h$guessed_root,67)
   expect_equal(h$root,67)
   expect_equal(attr(h,"centered_chord"),c(5,9,0))
-  h = h(c(12+0,12+4,7)+60,12)
+  h = h(c(12+0,12+4,7)+60,12,midi_root=60+12+4)
   expect_equal(h$guessed_observation_point,0)
   expect_equal(h$explicit_observation_point,12)
   expect_equal(h$observation_point,12)
   expect_equal(h$guessed_root,76)
   expect_equal(h$root,76)
   expect_equal(attr(h,"centered_chord"),c(8,12,3))
-  h = h(c(12+0,12+4,7)+60,12,76)
+  h = h(c(12+0,12+4,7)+60,12,76,midi_root=76)
   expect_equal(h$guessed_observation_point,12)
   expect_equal(h$explicit_observation_point,12)
   expect_equal(h$observation_point,12)
@@ -182,6 +182,30 @@ test_that('default name works',{
   expect_equal(minor_triad$name,explicit_name)
 })
 test_that('labels make sense',{
-  expect_equal(h(0)$label,"0̲↑↓ 1̲2̲")
-  expect_equal(h(0,name='tonic')$label,"0̲↑↓ 1̲2̲\ntonic")
+  expect_equal(h(0)$label,"C̲4̲↑↓ C̲5̲\n0̲↑↓ 1̲2̲")
+  expect_equal(h(0,name='tonic')$label,'C̲4̲↑↓ C̲5̲\n0̲↑↓ 1̲2̲\ntonic')
+})
+test_that('midi root for note labels makes sense',{
+  # defaults to middle C4
+  expect_equal(h(0)$midi_root,60)
+  # can override, for example, to A4
+  expect_equal(h(0,midi_root=69)$midi_root,69)
+  # valid midi range is 0 to 127
+  expect_error(h(0,midi_root=-1))
+  expect_error(h(0,midi_root=128))
+})
+test_that('classical name works as expected',{
+  expect_equal(h(0)$classical_name,'C̲4̲↑↓ C̲5̲')
+  expect_equal(h(c(0,4,7))$classical_name,'C̲4̲:E4:G4↑')
+  expect_equal(h(c(1,3,6),root=0)$classical_name,'C̲4̲ D♭4|C♯4:E♭4|D♯4:G♭4|F♯4↑')
+})
+test_that('classical_pitch_label works',{
+  expect_error(classical_pitch_label(-1))
+  expect_equal(classical_pitch_label(0),'C-1')
+
+  expect_equal(classical_pitch_label(60),'C4')
+  expect_equal(classical_pitch_label(69),'A4')
+  expect_equal(classical_pitch_label(126),'G♭9|F♯9')
+  expect_equal(classical_pitch_label(127),'G9')
+  expect_error(classical_pitch_label(128))
 })

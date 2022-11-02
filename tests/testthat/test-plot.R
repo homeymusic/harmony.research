@@ -64,6 +64,36 @@ test_that("map the augmented triad hood", {
   )
   plot_affinity_brightness_up_down(combos,'Augmented Triad Neighborhood: One Semitone')
 })
+test_that("map the major triad hood", {
+  combos = list(
+    c(0,4,7),
+    # 1st voice
+    c(0+1,4,7),
+    c(0-1,4,7),
+    # 2nd voice
+    c(0,4+1,7),
+    c(0,4-1,7),
+    # 3rd voice
+    c(0,4,7+1),
+    c(0,4,7-1)
+  )
+  plot_affinity_brightness_up_down(combos,'Major Triad Neighborhood: One Semitone')
+})
+test_that("map the minor triad hood", {
+  combos = list(
+    c(0,3,7),
+    # 1st voice
+    c(0+1,3,7),
+    c(0-1,3,7),
+    # 2nd voice
+    c(0,3+1,7),
+    c(0,3-1,7),
+    # 3rd voice
+    c(0,3,7+1),
+    c(0,3,7-1)
+  )
+  plot_affinity_brightness_up_down(combos,'Minor Triad Neighborhood: One Semitone')
+})
 test_that("plot all major and minor triads plus one", {
   combos_major  = c(utils::combn(c(1:11)[c(-4,-7)],1,function(x){c(0,4,7,x) %>% sort} ,simplify=FALSE),
                     utils::combn(c(1:11)[c(-4,-7)],1,function(x){-c(0,4,7,x) %>% sort} ,simplify=FALSE))
