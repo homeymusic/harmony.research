@@ -30,7 +30,7 @@ test_that('melody tibble includes the harmony columns',{
   expect_equal(m$.primes.brightness[1],p[[1]]$primes.brightness)
 })
 test_that('integer name looks good for progressions',{
-  expect_equal(m$integer_name[3],'5̲:9:12↑ → 7̲:11:14↑ (0̲:4:7↑)')
+  expect_equal(m$integer_name[3],'{5̲:9:12}↑ → {7̲:11:14}↑ ({0̲:4:7}↑)')
 })
 test_that('progression fundamentals make sense',{
   i=ionian_tonic_chords()

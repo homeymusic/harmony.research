@@ -64,6 +64,24 @@ test_that("map the augmented triad hood", {
   )
   plot_affinity_brightness_up_down(combos,'Augmented Triad Neighborhood: One Semitone')
 })
+test_that("map the diminished seventh hood", {
+  combos = list(
+    c(0,3,6,9),
+    # 1st voice
+    c(0+1,3,6,9),
+    c(0-1,3,6,9),
+    # 2nd voice
+    c(0,3+1,6,9),
+    c(0,3-1,6,9),
+    # 3rd voice
+    c(0,3,6+1,9),
+    c(0,3,6-1,9),
+    # 4th voice
+    c(0,3,6,9+1),
+    c(0,3,6,9-1)
+  )
+  plot_affinity_brightness_up_down(combos,'Diminished Seventh Neighborhood: One Semitone')
+})
 test_that("map the major triad hood", {
   combos = list(
     c(0,4,7),

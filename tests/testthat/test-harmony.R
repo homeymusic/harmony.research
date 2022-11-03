@@ -18,14 +18,14 @@ test_that('params are stored',{
 })
 test_that('integer names are informative and maintain voice leading order',{
   # major triads
-  expect_equal(major_triad_root$integer_name,"0\u0332:4:7↑")
-  expect_equal(major_triad_first_inversion$integer_name,"0:3:8̲↓")
-  expect_equal(major_triad_second_inversion$integer_name,"0:5:9̲↓")
+  expect_equal(major_triad_root$integer_name,"{0\u0332:4:7}↑")
+  expect_equal(major_triad_first_inversion$integer_name,"{0:3:8̲}↓")
+  expect_equal(major_triad_second_inversion$integer_name,"{0:5:9̲}↓")
 
   # minor triads
-  expect_equal(minor_triad_root$integer_name,"0\u0332:3:7↑")
-  expect_equal(minor_triad_first_inversion$integer_name,"0:4:9̲↓")
-  expect_equal(minor_triad_second_inversion$integer_name,"0:5:8̲↓")
+  expect_equal(minor_triad_root$integer_name,"{0\u0332:3:7}↑")
+  expect_equal(minor_triad_first_inversion$integer_name,"{0:4:9̲}↓")
+  expect_equal(minor_triad_second_inversion$integer_name,"{0:5:8̲}↓")
 })
 test_that('if implicit and explicit observation_point agree then do not flip it.',{
   expect_gt(major_triad_first_inversion$primes.brightness,0)
@@ -65,20 +65,21 @@ test_that('aural centering works as expected',{
   expect_equal(attr(h,"centered_chord"),c(12,4,7))
 
   # c major 2d inversion using midi notes and various levels of specificity
-  h = h(c(12+0,12+4,7)+60,midi_root=12+60)
+  h = h(c(12+0,12+4,7)+60,midi_root=0)
   expect_equal(h$guessed_observation_point,0)
   expect_equal(h$observation_point,0)
   expect_equal(h$guessed_root,67)
   expect_equal(h$root,67)
+  expect_equal(h$classical_name,'C5:E5:G̲4̲↑')
   expect_equal(attr(h,"centered_chord"),c(5,9,0))
-  h = h(c(12+0,12+4,7)+60,12,midi_root=60+12+4)
+  h = h(c(12+0,12+4,7)+60,12,midi_root=0)
   expect_equal(h$guessed_observation_point,0)
   expect_equal(h$explicit_observation_point,12)
   expect_equal(h$observation_point,12)
   expect_equal(h$guessed_root,76)
   expect_equal(h$root,76)
   expect_equal(attr(h,"centered_chord"),c(8,12,3))
-  h = h(c(12+0,12+4,7)+60,12,76,midi_root=76)
+  h = h(c(12+0,12+4,7)+60,12,76,midi_root=0)
   expect_equal(h$guessed_observation_point,12)
   expect_equal(h$explicit_observation_point,12)
   expect_equal(h$observation_point,12)
@@ -93,17 +94,17 @@ test_that('implicit observation_point for minor triad and inversions makes sense
   expect_equal(h(c(0+12,3+12,7))$observation_point,12)
 })
 test_that('for solo pitches that the integer name includes the tonic, octave and both arrows',{
-  expect_equal(h(c(0))$integer_name,'0\u0332↑↓ 1\u03322\u0332')
-  expect_equal(h(c(12))$integer_name,'0̲ 1̲2̲↑↓')
-  expect_equal(h(c(7))$integer_name,'0\u0332 7↑↓ 1\u03322\u0332')
-  expect_equal(locrian$integer_name,'0̲:1:3:5:6:8:10:1\u03322\u0332↑↓')
-  expect_equal(h(c(0,-4,-7),observation_point=0,root=-7)$integer_name,'0:-4:-\u03327\u0332↑')
+  expect_equal(h(c(0))$integer_name,'{0\u0332}↑↓ 1\u03322\u0332')
+  expect_equal(h(c(12))$integer_name,'0̲ {1̲2̲}↑↓')
+  expect_equal(h(c(7))$integer_name,'0\u0332 {7}↑↓ 1\u03322\u0332')
+  expect_equal(locrian$integer_name,'{0̲:1:3:5:6:8:10:1\u03322\u0332}↑↓')
+  expect_equal(h(c(0,-4,-7),observation_point=0,root=-7)$integer_name,'{0:-4:-\u03327\u0332}↑')
 
-  expect_equal(h(c(0+60),root=60)$integer_name,'6\u03320\u0332↑↓ 7\u03322\u0332')
-  expect_equal(h(c(12+60),root=60)$integer_name,"6̲0̲ 72↑↓")
-  expect_equal(h(c(7+60),root=60)$integer_name,'6\u03320\u0332 67↑↓ 7\u03322\u0332')
-  expect_equal(h(attr(locrian,'chord')+60)$integer_name,"6̲0̲:61:63:65:66:68:70:72↑↓")
-  expect_equal(h(c(0,-4,-7)+60,observation_point=0,root=-7+60)$integer_name,'60:56:5\u03323\u0332↑')
+  expect_equal(h(c(0+60),root=60,midi_root=0)$integer_name,'{6\u03320\u0332}↑↓ 7\u03322\u0332')
+  expect_equal(h(c(12+60),root=60,midi_root=0)$integer_name,"6̲0̲ {72}↑↓")
+  expect_equal(h(c(7+60),root=60,midi_root=0)$integer_name,'6\u03320\u0332 {67}↑↓ 7\u03322\u0332')
+  expect_equal(h(attr(locrian,'chord')+60,midi_root=0)$integer_name,"{6̲0̲:61:63:65:66:68:70:72}↑↓")
+  expect_equal(h(c(0,-4,-7)+60,observation_point=0,root=-7+60,midi_root=0)$integer_name,'{60:56:5\u03323\u0332}↑')
 })
 test_that('position from the tonic in cents makes sense',{
   expect_equal(h(c(0,4,7))$cents,362.7562,tolerance=0.001)
@@ -158,14 +159,14 @@ test_that('brightness and affinity of the diatonic scales makes sense',{
 })
 test_that('harmony guesses that a chord containing root and root + 12 has observation_point = 0',{
   expect_equal(locrian$observation_point,NA)
-  expect_equal(h(attr(locrian,'chord')+60)$observation_point,NA)
+  expect_equal(h(attr(locrian,'chord')+60,midi_root=0)$observation_point,NA)
 })
 test_that('default consonance metric works as expected',{
   minor_triad_stolzenburg2015 = h(c(0,3,7))
   # stolzenburg is default
   expect_equal(minor_triad_stolzenburg2015$affinity,minor_triad_stolzenburg2015$stolzenburg2015.affinity)
   expect_equal(minor_triad_stolzenburg2015$brightness,minor_triad_stolzenburg2015$stolzenburg2015.brightness)
-  expect_equal(minor_triad_stolzenburg2015$integer_name,"0̲:3:7↑")
+  expect_equal(minor_triad_stolzenburg2015$integer_name,"{0̲:3:7}↑")
   expect_equal(minor_triad_stolzenburg2015$brightness,-0.8684828,tolerance = 0.001)
   expect_equal(minor_triad_stolzenburg2015$affinity,1.868483,tolerance = 0.001)
   # can switch default to some other consonance metric and it works
@@ -182,8 +183,8 @@ test_that('default name works',{
   expect_equal(minor_triad$name,explicit_name)
 })
 test_that('labels make sense',{
-  expect_equal(h(0)$label,"C̲4̲↑↓ C̲5̲\n0̲↑↓ 1̲2̲")
-  expect_equal(h(0,name='tonic')$label,'C̲4̲↑↓ C̲5̲\n0̲↑↓ 1̲2̲\ntonic')
+  expect_equal(h(0)$label,"C̲4̲↑↓ C̲5̲\n{0̲}↑↓ 1̲2̲")
+  expect_equal(h(0,name='tonic')$label,'C̲4̲↑↓ C̲5̲\n{0̲}↑↓ 1̲2̲\ntonic')
 })
 test_that('midi root for note labels makes sense',{
   # defaults to middle C4
@@ -197,15 +198,19 @@ test_that('midi root for note labels makes sense',{
 test_that('classical name works as expected',{
   expect_equal(h(0)$classical_name,'C̲4̲↑↓ C̲5̲')
   expect_equal(h(c(0,4,7))$classical_name,'C̲4̲:E4:G4↑')
-  expect_equal(h(c(1,3,6),root=0)$classical_name,'C̲4̲ D♭4|C♯4:E♭4|D♯4:G♭4|F♯4↑')
+  expect_equal(h(c(1,3,6))$classical_name,'D̲b̲4̲:Eb4:Gb4↑')
+  expect_equal(h(c(1,4,8))$classical_name,'D̲b̲4̲:E4:Ab4↑')
+  expect_equal(h(c(1,3,6),observation_point=12)$classical_name,'C#4:D#4:F̲#̲4̲↓')
+  expect_equal(h(c(1,4,8),observation_point=12)$classical_name,'C#4:E4:G̲#̲4̲↓')
 })
 test_that('classical_pitch_label works',{
-  expect_error(classical_pitch_label(-1))
-  expect_equal(classical_pitch_label(0),'C-1')
+  expect_error(classical_pitch_label(-1,0))
+  expect_equal(classical_pitch_label(0,0),'C-1')
 
-  expect_equal(classical_pitch_label(60),'C4')
-  expect_equal(classical_pitch_label(69),'A4')
-  expect_equal(classical_pitch_label(126),'G♭9|F♯9')
-  expect_equal(classical_pitch_label(127),'G9')
-  expect_error(classical_pitch_label(128))
+  expect_equal(classical_pitch_label(60,0),'C4')
+  expect_equal(classical_pitch_label(69,0),'A4')
+  expect_equal(classical_pitch_label(126,0),'Gb9')
+  expect_equal(classical_pitch_label(126,12),'F#9')
+  expect_equal(classical_pitch_label(127,0),'G9')
+  expect_error(classical_pitch_label(128,0))
 })

@@ -1,5 +1,5 @@
 harmony.uncached <- function(chord, observation_point=NA, root=NA,
-                             name=NA, midi_root = 60,
+                             name=NA, midi_root = NA,
                              default_consonance_metric='stolzenburg2015') {
   checkmate::assert_integerish(chord)
   if (length(chord)==1) {
@@ -9,16 +9,15 @@ harmony.uncached <- function(chord, observation_point=NA, root=NA,
   }
   checkmate::assert_integerish(root)
   checkmate::assert_character(name)
-  checkmate::assert_integerish(midi_root,lower=0,upper=127)
 
   # build the harmony table
   t <- tibble::tibble_row(
     cents              = cents(chord),   # position in cents
     integer            = chord %>% mean, # integer position
     name               = name,
-    midi_root          = midi_root,
     explicit_root      = root,
     explicit_observation_point = observation_point,
+    explicit_midi_root = midi_root,
     guessed_root       = guessed_root(chord,.data$explicit_observation_point),
     root               = ifelse(is.na(.data$explicit_root),
                                 guessed_root,
@@ -26,8 +25,14 @@ harmony.uncached <- function(chord, observation_point=NA, root=NA,
     guessed_observation_point = guessed_observation_point(chord,.data$explicit_root,guessed_root),
     observation_point  = ifelse(is.na(.data$explicit_observation_point),
                                 guessed_observation_point,
-                                .data$explicit_observation_point)
+                                .data$explicit_observation_point),
+    guessed_midi_root  = guessed_midi_root(.data$root,.data$explicit_midi_root),
+    midi_root          = ifelse(is.na(.data$explicit_midi_root),
+                                guessed_midi_root,
+                                .data$explicit_midi_root),
   )
+  # check midi root is valid
+  checkmate::assert_integerish(t$midi_root,lower=0,upper=127)
   # store the original chord
   attr(t,"chord") <- chord
   # store the aurally centered chord
@@ -60,8 +65,8 @@ harmony.uncached <- function(chord, observation_point=NA, root=NA,
                        chord,t$observation_point,t$root),
                      classical_name = harmonic_classical_name(
                        chord,t$observation_point,t$root,t$midi_root),
-                     label          = stringr::str_trim(
-                       paste(.data$classical_name,.data$integer_name,stats::na.omit(name),sep="\n")),
+                     label          = stringr::str_trim(paste(sep="\n",
+                       .data$classical_name,.data$integer_name,stats::na.omit(name))),
                      brightness     = t[[paste0(
                        default_consonance_metric,'.brightness')]],
                      affinity       = t[[paste0(
@@ -154,9 +159,10 @@ harmonic_integer_name <- function(chord, observation_point, root) {
   checkmate::assert_choice(observation_point,c(0,NA,12))
   checkmate::assert_integerish(root)
 
-  underline(chord,observation_point,root) %>%
-    paste(collapse = ":") %>%
-    paste0(arrow(observation_point)) %>%
+  integer_notation = underline(chord,observation_point,root) %>%
+    paste(collapse = ":")
+
+  paste0('{',integer_notation,'}',arrow(observation_point)) %>%
     add_roots_outside_chord(root,chord,observation_point)
 }
 harmonic_classical_name <- function(chord, observation_point, root, midi_root) {
@@ -165,20 +171,20 @@ harmonic_classical_name <- function(chord, observation_point, root, midi_root) {
   checkmate::assert_integerish(root)
   checkmate::assert_integerish(midi_root,lower=0,upper=127)
 
-  midi_chord = chord - root + midi_root
-  underline(midi_chord,observation_point,midi_root,classical=TRUE) %>%
+  underline(chord,observation_point,root,classical=TRUE,midi_root=midi_root) %>%
     paste(collapse = ":") %>%
     paste0(arrow(observation_point)) %>%
     add_roots_outside_chord(root,chord,observation_point,midi_root=midi_root,classical=TRUE)
 }
-underline <- function(chord,observation_point,root,classical=FALSE) {
+underline <- function(chord,observation_point,root,classical=FALSE,midi_root=NA) {
   checkmate::assert_integerish(chord)
   checkmate::assert_choice(observation_point,c(0,NA,12))
   checkmate::assert_integerish(root)
+  checkmate::assert_integerish(midi_root,lower=0,upper=127)
 
   chord %>% sapply(function(x){
-    pitch = if (classical) {classical_pitch_label(x)} else {x}
-    if ((x==root)|| (is.na(observation_point) && (root==0) && (x==(root+12)))) {
+    pitch = if (classical) {classical_pitch_label(x+midi_root,observation_point)} else {x}
+    if ((x==root) || (is.na(observation_point) && (root==0) && (x==(root+12)))) {
       underline_pitch(pitch)
     } else {
       pitch
@@ -201,8 +207,8 @@ add_roots_outside_chord <- function(integer_name,root,chord,observation_point,mi
   if (classical) {
     checkmate::assert_integerish(midi_root,lower=0,upper=127)
   }
-  root_pitch = if (classical) {classical_pitch_label(midi_root - root)} else {root}
-  upper_root_pitch = if (classical) {classical_pitch_label(midi_root-root+12)} else {root+12}
+  root_pitch = if (classical) {classical_pitch_label(midi_root,observation_point)} else {root}
+  upper_root_pitch = if (classical) {classical_pitch_label(midi_root+12,observation_point)} else {root+12}
   if (is.na(observation_point)) {
     if (c(root, root+12) %in% chord %>% all) {
       integer_name
@@ -221,17 +227,27 @@ add_roots_outside_chord <- function(integer_name,root,chord,observation_point,mi
     paste(underline_pitch(root_pitch),integer_name)
   }
 }
-classical_pitch_label <- function(x) {
+classical_pitch_label <- function(x, observation_point) {
   checkmate::assert_integerish(x,lower=0,upper=127)
-  pitch_class_flats = c('C', 'D\U266D', 'D', 'E\U266D', 'E', 'F',
-                        'G\U266D', 'G', 'A\U266D', 'A', 'B\U266D', 'B')
-  pitch_class_sharps = c('C', 'C\U266F', 'D', 'D\U266F', 'E', 'F',
-                        'F\U266F', 'G', 'G\U266F', 'A', 'A\U266F', 'B')
+  pitch_class_flats = c('C', 'Db', 'D', 'Eb', 'E', 'F',
+                        'Gb', 'G', 'Ab', 'A', 'Bb', 'B')
+  pitch_class_sharps = c('C', 'C#', 'D', 'D#', 'E', 'F',
+                        'F#', 'G', 'G#', 'A', 'A#', 'B')
   octave = (x / 12) %>% trunc - 1
-  pitch_class_name = c(paste0(pitch_class_flats[x %% 12 +1],octave),
-                       paste0(pitch_class_sharps[x %% 12 +1],octave)) %>% unique
-  paste(pitch_class_name,collapse='|')
+  pitch_class = if (is.na(observation_point) || observation_point == 0) {
+    pitch_class_flats
+  } else {
+    pitch_class_sharps
+  }
+  paste0(pitch_class[x %% 12 +1],octave)
 }
 coalesced_observation_point <- function(observation_point) {
   dplyr::coalesce(observation_point,0)
+}
+guessed_midi_root <- function(root,explicit_midi_root) {
+  if (is.na(explicit_midi_root)) {
+    60
+  } else {
+    explicit_midi_root
+  }
 }
