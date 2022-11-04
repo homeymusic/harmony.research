@@ -82,6 +82,7 @@ harmony.uncached <- function(chord, observation_point=NA, root=NA,
 #' @param chord A pitch or chord expressed as an interval integer or vector of interval integers
 #' @param observation_point Harmonic observation_point 0 is tonic, 12 is octave, NA is symmetrical
 #' @param root The reference pitch of the chord or larger context
+#' @param midi_root The MIDI root of the chord, defaults to 60 for using 0-based integer notation
 #' @param name A custom name for the note or chord
 #' @param default_consonance_metric The metric that will populate affinity and brightness values
 #' @return A tibble

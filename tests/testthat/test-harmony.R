@@ -20,12 +20,12 @@ test_that('integer names are informative and maintain voice leading order',{
   # major triads
   expect_equal(major_triad_root$integer_name,"{0\u0332:4:7}↑")
   expect_equal(major_triad_first_inversion$integer_name,"{0:3:8̲}↓")
-  expect_equal(major_triad_second_inversion$integer_name,"{0:5:9̲}↓")
+  expect_equal(major_triad_second_inversion$integer_name,'{0:5̲:9}↑')
 
   # minor triads
   expect_equal(minor_triad_root$integer_name,"{0\u0332:3:7}↑")
   expect_equal(minor_triad_first_inversion$integer_name,"{0:4:9̲}↓")
-  expect_equal(minor_triad_second_inversion$integer_name,"{0:5:8̲}↓")
+  expect_equal(minor_triad_second_inversion$integer_name,'{0:5̲:8}↑')
 })
 test_that('if implicit and explicit observation_point agree then do not flip it.',{
   expect_gt(major_triad_first_inversion$primes.brightness,0)
@@ -130,7 +130,6 @@ test_that('the major triad is perfectly bright. and the minor triad is a third',
 })
 test_that('the similarities among major and minor triads under inversion are interesting',{
   expect_equal(major_triad_root$primes.affinity,major_triad_first_inversion$primes.affinity)
-
   expect_equal(minor_triad_root$primes.affinity,minor_triad_first_inversion$primes.affinity)
 })
 test_that("tonic-octave symmetrical chords have identical consonance regardless of observation_point",{

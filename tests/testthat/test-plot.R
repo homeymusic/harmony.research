@@ -126,7 +126,7 @@ test_that("plot triads in harmonic dualism", {
                              h(-c(0,3,7),observation_point=12, name = 'minor triad down'),
                              h(c(0,4,7),observation_point=0,   name = 'Major Triad Up'),
                              h(c(0,3,7),observation_point=0,   name = 'minor triad up'))
-  plot_affinity_brightness(chords,'Major Minor Triads Harmonic Dualism')
+  plot_affinity_brightness(chords,'Harmonic Dualism? Major Minor Triads')
 })
 test_that("Major 1st Inversion", {
   chords = dplyr::bind_rows(

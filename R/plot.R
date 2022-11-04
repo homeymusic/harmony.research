@@ -11,7 +11,10 @@ harmony_plot <- function(x,columns,title=NULL, x_expansion_mult=0.2,
                                 limits=c((0-max(abs(x[columns[1]]))),(0+max(abs(x[columns[1]]))))) +
     ggplot2::ggtitle(title) +
     theme_homey() +
-    ggrepel::geom_text_repel(ggplot2::aes(label=.data$label), segment.color = colors_homey()$subtle_foreground,  max.overlaps = max_overlaps)
+    ggrepel::geom_text_repel(ggplot2::aes(label=.data$label),
+                             segment.color = colors_homey()$subtle_foreground,
+                             max.overlaps = max_overlaps,
+                             family='mono')
 }
 
 save_harmony_plots <- function(x,filetypes=c('svg','png','pdf')) {

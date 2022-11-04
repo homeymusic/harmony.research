@@ -15,94 +15,115 @@ core_pitches <- function() {
 }
 major_triads <- function() {
   list(
-    "root"=h(c(0,4,7),
+    "root position"=h(c(0,4,7),
              root=0,
              observation_point=0,
-             name="Major Triad Root"),
-    "major down"=h(c(0,4,7),
-                   root=7,
-                   observation_point=12),
-    "6/3"=h(c(0,3,8),
-            root=0,
-            observation_point=0,
-            name="Major Triad 6/3"),
+             name="Major Triad Root",
+             midi_root=60),
     "1st inversion"=h(c(0,3,8),
                       root=8,
                       observation_point=12,
-                      name="Major Triad 1st Inversion"),
+                      name="Major Triad 1st Inversion",
+                      midi_root=60-8),
+    "2nd inversion"=h(c(0,5,9),
+                      root=5,
+                      observation_point=0,
+                      name="Major Triad 2nd Inversion",
+                      midi_root=60-5)
+  )
+}
+major_6_chords <- function() {
+  list(
+    "6/3"=h(c(0,3,8),
+            root=0,
+            observation_point=0,
+            name="Major Triad 6/3",
+            midi_root=60-0),
     "6/4"=h(c(0,5,9),
             root=0,
             observation_point=0,
-            name="Major Triad 6/4"),
-    "2nd inversion"=h(c(0,5,9),
-                      root=9,
-                      observation_point=12,
-                      name="Major Triad 2nd Inversion")
+            name="Major Triad 6/4",
+            midi_root=60-0)
   )
 }
 minor_triads <- function() {
   list(
-    "root"=h(c(0,3,7),
+    "root position"=h(c(0,3,7),
              root=0,
              observation_point=0,
-             name="Minor Triad Root"),
-    "minor down"=h(c(0,3,7),
-                   root=7,
-                   observation_point=12),
-    "minor 6/3"=h(c(0,4,9),
-                  root=0,
-                  observation_point=0,
-                  name="Minor Triad 6/3"),
+             name="Minor Triad Root",
+             midi_root=60-0),
     "1st inversion"=h(c(0,4,9),
                       root=9,
                       observation_point=12,
-                      name="Minor Triad 1st Inversion"),
+                      name="Minor Triad 1st Inversion",
+                      midi_root=60-9),
+    "2nd inversion"=h(c(0,5,8),
+                      root=5,
+                      observation_point=0,
+                      name="Minor Triad 2nd Inversion",
+                      midi_root=60-5)
+  )
+}
+minor_6_chords <- function() {
+  list(
+    "minor 6/3"=h(c(0,4,9),
+                  root=0,
+                  observation_point=0,
+                  name="Minor Triad 6/3",
+                  midi_root=60-0),
     "minor 6/4"=h(c(0,5,8),
                   root=0,
                   observation_point=0,
-                  name="Minor Triad 6/4"),
-    "2nd inversion"=h(c(0,5,8),
-                      root=8,
-                      observation_point=12,
-                      name="Minor Triad 2nd Inversion")
+                  name="Minor Triad 6/4",
+                  midi_root=60-0)
+  )
+}
+augmented_triads <- function() {
+  list(
+    'augmented_triad_up' = h(c(0,4,8),
+                             root=0,
+                             observation_point=0,
+                             name='Augmented Triad Up'),
+    'augmented_triad_down' = h(c(0,4,8),
+                               root=8,
+                               observation_point=12,
+                               name='Augmented Triad Down',
+                               midi_root=60-8)
+
   )
 }
 major_minor_triads <- function() {
-  augmented_triad_up = h(c(0,4,8),
-                      root=0,
-                      observation_point=0,
-                      name='Augmented Triad Up')
-  augmented_triad_down = h(c(0,4,8),
-                      root=8,
-                      observation_point=12,
-                      name='Augmented Triad Down')
   dplyr::bind_rows(
     dplyr::bind_rows(major_triads()),
-    dplyr::bind_rows(augmented_triad_up,augmented_triad_down),
-    dplyr::bind_rows(minor_triads()))
+    dplyr::bind_rows(major_6_chords()),
+    dplyr::bind_rows(augmented_triads()),
+    dplyr::bind_rows(minor_triads()),
+    dplyr::bind_rows(minor_6_chords()),
+  )
 }
 seventh_chords <- function() {
   list(
     "Major"=h(c(0,4,7,11),
-             root=0,
-             observation_point=0,
-             name="Major"),
-    "Dominant Flat Five"=h(c(0,4,6,10),
-                 root=0,
-                 observation_point=0,
-                 name="dominant flat five"),
-    "Dominant"=h(c(0,4,7,10),
               root=0,
               observation_point=0,
-              name="Dominant"),
-    "Augmented"=h(c(0,4,8,10),
+              name="Major"),
+    "Dominant Flat Five"=h(c(0,4,6,10),
+                           root=0,
+                           observation_point=0,
+                           name="dominant flat five"),
+    "Dominant"=h(c(0,4,7,10),
                  root=0,
                  observation_point=0,
-                 name="augmented"),
-    "Augmented Major"=h(c(0,4,8,11),
+                 name="Dominant"),
+    "Augmented"=h(c(0,4,8,10),
                   root=0,
                   observation_point=0,
-                  name="Augmented Major"),
+                  name="augmented"),
+    "Augmented Major"=h(c(0,4,8,11),
+                        root=0,
+                        observation_point=0,
+                        name="Augmented Major"),
     "minor"=h(c(0,3,7,10),
               root=0,
               observation_point=0,
@@ -112,17 +133,17 @@ seventh_chords <- function() {
                     observation_point=0,
                     name="minor-major"),
     "half-diminished"=h(c(0,3,6,10),
-                 root=0,
-                 observation_point=0,
-                 name="Half-Diminished"),
-    "diminished major"=h(c(0,3,6,11),
                         root=0,
                         observation_point=0,
-                        name="diminished major"),
+                        name="Half-Diminished"),
+    "diminished major"=h(c(0,3,6,11),
+                         root=0,
+                         observation_point=0,
+                         name="diminished major"),
     "diminished"=h(c(0,3,6,9),
-             root=0,
-             observation_point=0,
-             name="diminished")
+                   root=0,
+                   observation_point=0,
+                   name="diminished")
   )
 }
 diatonic_scales <- function() {
@@ -304,11 +325,11 @@ salzer_schachter_1.3 <- function() {
        h(0))
 }
 
-major_triad_root = major_triads()[["root"]]
+major_triad_root = major_triads()[["root position"]]
 major_triad_first_inversion = major_triads()[["1st inversion"]]
 major_triad_second_inversion = major_triads()[["2nd inversion"]]
 
-minor_triad_root = minor_triads()[["root"]]
+minor_triad_root = minor_triads()[["root position"]]
 minor_triad_first_inversion = minor_triads()[["1st inversion"]]
 minor_triad_second_inversion = minor_triads()[["2nd inversion"]]
 
