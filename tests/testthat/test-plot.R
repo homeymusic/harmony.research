@@ -1,8 +1,11 @@
+# TODO: make this is function that just returns the combos as chords
 plot_affinity_brightness_up_down <- function(combos,combos_name) {
-  chords_up   = combos %>% purrr::map(~h(.x,observation_point=0))
-  chords_down = combos %>% purrr::map(~h(.x,observation_point=12))
-  chords = dplyr::bind_rows(dplyr::bind_rows(chords_up),dplyr::bind_rows(chords_down))
-  plot_affinity_brightness(chords,combos_name)
+  chords = purrr::map(combos,function(combo){
+    params = expand.grid(observation_point=c(0,12),root=combo)
+    purrr::map2(params$observation_point,params$root,
+                ~h(combo,observation_point=.x,root=.y))
+  })
+  plot_affinity_brightness(dplyr::bind_rows(chords),combos_name)
 }
 plot_affinity_brightness <- function(chords,chords_name) {
   dimensions = 'Affinity-Brightness'
@@ -38,6 +41,7 @@ test_that("plot all dyads", {
 })
 test_that("plot all tonic triads", {
   combos  = utils::combn(1:11,2,function(x){c(0,x)} ,simplify=FALSE)
+  # TODO: only plot the highly consonant triads with all the permutations
   plot_affinity_brightness_up_down(combos,'Tonic Triads')
 })
 # test_that("plot consonant floating triads", {

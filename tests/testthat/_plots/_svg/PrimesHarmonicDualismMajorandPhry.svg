@@ -61,48 +61,49 @@
 <circle cx='106.02' cy='288.61' r='1.95' style='stroke-width: 0.71; stroke: #ABDAF3; fill: #ABDAF3;' />
 <circle cx='324.08' cy='370.24' r='1.95' style='stroke-width: 0.71; stroke: #F3A904; fill: #F3A904;' />
 <circle cx='215.05' cy='43.74' r='1.95' style='stroke-width: 0.71; stroke: #ABDAF3; fill: #ABDAF3;' />
-<text x='451.91' y='72.98' text-anchor='middle' style='font-size: 11.04px; font-weight: 0;fill: #F3A904; font-family: "Courier";' textLength='59.55px' lengthAdjust='spacingAndGlyphs'>C̲4̲:E4:G4↑</text>
-<text x='451.91' y='88.87' text-anchor='middle' style='font-size: 11.04px; font-weight: 0;fill: #F3A904; font-family: "Courier";' textLength='52.93px' lengthAdjust='spacingAndGlyphs'>{0̲:4:7}↑</text>
-<text x='451.91' y='104.77' text-anchor='middle' style='font-size: 11.04px; font-weight: 0;fill: #F3A904; font-family: "Courier";' textLength='72.78px' lengthAdjust='spacingAndGlyphs'>Major Triad</text>
-<text x='451.91' y='120.67' text-anchor='middle' style='font-size: 11.04px; font-weight: 0;fill: #F3A904; font-family: "Courier";' textLength='86.02px' lengthAdjust='spacingAndGlyphs'>Root Position</text>
-<text x='314.16' y='136.34' text-anchor='middle' style='font-size: 11.04px; font-weight: 0;fill: #F3A904; font-family: "Courier";' textLength='59.55px' lengthAdjust='spacingAndGlyphs'>E4:G4:C̲5̲↓</text>
-<text x='314.16' y='152.24' text-anchor='middle' style='font-size: 11.04px; font-weight: 0;fill: #F3A904; font-family: "Courier";' textLength='59.55px' lengthAdjust='spacingAndGlyphs'>{4:7:1̲2̲}↓</text>
-<text x='314.16' y='168.14' text-anchor='middle' style='font-size: 11.04px; font-weight: 0;fill: #F3A904; font-family: "Courier";' textLength='72.78px' lengthAdjust='spacingAndGlyphs'>Major Triad</text>
-<text x='314.16' y='184.03' text-anchor='middle' style='font-size: 11.04px; font-weight: 0;fill: #F3A904; font-family: "Courier";' textLength='86.02px' lengthAdjust='spacingAndGlyphs'>1st Inversion</text>
-<text x='400.72' y='299.70' text-anchor='middle' style='font-size: 11.04px; font-weight: 0;fill: #F3A904; font-family: "Courier";' textLength='59.55px' lengthAdjust='spacingAndGlyphs'>G4:C̲5̲:E5↑</text>
-<text x='400.72' y='315.60' text-anchor='middle' style='font-size: 11.04px; font-weight: 0;fill: #F3A904; font-family: "Courier";' textLength='66.17px' lengthAdjust='spacingAndGlyphs'>{7:1̲2̲:16}↑</text>
-<text x='400.72' y='331.50' text-anchor='middle' style='font-size: 11.04px; font-weight: 0;fill: #F3A904; font-family: "Courier";' textLength='72.78px' lengthAdjust='spacingAndGlyphs'>Major Triad</text>
-<text x='400.72' y='347.39' text-anchor='middle' style='font-size: 11.04px; font-weight: 0;fill: #F3A904; font-family: "Courier";' textLength='86.02px' lengthAdjust='spacingAndGlyphs'>2nd Inversion</text>
-<text x='160.78' y='369.95' text-anchor='middle' style='font-size: 11.04px; font-weight: 0;fill: #ABDAF3; font-family: "Courier";' textLength='59.55px' lengthAdjust='spacingAndGlyphs'>E̲4̲:G4:C5↑</text>
-<text x='160.78' y='385.85' text-anchor='middle' style='font-size: 11.04px; font-weight: 0;fill: #ABDAF3; font-family: "Courier";' textLength='59.55px' lengthAdjust='spacingAndGlyphs'>{4̲:7:12}↑</text>
-<text x='160.78' y='401.75' text-anchor='middle' style='font-size: 11.04px; font-weight: 0;fill: #ABDAF3; font-family: "Courier";' textLength='99.25px' lengthAdjust='spacingAndGlyphs'>Major Triad 6/3</text>
-<text x='369.40' y='40.81' text-anchor='middle' style='font-size: 11.04px; font-weight: 0;fill: #F3A904; font-family: "Courier";' textLength='59.55px' lengthAdjust='spacingAndGlyphs'>G̲4̲:C5:E5↑</text>
-<text x='369.40' y='56.71' text-anchor='middle' style='font-size: 11.04px; font-weight: 0;fill: #F3A904; font-family: "Courier";' textLength='66.17px' lengthAdjust='spacingAndGlyphs'>{7̲:12:16}↑</text>
-<text x='369.40' y='72.61' text-anchor='middle' style='font-size: 11.04px; font-weight: 0;fill: #F3A904; font-family: "Courier";' textLength='99.25px' lengthAdjust='spacingAndGlyphs'>Major Triad 6/4</text>
-<text x='348.35' y='415.36' text-anchor='middle' style='font-size: 11.04px; font-weight: 0;fill: #F3A904; font-family: "Courier";' textLength='66.17px' lengthAdjust='spacingAndGlyphs'>C̲4̲:E4:Ab4↑</text>
-<text x='348.35' y='431.25' text-anchor='middle' style='font-size: 11.04px; font-weight: 0;fill: #F3A904; font-family: "Courier";' textLength='52.93px' lengthAdjust='spacingAndGlyphs'>{0̲:4:8}↑</text>
-<text x='348.35' y='447.15' text-anchor='middle' style='font-size: 11.04px; font-weight: 0;fill: #F3A904; font-family: "Courier";' textLength='119.10px' lengthAdjust='spacingAndGlyphs'>Augmented Triad Up</text>
-<text x='190.80' y='415.40' text-anchor='middle' style='font-size: 11.04px; font-weight: 0;fill: #ABDAF3; font-family: "Courier";' textLength='66.17px' lengthAdjust='spacingAndGlyphs'>E4:G#4:C̲5̲↓</text>
-<text x='190.80' y='431.29' text-anchor='middle' style='font-size: 11.04px; font-weight: 0;fill: #ABDAF3; font-family: "Courier";' textLength='59.55px' lengthAdjust='spacingAndGlyphs'>{4:8:1̲2̲}↓</text>
-<text x='190.80' y='447.19' text-anchor='middle' style='font-size: 11.04px; font-weight: 0;fill: #ABDAF3; font-family: "Courier";' textLength='132.34px' lengthAdjust='spacingAndGlyphs'>Augmented Triad Down</text>
-<text x='132.56' y='78.69' text-anchor='middle' style='font-size: 11.04px; font-weight: 0;fill: #ABDAF3; font-family: "Courier";' textLength='66.17px' lengthAdjust='spacingAndGlyphs'>F4:G#4:C̲5̲↓</text>
-<text x='132.56' y='94.59' text-anchor='middle' style='font-size: 11.04px; font-weight: 0;fill: #ABDAF3; font-family: "Courier";' textLength='59.55px' lengthAdjust='spacingAndGlyphs'>{5:8:1̲2̲}↓</text>
-<text x='132.56' y='110.49' text-anchor='middle' style='font-size: 11.04px; font-weight: 0;fill: #ABDAF3; font-family: "Courier";' textLength='92.64px' lengthAdjust='spacingAndGlyphs'>Phrygian Triad</text>
-<text x='132.56' y='126.38' text-anchor='middle' style='font-size: 11.04px; font-weight: 0;fill: #ABDAF3; font-family: "Courier";' textLength='86.02px' lengthAdjust='spacingAndGlyphs'>Root Position</text>
-<text x='266.10' y='75.14' text-anchor='middle' style='font-size: 11.04px; font-weight: 0;fill: #ABDAF3; font-family: "Courier";' textLength='66.17px' lengthAdjust='spacingAndGlyphs'>C̲4̲:F4:Ab4↑</text>
-<text x='266.10' y='91.04' text-anchor='middle' style='font-size: 11.04px; font-weight: 0;fill: #ABDAF3; font-family: "Courier";' textLength='52.93px' lengthAdjust='spacingAndGlyphs'>{0̲:5:8}↑</text>
-<text x='266.10' y='106.93' text-anchor='middle' style='font-size: 11.04px; font-weight: 0;fill: #ABDAF3; font-family: "Courier";' textLength='92.64px' lengthAdjust='spacingAndGlyphs'>Phrygian Triad</text>
-<text x='266.10' y='122.83' text-anchor='middle' style='font-size: 11.04px; font-weight: 0;fill: #ABDAF3; font-family: "Courier";' textLength='86.02px' lengthAdjust='spacingAndGlyphs'>1st Inversion</text>
-<text x='90.52' y='299.65' text-anchor='middle' style='font-size: 11.04px; font-weight: 0;fill: #ABDAF3; font-family: "Courier";' textLength='66.17px' lengthAdjust='spacingAndGlyphs'>G#3:C̲4̲:F4↓</text>
-<text x='90.52' y='315.55' text-anchor='middle' style='font-size: 11.04px; font-weight: 0;fill: #ABDAF3; font-family: "Courier";' textLength='59.55px' lengthAdjust='spacingAndGlyphs'>{-4:0̲:5}↓</text>
-<text x='90.52' y='331.45' text-anchor='middle' style='font-size: 11.04px; font-weight: 0;fill: #ABDAF3; font-family: "Courier";' textLength='92.64px' lengthAdjust='spacingAndGlyphs'>Phrygian Triad</text>
-<text x='90.52' y='347.34' text-anchor='middle' style='font-size: 11.04px; font-weight: 0;fill: #ABDAF3; font-family: "Courier";' textLength='86.02px' lengthAdjust='spacingAndGlyphs'>2nd Inversion</text>
-<text x='388.18' y='369.96' text-anchor='middle' style='font-size: 11.04px; font-weight: 0;fill: #F3A904; font-family: "Courier";' textLength='59.55px' lengthAdjust='spacingAndGlyphs'>E4:A4:C̲5̲↓</text>
-<text x='388.18' y='385.86' text-anchor='middle' style='font-size: 11.04px; font-weight: 0;fill: #F3A904; font-family: "Courier";' textLength='59.55px' lengthAdjust='spacingAndGlyphs'>{4:9:1̲2̲}↓</text>
-<text x='388.18' y='401.75' text-anchor='middle' style='font-size: 11.04px; font-weight: 0;fill: #F3A904; font-family: "Courier";' textLength='119.10px' lengthAdjust='spacingAndGlyphs'>Phrygian Triad 6/3</text>
-<text x='173.79' y='33.32' text-anchor='middle' style='font-size: 11.04px; font-weight: 0;fill: #ABDAF3; font-family: "Courier";' textLength='66.17px' lengthAdjust='spacingAndGlyphs'>D#4:G4:C̲5̲↓</text>
-<text x='173.79' y='49.22' text-anchor='middle' style='font-size: 11.04px; font-weight: 0;fill: #ABDAF3; font-family: "Courier";' textLength='59.55px' lengthAdjust='spacingAndGlyphs'>{3:7:1̲2̲}↓</text>
-<text x='173.79' y='65.12' text-anchor='middle' style='font-size: 11.04px; font-weight: 0;fill: #ABDAF3; font-family: "Courier";' textLength='119.10px' lengthAdjust='spacingAndGlyphs'>Phrygian Triad 6/4</text>
+<line x1='393.87' y1='46.02' x2='325.20' y2='43.78' style='stroke-width: 1.07; stroke: #7F745A;' />
+<text x='400.81' y='136.38' text-anchor='middle' style='font-size: 11.04px; font-weight: 0;fill: #F3A904; font-family: "Courier";' textLength='59.55px' lengthAdjust='spacingAndGlyphs'>C̲4̲:E4:G4↑</text>
+<text x='400.81' y='152.27' text-anchor='middle' style='font-size: 11.04px; font-weight: 0;fill: #F3A904; font-family: "Courier";' textLength='52.93px' lengthAdjust='spacingAndGlyphs'>{0̲:4:7}↑</text>
+<text x='400.81' y='168.17' text-anchor='middle' style='font-size: 11.04px; font-weight: 0;fill: #F3A904; font-family: "Courier";' textLength='72.78px' lengthAdjust='spacingAndGlyphs'>Major Triad</text>
+<text x='400.81' y='184.07' text-anchor='middle' style='font-size: 11.04px; font-weight: 0;fill: #F3A904; font-family: "Courier";' textLength='86.02px' lengthAdjust='spacingAndGlyphs'>Root Position</text>
+<text x='362.62' y='72.98' text-anchor='middle' style='font-size: 11.04px; font-weight: 0;fill: #F3A904; font-family: "Courier";' textLength='59.55px' lengthAdjust='spacingAndGlyphs'>E4:G4:C̲5̲↓</text>
+<text x='362.62' y='88.87' text-anchor='middle' style='font-size: 11.04px; font-weight: 0;fill: #F3A904; font-family: "Courier";' textLength='59.55px' lengthAdjust='spacingAndGlyphs'>{4:7:1̲2̲}↓</text>
+<text x='362.62' y='104.77' text-anchor='middle' style='font-size: 11.04px; font-weight: 0;fill: #F3A904; font-family: "Courier";' textLength='72.78px' lengthAdjust='spacingAndGlyphs'>Major Triad</text>
+<text x='362.62' y='120.67' text-anchor='middle' style='font-size: 11.04px; font-weight: 0;fill: #F3A904; font-family: "Courier";' textLength='86.02px' lengthAdjust='spacingAndGlyphs'>1st Inversion</text>
+<text x='400.76' y='299.66' text-anchor='middle' style='font-size: 11.04px; font-weight: 0;fill: #F3A904; font-family: "Courier";' textLength='59.55px' lengthAdjust='spacingAndGlyphs'>G4:C̲5̲:E5↑</text>
+<text x='400.76' y='315.56' text-anchor='middle' style='font-size: 11.04px; font-weight: 0;fill: #F3A904; font-family: "Courier";' textLength='66.17px' lengthAdjust='spacingAndGlyphs'>{7:1̲2̲:16}↑</text>
+<text x='400.76' y='331.46' text-anchor='middle' style='font-size: 11.04px; font-weight: 0;fill: #F3A904; font-family: "Courier";' textLength='72.78px' lengthAdjust='spacingAndGlyphs'>Major Triad</text>
+<text x='400.76' y='347.36' text-anchor='middle' style='font-size: 11.04px; font-weight: 0;fill: #F3A904; font-family: "Courier";' textLength='86.02px' lengthAdjust='spacingAndGlyphs'>2nd Inversion</text>
+<text x='160.73' y='369.97' text-anchor='middle' style='font-size: 11.04px; font-weight: 0;fill: #ABDAF3; font-family: "Courier";' textLength='59.55px' lengthAdjust='spacingAndGlyphs'>E̲4̲:G4:C5↑</text>
+<text x='160.73' y='385.87' text-anchor='middle' style='font-size: 11.04px; font-weight: 0;fill: #ABDAF3; font-family: "Courier";' textLength='59.55px' lengthAdjust='spacingAndGlyphs'>{4̲:7:12}↑</text>
+<text x='160.73' y='401.76' text-anchor='middle' style='font-size: 11.04px; font-weight: 0;fill: #ABDAF3; font-family: "Courier";' textLength='99.25px' lengthAdjust='spacingAndGlyphs'>Major Triad 6/3</text>
+<text x='445.29' y='33.32' text-anchor='middle' style='font-size: 11.04px; font-weight: 0;fill: #F3A904; font-family: "Courier";' textLength='59.55px' lengthAdjust='spacingAndGlyphs'>G̲4̲:C5:E5↑</text>
+<text x='445.29' y='49.22' text-anchor='middle' style='font-size: 11.04px; font-weight: 0;fill: #F3A904; font-family: "Courier";' textLength='66.17px' lengthAdjust='spacingAndGlyphs'>{7̲:12:16}↑</text>
+<text x='445.29' y='65.12' text-anchor='middle' style='font-size: 11.04px; font-weight: 0;fill: #F3A904; font-family: "Courier";' textLength='99.25px' lengthAdjust='spacingAndGlyphs'>Major Triad 6/4</text>
+<text x='348.28' y='415.43' text-anchor='middle' style='font-size: 11.04px; font-weight: 0;fill: #F3A904; font-family: "Courier";' textLength='66.17px' lengthAdjust='spacingAndGlyphs'>C̲4̲:E4:Ab4↑</text>
+<text x='348.28' y='431.32' text-anchor='middle' style='font-size: 11.04px; font-weight: 0;fill: #F3A904; font-family: "Courier";' textLength='52.93px' lengthAdjust='spacingAndGlyphs'>{0̲:4:8}↑</text>
+<text x='348.28' y='447.22' text-anchor='middle' style='font-size: 11.04px; font-weight: 0;fill: #F3A904; font-family: "Courier";' textLength='119.10px' lengthAdjust='spacingAndGlyphs'>Augmented Triad Up</text>
+<text x='190.76' y='415.35' text-anchor='middle' style='font-size: 11.04px; font-weight: 0;fill: #ABDAF3; font-family: "Courier";' textLength='66.17px' lengthAdjust='spacingAndGlyphs'>E4:G#4:C̲5̲↓</text>
+<text x='190.76' y='431.25' text-anchor='middle' style='font-size: 11.04px; font-weight: 0;fill: #ABDAF3; font-family: "Courier";' textLength='59.55px' lengthAdjust='spacingAndGlyphs'>{4:8:1̲2̲}↓</text>
+<text x='190.76' y='447.14' text-anchor='middle' style='font-size: 11.04px; font-weight: 0;fill: #ABDAF3; font-family: "Courier";' textLength='132.34px' lengthAdjust='spacingAndGlyphs'>Augmented Triad Down</text>
+<text x='132.55' y='78.69' text-anchor='middle' style='font-size: 11.04px; font-weight: 0;fill: #ABDAF3; font-family: "Courier";' textLength='66.17px' lengthAdjust='spacingAndGlyphs'>F4:G#4:C̲5̲↓</text>
+<text x='132.55' y='94.58' text-anchor='middle' style='font-size: 11.04px; font-weight: 0;fill: #ABDAF3; font-family: "Courier";' textLength='59.55px' lengthAdjust='spacingAndGlyphs'>{5:8:1̲2̲}↓</text>
+<text x='132.55' y='110.48' text-anchor='middle' style='font-size: 11.04px; font-weight: 0;fill: #ABDAF3; font-family: "Courier";' textLength='92.64px' lengthAdjust='spacingAndGlyphs'>Phrygian Triad</text>
+<text x='132.55' y='126.38' text-anchor='middle' style='font-size: 11.04px; font-weight: 0;fill: #ABDAF3; font-family: "Courier";' textLength='86.02px' lengthAdjust='spacingAndGlyphs'>Root Position</text>
+<text x='265.92' y='78.80' text-anchor='middle' style='font-size: 11.04px; font-weight: 0;fill: #ABDAF3; font-family: "Courier";' textLength='66.17px' lengthAdjust='spacingAndGlyphs'>C̲4̲:F4:Ab4↑</text>
+<text x='265.92' y='94.69' text-anchor='middle' style='font-size: 11.04px; font-weight: 0;fill: #ABDAF3; font-family: "Courier";' textLength='52.93px' lengthAdjust='spacingAndGlyphs'>{0̲:5:8}↑</text>
+<text x='265.92' y='110.59' text-anchor='middle' style='font-size: 11.04px; font-weight: 0;fill: #ABDAF3; font-family: "Courier";' textLength='92.64px' lengthAdjust='spacingAndGlyphs'>Phrygian Triad</text>
+<text x='265.92' y='126.49' text-anchor='middle' style='font-size: 11.04px; font-weight: 0;fill: #ABDAF3; font-family: "Courier";' textLength='86.02px' lengthAdjust='spacingAndGlyphs'>1st Inversion</text>
+<text x='90.55' y='299.62' text-anchor='middle' style='font-size: 11.04px; font-weight: 0;fill: #ABDAF3; font-family: "Courier";' textLength='66.17px' lengthAdjust='spacingAndGlyphs'>G#3:C̲4̲:F4↓</text>
+<text x='90.55' y='315.52' text-anchor='middle' style='font-size: 11.04px; font-weight: 0;fill: #ABDAF3; font-family: "Courier";' textLength='59.55px' lengthAdjust='spacingAndGlyphs'>{-4:0̲:5}↓</text>
+<text x='90.55' y='331.42' text-anchor='middle' style='font-size: 11.04px; font-weight: 0;fill: #ABDAF3; font-family: "Courier";' textLength='92.64px' lengthAdjust='spacingAndGlyphs'>Phrygian Triad</text>
+<text x='90.55' y='347.31' text-anchor='middle' style='font-size: 11.04px; font-weight: 0;fill: #ABDAF3; font-family: "Courier";' textLength='86.02px' lengthAdjust='spacingAndGlyphs'>2nd Inversion</text>
+<text x='388.25' y='369.96' text-anchor='middle' style='font-size: 11.04px; font-weight: 0;fill: #F3A904; font-family: "Courier";' textLength='59.55px' lengthAdjust='spacingAndGlyphs'>E4:A4:C̲5̲↓</text>
+<text x='388.25' y='385.85' text-anchor='middle' style='font-size: 11.04px; font-weight: 0;fill: #F3A904; font-family: "Courier";' textLength='59.55px' lengthAdjust='spacingAndGlyphs'>{4:9:1̲2̲}↓</text>
+<text x='388.25' y='401.75' text-anchor='middle' style='font-size: 11.04px; font-weight: 0;fill: #F3A904; font-family: "Courier";' textLength='119.10px' lengthAdjust='spacingAndGlyphs'>Phrygian Triad 6/3</text>
+<text x='181.18' y='33.32' text-anchor='middle' style='font-size: 11.04px; font-weight: 0;fill: #ABDAF3; font-family: "Courier";' textLength='66.17px' lengthAdjust='spacingAndGlyphs'>D#4:G4:C̲5̲↓</text>
+<text x='181.18' y='49.22' text-anchor='middle' style='font-size: 11.04px; font-weight: 0;fill: #ABDAF3; font-family: "Courier";' textLength='59.55px' lengthAdjust='spacingAndGlyphs'>{3:7:1̲2̲}↓</text>
+<text x='181.18' y='65.12' text-anchor='middle' style='font-size: 11.04px; font-weight: 0;fill: #ABDAF3; font-family: "Courier";' textLength='119.10px' lengthAdjust='spacingAndGlyphs'>Phrygian Triad 6/4</text>
 </g>
 <g clip-path='url(#cpMC4wMHw1MDQuMDB8MC4wMHw1MDQuMDA=)'>
 <text x='35.67' y='455.01' text-anchor='end' style='font-size: 8.80px;fill: #F3DDAB; font-family: "Arial";' textLength='12.23px' lengthAdjust='spacingAndGlyphs'>9.0</text>
