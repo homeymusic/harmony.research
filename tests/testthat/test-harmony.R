@@ -19,19 +19,19 @@ test_that('params are stored',{
 test_that('integer names are informative and maintain voice leading order',{
   # major triads
   expect_equal(major_triad_root$integer_name,"{0\u0332:4:7}↑")
-  expect_equal(major_triad_first_inversion$integer_name,"{0:3:8̲}↓")
-  expect_equal(major_triad_second_inversion$integer_name,'{0:5̲:9}↑')
+  expect_equal(major_triad_first_inversion$integer_name,'{4:7:1̲2̲}↓')
+  expect_equal(major_triad_second_inversion$integer_name,'{7:1̲2̲:16}↑')
 
   # minor triads
   expect_equal(minor_triad_root$integer_name,"{0\u0332:3:7}↑")
-  expect_equal(minor_triad_first_inversion$integer_name,"{0:4:9̲}↓")
-  expect_equal(minor_triad_second_inversion$integer_name,'{0:5̲:8}↑')
+  expect_equal(minor_triad_first_inversion$integer_name,'{3:7:1̲2̲}↓')
+  expect_equal(minor_triad_second_inversion$integer_name,'{7:1̲2̲:15}↑')
 })
 test_that('if implicit and explicit observation_point agree then do not flip it.',{
   expect_gt(major_triad_first_inversion$primes.brightness,0)
 })
 test_that('guessed roots make sense',{
-  expect_equal(major_triad_first_inversion$guessed_root,8)
+  expect_equal(major_triad_first_inversion$guessed_root,12)
   expect_equal(h(c(1,2,3))$guessed_root,1)
   expect_equal(h(c(12,4,7),root=4)$guessed_root,12)
 })

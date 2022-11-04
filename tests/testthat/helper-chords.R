@@ -15,68 +15,58 @@ core_pitches <- function() {
 }
 major_triads <- function() {
   list(
-    "root position"=h(c(0,4,7),
+    "root position"=h(c(0,4,7)%>%sort,
              root=0,
              observation_point=0,
-             name="Major Triad\nRoot Position",
-             midi_root=60),
-    "1st inversion"=h(c(0,3,8),
-                      root=8,
+             name="Major Triad\nRoot Position"),
+    "1st inversion"=h(c(0+12,4,7)%>%sort,
+                      root=0+12,
                       observation_point=12,
-                      name="Major Triad\n1st Inversion",
-                      midi_root=60-8),
-    "2nd inversion"=h(c(0,5,9),
-                      root=5,
+                      name="Major Triad\n1st Inversion"),
+    "2nd inversion"=h(c(0+12,4+12,7)%>%sort,
+                      root=0+12,
                       observation_point=0,
-                      name="Major Triad\n2nd Inversion",
-                      midi_root=60-5)
+                      name="Major Triad\n2nd Inversion")
   )
 }
 major_6_chords <- function() {
   list(
-    "6/3"=h(c(0,3,8),
-            root=0,
+    "6/3"=h(c(0+12,4,7)%>%sort,
+            root=4,
             observation_point=0,
-            name="Major Triad 6/3",
-            midi_root=60-0),
-    "6/4"=h(c(0,5,9),
-            root=0,
+            name="Major Triad 6/3"),
+    "6/4"=h(c(0+12,4+12,7)%>%sort,
+            root=7,
             observation_point=0,
-            name="Major Triad 6/4",
-            midi_root=60-0)
+            name="Major Triad 6/4")
   )
 }
 minor_triads <- function() {
   list(
-    "root position"=h(c(0,3,7),
+    "root position"=h(c(0,3,7)%>%sort,
              root=0,
              observation_point=0,
-             name="Minor Triad\nRoot Position",
-             midi_root=60-0),
-    "1st inversion"=h(c(0,4,9),
-                      root=9,
+             name="Minor Triad\nRoot Position"),
+    "1st inversion"=h(c(0+12,3,7)%>%sort,
+                      root=0+12,
                       observation_point=12,
-                      name="Minor Triad\n1st Inversion",
-                      midi_root=60-9),
-    "2nd inversion"=h(c(0,5,8),
-                      root=5,
+                      name="Minor Triad\n1st Inversion"),
+    "2nd inversion"=h(c(0+12,3+12,7)%>%sort,
+                      root=12,
                       observation_point=0,
-                      name="Minor Triad\n2nd Inversion",
-                      midi_root=60-5)
+                      name="Minor Triad\n2nd Inversion")
   )
 }
 minor_6_chords <- function() {
   list(
-    "minor 6/3"=h(c(0,4,9),
-                  root=0,
+    "minor 6/3"=h(c(0+12,3,7)%>%sort,
+                  root=3,
                   observation_point=0,
-                  name="Minor Triad 6/3",
-                  midi_root=60-0),
-    "minor 6/4"=h(c(0,5,8),
-                  root=0,
+                  name="Minor Triad 6/3"),
+    "minor 6/4"=h(c(0+12,3+12,7)%>%sort,
+                  root=7,
                   observation_point=0,
-                  name="Minor Triad 6/4",
-                  midi_root=60-0)
+                  name="Minor Triad 6/4")
   )
 }
 augmented_triads <- function() {
@@ -108,8 +98,8 @@ symmetrical_augmented_triads <- function() {
                              root=0,
                              observation_point=0,
                              name='Augmented Triad Up'),
-    'augmented_triad_down' = h(-c(0,4,8),
-                               root=0,
+    'augmented_triad_down' = h((12-c(0,4,8))%>%sort,
+                               root=12+0,
                                observation_point=12,
                                name='Augmented Triad Down')
 
@@ -117,34 +107,31 @@ symmetrical_augmented_triads <- function() {
 }
 phrygian_triads <- function() {
   list(
-    "root position"=h(-c(0,4,7),
+    "root position"=h((12-c(0,4,7))%>%sort,
+                      root=12,
+                      observation_point=12,
+                      name="Phrygian Triad\nRoot Position"),
+    "1st inversion"=h((12-c(0+12,4,7))%>%sort,
+                      root=0,
+                      observation_point=0,
+                      name="Phrygian Triad\n1st Inversion"),
+    "2nd inversion"=h((12-c(0+12,4+12,7))%>%sort,
                       root=0,
                       observation_point=12,
-                      name="Phrygian Triad\nRoot Position",
-                      midi_root=60),
-    "1st inversion"=h(-c(0,3,8),
-                      root=-8,
-                      observation_point=0,
-                      name="Phrygian Triad\n1st Inversion",
-                      midi_root=60+8),
-    "2nd inversion"=h(-c(0,5,9),
-                      root=-5,
-                      observation_point=12,
-                      name="Phrygian Triad\n2nd Inversion",
-                      midi_root=60+5)
+                      name="Phrygian Triad\n2nd Inversion")
   )
 }
 phrygian_6_chords <- function() {
   list(
-    "6/3"=h(-c(0,3,8),
-            root=0,
+    "6/3"=h((12-c(0,3,8))%>%sort,
+            root=12,
             observation_point=12,
             name="Phrygian Triad 6/3",
             midi_root=60+0),
-    "6/4"=h(-c(0,5,9),
-            root=0,
+    "6/4"=h((12-c(0,5,9))%>%sort,
+            root=12,
             observation_point=12,
-            name="Major Triad 6/4",
+            name="Phrygian Triad 6/4",
             midi_root=60+0)
   )
 }
