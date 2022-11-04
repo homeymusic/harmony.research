@@ -18,17 +18,17 @@ major_triads <- function() {
     "root position"=h(c(0,4,7),
              root=0,
              observation_point=0,
-             name="Major Triad Root",
+             name="Major Triad\nRoot Position",
              midi_root=60),
     "1st inversion"=h(c(0,3,8),
                       root=8,
                       observation_point=12,
-                      name="Major Triad 1st Inversion",
+                      name="Major Triad\n1st Inversion",
                       midi_root=60-8),
     "2nd inversion"=h(c(0,5,9),
                       root=5,
                       observation_point=0,
-                      name="Major Triad 2nd Inversion",
+                      name="Major Triad\n2nd Inversion",
                       midi_root=60-5)
   )
 }
@@ -51,17 +51,17 @@ minor_triads <- function() {
     "root position"=h(c(0,3,7),
              root=0,
              observation_point=0,
-             name="Minor Triad Root",
+             name="Minor Triad\nRoot Position",
              midi_root=60-0),
     "1st inversion"=h(c(0,4,9),
                       root=9,
                       observation_point=12,
-                      name="Minor Triad 1st Inversion",
+                      name="Minor Triad\n1st Inversion",
                       midi_root=60-9),
     "2nd inversion"=h(c(0,5,8),
                       root=5,
                       observation_point=0,
-                      name="Minor Triad 2nd Inversion",
+                      name="Minor Triad\n2nd Inversion",
                       midi_root=60-5)
   )
 }
@@ -102,6 +102,61 @@ major_minor_triads <- function() {
     dplyr::bind_rows(minor_6_chords()),
   )
 }
+symmetrical_augmented_triads <- function() {
+  list(
+    'augmented_triad_up' = h(c(0,4,8),
+                             root=0,
+                             observation_point=0,
+                             name='Augmented Triad Up'),
+    'augmented_triad_down' = h(-c(0,4,8),
+                               root=0,
+                               observation_point=12,
+                               name='Augmented Triad Down')
+
+  )
+}
+phrygian_triads <- function() {
+  list(
+    "root position"=h(-c(0,4,7),
+                      root=0,
+                      observation_point=12,
+                      name="Phrygian Triad\nRoot Position",
+                      midi_root=60),
+    "1st inversion"=h(-c(0,3,8),
+                      root=-8,
+                      observation_point=0,
+                      name="Phrygian Triad\n1st Inversion",
+                      midi_root=60+8),
+    "2nd inversion"=h(-c(0,5,9),
+                      root=-5,
+                      observation_point=12,
+                      name="Phrygian Triad\n2nd Inversion",
+                      midi_root=60+5)
+  )
+}
+phrygian_6_chords <- function() {
+  list(
+    "6/3"=h(-c(0,3,8),
+            root=0,
+            observation_point=12,
+            name="Phrygian Triad 6/3",
+            midi_root=60+0),
+    "6/4"=h(-c(0,5,9),
+            root=0,
+            observation_point=12,
+            name="Major Triad 6/4",
+            midi_root=60+0)
+  )
+}
+major_phrygian_triads <- function() {
+  dplyr::bind_rows(
+    dplyr::bind_rows(major_triads()),
+    dplyr::bind_rows(major_6_chords()),
+    dplyr::bind_rows(symmetrical_augmented_triads()),
+    dplyr::bind_rows(phrygian_triads()),
+    dplyr::bind_rows(phrygian_6_chords())
+  )
+}
 seventh_chords <- function() {
   list(
     "Major"=h(c(0,4,7,11),
@@ -111,7 +166,7 @@ seventh_chords <- function() {
     "Dominant Flat Five"=h(c(0,4,6,10),
                            root=0,
                            observation_point=0,
-                           name="dominant flat five"),
+                           name="Dominant Flat Five"),
     "Dominant"=h(c(0,4,7,10),
                  root=0,
                  observation_point=0,
@@ -119,7 +174,7 @@ seventh_chords <- function() {
     "Augmented"=h(c(0,4,8,10),
                   root=0,
                   observation_point=0,
-                  name="augmented"),
+                  name="Augmented"),
     "Augmented Major"=h(c(0,4,8,11),
                         root=0,
                         observation_point=0,
@@ -127,11 +182,11 @@ seventh_chords <- function() {
     "minor"=h(c(0,3,7,10),
               root=0,
               observation_point=0,
-              name="minor"),
+              name="Minor"),
     "minor major"=h(c(0,3,7,11),
                     root=0,
                     observation_point=0,
-                    name="minor-major"),
+                    name="Minor-Major"),
     "half-diminished"=h(c(0,3,6,10),
                         root=0,
                         observation_point=0,
@@ -139,11 +194,11 @@ seventh_chords <- function() {
     "diminished major"=h(c(0,3,6,11),
                          root=0,
                          observation_point=0,
-                         name="diminished major"),
+                         name="Diminished Major"),
     "diminished"=h(c(0,3,6,9),
                    root=0,
                    observation_point=0,
-                   name="diminished")
+                   name="Diminished")
   )
 }
 diatonic_scales <- function() {

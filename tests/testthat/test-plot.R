@@ -40,12 +40,12 @@ test_that("plot all tonic triads", {
   combos  = utils::combn(1:11,2,function(x){c(0,x)} ,simplify=FALSE)
   plot_affinity_brightness_up_down(combos,'Tonic Triads')
 })
-test_that("plot consonant floating triads", {
-  up_chords   = dplyr::bind_rows(utils::combn(0:11,3,function(x){h(x,observation_point=0,root=0)}  ,simplify=FALSE))
-  down_chords = dplyr::bind_rows(utils::combn(0:11,3,function(x){h(x,observation_point=12,root=0)} ,simplify=FALSE))
-  plot_affinity_brightness(dplyr::bind_rows(up_chords,down_chords) %>%
-                             dplyr::filter(affinity>=0.0),'Consonant Floating Triads')
-})
+# test_that("plot consonant floating triads", {
+#   up_chords   = dplyr::bind_rows(utils::combn(0:11,3,function(x){h(x,observation_point=0,root=0)}  ,simplify=FALSE))
+#   down_chords = dplyr::bind_rows(utils::combn(0:11,3,function(x){h(x,observation_point=12,root=0)} ,simplify=FALSE))
+#   plot_affinity_brightness(dplyr::bind_rows(up_chords,down_chords) %>%
+#                              dplyr::filter(affinity>=0.0),'Consonant Floating Triads')
+# })
 test_that("plot major and minor triads", {
   plot_affinity_brightness(major_minor_triads(),'Major and Minor Triads')
 })
@@ -62,7 +62,7 @@ test_that("map the augmented triad hood", {
     c(0,4,8-1),
     c(0,4,8+1)
   )
-  plot_affinity_brightness_up_down(combos,'Augmented Triad Neighborhood: One Semitone')
+  plot_affinity_brightness_up_down(combos,'Neighborhood: Augmented Triad')
 })
 test_that("map the diminished seventh hood", {
   combos = list(
@@ -80,7 +80,7 @@ test_that("map the diminished seventh hood", {
     c(0,3,6,9+1),
     c(0,3,6,9-1)
   )
-  plot_affinity_brightness_up_down(combos,'Diminished Seventh Neighborhood: One Semitone')
+  plot_affinity_brightness_up_down(combos,'Neighborhood: Diminished Seventh')
 })
 test_that("map the major triad hood", {
   combos = list(
@@ -95,7 +95,7 @@ test_that("map the major triad hood", {
     c(0,4,7+1),
     c(0,4,7-1)
   )
-  plot_affinity_brightness_up_down(combos,'Major Triad Neighborhood: One Semitone')
+  plot_affinity_brightness_up_down(combos,'Neighborhood: Major Triad')
 })
 test_that("map the minor triad hood", {
   combos = list(
@@ -110,7 +110,7 @@ test_that("map the minor triad hood", {
     c(0,3,7+1),
     c(0,3,7-1)
   )
-  plot_affinity_brightness_up_down(combos,'Minor Triad Neighborhood: One Semitone')
+  plot_affinity_brightness_up_down(combos,'Neighborhood: Minor Triad')
 })
 test_that("plot all major and minor triads plus one", {
   combos_major  = c(utils::combn(c(1:11)[c(-4,-7)],1,function(x){c(0,4,7,x) %>% sort} ,simplify=FALSE),
@@ -122,11 +122,7 @@ test_that("plot all major and minor triads plus one", {
 })
 
 test_that("plot triads in harmonic dualism", {
-  chords  = dplyr::bind_rows(h(-c(0,4,7),observation_point=12, name = 'Major Triad Down'),
-                             h(-c(0,3,7),observation_point=12, name = 'minor triad down'),
-                             h(c(0,4,7),observation_point=0,   name = 'Major Triad Up'),
-                             h(c(0,3,7),observation_point=0,   name = 'minor triad up'))
-  plot_affinity_brightness(chords,'Harmonic Dualism? Major Minor Triads')
+  plot_affinity_brightness(major_phrygian_triads(),'Harmonic Dualism? Major and Phrygian Triads')
 })
 test_that("Major 1st Inversion", {
   chords = dplyr::bind_rows(
