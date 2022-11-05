@@ -1,3 +1,6 @@
+TONIC  <- 0
+OCTAVE <- 12
+
 harmony.uncached <- function(chord, observation_point=NA, root=NA,
                              name=NA, midi_root = NA,
                              default_consonance_metric='stolzenburg2015') {
@@ -5,7 +8,7 @@ harmony.uncached <- function(chord, observation_point=NA, root=NA,
   if (length(chord)==1) {
     checkmate::assert_choice(observation_point,NA)
   } else {
-    checkmate::assert_choice(observation_point,c(0,NA,12))
+    checkmate::assert_choice(observation_point,c(TONIC,NA,OCTAVE))
   }
   checkmate::assert_integerish(root)
   checkmate::assert_character(name)
@@ -111,18 +114,18 @@ guessed_root <- function(chord,explicit_observation_point) {
     if (length(chord)==1) {
       explicit_observation_point
     } else {
-      ifelse(explicit_observation_point==12,max(chord),min(chord))
+      ifelse(explicit_observation_point==OCTAVE,max(chord),min(chord))
     }
   } else {
     if (length(chord)==1) {
-      0
+      TONIC
     } else {
-      if (c(0,12) %in% chord %>% all) {
-        0
-      } else if (12 == min(chord) || 12 == max(chord)) {
-        12
-      } else if (0 == min(chord) || 0 == max(chord)) {
-        0
+      if (c(TONIC,OCTAVE) %in% chord %>% all) {
+        TONIC
+      } else if (OCTAVE == min(chord) || OCTAVE == max(chord)) {
+        OCTAVE
+      } else if (TONIC == min(chord) || TONIC == max(chord)) {
+        TONIC
       } else {
         min(chord)
       }
@@ -135,29 +138,29 @@ guessed_observation_point <- function(chord,explicit_root,guessed_root) {
     NA
   } else if (!is.na(explicit_root)) {
     if (explicit_root<=min(chord)) {
-      0
+      TONIC
     } else if (explicit_root>=max(chord)) {
-      12
+      OCTAVE
     } else {
       NA
     }
   } else {
-    if (c(guessed_root,guessed_root+12) %in% chord %>% all) {
+    if (c(guessed_root,guessed_root+OCTAVE) %in% chord %>% all) {
       NA
-    } else if (12 == max(chord) || 0 == max(chord)) {
-      12
-    } else if (12 == min(chord) || 0 == min(chord)) {
-      0
-    } else if (12 %in% chord) {
-      12
+    } else if (OCTAVE == max(chord) || TONIC == max(chord)) {
+      OCTAVE
+    } else if (OCTAVE == min(chord) || TONIC == min(chord)) {
+      TONIC
+    } else if (OCTAVE %in% chord) {
+      OCTAVE
     } else {
-      0
+      TONIC
     }
   }
 }
 harmonic_integer_name <- function(chord, observation_point, root) {
   checkmate::assert_integerish(chord)
-  checkmate::assert_choice(observation_point,c(0,NA,12))
+  checkmate::assert_choice(observation_point,c(TONIC,NA,OCTAVE))
   checkmate::assert_integerish(root)
 
   integer_notation = underline(chord,observation_point,root) %>%
@@ -168,7 +171,7 @@ harmonic_integer_name <- function(chord, observation_point, root) {
 }
 harmonic_classical_name <- function(chord, observation_point, root, midi_root) {
   checkmate::assert_integerish(chord)
-  checkmate::assert_choice(observation_point,c(0,NA,12))
+  checkmate::assert_choice(observation_point,c(TONIC,NA,OCTAVE))
   checkmate::assert_integerish(root)
   checkmate::assert_integerish(midi_root,lower=0,upper=127)
 
@@ -179,13 +182,13 @@ harmonic_classical_name <- function(chord, observation_point, root, midi_root) {
 }
 underline <- function(chord,observation_point,root,classical=FALSE,midi_root=NA) {
   checkmate::assert_integerish(chord)
-  checkmate::assert_choice(observation_point,c(0,NA,12))
+  checkmate::assert_choice(observation_point,c(TONIC,NA,OCTAVE))
   checkmate::assert_integerish(root)
   checkmate::assert_integerish(midi_root,lower=0,upper=127)
 
   chord %>% sapply(function(x){
     pitch = if (classical) {classical_pitch_label(x+midi_root,observation_point)} else {x}
-    if ((x==root) || (is.na(observation_point) && (root==0) && (x==(root+12)))) {
+    if ((x==root) || (is.na(observation_point) && (root==TONIC) && (x==(root+OCTAVE)))) {
       underline_pitch(pitch)
     } else {
       pitch
@@ -201,21 +204,21 @@ arrow <- function(observation_point) {
   mixed_arrow = paste0(up_arrow,down_arrow)
 
   if      (is.na(observation_point)) {mixed_arrow}
-  else if (observation_point == 12)  {down_arrow}
-  else if (observation_point ==  0)  {up_arrow}
+  else if (observation_point == OCTAVE) {down_arrow}
+  else if (observation_point == TONIC)  {up_arrow}
 }
 add_roots_outside_chord <- function(integer_name,root,chord,observation_point,midi_root=NA,classical=FALSE) {
   if (classical) {
     checkmate::assert_integerish(midi_root,lower=0,upper=127)
   }
   root_pitch = if (classical) {classical_pitch_label(midi_root,observation_point)} else {root}
-  upper_root_pitch = if (classical) {classical_pitch_label(midi_root+12,observation_point)} else {root+12}
+  upper_root_pitch = if (classical) {classical_pitch_label(midi_root+OCTAVE,observation_point)} else {root+OCTAVE}
   if (is.na(observation_point)) {
-    if (c(root, root+12) %in% chord %>% all) {
+    if (c(root, root+OCTAVE) %in% chord %>% all) {
       integer_name
     } else if (root %in% chord) {
       paste(integer_name,underline_pitch(upper_root_pitch))
-    } else if ((root + 12) %in% chord) {
+    } else if ((root + OCTAVE) %in% chord) {
       paste(underline_pitch(root_pitch),integer_name)
     } else {
       integer_name = paste(underline_pitch(root_pitch),integer_name)
@@ -234,16 +237,16 @@ classical_pitch_label <- function(x, observation_point) {
                         'Gb', 'G', 'Ab', 'A', 'Bb', 'B')
   pitch_class_sharps = c('C', 'C#', 'D', 'D#', 'E', 'F',
                         'F#', 'G', 'G#', 'A', 'A#', 'B')
-  octave = (x / 12) %>% trunc - 1
-  pitch_class = if (is.na(observation_point) || observation_point == 0) {
+  octave = (x / OCTAVE) %>% trunc - 1
+  pitch_class = if (is.na(observation_point) || observation_point == TONIC) {
     pitch_class_flats
   } else {
     pitch_class_sharps
   }
-  paste0(pitch_class[x %% 12 +1],octave)
+  paste0(pitch_class[x %% OCTAVE +1],octave)
 }
 coalesced_observation_point <- function(observation_point) {
-  dplyr::coalesce(observation_point,0)
+  dplyr::coalesce(observation_point,TONIC)
 }
 guessed_midi_root <- function(root,explicit_midi_root) {
   if (is.na(explicit_midi_root)) {
