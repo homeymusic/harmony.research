@@ -18,5 +18,8 @@
 ## usethis namespace: end
 NULL
 
+TONIC  <- 0
+OCTAVE <- 12
+
 # this is to stop R check command from complaining about magrittr
 globalVariables(".")

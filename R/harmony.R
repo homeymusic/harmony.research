@@ -1,6 +1,3 @@
-TONIC  <- 0
-OCTAVE <- 12
-
 harmony.uncached <- function(chord, observation_point=NA, root=NA,
                              name=NA, midi_reference = NA,
                              default_consonance_metric='stolzenburg2015') {
@@ -237,13 +234,13 @@ classical_pitch_label <- function(x, observation_point) {
                         'Gb', 'G', 'Ab', 'A', 'Bb', 'B')
   pitch_class_sharps = c('C', 'C#', 'D', 'D#', 'E', 'F',
                         'F#', 'G', 'G#', 'A', 'A#', 'B')
-  octave = (x / OCTAVE) %>% trunc - 1
+  register = (x / OCTAVE) %>% trunc - 1
   pitch_class = if (is.na(observation_point) || observation_point == TONIC) {
     pitch_class_flats
   } else {
     pitch_class_sharps
   }
-  paste0(pitch_class[x %% OCTAVE +1],octave)
+  paste0(pitch_class[x %% OCTAVE + 1],register)
 }
 coalesced_observation_point <- function(observation_point) {
   dplyr::coalesce(observation_point,TONIC)
