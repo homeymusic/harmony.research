@@ -79,7 +79,7 @@ augmented_triads <- function() {
                                root=8,
                                observation_point=12,
                                name='Augmented Triad Down',
-                               midi_root=60-8)
+                               midi_reference=60-8)
 
   )
 }
@@ -127,12 +127,12 @@ phrygian_6_chords <- function() {
             root=12,
             observation_point=12,
             name="Phrygian Triad 6/3",
-            midi_root=60+0),
+            midi_reference=60+0),
     "6/4"=h((12-c(0,5,9))%>%sort,
             root=12,
             observation_point=12,
             name="Phrygian Triad 6/4",
-            midi_root=60+0)
+            midi_reference=60+0)
   )
 }
 major_phrygian_triads <- function() {

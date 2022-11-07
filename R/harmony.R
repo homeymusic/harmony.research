@@ -2,7 +2,7 @@ TONIC  <- 0
 OCTAVE <- 12
 
 harmony.uncached <- function(chord, observation_point=NA, root=NA,
-                             name=NA, midi_root = NA,
+                             name=NA, midi_reference = NA,
                              default_consonance_metric='stolzenburg2015') {
   checkmate::assert_integerish(chord)
   if (length(chord)==1) {
@@ -20,7 +20,7 @@ harmony.uncached <- function(chord, observation_point=NA, root=NA,
     name               = name,
     explicit_root      = root,
     explicit_observation_point = observation_point,
-    explicit_midi_root = midi_root,
+    explicit_midi_reference = midi_reference,
     guessed_root       = guessed_root(chord,.data$explicit_observation_point),
     root               = ifelse(is.na(.data$explicit_root),
                                 guessed_root,
@@ -29,13 +29,13 @@ harmony.uncached <- function(chord, observation_point=NA, root=NA,
     observation_point  = ifelse(is.na(.data$explicit_observation_point),
                                 guessed_observation_point,
                                 .data$explicit_observation_point),
-    guessed_midi_root  = guessed_midi_root(.data$root,.data$explicit_midi_root),
-    midi_root          = ifelse(is.na(.data$explicit_midi_root),
-                                guessed_midi_root,
-                                .data$explicit_midi_root),
+    guessed_midi_reference  = guessed_midi_reference(.data$root,.data$explicit_midi_reference),
+    midi_reference          = ifelse(is.na(.data$explicit_midi_reference),
+                                guessed_midi_reference,
+                                .data$explicit_midi_reference),
   )
   # check midi root is valid
-  checkmate::assert_integerish(t$midi_root,lower=0,upper=127)
+  checkmate::assert_integerish(t$midi_reference,lower=0,upper=127)
   # store the original chord
   attr(t,"chord") <- chord
   # store the aurally centered chord
@@ -67,7 +67,7 @@ harmony.uncached <- function(chord, observation_point=NA, root=NA,
                      integer_name   = harmonic_integer_name(
                        chord,t$observation_point,t$root),
                      classical_name = harmonic_classical_name(
-                       chord,t$observation_point,t$root,t$midi_root),
+                       chord,t$observation_point,t$root,t$midi_reference),
                      label          = stringr::str_trim(paste(sep="\n",
                        .data$classical_name,.data$integer_name,stats::na.omit(name))),
                      brightness     = t[[paste0(
@@ -85,7 +85,7 @@ harmony.uncached <- function(chord, observation_point=NA, root=NA,
 #' @param chord A pitch or chord expressed as an interval integer or vector of interval integers
 #' @param observation_point Harmonic observation_point 0 is tonic, 12 is octave, NA is symmetrical
 #' @param root The reference pitch of the chord or larger context
-#' @param midi_root The MIDI root of the chord, defaults to 60 for using 0-based integer notation
+#' @param midi_reference The MIDI root of the chord, defaults to 60 for using 0-based integer notation
 #' @param name A custom name for the note or chord
 #' @param default_consonance_metric The metric that will populate affinity and brightness values
 #' @return A tibble
@@ -169,25 +169,25 @@ harmonic_integer_name <- function(chord, observation_point, root) {
   paste0('{',integer_notation,'}',arrow(observation_point)) %>%
     add_roots_outside_chord(root,chord,observation_point)
 }
-harmonic_classical_name <- function(chord, observation_point, root, midi_root) {
+harmonic_classical_name <- function(chord, observation_point, root, midi_reference) {
   checkmate::assert_integerish(chord)
   checkmate::assert_choice(observation_point,c(TONIC,NA,OCTAVE))
   checkmate::assert_integerish(root)
-  checkmate::assert_integerish(midi_root,lower=0,upper=127)
+  checkmate::assert_integerish(midi_reference,lower=0,upper=127)
 
-  underline(chord,observation_point,root,classical=TRUE,midi_root=midi_root) %>%
+  underline(chord,observation_point,root,classical=TRUE,midi_reference=midi_reference) %>%
     paste(collapse = ":") %>%
     paste0(arrow(observation_point)) %>%
-    add_roots_outside_chord(root,chord,observation_point,midi_root=midi_root,classical=TRUE)
+    add_roots_outside_chord(root,chord,observation_point,midi_reference=midi_reference,classical=TRUE)
 }
-underline <- function(chord,observation_point,root,classical=FALSE,midi_root=NA) {
+underline <- function(chord,observation_point,root,classical=FALSE,midi_reference=NA) {
   checkmate::assert_integerish(chord)
   checkmate::assert_choice(observation_point,c(TONIC,NA,OCTAVE))
   checkmate::assert_integerish(root)
-  checkmate::assert_integerish(midi_root,lower=0,upper=127)
+  checkmate::assert_integerish(midi_reference,lower=0,upper=127)
 
   chord %>% sapply(function(x){
-    pitch = if (classical) {classical_pitch_label(x+midi_root,observation_point)} else {x}
+    pitch = if (classical) {classical_pitch_label(x+midi_reference,observation_point)} else {x}
     if ((x==root) || (is.na(observation_point) && (root==TONIC) && (x==(root+OCTAVE)))) {
       underline_pitch(pitch)
     } else {
@@ -207,12 +207,12 @@ arrow <- function(observation_point) {
   else if (observation_point == OCTAVE) {down_arrow}
   else if (observation_point == TONIC)  {up_arrow}
 }
-add_roots_outside_chord <- function(integer_name,root,chord,observation_point,midi_root=NA,classical=FALSE) {
+add_roots_outside_chord <- function(integer_name,root,chord,observation_point,midi_reference=NA,classical=FALSE) {
   if (classical) {
-    checkmate::assert_integerish(midi_root,lower=0,upper=127)
+    checkmate::assert_integerish(midi_reference,lower=0,upper=127)
   }
-  root_pitch = if (classical) {classical_pitch_label(midi_root,observation_point)} else {root}
-  upper_root_pitch = if (classical) {classical_pitch_label(midi_root+OCTAVE,observation_point)} else {root+OCTAVE}
+  root_pitch = if (classical) {classical_pitch_label(midi_reference,observation_point)} else {root}
+  upper_root_pitch = if (classical) {classical_pitch_label(midi_reference+OCTAVE,observation_point)} else {root+OCTAVE}
   if (is.na(observation_point)) {
     if (c(root, root+OCTAVE) %in% chord %>% all) {
       integer_name
@@ -248,10 +248,10 @@ classical_pitch_label <- function(x, observation_point) {
 coalesced_observation_point <- function(observation_point) {
   dplyr::coalesce(observation_point,TONIC)
 }
-guessed_midi_root <- function(root,explicit_midi_root) {
-  if (is.na(explicit_midi_root)) {
+guessed_midi_reference <- function(root,explicit_midi_reference) {
+  if (is.na(explicit_midi_reference)) {
     60
   } else {
-    explicit_midi_root
+    explicit_midi_reference
   }
 }

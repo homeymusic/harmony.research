@@ -65,21 +65,21 @@ test_that('aural centering works as expected',{
   expect_equal(attr(h,"centered_chord"),c(12,4,7))
 
   # c major 2d inversion using midi notes and various levels of specificity
-  h = h(c(12+0,12+4,7)+60,midi_root=0)
+  h = h(c(12+0,12+4,7)+60,midi_reference=0)
   expect_equal(h$guessed_observation_point,0)
   expect_equal(h$observation_point,0)
   expect_equal(h$guessed_root,67)
   expect_equal(h$root,67)
   expect_equal(h$classical_name,'C5:E5:G̲4̲↑')
   expect_equal(attr(h,"centered_chord"),c(5,9,0))
-  h = h(c(12+0,12+4,7)+60,12,midi_root=0)
+  h = h(c(12+0,12+4,7)+60,12,midi_reference=0)
   expect_equal(h$guessed_observation_point,0)
   expect_equal(h$explicit_observation_point,12)
   expect_equal(h$observation_point,12)
   expect_equal(h$guessed_root,76)
   expect_equal(h$root,76)
   expect_equal(attr(h,"centered_chord"),c(8,12,3))
-  h = h(c(12+0,12+4,7)+60,12,76,midi_root=0)
+  h = h(c(12+0,12+4,7)+60,12,76,midi_reference=0)
   expect_equal(h$guessed_observation_point,12)
   expect_equal(h$explicit_observation_point,12)
   expect_equal(h$observation_point,12)
@@ -100,11 +100,11 @@ test_that('for solo pitches that the integer name includes the tonic, octave and
   expect_equal(locrian$integer_name,'{0̲:1:3:5:6:8:10:1\u03322\u0332}↑↓')
   expect_equal(h(c(0,-4,-7),observation_point=0,root=-7)$integer_name,'{0:-4:-\u03327\u0332}↑')
 
-  expect_equal(h(c(0+60),root=60,midi_root=0)$integer_name,'{6\u03320\u0332}↑↓ 7\u03322\u0332')
-  expect_equal(h(c(12+60),root=60,midi_root=0)$integer_name,"6̲0̲ {72}↑↓")
-  expect_equal(h(c(7+60),root=60,midi_root=0)$integer_name,'6\u03320\u0332 {67}↑↓ 7\u03322\u0332')
-  expect_equal(h(attr(locrian,'chord')+60,midi_root=0)$integer_name,"{6̲0̲:61:63:65:66:68:70:72}↑↓")
-  expect_equal(h(c(0,-4,-7)+60,observation_point=0,root=-7+60,midi_root=0)$integer_name,'{60:56:5\u03323\u0332}↑')
+  expect_equal(h(c(0+60),root=60,midi_reference=0)$integer_name,'{6\u03320\u0332}↑↓ 7\u03322\u0332')
+  expect_equal(h(c(12+60),root=60,midi_reference=0)$integer_name,"6̲0̲ {72}↑↓")
+  expect_equal(h(c(7+60),root=60,midi_reference=0)$integer_name,'6\u03320\u0332 {67}↑↓ 7\u03322\u0332')
+  expect_equal(h(attr(locrian,'chord')+60,midi_reference=0)$integer_name,"{6̲0̲:61:63:65:66:68:70:72}↑↓")
+  expect_equal(h(c(0,-4,-7)+60,observation_point=0,root=-7+60,midi_reference=0)$integer_name,'{60:56:5\u03323\u0332}↑')
 })
 test_that('position from the tonic in cents makes sense',{
   expect_equal(h(c(0,4,7))$cents,362.7562,tolerance=0.001)
@@ -158,7 +158,7 @@ test_that('brightness and affinity of the diatonic scales makes sense',{
 })
 test_that('harmony guesses that a chord containing root and root + 12 has observation_point = 0',{
   expect_equal(locrian$observation_point,NA)
-  expect_equal(h(attr(locrian,'chord')+60,midi_root=0)$observation_point,NA)
+  expect_equal(h(attr(locrian,'chord')+60,midi_reference=0)$observation_point,NA)
 })
 test_that('default consonance metric works as expected',{
   minor_triad_stolzenburg2015 = h(c(0,3,7))
@@ -187,12 +187,12 @@ test_that('labels make sense',{
 })
 test_that('midi root for note labels makes sense',{
   # defaults to middle C4
-  expect_equal(h(0)$midi_root,60)
+  expect_equal(h(0)$midi_reference,60)
   # can override, for example, to A4
-  expect_equal(h(0,midi_root=69)$midi_root,69)
+  expect_equal(h(0,midi_reference=69)$midi_reference,69)
   # valid midi range is 0 to 127
-  expect_error(h(0,midi_root=-1))
-  expect_error(h(0,midi_root=128))
+  expect_error(h(0,midi_reference=-1))
+  expect_error(h(0,midi_reference=128))
 })
 test_that('classical name works as expected',{
   expect_equal(h(0)$classical_name,'C̲4̲↑↓ C̲5̲')
