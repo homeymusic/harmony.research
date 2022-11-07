@@ -14,7 +14,7 @@ harmony_plot <- function(x,columns,title=NULL, x_expansion_mult=0.2,
     ggrepel::geom_text_repel(ggplot2::aes(label=.data$label),
                              segment.color = colors_homey()$subtle_foreground,
                              max.overlaps = max_overlaps,
-                             family='mono')
+                             family='Arial Unicode MS')
 }
 
 save_harmony_plots <- function(x,filetypes=c('svg','png','pdf')) {
