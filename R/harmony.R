@@ -65,8 +65,11 @@ harmony.uncached <- function(chord, observation_point=NA, root=NA,
                        chord,t$observation_point,t$root),
                      classical_name = harmonic_classical_name(
                        chord,t$observation_point,t$root,t$midi_reference),
-                     label          = stringr::str_trim(paste(sep="\n",
-                       .data$classical_name,.data$integer_name,stats::na.omit(name))),
+                     label          = stringr::str_trim(
+                       paste(sep="\n",
+                             stats::na.omit(name),
+                             .data$classical_name,
+                             .data$integer_name)),
                      brightness     = t[[paste0(
                        default_consonance_metric,'.brightness')]],
                      affinity       = t[[paste0(

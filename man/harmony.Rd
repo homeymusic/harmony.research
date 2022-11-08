@@ -10,7 +10,7 @@ harmony(
   observation_point = NA,
   root = NA,
   name = NA,
-  midi_root = NA,
+  midi_reference = NA,
   default_consonance_metric = "stolzenburg2015"
 )
 
@@ -19,7 +19,7 @@ h(
   observation_point = NA,
   root = NA,
   name = NA,
-  midi_root = NA,
+  midi_reference = NA,
   default_consonance_metric = "stolzenburg2015"
 )
 }
@@ -32,7 +32,7 @@ h(
 
 \item{name}{A custom name for the note or chord}
 
-\item{midi_root}{The MIDI root of the chord, defaults to 60 for using 0-based integer notation}
+\item{midi_reference}{The MIDI root of the chord, defaults to 60 for using 0-based integer notation}
 
 \item{default_consonance_metric}{The metric that will populate affinity and brightness values}
 }

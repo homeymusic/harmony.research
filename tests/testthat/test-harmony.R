@@ -183,7 +183,7 @@ test_that('default name works',{
 })
 test_that('labels make sense',{
   expect_equal(h(0)$label,"C̲4̲↑↓ C̲5̲\n{0̲}↑↓ 1̲2̲")
-  expect_equal(h(0,name='tonic')$label,'C̲4̲↑↓ C̲5̲\n{0̲}↑↓ 1̲2̲\ntonic')
+  expect_equal(h(0,name='tonic')$label,'tonic\nC̲4̲↑↓ C̲5̲\n{0̲}↑↓ 1̲2̲')
 })
 test_that('midi root for note labels makes sense',{
   # defaults to middle C4
