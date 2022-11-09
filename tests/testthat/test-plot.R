@@ -1,19 +1,12 @@
-chord_combinations <- function(combos,combos_name) {
-  chords = purrr::map(combos,function(combo){
-    params = expand.grid(observation_point=c(0,12),root=combo)
-    purrr::map2(params$observation_point,params$root,
-                ~h(combo,observation_point=.x,root=.y))
-  })
-  dplyr::bind_rows(chords)
-}
 filter_triads <- function(x) {
+  checkmate::assert_tibble(x)
   major_triads = dplyr::filter(x, brightness == major_triad_root$brightness |
-                                  brightness == major_triad_first_inversion$brightness |
-                                  brightness == major_triad_second_inversion$brightness
+                                 brightness == major_triad_first_inversion$brightness |
+                                 brightness == major_triad_second_inversion$brightness
   )
   minor_triads = dplyr::filter(x, brightness == minor_triad_root$brightness |
-                                  brightness == minor_triad_first_inversion$brightness |
-                                  brightness == minor_triad_second_inversion$brightness
+                                 brightness == minor_triad_first_inversion$brightness |
+                                 brightness == minor_triad_second_inversion$brightness
   )
   dplyr::bind_rows(major_triads,minor_triads)
 }

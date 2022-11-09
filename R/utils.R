@@ -8,3 +8,12 @@ rotate <- function(coordinates,angle) {
   )
   (R %*% coordinates * cos(angle)) %>% zapsmall %>% t
 }
+chord_combinations <- function(combos) {
+  checkmate::assert_list(combos)
+  chords = purrr::map(combos,function(combo){
+    params = expand.grid(observation_point=c(0,12),root=combo)
+    purrr::map2(params$observation_point,params$root,
+                ~h(combo,observation_point=.x,root=.y))
+  })
+  dplyr::bind_rows(chords)
+}
