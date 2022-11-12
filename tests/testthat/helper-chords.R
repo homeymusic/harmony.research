@@ -190,13 +190,13 @@ seventh_chords <- function() {
 }
 diatonic_scales <- function() {
   list(
-    'locrian'=h(c(0,1,3,5,6,8,10,12), name = 'Locrian'),
-    'phrygian'=h(c(0,1,3,5,7,8,10,12), name = 'Phrygian'),
-    'aeolian'=h(c(0,2,3,5,7,8,10,12), name = 'Aeolian'),
-    'dorian'=h(c(0,2,3,5,7,9,10,12), name = 'Dorian'),
-    'mixolydian'=h(c(0,2,4,5,7,9,10,12), name = 'Mixolydian'),
-    'ionian'=h(c(0,2,4,5,7,9,11,12), name = 'Ionian'),
-    'lydian'=h(c(0,2,4,6,7,9,11,12), name = 'Lydian')
+    'locrian'=h(c(0,1,3,5,6,8,10,12), name = 'B Locrian'),
+    'phrygian'=h(c(0,1,3,5,7,8,10,12), name = 'E Phrygian'),
+    'aeolian'=h(c(0,2,3,5,7,8,10,12), name = 'A Aeolian'),
+    'dorian'=h(c(0,2,3,5,7,9,10,12), name = 'D Dorian'),
+    'mixolydian'=h(c(0,2,4,5,7,9,10,12), name = 'G Mixolydian'),
+    'ionian'=h(c(0,2,4,5,7,9,11,12), name = 'C Ionian'),
+    'lydian'=h(c(0,2,4,6,7,9,11,12), name = 'F Lydian')
   )
 }
 major_triad_progression <- function(){

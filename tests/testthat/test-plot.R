@@ -79,6 +79,22 @@ test_that('highest voice is root hexatonic_cycle',{
 # Cohn stop
 #
 ############
+test_that('diatonic triads might be a surprise',{
+  diatonic_triads = list(
+    h(c(0,4,7),observation_point=TONIC,name='C Ionian P5/M3'),
+    h(-c(0,4,7),observation_point=OCTAVE,name='E Phrygian m6/P4'),
+    h(-c(0,3,7),observation_point=OCTAVE,name='G Mixolydian M6/P4'),
+    h(c(0,3,7),observation_point=TONIC,name='A Aeolian P5/m3'),
+    h(c(0,3,8),observation_point=TONIC,name='B Locrian m6/m3'),
+    h(-c(0,3,8),observation_point=OCTAVE,name='F Lydian M6/M3'),
+    h(c(0,2,7),observation_point=TONIC,name='D Dorian Up P5/M2'),
+    h(-c(0,2,7),observation_point=OCTAVE,name='D Dorian Down m7/P4'),
+    h(c(0,4,8),observation_point=TONIC,name='Augmented Triad Up m6/M3'),
+    h(-c(0,4,8),observation_point=OCTAVE,name='Augmented Triad Down m6/M3')
+  )
+  plot_affinity_brightness(dplyr::bind_rows(diatonic_triads),
+                           'Diatonic Triads')
+})
 test_that('plot of affinity brighness of core pitches makes sense',{
   plot_affinity_brightness(core_pitches(),'Pitches')
 })
