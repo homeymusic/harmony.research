@@ -81,16 +81,16 @@ test_that('highest voice is root hexatonic_cycle',{
 ############
 test_that('diatonic triads might be a surprise',{
   diatonic_triads = list(
-    h(c(0,4,7),observation_point=TONIC,name='C Ionian P5/M3'),
-    h(-c(0,4,7),observation_point=OCTAVE,name='E Phrygian m6/P4'),
-    h(-c(0,3,7),observation_point=OCTAVE,name='G Mixolydian M6/P4'),
-    h(c(0,3,7),observation_point=TONIC,name='A Aeolian P5/m3'),
-    h(c(0,3,8),observation_point=TONIC,name='B Locrian m6/m3'),
-    h(-c(0,3,8),observation_point=OCTAVE,name='F Lydian M6/M3'),
-    h(c(0,2,7),observation_point=TONIC,name='D Dorian Up P5/M2'),
-    h(-c(0,2,7),observation_point=OCTAVE,name='D Dorian Down m7/P4'),
-    h(c(0,4,8),observation_point=TONIC,name='Augmented Triad Up m6/M3'),
-    h(-c(0,4,8),observation_point=OCTAVE,name='Augmented Triad Down m6/M3')
+    h(c(0,4,7),observation_point=TONIC,name='C Ionian P5/M3\nI-IV-V'),
+    h(-c(0,4,7)+4,observation_point=OCTAVE,name='E Phrygian m6/P4\nviii-v-iv'),
+    h(-c(0,3,7)-5,observation_point=OCTAVE,name='G Mixolydian M6/P4\nVIII-V-IV'),
+    h(c(0,3,7)-3,observation_point=TONIC,name='A Aeolian P5/m3\ni-iv-v'),
+    h(c(0,3,8)-1,observation_point=TONIC,name='B Locrian m6/m3\nI-IV-VII'),
+    h(-c(0,3,8)+5,observation_point=OCTAVE,name='F Lydian M6/M3\nviii-v-ii'),
+    h(c(0,2,7)+2,observation_point=TONIC,name='D Dorian Up P5/M2\nI-III-IV-V-VII'),
+    h(-c(0,2,7)+2,observation_point=OCTAVE,name='D Dorian Down m7/P4\nviii-vi-v-iv-ii'),
+    h(c(0,4,8)+6,observation_point=TONIC,name='Augmented Triad Up m6/M3'),
+    h(-c(0,4,8)+6,observation_point=OCTAVE,name='Augmented Triad Down m6/M3')
   )
   plot_affinity_brightness(dplyr::bind_rows(diatonic_triads),
                            'Diatonic Triads')
