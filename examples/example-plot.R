@@ -60,3 +60,63 @@ test_that("map the diminished seventh hood", {
   chords = chord_combinations(combos)
   plot_affinity_brightness(chords,'Neighborhood: Diminished Seventh')
 })
+test_that("plot major and minor combinations", {
+  chords = chord_combinations(list(c(0,4,7),c(0,3,7),c(0,4,8)))
+  plot_affinity_brightness(chords,'Combinations: Major, Minor and Augmented Triads')
+})
+test_that("Major 1st Inversion", {
+  chords = dplyr::bind_rows(
+    h(c(0,4,7),observation_point=0),
+    h(c(0,3,8),observation_point=12),
+    h(c(0,3,8),observation_point=0),
+    h(c(0,0)  ,observation_point=0),
+    h(c(0,3)  ,observation_point=0),
+    h(c(0,8)  ,observation_point=0),
+    h(c(0,5)  ,observation_point=0))
+  plot_affinity_brightness(chords,'Major 1st Inversion')
+})
+test_that("Cohn figure 2.1 map the major triad hood", {
+  combos = list(
+    c(0,4,7),
+    # 1st voice
+    c(0+1,4,7),
+    c(0-1,4,7),
+    # 2nd voice
+    c(0,4+1,7),
+    c(0,4-1,7),
+    # 3rd voice
+    c(0,4,7+1),
+    c(0,4,7-1)
+  )
+  plot_affinity_brightness(chord_combinations(combos),'Neighborhood: Major Triad')
+})
+test_that("Cohn figure 2.1 map the minor triad hood", {
+  combos = list(
+    c(0,3,7),
+    # 1st voice
+    c(0+1,3,7),
+    c(0-1,3,7),
+    # 2nd voice
+    c(0,3+1,7),
+    c(0,3-1,7),
+    # 3rd voice
+    c(0,3,7+1),
+    c(0,3,7-1)
+  )
+  plot_affinity_brightness(chord_combinations(combos),'Neighborhood: Minor Triad')
+})
+test_that("map the augmented triad hood", {
+  combos = list(
+    c(0,4,8),
+    # 1st voice
+    c(0-1,4,8),
+    c(0+1,4,8),
+    # 2nd voice
+    c(0,4-1,8),
+    c(0,4+1,8),
+    # 3rd voice
+    c(0,4,8-1),
+    c(0,4,8+1)
+  )
+  plot_affinity_brightness(chord_combinations(combos),'Neighborhood: Augmented Triad')
+})

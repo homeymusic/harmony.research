@@ -1,5 +1,5 @@
 harmony_plot <- function(x,columns,title=NULL, x_expansion_mult=0.2,
-                         max_overlaps = Inf) {
+                         max_overlaps = Inf, include_path = FALSE) {
 
   colour_factor = colour_factor_homey(x,columns[1])
   color_values = color_values_homey()
@@ -11,6 +11,7 @@ harmony_plot <- function(x,columns,title=NULL, x_expansion_mult=0.2,
                                 limits=c((0-max(abs(x[columns[1]]))),(0+max(abs(x[columns[1]]))))) +
     ggplot2::ggtitle(title) +
     theme_homey() +
+    {if (include_path) path_homey()} +
     ggrepel::geom_text_repel(ggplot2::aes(label=.data$label),
                              segment.color = colors_homey()$subtle_foreground,
                              max.overlaps = max_overlaps,
@@ -71,4 +72,10 @@ theme_homey <- function(){
     panel.grid.major = ggplot2::element_line(color = colors_homey()$foreground, size=0.2),
     panel.grid.minor = ggplot2::element_line(color = colors_homey()$foreground, size=0.05, linetype ="dashed")
   )
+}
+
+path_homey <- function() {
+  ggplot2::geom_path(ggplot2::aes(group=1),
+                     arrow = grid::arrow(length = grid::unit(0.1, "inches"),
+                                         ends = "last", type = "closed"))
 }
