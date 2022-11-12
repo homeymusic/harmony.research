@@ -86,15 +86,15 @@ test_that('highest voice is root hexatonic_cycle',{
 test_that('diatonic triads might be a surprise',{
   diatonic_triads = list(
     h(c(0,4,7)%>%sort,observation_point=TONIC,name='C Ionian P5/M3\nI-IV-V'),
-    h((-c(0,4,7)+4)%>%sort,observation_point=OCTAVE,name='E Phrygian m6/P4\nviii-v-iv'),
-    h((-c(0,3,7)-5)%>%sort,observation_point=OCTAVE,name='G Mixolydian M6/P4\nVIII-V-IV'),
-    h((c(0,3,7)-3)%>%sort,observation_point=TONIC,name='A Aeolian P5/m3\ni-iv-v'),
-    h((-c(0,4,9)-1)%>%sort,observation_point=OCTAVE,name='B Locrian M6/P4\nVIII-VII-IV'),
-    h((c(0,4,9)+5)%>%sort,observation_point=TONIC,name='F Lydian M6/M3\ni-ii-v'),
-    h((c(0,2,7)+2)%>%sort,observation_point=TONIC,name='D Dorian Up P5/M2\nI-III-IV-V-VII'),
-    h((-c(0,2,7)+2)%>%sort,observation_point=OCTAVE,name='D Dorian Down m7/P4\nviii-vi-v-iv-ii'),
-    h((c(0,4,8)+6)%>%sort,observation_point=TONIC,name='Augmented Triad Up m6/M3'),
-    h((-c(0,4,8)+6)%>%sort,observation_point=OCTAVE,name='Augmented Triad Down m6/M3')
+    h(-c(0,4,7)%>%sort,midi_reference=60+4,observation_point=OCTAVE,name='E Phrygian m6/P4\nviii-v-iv'),
+    h(-c(0,3,7)%>%sort,midi_reference=60-5,observation_point=OCTAVE,name='G Mixolydian M6/P4\nVIII-V-IV'),
+    h(c(0,3,7)%>%sort,midi_reference=60-3,observation_point=TONIC,name='A Aeolian P5/m3\ni-iv-v'),
+    h(-c(0,4,9)%>%sort,midi_reference=60-1,observation_point=OCTAVE,name='B Locrian m6/m3\nVIII-VII-IV'),
+    h(c(0,4,9)%>%sort,midi_reference=60+5,observation_point=TONIC,name='F Lydian M6/M3\ni-ii-v'),
+    h(c(0,2,7)%>%sort,midi_reference=60+2,observation_point=TONIC,name='D Dorian Up P5/M2\nI-III-IV-V-VII'),
+    h(-c(0,2,7)%>%sort,midi_reference=60+2,observation_point=OCTAVE,name='D Dorian Down m7/P4\nviii-vi-v-iv-ii'),
+    h(c(0,4,8)%>%sort,midi_reference=60+6,observation_point=TONIC,name='Augmented Triad Up m6/M3'),
+    h(-c(0,4,8)%>%sort,midi_reference=60+6,observation_point=OCTAVE,name='Augmented Triad Down m6/M3')
   )
   plot_affinity_brightness(dplyr::bind_rows(diatonic_triads),
                            'Diatonic Triads')
@@ -111,4 +111,18 @@ test_that("plot triads in harmonic dualism", {
 test_that('diatonic modes look good',{
   chords = dplyr::bind_rows(diatonic_scales())
   plot_affinity_brightness(chords,'Diatonic Scales')
+})
+test_that('Cohn figure 2.2 major-minor hexatonic_cycle',{
+  octatonic_cycle = list(
+    h(c(-4, 0,3),root=-4,observation_point=TONIC ,name='Ab Major Root'),
+    h(c(-4,-1,3),root=-4,observation_point=TONIC ,name='G# Minor Root'),
+    h(c(-4,-1,4),root= 4,observation_point=OCTAVE,name='E Major 1st Inversion'),
+    h(c(-5,-1,4),root= 4,observation_point=OCTAVE,name='E Minor 1st Inversion'),
+    h(c(-5, 0,4),root= 0,observation_point=TONIC ,name='C Major 2nd Inversion'),
+    h(c(-5, 0,3),root= 0,observation_point=TONIC ,name='C Minor 2nd Inversion'),
+    h(c(-4, 0,3),root=-4,observation_point=TONIC ,include_label=FALSE)
+  )
+  plot_affinity_brightness(dplyr::bind_rows(hexatonic_cycle),
+                           'Cohn: Major-Minor: Hexatonic Cycle',
+                           include_path = TRUE)
 })
