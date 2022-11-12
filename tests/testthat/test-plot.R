@@ -30,7 +30,8 @@ test_that('Cohn figure 2.2 major-minor hexatonic_cycle',{
     h(c(-4,-1,4),root= 4,observation_point=OCTAVE,name='E Major 1st Inversion'),
     h(c(-5,-1,4),root= 4,observation_point=OCTAVE,name='E Minor 1st Inversion'),
     h(c(-5, 0,4),root= 0,observation_point=TONIC ,name='C Major 2nd Inversion'),
-    h(c(-5, 0,3),root= 0,observation_point=TONIC ,name='C Minor 2nd Inversion')
+    h(c(-5, 0,3),root= 0,observation_point=TONIC ,name='C Minor 2nd Inversion'),
+    h(c(-4, 0,3),root=-4,observation_point=TONIC ,include_label=FALSE)
   )
   plot_affinity_brightness(dplyr::bind_rows(hexatonic_cycle),
                            'Cohn: Major-Minor: Hexatonic Cycle',
@@ -43,7 +44,8 @@ test_that('major-phrygian hexatonic_cycle',{
     h(c(-4,-1,4),root= 4,observation_point=OCTAVE,name='E Major 1st Inversion'),
     h(c(-5,-1,4),root=-1,observation_point=OCTAVE,name='B Phrygian 2nd Inversion'),
     h(c(-5, 0,4),root= 0,observation_point=TONIC ,name='C Major 2nd Inversion'),
-    h(c(-5, 0,3),root=-5,observation_point=TONIC ,name='G Phrygian 1st Inversion')
+    h(c(-5, 0,3),root=-5,observation_point=TONIC ,name='G Phrygian 1st Inversion'),
+    h(c(-4, 0,3),root=-4,observation_point=TONIC ,include_label=FALSE)
   )
   plot_affinity_brightness(dplyr::bind_rows(hexatonic_cycle),
                            'Cohn: Major-Phrygian: Hexatonic Cycle',
@@ -53,10 +55,11 @@ test_that('lowest voice is root hexatonic_cycle',{
   hexatonic_cycle = list(
     h(c(-4, 0,3),root=-4,observation_point=TONIC,name='Ab Major Root'),
     h(c(-4,-1,3),root=-4,observation_point=TONIC,name='G# Minor Root'),
-    h(c(-4,-1,4),root=-4,observation_point=TONIC,name='G# m6 / m3 Up'), # {0,3,8}
-    h(c(-5,-1,4),root=-5,observation_point=TONIC,name='G  M6 / M3 Up'), # {0,4,9}
-    h(c(-5, 0,4),root=-5,observation_point=TONIC,name='G  Mixolydian Root'),
-    h(c(-5, 0,3),root=-5,observation_point=TONIC,name='G  Phrygian 1st Inversion')
+    h(c(-4,-1,4),root=-4,observation_point=TONIC,name='G# Locrian 1st Inversion'),
+    h(c(-5,-1,4),root=-5,observation_point=TONIC,name='G Lydian Root'),
+    h(c(-5, 0,4),root=-5,observation_point=TONIC,name='G Mixolydian 1st Inversion'),
+    h(c(-5, 0,3),root=-5,observation_point=TONIC,name='G Phrygian 1st Inversion'),
+    h(c(-4, 0,3),root=-4,observation_point=TONIC,include_label=FALSE)
   )
   plot_affinity_brightness(dplyr::bind_rows(hexatonic_cycle),
                            'Cohn: Lowest Voice is Root: Hexatonic Cycle',
@@ -64,12 +67,13 @@ test_that('lowest voice is root hexatonic_cycle',{
 })
 test_that('highest voice is root hexatonic_cycle',{
   hexatonic_cycle = list(
-    h(c(-4, 0,3),root=3,observation_point=OCTAVE,name='Eb Mixolydian'),
-    h(c(-4,-1,3),root=3,observation_point=OCTAVE,name='D# Phrygian'),
-    h(c(-4,-1,4),root=4,observation_point=OCTAVE,name='E  Major'), # {0,3,8}
-    h(c(-5,-1,4),root=4,observation_point=OCTAVE,name='E  Minor'), # {0,4,9}
-    h(c(-5, 0,4),root=4,observation_point=OCTAVE,name='E  M6 / P4 Down'),
-    h(c(-5, 0,3),root=3,observation_point=OCTAVE,name='Eb m6 / P4 Down')
+    h(c(-4, 0,3),root=3,observation_point=OCTAVE,name='Eb Mixolydian Root'),
+    h(c(-4,-1,3),root=3,observation_point=OCTAVE,name='D# Phrygian Root'),
+    h(c(-4,-1,4),root=4,observation_point=OCTAVE,name='E Major 1st Inversion'),
+    h(c(-5,-1,4),root=4,observation_point=OCTAVE,name='E Minor 1st Inversion'),
+    h(c(-5, 0,4),root=4,observation_point=OCTAVE,name='E Locrian Root'),
+    h(c(-5, 0,3),root=3,observation_point=OCTAVE,name='Eb Lydian 1st Inversion'),
+    h(c(-4, 0,3),root=3,observation_point=OCTAVE,include_label=FALSE)
   )
   plot_affinity_brightness(dplyr::bind_rows(hexatonic_cycle),
                            'Cohn: Highest Voice is Root: Hexatonic Cycle',
@@ -85,8 +89,8 @@ test_that('diatonic triads might be a surprise',{
     h((-c(0,4,7)+4)%>%sort,observation_point=OCTAVE,name='E Phrygian m6/P4\nviii-v-iv'),
     h((-c(0,3,7)-5)%>%sort,observation_point=OCTAVE,name='G Mixolydian M6/P4\nVIII-V-IV'),
     h((c(0,3,7)-3)%>%sort,observation_point=TONIC,name='A Aeolian P5/m3\ni-iv-v'),
-    h((c(0,3,8)-1)%>%sort,observation_point=TONIC,name='B Locrian m6/m3\nI-IV-VII'),
-    h((-c(0,3,8)+5)%>%sort,observation_point=OCTAVE,name='F Lydian M6/M3\nviii-v-ii'),
+    h((-c(0,4,9)-1)%>%sort,observation_point=OCTAVE,name='B Locrian M6/P4\nVIII-VII-IV'),
+    h((c(0,4,9)+5)%>%sort,observation_point=TONIC,name='F Lydian M6/M3\ni-ii-v'),
     h((c(0,2,7)+2)%>%sort,observation_point=TONIC,name='D Dorian Up P5/M2\nI-III-IV-V-VII'),
     h((-c(0,2,7)+2)%>%sort,observation_point=OCTAVE,name='D Dorian Down m7/P4\nviii-vi-v-iv-ii'),
     h((c(0,4,8)+6)%>%sort,observation_point=TONIC,name='Augmented Triad Up m6/M3'),

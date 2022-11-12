@@ -1,6 +1,7 @@
 harmony.uncached <- function(chord, observation_point=NA, root=NA,
                              name=NA, midi_reference = NA,
-                             default_consonance_metric='stolzenburg2015') {
+                             default_consonance_metric='stolzenburg2015',
+                             include_label=TRUE) {
   checkmate::assert_integerish(chord)
   if (length(chord)==1) {
     checkmate::assert_choice(observation_point,NA)
@@ -65,11 +66,10 @@ harmony.uncached <- function(chord, observation_point=NA, root=NA,
                        chord,t$observation_point,t$root),
                      classical_name = harmonic_classical_name(
                        chord,t$observation_point,t$root,t$midi_reference),
-                     label          = stringr::str_trim(
-                       paste(sep="\n",
-                             stats::na.omit(name),
-                             .data$classical_name,
-                             .data$integer_name)),
+                     label          = label(name,
+                                            .data$classical_name,
+                                            .data$integer_name,
+                                            include_label),
                      brightness     = t[[paste0(
                        default_consonance_metric,'.brightness')]],
                      affinity       = t[[paste0(
@@ -244,6 +244,14 @@ classical_pitch_label <- function(x, observation_point) {
     pitch_class_sharps
   }
   paste0(pitch_class[x %% OCTAVE + 1],register)
+}
+label <- function(name,classical_name,integer_name,include_label) {
+  if (include_label) {
+    stringr::str_trim(
+      paste(sep="\n",stats::na.omit(name),classical_name,integer_name))
+  } else {
+    ''
+  }
 }
 coalesced_observation_point <- function(observation_point) {
   dplyr::coalesce(observation_point,TONIC)

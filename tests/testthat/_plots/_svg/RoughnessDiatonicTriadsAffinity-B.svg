@@ -35,82 +35,80 @@
 <polyline points='45.50,244.93 498.52,244.93 ' style='stroke-width: 0.11; stroke: #F3DDAB; stroke-dasharray: 4.00,4.00; stroke-linecap: butt;' />
 <polyline points='45.50,152.90 498.52,152.90 ' style='stroke-width: 0.11; stroke: #F3DDAB; stroke-dasharray: 4.00,4.00; stroke-linecap: butt;' />
 <polyline points='45.50,60.88 498.52,60.88 ' style='stroke-width: 0.11; stroke: #F3DDAB; stroke-dasharray: 4.00,4.00; stroke-linecap: butt;' />
-<polyline points='52.87,472.27 52.87,23.34 ' style='stroke-width: 0.11; stroke: #F3DDAB; stroke-dasharray: 4.00,4.00; stroke-linecap: butt;' />
-<polyline points='140.53,472.27 140.53,23.34 ' style='stroke-width: 0.11; stroke: #F3DDAB; stroke-dasharray: 4.00,4.00; stroke-linecap: butt;' />
-<polyline points='228.18,472.27 228.18,23.34 ' style='stroke-width: 0.11; stroke: #F3DDAB; stroke-dasharray: 4.00,4.00; stroke-linecap: butt;' />
-<polyline points='315.84,472.27 315.84,23.34 ' style='stroke-width: 0.11; stroke: #F3DDAB; stroke-dasharray: 4.00,4.00; stroke-linecap: butt;' />
-<polyline points='403.49,472.27 403.49,23.34 ' style='stroke-width: 0.11; stroke: #F3DDAB; stroke-dasharray: 4.00,4.00; stroke-linecap: butt;' />
-<polyline points='491.15,472.27 491.15,23.34 ' style='stroke-width: 0.11; stroke: #F3DDAB; stroke-dasharray: 4.00,4.00; stroke-linecap: butt;' />
+<polyline points='102.65,472.27 102.65,23.34 ' style='stroke-width: 0.11; stroke: #F3DDAB; stroke-dasharray: 4.00,4.00; stroke-linecap: butt;' />
+<polyline points='215.56,472.27 215.56,23.34 ' style='stroke-width: 0.11; stroke: #F3DDAB; stroke-dasharray: 4.00,4.00; stroke-linecap: butt;' />
+<polyline points='328.46,472.27 328.46,23.34 ' style='stroke-width: 0.11; stroke: #F3DDAB; stroke-dasharray: 4.00,4.00; stroke-linecap: butt;' />
+<polyline points='441.37,472.27 441.37,23.34 ' style='stroke-width: 0.11; stroke: #F3DDAB; stroke-dasharray: 4.00,4.00; stroke-linecap: butt;' />
 <polyline points='45.50,382.97 498.52,382.97 ' style='stroke-width: 0.43; stroke: #F3DDAB; stroke-linecap: butt;' />
 <polyline points='45.50,290.94 498.52,290.94 ' style='stroke-width: 0.43; stroke: #F3DDAB; stroke-linecap: butt;' />
 <polyline points='45.50,198.92 498.52,198.92 ' style='stroke-width: 0.43; stroke: #F3DDAB; stroke-linecap: butt;' />
 <polyline points='45.50,106.89 498.52,106.89 ' style='stroke-width: 0.43; stroke: #F3DDAB; stroke-linecap: butt;' />
-<polyline points='96.70,472.27 96.70,23.34 ' style='stroke-width: 0.43; stroke: #F3DDAB; stroke-linecap: butt;' />
-<polyline points='184.36,472.27 184.36,23.34 ' style='stroke-width: 0.43; stroke: #F3DDAB; stroke-linecap: butt;' />
+<polyline points='46.19,472.27 46.19,23.34 ' style='stroke-width: 0.43; stroke: #F3DDAB; stroke-linecap: butt;' />
+<polyline points='159.10,472.27 159.10,23.34 ' style='stroke-width: 0.43; stroke: #F3DDAB; stroke-linecap: butt;' />
 <polyline points='272.01,472.27 272.01,23.34 ' style='stroke-width: 0.43; stroke: #F3DDAB; stroke-linecap: butt;' />
-<polyline points='359.67,472.27 359.67,23.34 ' style='stroke-width: 0.43; stroke: #F3DDAB; stroke-linecap: butt;' />
-<polyline points='447.32,472.27 447.32,23.34 ' style='stroke-width: 0.43; stroke: #F3DDAB; stroke-linecap: butt;' />
-<circle cx='306.06' cy='126.35' r='1.95' style='stroke-width: 0.71; stroke: #F3A904; fill: #F3A904;' />
-<circle cx='110.22' cy='141.60' r='1.95' style='stroke-width: 0.71; stroke: #ABDAF3; fill: #ABDAF3;' />
-<circle cx='214.27' cy='43.74' r='1.95' style='stroke-width: 0.71; stroke: #ABDAF3; fill: #ABDAF3;' />
-<circle cx='249.94' cy='170.13' r='1.95' style='stroke-width: 0.71; stroke: #ABDAF3; fill: #ABDAF3;' />
-<circle cx='230.39' cy='232.94' r='1.95' style='stroke-width: 0.71; stroke: #ABDAF3; fill: #ABDAF3;' />
-<circle cx='232.89' cy='192.28' r='1.95' style='stroke-width: 0.71; stroke: #ABDAF3; fill: #ABDAF3;' />
-<circle cx='217.48' cy='451.86' r='1.95' style='stroke-width: 0.71; stroke: #ABDAF3; fill: #ABDAF3;' />
-<circle cx='234.94' cy='232.74' r='1.95' style='stroke-width: 0.71; stroke: #ABDAF3; fill: #ABDAF3;' />
-<circle cx='299.13' cy='265.22' r='1.95' style='stroke-width: 0.71; stroke: #F3A904; fill: #F3A904;' />
-<circle cx='177.03' cy='238.48' r='1.95' style='stroke-width: 0.71; stroke: #ABDAF3; fill: #ABDAF3;' />
-<line x1='318.96' y1='112.38' x2='306.81' y2='125.53' style='stroke-width: 1.07; stroke: #7F745A;' />
-<line x1='236.72' y1='288.31' x2='230.52' y2='234.04' style='stroke-width: 1.07; stroke: #7F745A;' />
-<text x='338.09' y='62.89' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='76.03px' lengthAdjust='spacingAndGlyphs'>C Ionian P5/M3</text>
-<text x='338.09' y='78.78' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='28.20px' lengthAdjust='spacingAndGlyphs'>I-IV-V</text>
-<text x='338.09' y='94.68' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='56.30px' lengthAdjust='spacingAndGlyphs'>C̲4̲:E4:G4↑</text>
-<text x='338.09' y='110.58' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='39.77px' lengthAdjust='spacingAndGlyphs'>{0̲:4:7}↑</text>
-<text x='93.55' y='154.16' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='88.91px' lengthAdjust='spacingAndGlyphs'>E Phrygian m6/P4</text>
-<text x='93.55' y='170.06' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='33.68px' lengthAdjust='spacingAndGlyphs'>viii-v-iv</text>
-<text x='93.55' y='185.95' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='55.08px' lengthAdjust='spacingAndGlyphs'>A3:C4:E̲4̲↓</text>
-<text x='93.55' y='201.85' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='43.44px' lengthAdjust='spacingAndGlyphs'>{-3:0:4̲}↓</text>
-<text x='216.25' y='56.28' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='98.70px' lengthAdjust='spacingAndGlyphs'>G Mixolydian M6/P4</text>
-<text x='216.25' y='72.17' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='41.69px' lengthAdjust='spacingAndGlyphs'>VIII-V-IV</text>
-<text x='216.25' y='88.07' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='56.30px' lengthAdjust='spacingAndGlyphs'>C3:E3:G̲3̲↓</text>
-<text x='216.25' y='103.97' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='56.92px' lengthAdjust='spacingAndGlyphs'>{-12:-8:-̲5̲}↓</text>
-<text x='274.79' y='125.60' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='82.17px' lengthAdjust='spacingAndGlyphs'>A Aeolian P5/m3</text>
-<text x='274.79' y='141.50' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='23.27px' lengthAdjust='spacingAndGlyphs'>i-iv-v</text>
-<text x='274.79' y='157.40' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='55.08px' lengthAdjust='spacingAndGlyphs'>A̲3̲:C4:E4↑</text>
-<text x='274.79' y='173.29' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='43.44px' lengthAdjust='spacingAndGlyphs'>{-̲3̲:0:4}↑</text>
-<text x='236.76' y='298.01' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='83.38px' lengthAdjust='spacingAndGlyphs'>B Locrian m6/m3</text>
-<text x='236.76' y='313.90' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='34.33px' lengthAdjust='spacingAndGlyphs'>I-IV-VII</text>
-<text x='236.76' y='329.80' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='56.30px' lengthAdjust='spacingAndGlyphs'>B̲3̲:D4:G4↑</text>
-<text x='236.76' y='345.70' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='43.44px' lengthAdjust='spacingAndGlyphs'>{-̲1̲:2:7}↑</text>
-<text x='187.04' y='180.56' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='79.08px' lengthAdjust='spacingAndGlyphs'>F Lydian M6/M3</text>
-<text x='187.04' y='196.46' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='30.61px' lengthAdjust='spacingAndGlyphs'>viii-v-ii</text>
-<text x='187.04' y='212.36' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='54.46px' lengthAdjust='spacingAndGlyphs'>A3:D4:F̲4̲↓</text>
-<text x='187.04' y='228.26' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='43.44px' lengthAdjust='spacingAndGlyphs'>{-3:2:5̲}↓</text>
-<text x='216.30' y='399.54' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='95.63px' lengthAdjust='spacingAndGlyphs'>D Dorian Up P5/M2</text>
-<text x='216.30' y='415.44' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='58.23px' lengthAdjust='spacingAndGlyphs'>I-III-IV-V-VII</text>
-<text x='216.30' y='431.34' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='55.08px' lengthAdjust='spacingAndGlyphs'>D̲4̲:E4:A4↑</text>
-<text x='216.30' y='447.23' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='39.77px' lengthAdjust='spacingAndGlyphs'>{2̲:4:9}↑</text>
-<text x='294.53' y='188.39' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='109.73px' lengthAdjust='spacingAndGlyphs'>D Dorian Down m7/P4</text>
-<text x='294.53' y='204.29' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='53.88px' lengthAdjust='spacingAndGlyphs'>viii-vi-v-iv-ii</text>
-<text x='294.53' y='220.19' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='56.91px' lengthAdjust='spacingAndGlyphs'>G3:C4:D̲4̲↓</text>
-<text x='294.53' y='236.08' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='43.44px' lengthAdjust='spacingAndGlyphs'>{-5:0:2̲}↓</text>
-<text x='354.90' y='277.73' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='138.56px' lengthAdjust='spacingAndGlyphs'>Augmented Triad Up m6/M3</text>
-<text x='354.90' y='293.63' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='68.57px' lengthAdjust='spacingAndGlyphs'>G̲b̲4̲:Bb4:D5↑</text>
-<text x='354.90' y='309.52' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='52.04px' lengthAdjust='spacingAndGlyphs'>{6̲:10:14}↑</text>
-<text x='125.65' y='251.02' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='152.65px' lengthAdjust='spacingAndGlyphs'>Augmented Triad Down m6/M3</text>
-<text x='125.65' y='266.91' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='66.73px' lengthAdjust='spacingAndGlyphs'>A#3:D4:F̲#̲4̲↓</text>
-<text x='125.65' y='282.81' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='43.44px' lengthAdjust='spacingAndGlyphs'>{-2:2:6̲}↓</text>
+<polyline points='384.92,472.27 384.92,23.34 ' style='stroke-width: 0.43; stroke: #F3DDAB; stroke-linecap: butt;' />
+<polyline points='497.83,472.27 497.83,23.34 ' style='stroke-width: 0.43; stroke: #F3DDAB; stroke-linecap: butt;' />
+<circle cx='293.94' cy='126.35' r='1.95' style='stroke-width: 0.71; stroke: #F3A904; fill: #F3A904;' />
+<circle cx='167.81' cy='141.60' r='1.95' style='stroke-width: 0.71; stroke: #ABDAF3; fill: #ABDAF3;' />
+<circle cx='234.83' cy='43.74' r='1.95' style='stroke-width: 0.71; stroke: #ABDAF3; fill: #ABDAF3;' />
+<circle cx='257.80' cy='170.13' r='1.95' style='stroke-width: 0.71; stroke: #ABDAF3; fill: #ABDAF3;' />
+<circle cx='110.22' cy='111.86' r='1.95' style='stroke-width: 0.71; stroke: #ABDAF3; fill: #ABDAF3;' />
+<circle cx='335.10' cy='165.70' r='1.95' style='stroke-width: 0.71; stroke: #F3A904; fill: #F3A904;' />
+<circle cx='236.89' cy='451.86' r='1.95' style='stroke-width: 0.71; stroke: #ABDAF3; fill: #ABDAF3;' />
+<circle cx='248.14' cy='232.74' r='1.95' style='stroke-width: 0.71; stroke: #ABDAF3; fill: #ABDAF3;' />
+<circle cx='289.47' cy='265.22' r='1.95' style='stroke-width: 0.71; stroke: #F3A904; fill: #F3A904;' />
+<circle cx='210.84' cy='238.48' r='1.95' style='stroke-width: 0.71; stroke: #ABDAF3; fill: #ABDAF3;' />
+<line x1='251.68' y1='176.39' x2='257.02' y2='170.93' style='stroke-width: 1.07; stroke: #7F745A;' />
+<line x1='279.60' y1='232.72' x2='249.25' y2='232.74' style='stroke-width: 1.07; stroke: #7F745A;' />
+<text x='326.63' y='74.05' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='76.03px' lengthAdjust='spacingAndGlyphs'>C Ionian P5/M3</text>
+<text x='326.63' y='89.95' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='28.20px' lengthAdjust='spacingAndGlyphs'>I-IV-V</text>
+<text x='326.63' y='105.84' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='56.30px' lengthAdjust='spacingAndGlyphs'>C̲4̲:E4:G4↑</text>
+<text x='326.63' y='121.74' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='39.77px' lengthAdjust='spacingAndGlyphs'>{0̲:4:7}↑</text>
+<text x='189.48' y='143.15' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='88.91px' lengthAdjust='spacingAndGlyphs'>E Phrygian m6/P4</text>
+<text x='189.48' y='159.05' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='33.68px' lengthAdjust='spacingAndGlyphs'>viii-v-iv</text>
+<text x='189.48' y='174.95' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='55.08px' lengthAdjust='spacingAndGlyphs'>A3:C4:E̲4̲↓</text>
+<text x='189.48' y='190.85' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='43.44px' lengthAdjust='spacingAndGlyphs'>{-3:0:4̲}↓</text>
+<text x='202.03' y='56.35' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='98.70px' lengthAdjust='spacingAndGlyphs'>G Mixolydian M6/P4</text>
+<text x='202.03' y='72.24' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='41.69px' lengthAdjust='spacingAndGlyphs'>VIII-V-IV</text>
+<text x='202.03' y='88.14' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='56.30px' lengthAdjust='spacingAndGlyphs'>C3:E3:G̲3̲↓</text>
+<text x='202.03' y='104.04' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='56.92px' lengthAdjust='spacingAndGlyphs'>{-12:-8:-̲5̲}↓</text>
+<text x='233.21' y='186.09' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='82.17px' lengthAdjust='spacingAndGlyphs'>A Aeolian P5/m3</text>
+<text x='233.21' y='201.99' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='23.27px' lengthAdjust='spacingAndGlyphs'>i-iv-v</text>
+<text x='233.21' y='217.89' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='55.08px' lengthAdjust='spacingAndGlyphs'>A̲3̲:C4:E4↑</text>
+<text x='233.21' y='233.78' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='43.44px' lengthAdjust='spacingAndGlyphs'>{-̲3̲:0:4}↑</text>
+<text x='89.87' y='59.48' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='81.55px' lengthAdjust='spacingAndGlyphs'>B Locrian M6/P4</text>
+<text x='89.87' y='75.38' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='47.82px' lengthAdjust='spacingAndGlyphs'>VIII-VII-IV</text>
+<text x='89.87' y='91.27' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='56.30px' lengthAdjust='spacingAndGlyphs'>D3:G3:B̲3̲↓</text>
+<text x='89.87' y='107.17' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='56.92px' lengthAdjust='spacingAndGlyphs'>{-10:-5:-̲1̲}↓</text>
+<text x='379.20' y='150.02' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='79.08px' lengthAdjust='spacingAndGlyphs'>F Lydian M6/M3</text>
+<text x='379.20' y='165.92' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='20.20px' lengthAdjust='spacingAndGlyphs'>i-ii-v</text>
+<text x='379.20' y='181.81' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='54.46px' lengthAdjust='spacingAndGlyphs'>F̲4̲:A4:D5↑</text>
+<text x='379.20' y='197.71' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='45.91px' lengthAdjust='spacingAndGlyphs'>{5̲:9:14}↑</text>
+<text x='237.81' y='399.53' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='95.63px' lengthAdjust='spacingAndGlyphs'>D Dorian Up P5/M2</text>
+<text x='237.81' y='415.43' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='58.23px' lengthAdjust='spacingAndGlyphs'>I-III-IV-V-VII</text>
+<text x='237.81' y='431.32' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='55.08px' lengthAdjust='spacingAndGlyphs'>D̲4̲:E4:A4↑</text>
+<text x='237.81' y='447.22' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='39.77px' lengthAdjust='spacingAndGlyphs'>{2̲:4:9}↑</text>
+<text x='336.26' y='212.82' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='109.73px' lengthAdjust='spacingAndGlyphs'>D Dorian Down m7/P4</text>
+<text x='336.26' y='228.72' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='53.88px' lengthAdjust='spacingAndGlyphs'>viii-vi-v-iv-ii</text>
+<text x='336.26' y='244.62' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='56.91px' lengthAdjust='spacingAndGlyphs'>G3:C4:D̲4̲↓</text>
+<text x='336.26' y='260.51' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='43.44px' lengthAdjust='spacingAndGlyphs'>{-5:0:2̲}↓</text>
+<text x='314.20' y='277.77' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='138.56px' lengthAdjust='spacingAndGlyphs'>Augmented Triad Up m6/M3</text>
+<text x='314.20' y='293.67' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='68.57px' lengthAdjust='spacingAndGlyphs'>G̲b̲4̲:Bb4:D5↑</text>
+<text x='314.20' y='309.57' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='52.04px' lengthAdjust='spacingAndGlyphs'>{6̲:10:14}↑</text>
+<text x='161.41' y='251.09' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='152.65px' lengthAdjust='spacingAndGlyphs'>Augmented Triad Down m6/M3</text>
+<text x='161.41' y='266.99' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='66.73px' lengthAdjust='spacingAndGlyphs'>A#3:D4:F̲#̲4̲↓</text>
+<text x='161.41' y='282.89' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='43.44px' lengthAdjust='spacingAndGlyphs'>{-2:2:6̲}↓</text>
 </g>
 <g clip-path='url(#cpMC4wMHw1MDQuMDB8MC4wMHw1MDQuMDA=)'>
 <text x='40.57' y='386.12' text-anchor='end' style='font-size: 8.80px;fill: #F3DDAB; font-family: "Arial";' textLength='22.02px' lengthAdjust='spacingAndGlyphs'>0.300</text>
 <text x='40.57' y='294.10' text-anchor='end' style='font-size: 8.80px;fill: #F3DDAB; font-family: "Arial";' textLength='22.02px' lengthAdjust='spacingAndGlyphs'>0.325</text>
 <text x='40.57' y='202.07' text-anchor='end' style='font-size: 8.80px;fill: #F3DDAB; font-family: "Arial";' textLength='22.02px' lengthAdjust='spacingAndGlyphs'>0.350</text>
 <text x='40.57' y='110.04' text-anchor='end' style='font-size: 8.80px;fill: #F3DDAB; font-family: "Arial";' textLength='22.02px' lengthAdjust='spacingAndGlyphs'>0.375</text>
-<text x='96.70' y='483.50' text-anchor='middle' style='font-size: 8.80px;fill: #F3DDAB; font-family: "Arial";' textLength='20.06px' lengthAdjust='spacingAndGlyphs'>-0.02</text>
-<text x='184.36' y='483.50' text-anchor='middle' style='font-size: 8.80px;fill: #F3DDAB; font-family: "Arial";' textLength='20.06px' lengthAdjust='spacingAndGlyphs'>-0.01</text>
+<text x='46.19' y='483.50' text-anchor='middle' style='font-size: 8.80px;fill: #F3DDAB; font-family: "Arial";' textLength='20.06px' lengthAdjust='spacingAndGlyphs'>-0.04</text>
+<text x='159.10' y='483.50' text-anchor='middle' style='font-size: 8.80px;fill: #F3DDAB; font-family: "Arial";' textLength='20.06px' lengthAdjust='spacingAndGlyphs'>-0.02</text>
 <text x='272.01' y='483.50' text-anchor='middle' style='font-size: 8.80px;fill: #F3DDAB; font-family: "Arial";' textLength='17.13px' lengthAdjust='spacingAndGlyphs'>0.00</text>
-<text x='359.67' y='483.50' text-anchor='middle' style='font-size: 8.80px;fill: #F3DDAB; font-family: "Arial";' textLength='17.13px' lengthAdjust='spacingAndGlyphs'>0.01</text>
-<text x='447.32' y='483.50' text-anchor='middle' style='font-size: 8.80px;fill: #F3DDAB; font-family: "Arial";' textLength='17.13px' lengthAdjust='spacingAndGlyphs'>0.02</text>
+<text x='384.92' y='483.50' text-anchor='middle' style='font-size: 8.80px;fill: #F3DDAB; font-family: "Arial";' textLength='17.13px' lengthAdjust='spacingAndGlyphs'>0.02</text>
+<text x='497.83' y='483.50' text-anchor='middle' style='font-size: 8.80px;fill: #F3DDAB; font-family: "Arial";' textLength='17.13px' lengthAdjust='spacingAndGlyphs'>0.04</text>
 <text x='272.01' y='496.09' text-anchor='middle' style='font-size: 11.00px;fill: #F3DDAB; font-family: "Arial";' textLength='131.51px' lengthAdjust='spacingAndGlyphs'>hutchinson1978.brightness</text>
 <text transform='translate(13.37,247.80) rotate(-90)' text-anchor='middle' style='font-size: 11.00px;fill: #F3DDAB; font-family: "Arial";' textLength='112.53px' lengthAdjust='spacingAndGlyphs'>hutchinson1978.affinity</text>
 <text x='45.50' y='14.94' style='font-size: 13.20px;fill: #F3DDAB; font-family: "Arial";' textLength='272.00px' lengthAdjust='spacingAndGlyphs'>Roughness: Diatonic Triads Affinity-Brightness</text>
