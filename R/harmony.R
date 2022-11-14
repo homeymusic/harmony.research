@@ -88,6 +88,7 @@ harmony.uncached <- function(chord, observation_point=NA, root=NA,
 #' @param midi_reference The MIDI root of the chord, defaults to 60 for using 0-based integer notation
 #' @param name A custom name for the note or chord
 #' @param default_consonance_metric The metric that will populate affinity and brightness values
+#' @param include_label Helpful for creating plots what close the loop of a path
 #' @return A tibble
 #'
 #' @export

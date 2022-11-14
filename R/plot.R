@@ -4,7 +4,7 @@ harmony_plot <- function(x,columns,title=NULL, x_expansion_mult=0.2,
   colour_factor = colour_factor_homey(x,columns[1])
   color_values = color_values_homey()
 
-  ggplot2::ggplot(x,ggplot2::aes_string(x = columns[1], y = columns[2], colour=colour_factor)) +
+  ggplot2::ggplot(x,ggplot2::aes(x = .data[[columns[1]]], y = .data[[columns[2]]], colour=colour_factor)) +
     ggplot2::geom_point() +
     ggplot2::scale_color_manual(values = color_values, guide="none") +
     ggplot2::scale_x_continuous(expand = ggplot2::expansion(mult = x_expansion_mult),

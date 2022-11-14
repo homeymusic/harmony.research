@@ -11,7 +11,8 @@ harmony(
   root = NA,
   name = NA,
   midi_reference = NA,
-  default_consonance_metric = "stolzenburg2015"
+  default_consonance_metric = "stolzenburg2015",
+  include_label = TRUE
 )
 
 h(
@@ -20,7 +21,8 @@ h(
   root = NA,
   name = NA,
   midi_reference = NA,
-  default_consonance_metric = "stolzenburg2015"
+  default_consonance_metric = "stolzenburg2015",
+  include_label = TRUE
 )
 }
 \arguments{
@@ -35,6 +37,8 @@ h(
 \item{midi_reference}{The MIDI root of the chord, defaults to 60 for using 0-based integer notation}
 
 \item{default_consonance_metric}{The metric that will populate affinity and brightness values}
+
+\item{include_label}{Helpful for creating plots what close the loop of a path}
 }
 \value{
 A tibble

@@ -113,7 +113,7 @@ test_that('diatonic modes look good',{
   plot_affinity_brightness(chords,'Diatonic Scales')
 })
 test_that('Cohn figure 2.2 major-minor hexatonic_cycle',{
-  octatonic_cycle = list(
+  hexatonic_cycle = list(
     h(c(-4, 0,3),root=-4,observation_point=TONIC ,name='Ab Major Root'),
     h(c(-4,-1,3),root=-4,observation_point=TONIC ,name='G# Minor Root'),
     h(c(-4,-1,4),root= 4,observation_point=OCTAVE,name='E Major 1st Inversion'),
@@ -125,4 +125,55 @@ test_that('Cohn figure 2.2 major-minor hexatonic_cycle',{
   plot_affinity_brightness(dplyr::bind_rows(hexatonic_cycle),
                            'Cohn: Major-Minor: Hexatonic Cycle',
                            include_path = TRUE)
+})
+test_that('Rehding Dualistic Forms figures 7.4 and 7.19 Triad of Triads',{
+  triad_of_triads = list(
+    h(c(-7,-4,0),root= 0,observation_point=OCTAVE,name='Expo 1',
+      midi_reference=60+4),
+    h(c(-4,0,3),root= 0,observation_point=OCTAVE,name='Expo 2',
+      midi_reference=60+4),
+    h(c(0,3,7),root= 0,observation_point=TONIC,name='Expo 3',
+      midi_reference=60+4),
+    h(c(0,3,7),root= 0,observation_point=TONIC,name='Coda 1',
+      midi_reference=60-3),
+    h(c(-4,0,3),root= 0,observation_point=TONIC,name='Coda 2',
+      midi_reference=60-3),
+    h(c(-7,-4,0),root= 0,observation_point=OCTAVE,name='Coda 3',
+      midi_reference=60-3)
+  )
+  plot_affinity_brightness(dplyr::bind_rows(triad_of_triads),
+                           'Rehding: Triad of Triads',
+                           include_path=TRUE)
+})
+test_that('tonnetz plots work as expected', {
+  time = 1
+  x = c(0L,4L,7L)
+  root = 7
+  root_index = match(root,x)
+  t <- tibble::tibble(
+    time   = rep(1L,length(x)),
+    pitch  = x,
+    P5     = c(0L,0L,1L),
+    M3     = c(0L,1L,0L)
+  )
+  pair_names = rep(NULL,length(x))
+  pair_name_index = 1
+  for (i in seq_along(x)) {
+      pairs = -10000-seq(1:length(x))
+      pairs[root_index] = time
+      pairs[i] = time
+      pair_names[pair_name_index] <- paste0('pair',pair_name_index)
+      column_name = pair_names[pair_name_index]
+      t <- tibble::add_column(t,
+                              {{column_name}} := pairs
+      )
+      pair_name_index = pair_name_index + 1
+  }
+  p = t %>% ggplot2::ggplot(ggplot2::aes(P5,M3)) + ggplot2::geom_point()
+  for (i in seq_along(pair_names)) {
+    pair_name = pair_names[i]
+    p = p + ggplot2::geom_line(ggplot2::aes(group=.data[[pair_name]]))
+  }
+  p
+  expect_true(TRUE)
 })
