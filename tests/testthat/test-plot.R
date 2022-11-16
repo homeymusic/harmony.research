@@ -142,8 +142,63 @@ test_that('Rehding Dualistic Forms figures 7.4 and 7.19 Triad of Triads',{
       midi_reference=60-3)
   )
   plot_affinity_brightness(dplyr::bind_rows(triad_of_triads),
-                           'Rehding: Triad of Triads',
+                           'Rehding: Dualistic Brahms 114',
                            include_path=TRUE)
+})
+test_that('Rehding Monistic Forms',{
+  triad_of_triads = list(
+    h(c(-7,-4,0),root= -7,observation_point=TONIC,name='Expo 1',
+      midi_reference=60+4),
+    h(c(-4,0,3),root= -4,observation_point=TONIC,name='Expo 2',
+      midi_reference=60+4),
+    h(c(0,3,7),root= 0,observation_point=TONIC,name='Expo 3',
+      midi_reference=60+4),
+    h(c(0,3,7),root= 0,observation_point=TONIC,name='Coda 1',
+      midi_reference=60-3),
+    h(c(0,3,7),root= 0,observation_point=TONIC,name='Coda 2',
+      midi_reference=60-3),
+    h(c(0,4,7),root= 0,observation_point=TONIC,name='Coda 3',
+      midi_reference=60-3)
+  )
+  plot_affinity_brightness(dplyr::bind_rows(triad_of_triads),
+                           'Rehding: Monistic Brahms 114',
+                           include_path=TRUE)
+})
+test_that('Triad Variations Ionian and Phrygian',{
+  triad_variations = list(
+    h( c(0,4,7),root=0,observation_point=TONIC),
+    h(-c(0,4,7),root=0,observation_point=OCTAVE,midi_reference=60+4),
+    h( c(0,5,9),root=0,observation_point=TONIC),
+    h(-c(0,5,9),root=0,observation_point=OCTAVE,midi_reference=60+4),
+    h( c(0,3,8),root=0,observation_point=TONIC),
+    h(-c(0,3,8),root=0,observation_point=OCTAVE,midi_reference=60+4)
+  )
+  plot_affinity_brightness(dplyr::bind_rows(triad_variations),
+                           'Triad Variations Ionian and Phrygian')
+})
+test_that('Triad Variations Aeolian and Mixolydian',{
+  triad_variations = list(
+    h( c(0,3,7),root=0,observation_point=TONIC ,midi_reference=60-3),
+    h(-c(0,3,7),root=0,observation_point=OCTAVE,midi_reference=60+7),
+    h( c(0,5,8),root=0,observation_point=TONIC ,midi_reference=60-3),
+    h(-c(0,5,8),root=0,observation_point=OCTAVE,midi_reference=60+7),
+    h( c(0,4,9),root=0,observation_point=TONIC ,midi_reference=60-3),
+    h(-c(0,4,9),root=0,observation_point=OCTAVE,midi_reference=60+7)
+  )
+  plot_affinity_brightness(dplyr::bind_rows(triad_variations),
+                           'Triad Variations Aeolian and Mixolydian')
+})
+test_that('Triad Variations Locrian and Lydian',{
+  triad_variations = list(
+    h( c(0,4,9),root=0,observation_point=TONIC ,midi_reference=60+5),
+    h(-c(0,4,9),root=0,observation_point=OCTAVE,midi_reference=60-1),
+    h( c(0,5,8),root=0,observation_point=TONIC ,midi_reference=60+5),
+    h(-c(0,5,8),root=0,observation_point=OCTAVE,midi_reference=60-1),
+    h( c(0,6,11),root=0,observation_point=TONIC ,midi_reference=60+5),
+    h(-c(0,6,11),root=0,observation_point=OCTAVE,midi_reference=60-1)
+  )
+  plot_affinity_brightness(dplyr::bind_rows(triad_variations),
+                           'Triad Variations Locrian and Lydian')
 })
 test_that('tonnetz plots work as expected', {
   time = 1

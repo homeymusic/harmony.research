@@ -57,25 +57,25 @@
 <circle cx='128.55' cy='324.41' r='1.95' style='stroke-width: 0.71; stroke: #ABDAF3; fill: #ABDAF3;' />
 <polyline points='128.55,324.41 106.02,43.74 250.33,413.41 250.33,413.41 218.00,451.86 128.55,324.41 ' style='stroke-width: 1.07; stroke: #ABDAF3; stroke-linecap: butt;' />
 <polygon points='135.08,327.45 128.55,324.41 129.18,331.58 ' style='stroke-width: 1.07; stroke: #ABDAF3; stroke-linecap: butt; fill: #ABDAF3;' />
-<line x1='195.75' y1='448.85' x2='216.88' y2='451.71' style='stroke-width: 1.07; stroke: #7F745A;' />
-<text x='153.54' y='287.97' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='34.34px' lengthAdjust='spacingAndGlyphs'>Expo 1</text>
-<text x='153.54' y='303.86' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='55.08px' lengthAdjust='spacingAndGlyphs'>A3:C4:E̲4̲↓</text>
-<text x='153.54' y='319.76' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='47.12px' lengthAdjust='spacingAndGlyphs'>{-7:-4:0̲}↓</text>
-<text x='131.03' y='56.30' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='34.34px' lengthAdjust='spacingAndGlyphs'>Expo 2</text>
-<text x='131.03' y='72.19' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='56.30px' lengthAdjust='spacingAndGlyphs'>C4:E̲4̲:G4↓</text>
-<text x='131.03' y='88.09' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='43.44px' lengthAdjust='spacingAndGlyphs'>{-4:0̲:3}↓</text>
-<text x='276.35' y='375.96' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='34.34px' lengthAdjust='spacingAndGlyphs'>Expo 3</text>
-<text x='276.35' y='391.86' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='55.70px' lengthAdjust='spacingAndGlyphs'>E̲4̲:G4:B4↑</text>
-<text x='276.35' y='407.75' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='39.77px' lengthAdjust='spacingAndGlyphs'>{0̲:3:7}↑</text>
-<text x='228.59' y='422.78' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='35.57px' lengthAdjust='spacingAndGlyphs'>Coda 1</text>
-<text x='228.59' y='438.67' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='55.08px' lengthAdjust='spacingAndGlyphs'>A̲3̲:C4:E4↑</text>
-<text x='228.59' y='454.57' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='39.77px' lengthAdjust='spacingAndGlyphs'>{0̲:3:7}↑</text>
-<text x='166.72' y='436.87' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='35.57px' lengthAdjust='spacingAndGlyphs'>Coda 2</text>
-<text x='166.72' y='452.77' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='54.46px' lengthAdjust='spacingAndGlyphs'>F3:A̲3̲:C4↑</text>
-<text x='166.72' y='468.67' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='43.44px' lengthAdjust='spacingAndGlyphs'>{-4:0̲:3}↑</text>
-<text x='103.57' y='336.96' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='35.57px' lengthAdjust='spacingAndGlyphs'>Coda 3</text>
-<text x='103.57' y='352.86' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='54.46px' lengthAdjust='spacingAndGlyphs'>D3:F3:A̲3̲↓</text>
-<text x='103.57' y='368.75' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='47.12px' lengthAdjust='spacingAndGlyphs'>{-7:-4:0̲}↓</text>
+<line x1='195.58' y1='448.85' x2='216.88' y2='451.71' style='stroke-width: 1.07; stroke: #7F745A;' />
+<text x='103.58' y='336.94' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='34.34px' lengthAdjust='spacingAndGlyphs'>Expo 1</text>
+<text x='103.58' y='352.84' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='55.08px' lengthAdjust='spacingAndGlyphs'>A3:C4:E̲4̲↓</text>
+<text x='103.58' y='368.74' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='47.12px' lengthAdjust='spacingAndGlyphs'>{-7:-4:0̲}↓</text>
+<text x='131.07' y='56.36' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='34.34px' lengthAdjust='spacingAndGlyphs'>Expo 2</text>
+<text x='131.07' y='72.26' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='56.30px' lengthAdjust='spacingAndGlyphs'>C4:E̲4̲:G4↓</text>
+<text x='131.07' y='88.15' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='43.44px' lengthAdjust='spacingAndGlyphs'>{-4:0̲:3}↓</text>
+<text x='276.22' y='376.09' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='34.34px' lengthAdjust='spacingAndGlyphs'>Expo 3</text>
+<text x='276.22' y='391.98' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='55.70px' lengthAdjust='spacingAndGlyphs'>E̲4̲:G4:B4↑</text>
+<text x='276.22' y='407.88' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='39.77px' lengthAdjust='spacingAndGlyphs'>{0̲:3:7}↑</text>
+<text x='228.42' y='422.97' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='35.57px' lengthAdjust='spacingAndGlyphs'>Coda 1</text>
+<text x='228.42' y='438.87' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='55.08px' lengthAdjust='spacingAndGlyphs'>A̲3̲:C4:E4↑</text>
+<text x='228.42' y='454.76' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='39.77px' lengthAdjust='spacingAndGlyphs'>{0̲:3:7}↑</text>
+<text x='166.55' y='436.87' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='35.57px' lengthAdjust='spacingAndGlyphs'>Coda 2</text>
+<text x='166.55' y='452.77' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='54.46px' lengthAdjust='spacingAndGlyphs'>F3:A̲3̲:C4↑</text>
+<text x='166.55' y='468.67' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='43.44px' lengthAdjust='spacingAndGlyphs'>{-4:0̲:3}↑</text>
+<text x='153.52' y='287.99' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='35.57px' lengthAdjust='spacingAndGlyphs'>Coda 3</text>
+<text x='153.52' y='303.89' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='54.46px' lengthAdjust='spacingAndGlyphs'>D3:F3:A̲3̲↓</text>
+<text x='153.52' y='319.78' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='47.12px' lengthAdjust='spacingAndGlyphs'>{-7:-4:0̲}↓</text>
 </g>
 <g clip-path='url(#cpMC4wMHw1MDQuMDB8MC4wMHw1MDQuMDA=)'>
 <text x='35.67' y='391.53' text-anchor='end' style='font-size: 8.80px;fill: #F3DDAB; font-family: "Arial";' textLength='17.13px' lengthAdjust='spacingAndGlyphs'>0.36</text>
@@ -89,6 +89,6 @@
 <text x='422.36' y='483.50' text-anchor='middle' style='font-size: 8.80px;fill: #F3DDAB; font-family: "Arial";' textLength='17.13px' lengthAdjust='spacingAndGlyphs'>0.02</text>
 <text x='269.56' y='496.09' text-anchor='middle' style='font-size: 11.00px;fill: #F3DDAB; font-family: "Arial";' textLength='131.51px' lengthAdjust='spacingAndGlyphs'>hutchinson1978.brightness</text>
 <text transform='translate(13.37,247.80) rotate(-90)' text-anchor='middle' style='font-size: 11.00px;fill: #F3DDAB; font-family: "Arial";' textLength='112.53px' lengthAdjust='spacingAndGlyphs'>hutchinson1978.affinity</text>
-<text x='40.60' y='14.94' style='font-size: 13.20px;fill: #F3DDAB; font-family: "Arial";' textLength='325.53px' lengthAdjust='spacingAndGlyphs'>Roughness: Rehding: Triad of Triads Affinity-Brightness</text>
+<text x='40.60' y='14.94' style='font-size: 13.20px;fill: #F3DDAB; font-family: "Arial";' textLength='365.13px' lengthAdjust='spacingAndGlyphs'>Roughness: Rehding: Dualistic Brahms 114 Affinity-Brightness</text>
 </g>
 </svg>

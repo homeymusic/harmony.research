@@ -70,26 +70,26 @@
 <polygon points='112.26,244.20 106.02,247.80 112.26,251.40 ' style='stroke-width: 1.07; stroke: #F3A904; stroke-linecap: butt; fill: #F3A904;' />
 <line x1='106.02' y1='247.80' x2='433.10' y2='247.80' style='stroke-width: 1.07; stroke: #ABDAF3; stroke-linecap: butt;' />
 <polygon points='426.87,251.40 433.10,247.80 426.87,244.20 ' style='stroke-width: 1.07; stroke: #ABDAF3; stroke-linecap: butt; fill: #ABDAF3;' />
-<line x1='401.78' y1='198.13' x2='432.51' y2='246.86' style='stroke-width: 1.07; stroke: #7F745A;' />
-<line x1='136.47' y1='229.73' x2='106.98' y2='247.23' style='stroke-width: 1.07; stroke: #7F745A;' />
-<text x='408.07' y='260.35' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='70.50px' lengthAdjust='spacingAndGlyphs'>Ab Major Root</text>
-<text x='408.07' y='276.25' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='67.35px' lengthAdjust='spacingAndGlyphs'>A̲b̲3̲:C4:Eb4↑</text>
-<text x='408.07' y='292.15' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='43.44px' lengthAdjust='spacingAndGlyphs'>{-̲4̲:0:3}↑</text>
-<text x='87.74' y='211.23' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='87.06px' lengthAdjust='spacingAndGlyphs'>D# Phrygian Root</text>
-<text x='87.74' y='227.13' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='68.57px' lengthAdjust='spacingAndGlyphs'>G#3:B3:D̲#̲4̲↓</text>
-<text x='87.74' y='243.03' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='47.12px' lengthAdjust='spacingAndGlyphs'>{-4:-1:3̲}↓</text>
-<text x='393.24' y='164.53' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='103.61px' lengthAdjust='spacingAndGlyphs'>E Major 1st Inversion</text>
-<text x='393.24' y='180.43' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='61.83px' lengthAdjust='spacingAndGlyphs'>G#3:B3:E̲4̲↓</text>
-<text x='393.24' y='196.33' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='47.12px' lengthAdjust='spacingAndGlyphs'>{-4:-1:4̲}↓</text>
-<text x='131.06' y='260.39' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='123.25px' lengthAdjust='spacingAndGlyphs'>B Phrygian 2nd Inversion</text>
-<text x='131.06' y='276.29' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='55.70px' lengthAdjust='spacingAndGlyphs'>G3:B̲3̲:E4↓</text>
-<text x='131.06' y='292.19' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='47.12px' lengthAdjust='spacingAndGlyphs'>{-5:-̲1̲:4}↓</text>
-<text x='440.97' y='211.23' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='107.90px' lengthAdjust='spacingAndGlyphs'>C Major 2nd Inversion</text>
-<text x='440.97' y='227.13' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='56.30px' lengthAdjust='spacingAndGlyphs'>G3:C̲4̲:E4↑</text>
-<text x='440.97' y='243.03' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='43.44px' lengthAdjust='spacingAndGlyphs'>{-5:0̲:4}↑</text>
-<text x='198.66' y='213.45' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='120.79px' lengthAdjust='spacingAndGlyphs'>G Phrygian 1st Inversion</text>
-<text x='198.66' y='229.35' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='62.44px' lengthAdjust='spacingAndGlyphs'>G̲3̲:C4:Eb4↑</text>
-<text x='198.66' y='245.25' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='43.44px' lengthAdjust='spacingAndGlyphs'>{-̲5̲:0:3}↑</text>
+<line x1='397.28' y1='197.98' x2='432.45' y2='246.90' style='stroke-width: 1.07; stroke: #7F745A;' />
+<line x1='136.40' y1='229.73' x2='106.98' y2='247.23' style='stroke-width: 1.07; stroke: #7F745A;' />
+<text x='459.67' y='211.26' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='70.50px' lengthAdjust='spacingAndGlyphs'>Ab Major Root</text>
+<text x='459.67' y='227.16' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='67.35px' lengthAdjust='spacingAndGlyphs'>A̲b̲3̲:C4:Eb4↑</text>
+<text x='459.67' y='243.05' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='43.44px' lengthAdjust='spacingAndGlyphs'>{-̲4̲:0:3}↑</text>
+<text x='87.74' y='211.24' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='87.06px' lengthAdjust='spacingAndGlyphs'>D# Phrygian Root</text>
+<text x='87.74' y='227.14' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='68.57px' lengthAdjust='spacingAndGlyphs'>G#3:B3:D̲#̲4̲↓</text>
+<text x='87.74' y='243.04' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='47.12px' lengthAdjust='spacingAndGlyphs'>{-4:-1:3̲}↓</text>
+<text x='382.59' y='164.38' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='103.61px' lengthAdjust='spacingAndGlyphs'>E Major 1st Inversion</text>
+<text x='382.59' y='180.28' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='61.83px' lengthAdjust='spacingAndGlyphs'>G#3:B3:E̲4̲↓</text>
+<text x='382.59' y='196.18' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='47.12px' lengthAdjust='spacingAndGlyphs'>{-4:-1:4̲}↓</text>
+<text x='199.83' y='213.44' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='123.25px' lengthAdjust='spacingAndGlyphs'>B Phrygian 2nd Inversion</text>
+<text x='199.83' y='229.34' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='55.70px' lengthAdjust='spacingAndGlyphs'>G3:B̲3̲:E4↓</text>
+<text x='199.83' y='245.23' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='47.12px' lengthAdjust='spacingAndGlyphs'>{-5:-̲1̲:4}↓</text>
+<text x='408.11' y='260.39' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='107.90px' lengthAdjust='spacingAndGlyphs'>C Major 2nd Inversion</text>
+<text x='408.11' y='276.29' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='56.30px' lengthAdjust='spacingAndGlyphs'>G3:C̲4̲:E4↑</text>
+<text x='408.11' y='292.19' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='43.44px' lengthAdjust='spacingAndGlyphs'>{-5:0̲:4}↑</text>
+<text x='131.03' y='260.36' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='120.79px' lengthAdjust='spacingAndGlyphs'>G Phrygian 1st Inversion</text>
+<text x='131.03' y='276.25' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='62.44px' lengthAdjust='spacingAndGlyphs'>G̲3̲:C4:Eb4↑</text>
+<text x='131.03' y='292.15' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='43.44px' lengthAdjust='spacingAndGlyphs'>{-̲5̲:0:3}↑</text>
 </g>
 <g clip-path='url(#cpMC4wMHw1MDQuMDB8MC4wMHw1MDQuMDA=)'>
 <text x='35.67' y='468.61' text-anchor='end' style='font-size: 8.80px;fill: #F3DDAB; font-family: "Arial";' textLength='17.13px' lengthAdjust='spacingAndGlyphs'>1.32</text>
