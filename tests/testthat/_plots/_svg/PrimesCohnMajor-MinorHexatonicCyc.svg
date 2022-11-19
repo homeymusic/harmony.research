@@ -67,24 +67,24 @@
 <polygon points='330.78,318.44 324.08,315.82 325.17,322.94 ' style='stroke-width: 1.07; stroke: #F3A904; stroke-linecap: butt; fill: #F3A904;' />
 <line x1='324.08' y1='315.82' x2='433.10' y2='179.78' style='stroke-width: 1.07; stroke: #F3A904; stroke-linecap: butt;' />
 <polygon points='432.01,186.90 433.10,179.78 426.40,182.40 ' style='stroke-width: 1.07; stroke: #F3A904; stroke-linecap: butt; fill: #F3A904;' />
-<text x='458.15' y='143.29' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='70.50px' lengthAdjust='spacingAndGlyphs'>Ab Major Root</text>
-<text x='458.15' y='159.18' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='67.35px' lengthAdjust='spacingAndGlyphs'>A̲b̲3̲:C4:Eb4↑</text>
-<text x='458.15' y='175.08' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='43.44px' lengthAdjust='spacingAndGlyphs'>{-̲4̲:0:3}↑</text>
-<text x='349.06' y='56.28' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='71.73px' lengthAdjust='spacingAndGlyphs'>G# Minor Root</text>
-<text x='349.06' y='72.17' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='66.74px' lengthAdjust='spacingAndGlyphs'>A̲b̲3̲:B3:Eb4↑</text>
-<text x='349.06' y='88.07' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='47.12px' lengthAdjust='spacingAndGlyphs'>{-̲4̲:-1:3}↑</text>
+<text x='408.13' y='192.30' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='70.50px' lengthAdjust='spacingAndGlyphs'>Ab Major Root</text>
+<text x='408.13' y='208.20' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='67.35px' lengthAdjust='spacingAndGlyphs'>A̲b̲3̲:C4:Eb4↑</text>
+<text x='408.13' y='224.09' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='43.44px' lengthAdjust='spacingAndGlyphs'>{-̲4̲:0:3}↑</text>
+<text x='349.07' y='56.30' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='71.73px' lengthAdjust='spacingAndGlyphs'>G# Minor Root</text>
+<text x='349.07' y='72.20' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='66.74px' lengthAdjust='spacingAndGlyphs'>A̲b̲3̲:B3:Eb4↑</text>
+<text x='349.07' y='88.09' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='47.12px' lengthAdjust='spacingAndGlyphs'>{-̲4̲:-1:3}↑</text>
 <text x='299.05' y='192.36' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='103.61px' lengthAdjust='spacingAndGlyphs'>E Major 1st Inversion</text>
 <text x='299.05' y='208.25' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='61.83px' lengthAdjust='spacingAndGlyphs'>G#3:B3:E̲4̲↓</text>
 <text x='299.05' y='224.15' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='47.12px' lengthAdjust='spacingAndGlyphs'>{-4:-1:4̲}↓</text>
-<text x='240.06' y='56.32' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='103.61px' lengthAdjust='spacingAndGlyphs'>E Minor 1st Inversion</text>
-<text x='240.06' y='72.22' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='55.70px' lengthAdjust='spacingAndGlyphs'>G3:B3:E̲4̲↓</text>
-<text x='240.06' y='88.11' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='47.12px' lengthAdjust='spacingAndGlyphs'>{-5:-1:4̲}↓</text>
-<text x='440.97' y='415.38' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='107.90px' lengthAdjust='spacingAndGlyphs'>C Major 2nd Inversion</text>
-<text x='440.97' y='431.27' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='56.30px' lengthAdjust='spacingAndGlyphs'>G3:C̲4̲:E4↑</text>
-<text x='440.97' y='447.17' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='43.44px' lengthAdjust='spacingAndGlyphs'>{-5:0̲:4}↑</text>
-<text x='299.06' y='328.41' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='107.90px' lengthAdjust='spacingAndGlyphs'>C Minor 2nd Inversion</text>
-<text x='299.06' y='344.31' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='62.44px' lengthAdjust='spacingAndGlyphs'>G3:C̲4̲:Eb4↑</text>
-<text x='299.06' y='360.20' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='43.44px' lengthAdjust='spacingAndGlyphs'>{-5:0̲:3}↑</text>
+<text x='190.05' y='56.30' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='103.61px' lengthAdjust='spacingAndGlyphs'>E Minor 1st Inversion</text>
+<text x='190.05' y='72.20' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='55.70px' lengthAdjust='spacingAndGlyphs'>G3:B3:E̲4̲↓</text>
+<text x='190.05' y='88.09' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='47.12px' lengthAdjust='spacingAndGlyphs'>{-5:-1:4̲}↓</text>
+<text x='408.09' y='415.38' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='107.90px' lengthAdjust='spacingAndGlyphs'>C Major 2nd Inversion</text>
+<text x='408.09' y='431.28' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='56.30px' lengthAdjust='spacingAndGlyphs'>G3:C̲4̲:E4↑</text>
+<text x='408.09' y='447.18' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='43.44px' lengthAdjust='spacingAndGlyphs'>{-5:0̲:4}↑</text>
+<text x='349.09' y='279.34' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='107.90px' lengthAdjust='spacingAndGlyphs'>C Minor 2nd Inversion</text>
+<text x='349.09' y='295.24' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='62.44px' lengthAdjust='spacingAndGlyphs'>G3:C̲4̲:Eb4↑</text>
+<text x='349.09' y='311.14' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='43.44px' lengthAdjust='spacingAndGlyphs'>{-5:0̲:3}↑</text>
 </g>
 <g clip-path='url(#cpMC4wMHw1MDQuMDB8MC4wMHw1MDQuMDA=)'>
 <text x='35.67' y='359.79' text-anchor='end' style='font-size: 8.80px;fill: #F3DDAB; font-family: "Arial";' textLength='12.23px' lengthAdjust='spacingAndGlyphs'>9.9</text>

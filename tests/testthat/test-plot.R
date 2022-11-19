@@ -19,6 +19,16 @@ plot_affinity_brightness <- function(chords,chords_name,include_path=FALSE) {
   save_harmony_plots(p)
   expect_true(!is.null(p))
 }
+test_that('primary chord combinations',{
+  plot_affinity_brightness(chord_combinations(list(c(0,4,7),-c(0,4,7) %>% sort)),
+                           'Chord Combinations 047')
+  expect_true(TRUE)
+})
+test_that('primary chord combinations',{
+  plot_affinity_brightness(chord_combinations(list(c(0,3,7),-c(0,3,7) %>% sort)),
+                           'Chord Combinations 037')
+  expect_true(TRUE)
+})
 #############
 #
 # Cohn start
@@ -83,6 +93,52 @@ test_that('highest voice is root hexatonic_cycle',{
 # Cohn stop
 #
 ############
+################
+#
+# Tymoczko start
+#
+test_that('Tymoczko beholders eye 8.1a symmetry in traditional harmonic analysis',{
+  progression = list(
+    h(c(-12,0,4,7),root=-12,observation_point=TONIC,name='I  - C Major'),
+    h(c(-7,0,5,9),root=-7,observation_point=TONIC,name='IV - F Major'),
+    h(c(-5,-1,2,7),root=-5,observation_point=TONIC,name='V  - G Major'),
+    h(c(-12,0,4,7),root=-12,observation_point=TONIC,name='I  - C Major')
+  )
+  plot_affinity_brightness(dplyr::bind_rows(progression),
+                           "Tymoczko: 8.1a symmetry in traditional harmonic analysis",
+                           include_path = TRUE)
+})
+test_that('Tymoczko: beholders eye 8.4a Inversion and diatonic transposition',{
+  progression = list(
+    h(c(-12,0,4,7),root=-12,observation_point=TONIC,name='I C Major'),
+    h(c(-7,0,2,9),root=2,observation_point=OCTAVE,name='ii 6/5 D Minor 7'),
+    h(c(-5,-1,2,7),root=-5,observation_point=TONIC,name='V G Major'),
+    h(c(-12,0,4,7),root=-12,observation_point=TONIC,name='I C Major')
+  )
+  plot_affinity_brightness(dplyr::bind_rows(progression),
+                           "Tymoczko: 8.4a Inversion and diatonic transposition",
+                           include_path = TRUE)
+})
+test_that('Tymoczko: alt beholders eye 8.4a Inversion and diatonic transposition',{
+  progression = list(
+    h(c(-12,0,4,7),root=-12,observation_point=TONIC,name='I C Major'),
+    h(c(-7,0,2,9),root=-7,observation_point=TONIC,name='IV F Major 7'),
+    h(c(-5,-1,2,7),root=-5,observation_point=TONIC,name='V G Major'),
+    h(c(-12,0,4,7),root=-12,observation_point=TONIC,name='I C Major')
+  )
+  plot_affinity_brightness(dplyr::bind_rows(progression),
+                           "Tymoczko: 8.4a Alt Inversion and diatonic transposition",
+                           include_path = TRUE)
+})
+#
+# Tymoczko stop
+#
+################
+test_that('Tristan Variations',{
+  #  F, B, D♯, and G♯
+  plot_affinity_brightness(chord_combinations(list(c(-7,-1,3,8))),
+                           "Tristan Variations")
+})
 test_that('diatonic triads might be a surprise',{
   diatonic_triads = list(
     h(c(0,4,7)%>%sort,observation_point=TONIC,name='C Ionian P5/M3\nI-IV-V'),
