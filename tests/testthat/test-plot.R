@@ -89,6 +89,20 @@ test_that('highest voice is root hexatonic_cycle',{
                            'Cohn: Highest Voice is Root: Hexatonic Cycle',
                            include_path = TRUE)
 })
+test_that('Cohn figure 2.2 major-minor hexatonic_cycle',{
+  hexatonic_cycle = list(
+    h(c(-4, 0,3),root=-4,observation_point=TONIC ,name='Ab Major Root'),
+    h(c(-4,-1,3),root=-4,observation_point=TONIC ,name='G# Minor Root'),
+    h(c(-4,-1,4),root= 4,observation_point=OCTAVE,name='E Major 1st Inversion'),
+    h(c(-5,-1,4),root= 4,observation_point=OCTAVE,name='E Minor 1st Inversion'),
+    h(c(-5, 0,4),root= 0,observation_point=TONIC ,name='C Major 2nd Inversion'),
+    h(c(-5, 0,3),root= 0,observation_point=TONIC ,name='C Minor 2nd Inversion'),
+    h(c(-4, 0,3),root=-4,observation_point=TONIC ,include_label=FALSE)
+  )
+  plot_affinity_brightness(dplyr::bind_rows(hexatonic_cycle),
+                           'Cohn: Major-Minor: Hexatonic Cycle',
+                           include_path = TRUE)
+})
 #
 # Cohn stop
 #
@@ -168,20 +182,6 @@ test_that('diatonic modes look good',{
   chords = dplyr::bind_rows(diatonic_scales())
   plot_affinity_brightness(chords,'Diatonic Scales')
 })
-test_that('Cohn figure 2.2 major-minor hexatonic_cycle',{
-  hexatonic_cycle = list(
-    h(c(-4, 0,3),root=-4,observation_point=TONIC ,name='Ab Major Root'),
-    h(c(-4,-1,3),root=-4,observation_point=TONIC ,name='G# Minor Root'),
-    h(c(-4,-1,4),root= 4,observation_point=OCTAVE,name='E Major 1st Inversion'),
-    h(c(-5,-1,4),root= 4,observation_point=OCTAVE,name='E Minor 1st Inversion'),
-    h(c(-5, 0,4),root= 0,observation_point=TONIC ,name='C Major 2nd Inversion'),
-    h(c(-5, 0,3),root= 0,observation_point=TONIC ,name='C Minor 2nd Inversion'),
-    h(c(-4, 0,3),root=-4,observation_point=TONIC ,include_label=FALSE)
-  )
-  plot_affinity_brightness(dplyr::bind_rows(hexatonic_cycle),
-                           'Cohn: Major-Minor: Hexatonic Cycle',
-                           include_path = TRUE)
-})
 test_that('Rehding Dualistic Forms figures 7.4 and 7.19 Triad of Triads',{
   triad_of_triads = list(
     h(c(-7,-4,0),root= 0,observation_point=OCTAVE,name='Expo 1',
@@ -222,36 +222,36 @@ test_that('Rehding Monistic Forms',{
 })
 test_that('Triad Variations Ionian and Phrygian',{
   triad_variations = list(
-    h( c(0,4,7),root=0,observation_point=TONIC),
-    h(-c(0,4,7),root=0,observation_point=OCTAVE,midi_reference=60+4),
-    h( c(0,5,9),root=0,observation_point=TONIC),
-    h(-c(0,5,9),root=0,observation_point=OCTAVE,midi_reference=60+4),
-    h( c(0,3,8),root=0,observation_point=TONIC),
-    h(-c(0,3,8),root=0,observation_point=OCTAVE,midi_reference=60+4)
+    h( c(0,4,7)%>%sort,root=0,observation_point=TONIC),
+    h(-c(0,4,7)%>%sort,root=0,observation_point=OCTAVE,midi_reference=60+4),
+    h( c(0,5,9)%>%sort,root=0,observation_point=TONIC),
+    h(-c(0,5,9)%>%sort,root=0,observation_point=OCTAVE,midi_reference=60+4),
+    h( c(0,3,8)%>%sort,root=0,observation_point=TONIC),
+    h(-c(0,3,8)%>%sort,root=0,observation_point=OCTAVE,midi_reference=60+4)
   )
   plot_affinity_brightness(dplyr::bind_rows(triad_variations),
                            'Triad Variations Ionian and Phrygian')
 })
 test_that('Triad Variations Aeolian and Mixolydian',{
   triad_variations = list(
-    h( c(0,3,7),root=0,observation_point=TONIC ,midi_reference=60-3),
-    h(-c(0,3,7),root=0,observation_point=OCTAVE,midi_reference=60+7),
-    h( c(0,5,8),root=0,observation_point=TONIC ,midi_reference=60-3),
-    h(-c(0,5,8),root=0,observation_point=OCTAVE,midi_reference=60+7),
-    h( c(0,4,9),root=0,observation_point=TONIC ,midi_reference=60-3),
-    h(-c(0,4,9),root=0,observation_point=OCTAVE,midi_reference=60+7)
+    h( c(0,3,7)%>%sort,root=0,observation_point=TONIC ,midi_reference=60-3),
+    h(-c(0,3,7)%>%sort,root=0,observation_point=OCTAVE,midi_reference=60+7),
+    h( c(0,5,8)%>%sort,root=0,observation_point=TONIC ,midi_reference=60-3),
+    h(-c(0,5,8)%>%sort,root=0,observation_point=OCTAVE,midi_reference=60+7),
+    h( c(0,4,9)%>%sort,root=0,observation_point=TONIC ,midi_reference=60-3),
+    h(-c(0,4,9)%>%sort,root=0,observation_point=OCTAVE,midi_reference=60+7)
   )
   plot_affinity_brightness(dplyr::bind_rows(triad_variations),
                            'Triad Variations Aeolian and Mixolydian')
 })
 test_that('Triad Variations Locrian and Lydian',{
   triad_variations = list(
-    h( c(0,4,9),root=0,observation_point=TONIC ,midi_reference=60+5),
-    h(-c(0,4,9),root=0,observation_point=OCTAVE,midi_reference=60-1),
-    h( c(0,5,8),root=0,observation_point=TONIC ,midi_reference=60+5),
-    h(-c(0,5,8),root=0,observation_point=OCTAVE,midi_reference=60-1),
-    h( c(0,6,11),root=0,observation_point=TONIC ,midi_reference=60+5),
-    h(-c(0,6,11),root=0,observation_point=OCTAVE,midi_reference=60-1)
+    h( c(0,4,9)%>%sort,root=0,observation_point=TONIC ,midi_reference=60+5),
+    h(-c(0,4,9)%>%sort,root=0,observation_point=OCTAVE,midi_reference=60-1),
+    h( c(0,5,8)%>%sort,root=0,observation_point=TONIC ,midi_reference=60+5),
+    h(-c(0,5,8)%>%sort,root=0,observation_point=OCTAVE,midi_reference=60-1),
+    h( c(0,6,11)%>%sort,root=0,observation_point=TONIC ,midi_reference=60+5),
+    h(-c(0,6,11)%>%sort,root=0,observation_point=OCTAVE,midi_reference=60-1)
   )
   plot_affinity_brightness(dplyr::bind_rows(triad_variations),
                            'Triad Variations Locrian and Lydian')

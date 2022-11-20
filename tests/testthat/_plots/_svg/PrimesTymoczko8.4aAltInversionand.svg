@@ -58,19 +58,19 @@
 <circle cx='351.33' cy='43.74' r='1.95' style='stroke-width: 0.71; stroke: #F3A904; fill: #F3A904;' />
 <polyline points='351.33,43.74 433.10,451.86 351.33,206.99 351.33,43.74 ' style='stroke-width: 1.07; stroke: #F3A904; stroke-linecap: butt;' />
 <polygon points='354.93,49.98 351.33,43.74 347.73,49.98 ' style='stroke-width: 1.07; stroke: #F3A904; stroke-linecap: butt; fill: #F3A904;' />
-<line x1='367.70' y1='61.49' x2='352.09' y2='44.56' style='stroke-width: 1.07; stroke: #7F745A;' />
-<text x='389.69' y='71.18' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='44.74px' lengthAdjust='spacingAndGlyphs'>I C Major</text>
-<text x='389.69' y='87.08' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='73.47px' lengthAdjust='spacingAndGlyphs'>C̲3̲:C4:E4:G4↑</text>
-<text x='389.69' y='102.98' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='58.78px' lengthAdjust='spacingAndGlyphs'>{-̲1̲2̲:0:4:7}↑</text>
-<text x='408.08' y='415.38' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='60.08px' lengthAdjust='spacingAndGlyphs'>IV F Major 7</text>
-<text x='408.08' y='431.27' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='71.63px' lengthAdjust='spacingAndGlyphs'>F̲3̲:C4:D4:A4↑</text>
-<text x='408.08' y='447.17' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='52.65px' lengthAdjust='spacingAndGlyphs'>{-̲7̲:0:2:9}↑</text>
-<text x='376.40' y='170.47' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='49.65px' lengthAdjust='spacingAndGlyphs'>V G Major</text>
-<text x='376.40' y='186.36' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='74.09px' lengthAdjust='spacingAndGlyphs'>G̲3̲:B3:D4:G4↑</text>
-<text x='376.40' y='202.26' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='56.32px' lengthAdjust='spacingAndGlyphs'>{-̲5̲:-1:2:7}↑</text>
-<text x='309.03' y='34.83' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='44.74px' lengthAdjust='spacingAndGlyphs'>I C Major</text>
-<text x='309.03' y='50.73' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='73.47px' lengthAdjust='spacingAndGlyphs'>C̲3̲:C4:E4:G4↑</text>
-<text x='309.03' y='66.63' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='58.78px' lengthAdjust='spacingAndGlyphs'>{-̲1̲2̲:0:4:7}↑</text>
+<line x1='351.50' y1='76.09' x2='351.34' y2='44.85' style='stroke-width: 1.07; stroke: #7F745A;' />
+<text x='390.03' y='74.99' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='44.74px' lengthAdjust='spacingAndGlyphs'>I C Major</text>
+<text x='390.03' y='90.89' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='73.47px' lengthAdjust='spacingAndGlyphs'>C̲3̲:C4:E4:G4↑</text>
+<text x='390.03' y='106.78' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='58.78px' lengthAdjust='spacingAndGlyphs'>{-̲1̲2̲:0:4:7}↑</text>
+<text x='458.07' y='415.43' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='60.08px' lengthAdjust='spacingAndGlyphs'>IV F Major 7</text>
+<text x='458.07' y='431.32' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='71.63px' lengthAdjust='spacingAndGlyphs'>F̲3̲:C4:D4:A4↑</text>
+<text x='458.07' y='447.22' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='52.65px' lengthAdjust='spacingAndGlyphs'>{-̲7̲:0:2:9}↑</text>
+<text x='376.31' y='170.56' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='49.65px' lengthAdjust='spacingAndGlyphs'>V G Major</text>
+<text x='376.31' y='186.45' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='74.09px' lengthAdjust='spacingAndGlyphs'>G̲3̲:B3:D4:G4↑</text>
+<text x='376.31' y='202.35' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='56.32px' lengthAdjust='spacingAndGlyphs'>{-̲5̲:-1:2:7}↑</text>
+<text x='309.46' y='34.83' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='44.74px' lengthAdjust='spacingAndGlyphs'>I C Major</text>
+<text x='309.46' y='50.73' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='73.47px' lengthAdjust='spacingAndGlyphs'>C̲3̲:C4:E4:G4↑</text>
+<text x='309.46' y='66.63' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='58.78px' lengthAdjust='spacingAndGlyphs'>{-̲1̲2̲:0:4:7}↑</text>
 </g>
 <g clip-path='url(#cpMC4wMHw1MDQuMDB8MC4wMHw1MDQuMDA=)'>
 <text x='35.67' y='455.01' text-anchor='end' style='font-size: 8.80px;fill: #F3DDAB; font-family: "Arial";' textLength='17.13px' lengthAdjust='spacingAndGlyphs'>10.0</text>
