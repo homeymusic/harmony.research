@@ -50,9 +50,11 @@ relative_periodicity <- function(x,observation_point) {
   log2(lcm(
     if (observation_point==TONIC)
       # from the tonic perspective the lower pitch is in the ratio denominator
+      # (see pitch.R)
       pitches$tonic.den.lo
     else
       # from the octave perspective the lower pitch is in the ratio numerator
+      # (see pitch.R)
       pitches$octave.num.lo
   ))
 }
