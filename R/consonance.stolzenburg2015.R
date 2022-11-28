@@ -29,7 +29,8 @@ consonance.stolzenburg2015.uncached <- function(chord) {
 
 #' Consonance:
 #'
-#' Implements Stolzenburg's 2015 periodicity metric of consonance
+#' Implements a tonic-octave variation of Stolzenburg's 2015 tonic-only
+#' consonance periodicity metric
 #'
 #' @param chord A chord expressed as a vector of integers
 #' @return A tibble
@@ -67,7 +68,7 @@ lcm <- function(x) {
 }
 
 consonance.stolzenburg2015.max_dissonance.uncached <- function() {
-  # this is arbitrary: using the chromatic chord
+  # this is arbitrary: using the chromatic chord for max dissonance
   relative_periodicity(TONIC:OCTAVE,observation_point=TONIC)
 }
 consonance.stolzenburg2015.max_dissonance <-
