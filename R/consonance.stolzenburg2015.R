@@ -10,8 +10,8 @@ consonance.stolzenburg2015.uncached <- function(chord) {
   octave_dissonance = relative_periodicity(chord,observation_point=OCTAVE)
   # create 2-dimensional tonic-octave dissonance matrix
   tonic_octave_dissonance = cbind(tonic_dissonance,octave_dissonance)
-  # reverse the orientation to tonic-octave consonance matrix
-  tonic_octave_consonance = consonance.stolzenburg2015.max_dissonance() -
+  # using max dissonance, reverse orientation from dissonance to consonance
+  tonic_octave_consonance = stolzenburg2015.max_dissonance() -
     tonic_octave_dissonance
   # rotate tonic-octave consonance matrix by pi/4 to affinity-brightness matrix
   affinity_brightness = tonic_octave_consonance %>% rotate(pi/4)
@@ -50,11 +50,11 @@ relative_periodicity <- function(x,observation_point) {
   # calculate the relative periodicity
   log2(lcm(
     if (observation_point==TONIC)
-      # from the tonic perspective the lower pitch is in the ratio denominator
+      # from tonic perspective, lower pitch is represented by ratio denominator
       # (see pitch.R)
       pitches$tonic.den.lo
     else
-      # from the octave perspective the lower pitch is in the ratio numerator
+      # from octave perspective, lower pitch is represented by ratio numerator
       # (see pitch.R)
       pitches$octave.num.lo
   ))
@@ -67,9 +67,10 @@ lcm <- function(x) {
   } else lcm(c(x[1], lcm(x[-1])))
 }
 
-consonance.stolzenburg2015.max_dissonance.uncached <- function() {
-  # this is arbitrary: using the chromatic chord for max dissonance
+stolzenburg2015.max_dissonance.uncached <- function() {
+  # this is arbitrary: sit on the piano
+  # using the chromatic chord for max dissonance
   relative_periodicity(TONIC:OCTAVE,observation_point=TONIC)
 }
-consonance.stolzenburg2015.max_dissonance <-
-  memoise::memoise(consonance.stolzenburg2015.max_dissonance.uncached)
+stolzenburg2015.max_dissonance <-
+  memoise::memoise(stolzenburg2015.max_dissonance.uncached)
