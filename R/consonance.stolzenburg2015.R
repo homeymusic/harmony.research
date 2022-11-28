@@ -4,10 +4,10 @@ consonance.stolzenburg2015.uncached <- function(chord) {
   ###################################################################################
   # this is the 'heavy lifting' for calculating affinity, brightness and consonance
   #
-  tonic  = relative_periodicity(chord,observation_point=0)
-  octave = relative_periodicity(chord,observation_point=12)
+  tonic_dissonance  = relative_periodicity(chord,observation_point=TONIC)
+  octave_dissonance = relative_periodicity(chord,observation_point=OCTAVE)
   # calculate 2-dimensional tonic-octave dissonance
-  tonic_octave_dissonance = cbind(tonic,octave)
+  tonic_octave_dissonance = cbind(tonic_dissonance,octave_dissonance)
   # flip orientation to 2-dimensional tonic-octave consonance
   tonic_octave_consonance = consonance.stolzenburg2015.max_dissonance() - tonic_octave_dissonance
   # rotate pi/4 (45 deg) to 2-dimensional affinity-brightness
@@ -36,10 +36,10 @@ consonance.stolzenburg2015 <- memoise::memoise(consonance.stolzenburg2015.uncach
 
 relative_periodicity <- function(x,observation_point) {
   checkmate::assert_integerish(x)
-  checkmate::assert_choice(observation_point,c(0,12))
+  checkmate::assert_choice(observation_point,c(TONIC,OCTAVE))
 
   pitches = dplyr::bind_rows(x %>% purrr::map(pitch))
-  log2(lcm(if (observation_point==0) pitches$tonic.den.lo else pitches$octave.num.lo))
+  log2(lcm(if (observation_point==TONIC) pitches$tonic.den.lo else pitches$octave.num.lo))
 }
 
 # from https://github.com/pmcharrison/stolz15
@@ -51,6 +51,6 @@ lcm <- function(x) {
 
 consonance.stolzenburg2015.max_dissonance.uncached <- function() {
   # this is arbitrary: using the chromatic chord
-  relative_periodicity(0:12,observation_point=0)
+  relative_periodicity(TONIC:OCTAVE,observation_point=TONIC)
 }
 consonance.stolzenburg2015.max_dissonance <- memoise::memoise(consonance.stolzenburg2015.max_dissonance.uncached)

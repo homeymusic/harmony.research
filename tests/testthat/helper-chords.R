@@ -89,13 +89,22 @@ augmented_triads <- function() {
 
   )
 }
+augmented_triad <- function() {
+  h(c(0,4,8),
+    observation_point = NA,
+    name='Augmented Triad')
+}
+max_dissonance_triad <- function() {
+  h(c(0,1,11),observation_point = NA,name='Max Dissonance Triad')
+}
 major_minor_triads <- function() {
   dplyr::bind_rows(
     dplyr::bind_rows(major_triads()),
     dplyr::bind_rows(major_6_chords()),
-    dplyr::bind_rows(augmented_triads()),
     dplyr::bind_rows(minor_triads()),
     dplyr::bind_rows(minor_6_chords()),
+    augmented_triad(),
+    max_dissonance_triad()
   )
 }
 symmetrical_augmented_triads <- function() {
@@ -119,17 +128,17 @@ phrygian_triads <- function() {
                       root=0,
                       observation_point=12,
                       midi_reference = 60 + 4,
-                      name="Phrygian Triad\nRoot Position"),
+                      name="Dual Minor Triad\nRoot Position"),
     "1st inversion"=h((-c(0+12,4,7))%>%sort,
                       root=-12,
                       observation_point=0,
                       midi_reference = 60 + 4,
-                      name="Phrygian Triad\n1st Inversion"),
+                      name="Dual Minor Triad\n1st Inversion"),
     "2nd inversion"=h((-c(0+12,4+12,7))%>%sort,
                       root=-12,
                       observation_point=12,
                       midi_reference = 60 + 4,
-                      name="Phrygian Triad\n2nd Inversion")
+                      name="Dual Minor Triad\n2nd Inversion")
   )
 }
 phrygian_6_chords <- function() {
@@ -137,12 +146,12 @@ phrygian_6_chords <- function() {
     "6/3"=h((-c(0+12,4,7))%>%sort,
             root=-4,
             observation_point=12,
-            name="Phrygian 6/3",
+            name="Dual Minor 6/3",
             midi_reference=60+4),
     "6/4"=h((-c(0+12,4+12,7))%>%sort,
             root=-7,
             observation_point=12,
-            name="Phrygian 6/4",
+            name="Dual Minor 6/4",
             midi_reference=60+4)
   )
 }
@@ -150,9 +159,10 @@ major_phrygian_triads <- function() {
   dplyr::bind_rows(
     dplyr::bind_rows(major_triads()),
     dplyr::bind_rows(major_6_chords()),
-    dplyr::bind_rows(symmetrical_augmented_triads()),
     dplyr::bind_rows(phrygian_triads()),
-    dplyr::bind_rows(phrygian_6_chords())
+    dplyr::bind_rows(phrygian_6_chords()),
+    augmented_triad(),
+    max_dissonance_triad()
   )
 }
 seventh_chords <- function() {
