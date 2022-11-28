@@ -1,16 +1,19 @@
 consonance.stolzenburg2015.uncached <- function(chord) {
   checkmate::assert_integerish(chord)
 
-  ###################################################################################
-  # this is the 'heavy lifting' for calculating affinity, brightness and consonance
+  #############################################################################
+  # calculate affinity, brightness, consonance and dissonance
   #
+
+  # calculate dissonance from the tonic and octave observation points
   tonic_dissonance  = relative_periodicity(chord,observation_point=TONIC)
   octave_dissonance = relative_periodicity(chord,observation_point=OCTAVE)
-  # calculate 2-dimensional tonic-octave dissonance
+  # create 2-dimensional tonic-octave dissonance matrix
   tonic_octave_dissonance = cbind(tonic_dissonance,octave_dissonance)
-  # flip orientation to 2-dimensional tonic-octave consonance
-  tonic_octave_consonance = consonance.stolzenburg2015.max_dissonance() - tonic_octave_dissonance
-  # rotate pi/4 (45 deg) to 2-dimensional affinity-brightness
+  # reverse the orientation to tonic-octave consonance matrix
+  tonic_octave_consonance = consonance.stolzenburg2015.max_dissonance() -
+    tonic_octave_dissonance
+  # rotate tonic-octave consonance matrix by pi/4 to affinity-brightness matrix
   affinity_brightness = tonic_octave_consonance %>% rotate(pi/4)
 
   # store the ABCDs: affinity brightness consonance dissonance
@@ -32,14 +35,26 @@ consonance.stolzenburg2015.uncached <- function(chord) {
 #' @return A tibble
 #'
 #' @export
-consonance.stolzenburg2015 <- memoise::memoise(consonance.stolzenburg2015.uncached)
+consonance.stolzenburg2015 <-
+  memoise::memoise(consonance.stolzenburg2015.uncached)
 
 relative_periodicity <- function(x,observation_point) {
   checkmate::assert_integerish(x)
   checkmate::assert_choice(observation_point,c(TONIC,OCTAVE))
 
+  # create pitch objects for all pitches in the chord
+  # each pitch object includes the frequency ratio from the tonic perspective
+  # and the frequency ratio from the octave perspective (see pitch.R)
   pitches = dplyr::bind_rows(x %>% purrr::map(pitch))
-  log2(lcm(if (observation_point==TONIC) pitches$tonic.den.lo else pitches$octave.num.lo))
+  # calculate the relative periodicity
+  log2(lcm(
+    if (observation_point==TONIC)
+      # from the tonic perspective the lower pitch is in the ratio denominator
+      pitches$tonic.den.lo
+    else
+      # from the octave perspective the lower pitch is in the ratio numerator
+      pitches$octave.num.lo
+  ))
 }
 
 # from https://github.com/pmcharrison/stolz15
@@ -53,4 +68,5 @@ consonance.stolzenburg2015.max_dissonance.uncached <- function() {
   # this is arbitrary: using the chromatic chord
   relative_periodicity(TONIC:OCTAVE,observation_point=TONIC)
 }
-consonance.stolzenburg2015.max_dissonance <- memoise::memoise(consonance.stolzenburg2015.max_dissonance.uncached)
+consonance.stolzenburg2015.max_dissonance <-
+  memoise::memoise(consonance.stolzenburg2015.max_dissonance.uncached)
