@@ -59,54 +59,54 @@
 <circle cx='233.27' cy='85.14' r='1.95' style='stroke-width: 0.71; stroke: #ABDAF3; fill: #ABDAF3;' />
 <circle cx='282.69' cy='93.11' r='1.95' style='stroke-width: 0.71; stroke: #F3A904; fill: #F3A904;' />
 <circle cx='432.40' cy='451.86' r='1.95' style='stroke-width: 0.71; stroke: #F3A904; fill: #F3A904;' />
-<line x1='368.79' y1='181.31' x2='281.09' y2='66.55' style='stroke-width: 1.07; stroke: #7F745A;' />
-<line x1='354.13' y1='98.77' x2='302.00' y2='75.78' style='stroke-width: 1.07; stroke: #7F745A;' />
-<line x1='176.40' y1='54.73' x2='198.36' y2='56.14' style='stroke-width: 1.07; stroke: #7F745A;' />
-<line x1='236.59' y1='134.85' x2='245.90' y2='120.39' style='stroke-width: 1.07; stroke: #7F745A;' />
-<line x1='353.72' y1='51.14' x2='324.36' y2='68.36' style='stroke-width: 1.07; stroke: #7F745A;' />
-<line x1='309.24' y1='134.82' x2='283.29' y2='94.05' style='stroke-width: 1.07; stroke: #7F745A;' />
-<text x='315.72' y='34.83' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='55.77px' lengthAdjust='spacingAndGlyphs'>Major Triad</text>
-<text x='315.72' y='50.73' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='65.61px' lengthAdjust='spacingAndGlyphs'>Root Position</text>
-<text x='315.72' y='66.63' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='56.30px' lengthAdjust='spacingAndGlyphs'>C̲4̲:E4:G4↑</text>
-<text x='315.72' y='82.53' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='39.77px' lengthAdjust='spacingAndGlyphs'>{0̲:4:7}↑</text>
-<text x='372.66' y='191.01' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='55.77px' lengthAdjust='spacingAndGlyphs'>Major Triad</text>
-<text x='372.66' y='206.91' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='62.54px' lengthAdjust='spacingAndGlyphs'>1st Inversion</text>
-<text x='372.66' y='222.81' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='56.30px' lengthAdjust='spacingAndGlyphs'>E4:G4:C̲5̲↓</text>
-<text x='372.66' y='238.70' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='45.91px' lengthAdjust='spacingAndGlyphs'>{4:7:1̲2̲}↓</text>
-<text x='389.04' y='81.75' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='55.77px' lengthAdjust='spacingAndGlyphs'>Major Triad</text>
-<text x='389.04' y='97.65' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='66.23px' lengthAdjust='spacingAndGlyphs'>2nd Inversion</text>
-<text x='389.04' y='113.54' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='56.30px' lengthAdjust='spacingAndGlyphs'>G4:C̲5̲:E5↑</text>
-<text x='389.04' y='129.44' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='52.04px' lengthAdjust='spacingAndGlyphs'>{7:1̲2̲:16}↑</text>
-<text x='268.20' y='97.65' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='45.98px' lengthAdjust='spacingAndGlyphs'>Major 6/3</text>
-<text x='268.20' y='113.54' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='56.30px' lengthAdjust='spacingAndGlyphs'>E̲4̲:G4:C5↑</text>
-<text x='268.20' y='129.44' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='45.91px' lengthAdjust='spacingAndGlyphs'>{4̲:7:12}↑</text>
-<text x='247.56' y='34.83' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='45.98px' lengthAdjust='spacingAndGlyphs'>Major 6/4</text>
-<text x='247.56' y='50.73' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='56.30px' lengthAdjust='spacingAndGlyphs'>G̲4̲:C5:E5↑</text>
-<text x='247.56' y='66.63' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='52.04px' lengthAdjust='spacingAndGlyphs'>{7̲:12:16}↑</text>
-<text x='214.60' y='34.83' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='55.77px' lengthAdjust='spacingAndGlyphs'>Minor Triad</text>
-<text x='214.60' y='50.73' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='65.61px' lengthAdjust='spacingAndGlyphs'>Root Position</text>
-<text x='214.60' y='66.63' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='55.08px' lengthAdjust='spacingAndGlyphs'>A̲4̲:C5:E5↑</text>
-<text x='214.60' y='82.53' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='39.77px' lengthAdjust='spacingAndGlyphs'>{0̲:3:7}↑</text>
-<text x='143.33' y='34.83' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='55.77px' lengthAdjust='spacingAndGlyphs'>Minor Triad</text>
-<text x='143.33' y='50.73' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='62.54px' lengthAdjust='spacingAndGlyphs'>1st Inversion</text>
-<text x='143.33' y='66.63' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='55.08px' lengthAdjust='spacingAndGlyphs'>C5:E5:A̲5̲↓</text>
-<text x='143.33' y='82.53' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='45.91px' lengthAdjust='spacingAndGlyphs'>{3:7:1̲2̲}↓</text>
-<text x='233.80' y='144.55' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='55.77px' lengthAdjust='spacingAndGlyphs'>Minor Triad</text>
-<text x='233.80' y='160.45' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='66.23px' lengthAdjust='spacingAndGlyphs'>2nd Inversion</text>
-<text x='233.80' y='176.34' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='55.08px' lengthAdjust='spacingAndGlyphs'>E5:A̲5̲:C6↑</text>
-<text x='233.80' y='192.24' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='52.04px' lengthAdjust='spacingAndGlyphs'>{7:1̲2̲:15}↑</text>
-<text x='383.06' y='34.84' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='45.98px' lengthAdjust='spacingAndGlyphs'>Minor 6/3</text>
-<text x='383.06' y='50.74' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='55.08px' lengthAdjust='spacingAndGlyphs'>C̲5̲:E5:A5↑</text>
-<text x='383.06' y='66.64' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='45.91px' lengthAdjust='spacingAndGlyphs'>{3̲:7:12}↑</text>
-<text x='201.49' y='97.54' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='45.98px' lengthAdjust='spacingAndGlyphs'>Minor 6/4</text>
-<text x='201.49' y='113.44' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='55.08px' lengthAdjust='spacingAndGlyphs'>E̲5̲:A5:C6↑</text>
-<text x='201.49' y='129.34' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='52.04px' lengthAdjust='spacingAndGlyphs'>{7̲:12:15}↑</text>
-<text x='316.44' y='144.52' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='84.61px' lengthAdjust='spacingAndGlyphs'>Augmented Triad</text>
-<text x='316.44' y='160.41' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='61.21px' lengthAdjust='spacingAndGlyphs'>C̲4̲:E4:Ab4↑</text>
-<text x='316.44' y='176.31' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='39.77px' lengthAdjust='spacingAndGlyphs'>{0̲:4:8}↑</text>
-<text x='407.17' y='415.44' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='109.73px' lengthAdjust='spacingAndGlyphs'>Max Dissonance Triad</text>
-<text x='407.17' y='431.33' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='61.82px' lengthAdjust='spacingAndGlyphs'>C̲4̲:Db4:B4↑</text>
-<text x='407.17' y='447.23' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='45.91px' lengthAdjust='spacingAndGlyphs'>{0̲:1:11}↑</text>
+<line x1='369.17' y1='181.75' x2='281.09' y2='66.55' style='stroke-width: 1.07; stroke: #7F745A;' />
+<line x1='353.90' y1='98.76' x2='302.00' y2='75.78' style='stroke-width: 1.07; stroke: #7F745A;' />
+<line x1='176.58' y1='54.74' x2='198.36' y2='56.14' style='stroke-width: 1.07; stroke: #7F745A;' />
+<line x1='236.59' y1='134.87' x2='245.90' y2='120.39' style='stroke-width: 1.07; stroke: #7F745A;' />
+<line x1='353.84' y1='51.12' x2='324.36' y2='68.36' style='stroke-width: 1.07; stroke: #7F745A;' />
+<line x1='309.27' y1='134.87' x2='283.29' y2='94.05' style='stroke-width: 1.07; stroke: #7F745A;' />
+<text x='315.67' y='34.83' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='55.77px' lengthAdjust='spacingAndGlyphs'>Major Triad</text>
+<text x='315.67' y='50.73' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='65.61px' lengthAdjust='spacingAndGlyphs'>Root Position</text>
+<text x='315.67' y='66.63' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='56.30px' lengthAdjust='spacingAndGlyphs'>C̲4̲:E4:G4↑</text>
+<text x='315.67' y='82.53' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='39.77px' lengthAdjust='spacingAndGlyphs'>{0̲:4:7}↑</text>
+<text x='373.03' y='191.44' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='55.77px' lengthAdjust='spacingAndGlyphs'>Major Triad</text>
+<text x='373.03' y='207.34' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='62.54px' lengthAdjust='spacingAndGlyphs'>1st Inversion</text>
+<text x='373.03' y='223.24' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='56.30px' lengthAdjust='spacingAndGlyphs'>E4:G4:C̲5̲↓</text>
+<text x='373.03' y='239.13' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='45.91px' lengthAdjust='spacingAndGlyphs'>{4:7:1̲2̲}↓</text>
+<text x='388.81' y='81.77' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='55.77px' lengthAdjust='spacingAndGlyphs'>Major Triad</text>
+<text x='388.81' y='97.66' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='66.23px' lengthAdjust='spacingAndGlyphs'>2nd Inversion</text>
+<text x='388.81' y='113.56' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='56.30px' lengthAdjust='spacingAndGlyphs'>G4:C̲5̲:E5↑</text>
+<text x='388.81' y='129.46' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='52.04px' lengthAdjust='spacingAndGlyphs'>{7:1̲2̲:16}↑</text>
+<text x='268.25' y='97.65' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='45.98px' lengthAdjust='spacingAndGlyphs'>Major 6/3</text>
+<text x='268.25' y='113.55' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='56.30px' lengthAdjust='spacingAndGlyphs'>E̲4̲:G4:C5↑</text>
+<text x='268.25' y='129.45' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='45.91px' lengthAdjust='spacingAndGlyphs'>{4̲:7:12}↑</text>
+<text x='247.51' y='34.83' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='45.98px' lengthAdjust='spacingAndGlyphs'>Major 6/4</text>
+<text x='247.51' y='50.73' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='56.30px' lengthAdjust='spacingAndGlyphs'>G̲4̲:C5:E5↑</text>
+<text x='247.51' y='66.63' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='52.04px' lengthAdjust='spacingAndGlyphs'>{7̲:12:16}↑</text>
+<text x='214.58' y='34.83' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='55.77px' lengthAdjust='spacingAndGlyphs'>Minor Triad</text>
+<text x='214.58' y='50.73' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='65.61px' lengthAdjust='spacingAndGlyphs'>Root Position</text>
+<text x='214.58' y='66.63' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='55.08px' lengthAdjust='spacingAndGlyphs'>A̲4̲:C5:E5↑</text>
+<text x='214.58' y='82.53' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='39.77px' lengthAdjust='spacingAndGlyphs'>{0̲:3:7}↑</text>
+<text x='143.51' y='34.84' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='55.77px' lengthAdjust='spacingAndGlyphs'>Minor Triad</text>
+<text x='143.51' y='50.74' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='62.54px' lengthAdjust='spacingAndGlyphs'>1st Inversion</text>
+<text x='143.51' y='66.63' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='55.08px' lengthAdjust='spacingAndGlyphs'>C5:E5:A̲5̲↓</text>
+<text x='143.51' y='82.53' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='45.91px' lengthAdjust='spacingAndGlyphs'>{3:7:1̲2̲}↓</text>
+<text x='233.81' y='144.57' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='55.77px' lengthAdjust='spacingAndGlyphs'>Minor Triad</text>
+<text x='233.81' y='160.47' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='66.23px' lengthAdjust='spacingAndGlyphs'>2nd Inversion</text>
+<text x='233.81' y='176.36' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='55.08px' lengthAdjust='spacingAndGlyphs'>E5:A̲5̲:C6↑</text>
+<text x='233.81' y='192.26' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='52.04px' lengthAdjust='spacingAndGlyphs'>{7:1̲2̲:15}↑</text>
+<text x='383.18' y='34.84' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='45.98px' lengthAdjust='spacingAndGlyphs'>Minor 6/3</text>
+<text x='383.18' y='50.74' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='55.08px' lengthAdjust='spacingAndGlyphs'>C̲5̲:E5:A5↑</text>
+<text x='383.18' y='66.64' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='45.91px' lengthAdjust='spacingAndGlyphs'>{3̲:7:12}↑</text>
+<text x='201.66' y='97.57' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='45.98px' lengthAdjust='spacingAndGlyphs'>Minor 6/4</text>
+<text x='201.66' y='113.47' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='55.08px' lengthAdjust='spacingAndGlyphs'>E̲5̲:A5:C6↑</text>
+<text x='201.66' y='129.37' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='52.04px' lengthAdjust='spacingAndGlyphs'>{7̲:12:15}↑</text>
+<text x='316.48' y='144.56' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='84.61px' lengthAdjust='spacingAndGlyphs'>Augmented Triad</text>
+<text x='316.48' y='160.46' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='61.21px' lengthAdjust='spacingAndGlyphs'>C̲4̲:E4:Ab4↑</text>
+<text x='316.48' y='176.36' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='39.77px' lengthAdjust='spacingAndGlyphs'>{0̲:4:8}↑</text>
+<text x='440.04' y='415.42' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='109.73px' lengthAdjust='spacingAndGlyphs'>Max Dissonance Triad</text>
+<text x='440.04' y='431.32' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='61.82px' lengthAdjust='spacingAndGlyphs'>C̲4̲:Db4:B4↑</text>
+<text x='440.04' y='447.21' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='45.91px' lengthAdjust='spacingAndGlyphs'>{0̲:1:11}↑</text>
 </g>
 <g clip-path='url(#cpMC4wMHw1MDQuMDB8MC4wMHw1MDQuMDA=)'>
 <text x='30.78' y='393.11' text-anchor='end' style='font-size: 8.80px;fill: #F3DDAB; font-family: "Arial";' textLength='12.23px' lengthAdjust='spacingAndGlyphs'>0.0</text>

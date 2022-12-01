@@ -60,45 +60,45 @@
 <circle cx='231.98' cy='408.31' r='1.95' style='stroke-width: 0.71; stroke: #ABDAF3; fill: #ABDAF3;' />
 <circle cx='431.36' cy='451.86' r='1.95' style='stroke-width: 0.71; stroke: #F3A904; fill: #F3A904;' />
 <circle cx='263.45' cy='43.74' r='1.95' style='stroke-width: 0.71; stroke: #FF5500; fill: #FF5500;' />
-<text x='237.61' y='56.46' text-anchor='middle' style='font-size: 11.04px;fill: #FF5500; font-family: "Arial Unicode MS";' textLength='26.97px' lengthAdjust='spacingAndGlyphs'>Tonic</text>
-<text x='237.61' y='72.36' text-anchor='middle' style='font-size: 11.04px;fill: #FF5500; font-family: "Arial Unicode MS";' textLength='46.99px' lengthAdjust='spacingAndGlyphs'>C̲4̲↑↓ C̲5̲</text>
-<text x='237.61' y='88.25' text-anchor='middle' style='font-size: 11.04px;fill: #FF5500; font-family: "Arial Unicode MS";' textLength='44.57px' lengthAdjust='spacingAndGlyphs'>{0̲}↑↓ 1̲2̲</text>
-<text x='69.83' y='415.38' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='49.05px' lengthAdjust='spacingAndGlyphs'>Minor 2nd</text>
-<text x='69.83' y='431.28' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='70.29px' lengthAdjust='spacingAndGlyphs'>C̲4̲ Db4↑↓ C̲5̲</text>
-<text x='69.83' y='447.17' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='53.77px' lengthAdjust='spacingAndGlyphs'>0̲ {1}↑↓ 1̲2̲</text>
-<text x='325.53' y='420.92' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='49.05px' lengthAdjust='spacingAndGlyphs'>Major 2nd</text>
-<text x='325.53' y='436.82' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='64.15px' lengthAdjust='spacingAndGlyphs'>C̲4̲ D4↑↓ C̲5̲</text>
-<text x='325.53' y='452.72' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='53.77px' lengthAdjust='spacingAndGlyphs'>0̲ {2}↑↓ 1̲2̲</text>
-<text x='87.41' y='255.99' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='46.58px' lengthAdjust='spacingAndGlyphs'>Minor 3rd</text>
-<text x='87.41' y='271.89' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='69.68px' lengthAdjust='spacingAndGlyphs'>C̲4̲ Eb4↑↓ C̲5̲</text>
-<text x='87.41' y='287.79' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='53.77px' lengthAdjust='spacingAndGlyphs'>0̲ {3}↑↓ 1̲2̲</text>
+<text x='289.06' y='56.25' text-anchor='middle' style='font-size: 11.04px;fill: #FF5500; font-family: "Arial Unicode MS";' textLength='26.97px' lengthAdjust='spacingAndGlyphs'>Tonic</text>
+<text x='289.06' y='72.15' text-anchor='middle' style='font-size: 11.04px;fill: #FF5500; font-family: "Arial Unicode MS";' textLength='46.99px' lengthAdjust='spacingAndGlyphs'>C̲4̲↑↓ C̲5̲</text>
+<text x='289.06' y='88.04' text-anchor='middle' style='font-size: 11.04px;fill: #FF5500; font-family: "Arial Unicode MS";' textLength='44.57px' lengthAdjust='spacingAndGlyphs'>{0̲}↑↓ 1̲2̲</text>
+<text x='121.25' y='415.36' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='49.05px' lengthAdjust='spacingAndGlyphs'>Minor 2nd</text>
+<text x='121.25' y='431.26' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='70.29px' lengthAdjust='spacingAndGlyphs'>C̲4̲ Db4↑↓ C̲5̲</text>
+<text x='121.25' y='447.16' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='53.77px' lengthAdjust='spacingAndGlyphs'>0̲ {1}↑↓ 1̲2̲</text>
+<text x='331.74' y='414.00' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='49.05px' lengthAdjust='spacingAndGlyphs'>Major 2nd</text>
+<text x='331.74' y='429.89' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='64.15px' lengthAdjust='spacingAndGlyphs'>C̲4̲ D4↑↓ C̲5̲</text>
+<text x='331.74' y='445.79' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='53.77px' lengthAdjust='spacingAndGlyphs'>0̲ {2}↑↓ 1̲2̲</text>
+<text x='87.42' y='255.98' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='46.58px' lengthAdjust='spacingAndGlyphs'>Minor 3rd</text>
+<text x='87.42' y='271.88' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='69.68px' lengthAdjust='spacingAndGlyphs'>C̲4̲ Eb4↑↓ C̲5̲</text>
+<text x='87.42' y='287.78' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='53.77px' lengthAdjust='spacingAndGlyphs'>0̲ {3}↑↓ 1̲2̲</text>
 <text x='348.73' y='262.65' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='46.58px' lengthAdjust='spacingAndGlyphs'>Major 3rd</text>
 <text x='348.73' y='278.55' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='63.55px' lengthAdjust='spacingAndGlyphs'>C̲4̲ E4↑↓ C̲5̲</text>
 <text x='348.73' y='294.44' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='53.77px' lengthAdjust='spacingAndGlyphs'>0̲ {4}↑↓ 1̲2̲</text>
-<text x='129.46' y='209.06' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='53.35px' lengthAdjust='spacingAndGlyphs'>Perfect 4th</text>
-<text x='129.46' y='224.95' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='62.93px' lengthAdjust='spacingAndGlyphs'>C̲4̲ F4↑↓ C̲5̲</text>
-<text x='129.46' y='240.85' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='53.77px' lengthAdjust='spacingAndGlyphs'>0̲ {5}↑↓ 1̲2̲</text>
-<text x='289.08' y='330.67' text-anchor='middle' style='font-size: 11.04px;fill: #FF5500; font-family: "Arial Unicode MS";' textLength='34.33px' lengthAdjust='spacingAndGlyphs'>Tritone</text>
-<text x='289.08' y='346.57' text-anchor='middle' style='font-size: 11.04px;fill: #FF5500; font-family: "Arial Unicode MS";' textLength='70.91px' lengthAdjust='spacingAndGlyphs'>C̲4̲ Gb4↑↓ C̲5̲</text>
-<text x='289.08' y='362.47' text-anchor='middle' style='font-size: 11.04px;fill: #FF5500; font-family: "Arial Unicode MS";' textLength='53.77px' lengthAdjust='spacingAndGlyphs'>0̲ {6}↑↓ 1̲2̲</text>
+<text x='129.51' y='209.00' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='53.35px' lengthAdjust='spacingAndGlyphs'>Perfect 4th</text>
+<text x='129.51' y='224.90' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='62.93px' lengthAdjust='spacingAndGlyphs'>C̲4̲ F4↑↓ C̲5̲</text>
+<text x='129.51' y='240.79' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='53.77px' lengthAdjust='spacingAndGlyphs'>0̲ {5}↑↓ 1̲2̲</text>
+<text x='289.06' y='330.66' text-anchor='middle' style='font-size: 11.04px;fill: #FF5500; font-family: "Arial Unicode MS";' textLength='34.33px' lengthAdjust='spacingAndGlyphs'>Tritone</text>
+<text x='289.06' y='346.56' text-anchor='middle' style='font-size: 11.04px;fill: #FF5500; font-family: "Arial Unicode MS";' textLength='70.91px' lengthAdjust='spacingAndGlyphs'>C̲4̲ Gb4↑↓ C̲5̲</text>
+<text x='289.06' y='362.45' text-anchor='middle' style='font-size: 11.04px;fill: #FF5500; font-family: "Arial Unicode MS";' textLength='53.77px' lengthAdjust='spacingAndGlyphs'>0̲ {6}↑↓ 1̲2̲</text>
 <text x='397.39' y='160.05' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='53.35px' lengthAdjust='spacingAndGlyphs'>Perfect 5th</text>
-<text x='397.39' y='175.95' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='64.77px' lengthAdjust='spacingAndGlyphs'>C̲4̲ G4↑↓ C̲5̲</text>
-<text x='397.39' y='191.85' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='53.77px' lengthAdjust='spacingAndGlyphs'>0̲ {7}↑↓ 1̲2̲</text>
-<text x='178.19' y='262.66' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='45.98px' lengthAdjust='spacingAndGlyphs'>Minor 6th</text>
+<text x='397.39' y='175.94' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='64.77px' lengthAdjust='spacingAndGlyphs'>C̲4̲ G4↑↓ C̲5̲</text>
+<text x='397.39' y='191.84' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='53.77px' lengthAdjust='spacingAndGlyphs'>0̲ {7}↑↓ 1̲2̲</text>
+<text x='178.19' y='262.67' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='45.98px' lengthAdjust='spacingAndGlyphs'>Minor 6th</text>
 <text x='178.19' y='278.56' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='69.68px' lengthAdjust='spacingAndGlyphs'>C̲4̲ Ab4↑↓ C̲5̲</text>
 <text x='178.19' y='294.46' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='53.77px' lengthAdjust='spacingAndGlyphs'>0̲ {8}↑↓ 1̲2̲</text>
-<text x='425.57' y='238.11' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='45.98px' lengthAdjust='spacingAndGlyphs'>Major 6th</text>
-<text x='425.57' y='254.01' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='63.55px' lengthAdjust='spacingAndGlyphs'>C̲4̲ A4↑↓ C̲5̲</text>
-<text x='425.57' y='269.91' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='53.77px' lengthAdjust='spacingAndGlyphs'>0̲ {9}↑↓ 1̲2̲</text>
-<text x='206.35' y='420.84' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='45.98px' lengthAdjust='spacingAndGlyphs'>Minor 7th</text>
-<text x='206.35' y='436.74' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='69.68px' lengthAdjust='spacingAndGlyphs'>C̲4̲ Bb4↑↓ C̲5̲</text>
-<text x='206.35' y='452.64' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='59.90px' lengthAdjust='spacingAndGlyphs'>0̲ {10}↑↓ 1̲2̲</text>
-<text x='457.04' y='415.39' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='45.98px' lengthAdjust='spacingAndGlyphs'>Major 7th</text>
-<text x='457.04' y='431.28' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='63.55px' lengthAdjust='spacingAndGlyphs'>C̲4̲ B4↑↓ C̲5̲</text>
-<text x='457.04' y='447.18' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='59.90px' lengthAdjust='spacingAndGlyphs'>0̲ {11}↑↓ 1̲2̲</text>
-<text x='291.81' y='34.83' text-anchor='middle' style='font-size: 11.04px;fill: #FF5500; font-family: "Arial Unicode MS";' textLength='34.95px' lengthAdjust='spacingAndGlyphs'>Octave</text>
-<text x='291.81' y='50.73' text-anchor='middle' style='font-size: 11.04px;fill: #FF5500; font-family: "Arial Unicode MS";' textLength='46.99px' lengthAdjust='spacingAndGlyphs'>C̲4̲ C̲5̲↑↓</text>
-<text x='291.81' y='66.63' text-anchor='middle' style='font-size: 11.04px;fill: #FF5500; font-family: "Arial Unicode MS";' textLength='44.57px' lengthAdjust='spacingAndGlyphs'>0̲ {1̲2̲}↑↓</text>
+<text x='425.59' y='238.11' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='45.98px' lengthAdjust='spacingAndGlyphs'>Major 6th</text>
+<text x='425.59' y='254.00' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='63.55px' lengthAdjust='spacingAndGlyphs'>C̲4̲ A4↑↓ C̲5̲</text>
+<text x='425.59' y='269.90' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='53.77px' lengthAdjust='spacingAndGlyphs'>0̲ {9}↑↓ 1̲2̲</text>
+<text x='206.32' y='371.86' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='45.98px' lengthAdjust='spacingAndGlyphs'>Minor 7th</text>
+<text x='206.32' y='387.76' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='69.68px' lengthAdjust='spacingAndGlyphs'>C̲4̲ Bb4↑↓ C̲5̲</text>
+<text x='206.32' y='403.66' text-anchor='middle' style='font-size: 11.04px;fill: #ABDAF3; font-family: "Arial Unicode MS";' textLength='59.90px' lengthAdjust='spacingAndGlyphs'>0̲ {10}↑↓ 1̲2̲</text>
+<text x='456.97' y='415.45' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='45.98px' lengthAdjust='spacingAndGlyphs'>Major 7th</text>
+<text x='456.97' y='431.35' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='63.55px' lengthAdjust='spacingAndGlyphs'>C̲4̲ B4↑↓ C̲5̲</text>
+<text x='456.97' y='447.25' text-anchor='middle' style='font-size: 11.04px;fill: #F3A904; font-family: "Arial Unicode MS";' textLength='59.90px' lengthAdjust='spacingAndGlyphs'>0̲ {11}↑↓ 1̲2̲</text>
+<text x='234.93' y='34.83' text-anchor='middle' style='font-size: 11.04px;fill: #FF5500; font-family: "Arial Unicode MS";' textLength='34.95px' lengthAdjust='spacingAndGlyphs'>Octave</text>
+<text x='234.93' y='50.73' text-anchor='middle' style='font-size: 11.04px;fill: #FF5500; font-family: "Arial Unicode MS";' textLength='46.99px' lengthAdjust='spacingAndGlyphs'>C̲4̲ C̲5̲↑↓</text>
+<text x='234.93' y='66.63' text-anchor='middle' style='font-size: 11.04px;fill: #FF5500; font-family: "Arial Unicode MS";' textLength='44.57px' lengthAdjust='spacingAndGlyphs'>0̲ {1̲2̲}↑↓</text>
 </g>
 <g clip-path='url(#cpMC4wMHw1MDQuMDB8MC4wMHw1MDQuMDA=)'>
 <text x='23.44' y='459.55' text-anchor='end' style='font-size: 8.80px;fill: #F3DDAB; font-family: "Arial";' textLength='4.90px' lengthAdjust='spacingAndGlyphs'>5</text>

@@ -16,5 +16,5 @@ p(x)
 A tibble
 }
 \description{
-Provides the metrics of a pitch
+Provides the fundamental attributes of a pitch in tonic-octave space
 }

@@ -13,5 +13,6 @@ consonance.stolzenburg2015(chord)
 A tibble
 }
 \description{
-Implements Stolzenburg's 2015 periodicity metric of consonance
+Implements a tonic-octave variation of Stolzenburg's 2015 tonic-only
+consonance periodicity metric
 }
