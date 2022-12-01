@@ -57,12 +57,12 @@ test_that('aural centering works as expected',{
   # do we detect the inversion when tonal center (0) same as the aural center (0)?
   h = h(c(0,4,7))
   expect_equal(h$guessed_observation_point,0)
-  expect_equal(attr(h,"centered_chord"),c(0,4,7))
+  expect_equal(attr(h,"focused_chord"),c(0,4,7))
 
   # do we detect the inversion when tonal center (12) happens to be 12?
   h = h(c(0+12,4,7))
   expect_equal(h$guessed_observation_point,12)
-  expect_equal(attr(h,"centered_chord"),c(12,4,7))
+  expect_equal(attr(h,"focused_chord"),c(12,4,7))
 
   # c major 2d inversion using midi notes and various levels of specificity
   h = h(c(12+0,12+4,7)+60,midi_reference=0)
@@ -71,14 +71,14 @@ test_that('aural centering works as expected',{
   expect_equal(h$guessed_root,67)
   expect_equal(h$root,67)
   expect_equal(h$classical_name,'C5:E5:G̲4̲↑')
-  expect_equal(attr(h,"centered_chord"),c(5,9,0))
+  expect_equal(attr(h,"focused_chord"),c(5,9,0))
   h = h(c(12+0,12+4,7)+60,12,midi_reference=0)
   expect_equal(h$guessed_observation_point,0)
   expect_equal(h$explicit_observation_point,12)
   expect_equal(h$observation_point,12)
   expect_equal(h$guessed_root,76)
   expect_equal(h$root,76)
-  expect_equal(attr(h,"centered_chord"),c(8,12,3))
+  expect_equal(attr(h,"focused_chord"),c(8,12,3))
   h = h(c(12+0,12+4,7)+60,12,76,midi_reference=0)
   expect_equal(h$guessed_observation_point,12)
   expect_equal(h$explicit_observation_point,12)
@@ -86,7 +86,7 @@ test_that('aural centering works as expected',{
   expect_equal(h$guessed_root,76)
   expect_equal(h$explicit_root,76)
   expect_equal(h$root,76)
-  expect_equal(attr(h,"centered_chord"),c(8,12,3))
+  expect_equal(attr(h,"focused_chord"),c(8,12,3))
 })
 test_that('implicit observation_point for minor triad and inversions makes sense',{
   expect_equal(h(c(0,3,7))$observation_point,0)

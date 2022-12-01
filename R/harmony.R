@@ -36,25 +36,26 @@ harmony.uncached <- function(chord, observation_point=NA, root=NA,
   checkmate::assert_integerish(t$midi_reference,lower=0,upper=127)
   # store the original chord
   attr(t,"chord") <- chord
-  # store the aurally centered chord
-  attr(t,"centered_chord") <- centered_chord <-
-    centered_chord(chord, t$observation_point, t$root)
+  # store the aurally focused chord
+  attr(t,"focused_chord") <- focused_chord <-
+    focused_chord(chord, t$observation_point, t$root)
 
   ##########################################
   # calculate various consonance metrics
   #
+
   # mulloy2022      - primes with boundary condition
-  consonance.primes           = consonance.primes(centered_chord)
+  consonance.primes           = consonance.primes(focused_chord)
   colnames(consonance.primes) = paste0("primes.",
                                        colnames(consonance.primes))
   # stolzenburg2015 - periodicity (without smoothing)
   consonance.stolzenburg2015  =
-    consonance.stolzenburg2015(centered_chord)
+    consonance.stolzenburg2015(focused_chord)
   colnames(consonance.stolzenburg2015) = paste0("stolzenburg2015.",
                                                 colnames(consonance.stolzenburg2015))
   # hutchinson1978 - roughness
   consonance.hutchinson1978  =
-    consonance.hutchinson1978(centered_chord)
+    consonance.hutchinson1978(focused_chord)
   colnames(consonance.hutchinson1978) = paste0("hutchinson1978.",
                                                colnames(consonance.hutchinson1978))
 
@@ -98,7 +99,7 @@ harmony <- memoise::memoise(harmony.uncached)
 #' @export
 h <- harmony
 
-centered_chord <- function(chord,observation_point,root) {
+focused_chord <- function(chord,observation_point,root) {
   checkmate::assert_integerish(chord)
   checkmate::qassert(root,'X1')
 
