@@ -7,6 +7,6 @@
 # * https://testthat.r-lib.org/reference/test_package.html#special-files
 
 library(testthat)
-library(a.musical.field.theory)
+library(harmony.research)
 
-test_check("a.musical.field.theory")
+test_check("harmony.research")

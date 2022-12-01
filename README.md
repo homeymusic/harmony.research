@@ -1,19 +1,19 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# a.musical.field.theory
+# harmony.research
 
 <!-- badges: start -->
 
 [![Codecov test
-coverage](https://codecov.io/gh/homeymusic/a.musical.field.theory/branch/main/graph/badge.svg)](https://app.codecov.io/gh/homeymusic/a.musical.field.theory?branch=main)
+coverage](https://codecov.io/gh/homeymusic/harmony.research/branch/main/graph/badge.svg)](https://app.codecov.io/gh/homeymusic/harmony.research?branch=main)
 <!-- badges: end -->
 
-The goal of a.musical.field.theory is to …
+The goal of harmony.research is to …
 
 ## Installation
 
-You can install the development version of a.musical.field.theory like
+You can install the development version of harmony.research like
 so:
 
 ``` r
@@ -25,7 +25,7 @@ so:
 This is a basic example which shows you how to solve a common problem:
 
 ``` r
-library(a.musical.field.theory)
+library(harmony.research)
 ## basic example code
 ```
 

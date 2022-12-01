@@ -13,17 +13,17 @@ knitr::opts_chunk$set(
 )
 ```
 
-# a.musical.field.theory
+# harmony.research
 
 <!-- badges: start -->
-[![Codecov test coverage](https://codecov.io/gh/homeymusic/a.musical.field.theory/branch/main/graph/badge.svg)](https://app.codecov.io/gh/homeymusic/a.musical.field.theory?branch=main)
+[![Codecov test coverage](https://codecov.io/gh/homeymusic/harmony.research/branch/main/graph/badge.svg)](https://app.codecov.io/gh/homeymusic/harmony.research?branch=main)
 <!-- badges: end -->
 
-The goal of a.musical.field.theory is to ...
+The goal of harmony.research is to ...
 
 ## Installation
 
-You can install the development version of a.musical.field.theory like so:
+You can install the development version of harmony.research like so:
 
 ``` r
 # FILL THIS IN! HOW CAN PEOPLE INSTALL YOUR DEV PACKAGE?
@@ -34,7 +34,7 @@ You can install the development version of a.musical.field.theory like so:
 This is a basic example which shows you how to solve a common problem:
 
 ```{r example}
-library(a.musical.field.theory)
+library(harmony.research)
 ## basic example code
 ```
 
