@@ -211,13 +211,37 @@ seventh_chords <- function() {
 }
 diatonic_scales <- function() {
   list(
-    'locrian'=h(c(0,1,3,5,6,8,10,12), name = 'B Locrian'),
-    'phrygian'=h(c(0,1,3,5,7,8,10,12), name = 'E Phrygian'),
-    'aeolian'=h(c(0,2,3,5,7,8,10,12), name = 'A Aeolian'),
-    'dorian'=h(c(0,2,3,5,7,9,10,12), name = 'D Dorian'),
-    'mixolydian'=h(c(0,2,4,5,7,9,10,12), name = 'G Mixolydian'),
-    'ionian'=h(c(0,2,4,5,7,9,11,12), name = 'C Ionian'),
-    'lydian'=h(c(0,2,4,6,7,9,11,12), name = 'F Lydian')
+    'locrian'=h(c(0,1,3,5,6,8,10,12), name = 'B Locrian', midi_reference = 60 + 11),
+    'phrygian'=h(c(0,1,3,5,7,8,10,12), name = 'E Phrygian', midi_reference = 60 + 4),
+    'aeolian'=h(c(0,2,3,5,7,8,10,12), name = 'A Aeolian', midi_reference = 60 + 9),
+    'dorian'=h(c(0,2,3,5,7,9,10,12), name = 'D Dorian', midi_reference = 60 + 2),
+    'mixolydian'=h(c(0,2,4,5,7,9,10,12), name = 'G Mixolydian', midi_reference = 60 + 7),
+    'ionian'=h(c(0,2,4,5,7,9,11,12), name = 'C Ionian', midi_reference = 60 + 0),
+    'lydian'=h(c(0,2,4,6,7,9,11,12), name = 'F Lydian', midi_reference = 60 + 5)
+  )
+}
+diatonic_triads <- function() {
+  list(
+    'ionian'     =h(c(0,4,7),
+                    name = 'C Ionian P5/M3 I<IV<V', midi_reference = 60 + 0),
+    'phrygian'   =h(-c(0,4,7),
+                    name = 'E Phrygian -P5/-M3 viii>v>iv', midi_reference = 60 + 4,
+                    observation_point = OCTAVE),
+    'mixolydian' =h(-c(0,3,7),
+                    name = 'G Mixolydian -P5/-m3 VIII>V>IV', midi_reference = 60 + 7,
+                    observation_point = OCTAVE),
+    'aeolian'    =h(c(0,3,7),
+                    name = 'A Aeolian P5/m3 i<iv<v', midi_reference = 60 + 9),
+    'dorian up'  =h(c(0,5,9),
+                    name = 'D Dorian Up M6/P4 I<IV<VII', midi_reference = 60 + 2),
+    'dorian down'=h(-c(0,5,9),
+                    name = 'D Dorian Down M6/P4 viii>v>i', midi_reference = 60 + 2,
+                    observation_point = OCTAVE),
+    'locrian'    =h(c(0,3,8),
+                    name = 'B Locrian m6/m3 I<IV<VII', midi_reference = 60 + 11),
+    'lydian'     =h(-c(0,3,8),
+                    name = 'F Lydian -m6/-m3 viii>v>i', midi_reference = 60 + 5,
+                    observation_point = OCTAVE)
   )
 }
 major_triad_progression <- function(){

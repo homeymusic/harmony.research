@@ -36,7 +36,7 @@ h(
 
 \item{midi_reference}{The MIDI root of the chord, defaults to 60 for using 0-based integer notation}
 
-\item{default_consonance_metric}{The metric that will populate affinity and brightness values}
+\item{default_consonance_metric}{The metric that will populate consonance and brightness values}
 
 \item{include_label}{Helpful for creating plots what close the loop of a path}
 }

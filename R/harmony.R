@@ -61,7 +61,7 @@ harmony.uncached <- function(chord, observation_point=NA, root=NA,
 
   # store all the consonance metrics
   t=tibble::add_column(t,consonance.primes,consonance.stolzenburg2015,consonance.hutchinson1978)
-  # store the integer_name and the default consonance metric's affinity and brightness
+  # store the integer_name and the default consonance metric's consonance and brightness
   tibble::add_column(t,
                      integer_name   = harmonic_integer_name(
                        chord,t$observation_point,t$root),
@@ -73,8 +73,8 @@ harmony.uncached <- function(chord, observation_point=NA, root=NA,
                                             include_label),
                      brightness     = t[[paste0(
                        default_consonance_metric,'.brightness')]],
-                     affinity       = t[[paste0(
-                       default_consonance_metric,'.affinity')]],
+                     consonance     = t[[paste0(
+                       default_consonance_metric,'.consonance')]],
                      .after='name')
 }
 
@@ -88,7 +88,7 @@ harmony.uncached <- function(chord, observation_point=NA, root=NA,
 #' @param root The reference pitch of the chord or larger context
 #' @param midi_reference The MIDI root of the chord, defaults to 60 for using 0-based integer notation
 #' @param name A custom name for the note or chord
-#' @param default_consonance_metric The metric that will populate affinity and brightness values
+#' @param default_consonance_metric The metric that will populate consonance and brightness values
 #' @param include_label Helpful for creating plots what close the loop of a path
 #' @return A tibble
 #'

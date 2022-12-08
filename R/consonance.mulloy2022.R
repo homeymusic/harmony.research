@@ -10,23 +10,23 @@ consonance.primes.uncached <- function(chord) {
     ~prime_factors_sum(.x$octave.num.lo, .x$octave.den.hi)) %>% mean
 
   ###################################################################################
-  # this is the 'heavy lifting' for calculating affinity, brightness and consonance
+  # this is the 'heavy lifting' for calculating brightness and consonance
   #
   # calculate 2-dimensional tonic-octave dissonance
   tonic_octave_dissonance = cbind(tonic.dissonance,octave.dissonance)
   # flip orientation to 2-dimensional tonic-octave consonance
   tonic_octave_consonance = consonance.primes.max_dissonance() - tonic_octave_dissonance
-  # rotate pi/4 (45 deg) to 2-dimensional affinity-brightness
-  affinity_brightness = tonic_octave_consonance %>% rotate(pi/4)
+  # rotate pi/4 (45 deg) to 2-dimensional consonance-brightness
+  consonance_brightness = tonic_octave_consonance %>% rotate(pi/4)
 
-  # store the ABCDs: affinity brightness consonance dissonance
+  # store the brightness consonance and dissonance
   t = tibble::tibble_row(
     tonic.dissonance  = tonic_octave_dissonance[1,1],
     octave.dissonance = tonic_octave_dissonance[1,2],
     tonic.consonance  = tonic_octave_consonance[1,1],
     octave.consonance = tonic_octave_consonance[1,2],
-    affinity          = affinity_brightness[1,2],
-    brightness        = affinity_brightness[1,1]
+    consonance        = consonance_brightness[1,2],
+    brightness        = consonance_brightness[1,1]
   )
   t
 }

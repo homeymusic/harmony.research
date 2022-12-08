@@ -114,11 +114,11 @@ test_that('position from the tonic in cents makes sense',{
 test_that('for chords of length 1 the observation_point must be 0',{
   expect_error(h(7,12))
 })
-test_that('brightness and affinity are symmetrical with symmetrical chords',{
-  expect_equal(h(c(0,4,7))$primes.affinity,h(-c(0,4,7),12)$primes.affinity)
+test_that('brightness and consonance are symmetrical with symmetrical chords',{
+  expect_equal(h(c(0,4,7))$primes.consonance,h(-c(0,4,7),12)$primes.consonance)
   expect_equal(h(c(0,4,7))$primes.brightness,-h(-c(0,4,7),12)$primes.brightness)
 
-  expect_equal(h(c(0,3,7))$primes.affinity,h(-c(0,3,7),12)$primes.affinity)
+  expect_equal(h(c(0,3,7))$primes.consonance,h(-c(0,3,7),12)$primes.consonance)
   expect_equal(h(c(0,3,7))$primes.brightness,-h(-c(0,3,7),12)$primes.brightness)
 })
 test_that('the major triad is perfectly bright. and the minor triad is a third', {
@@ -129,32 +129,32 @@ test_that('the major triad is perfectly bright. and the minor triad is a third',
   expect_equal(h(c(0,3,7,12))$primes.brightness,0.0)
 })
 test_that('the similarities among major and minor triads under inversion are interesting',{
-  expect_equal(major_triad_root$primes.affinity,major_triad_first_inversion$primes.affinity)
-  expect_equal(minor_triad_root$primes.affinity,minor_triad_first_inversion$primes.affinity)
+  expect_equal(major_triad_root$primes.consonance,major_triad_first_inversion$primes.consonance)
+  expect_equal(minor_triad_root$primes.consonance,minor_triad_first_inversion$primes.consonance)
 })
 test_that("tonic-octave symmetrical chords have identical consonance regardless of observation_point",{
   chord = c(0,4,7,12)
-  expect_equal(h(chord,observation_point=0)$primes.affinity,h(chord,observation_point=0)$primes.affinity)
+  expect_equal(h(chord,observation_point=0)$primes.consonance,h(chord,observation_point=0)$primes.consonance)
   expect_equal(h(chord,observation_point=0)$primes.brightness,h(chord,observation_point=0)$primes.brightness)
-  expect_equal(h(chord,observation_point=0)$primes.affinity,h(chord,observation_point=12)$primes.affinity)
+  expect_equal(h(chord,observation_point=0)$primes.consonance,h(chord,observation_point=12)$primes.consonance)
   expect_equal(h(chord,observation_point=0)$primes.brightness,h(chord,observation_point=12)$primes.brightness)
   chord = c(0,3,7,12)
-  expect_equal(h(chord,observation_point=0)$primes.affinity,h(chord,observation_point=0)$primes.affinity)
+  expect_equal(h(chord,observation_point=0)$primes.consonance,h(chord,observation_point=0)$primes.consonance)
   expect_equal(h(chord,observation_point=0)$primes.brightness,h(chord,observation_point=0)$primes.brightness)
-  expect_equal(h(chord,observation_point=0)$primes.affinity,h(chord,observation_point=12)$primes.affinity)
+  expect_equal(h(chord,observation_point=0)$primes.consonance,h(chord,observation_point=12)$primes.consonance)
   expect_equal(h(chord,observation_point=0)$primes.brightness,h(chord,observation_point=12)$primes.brightness)
 })
 test_that('the harmony of one pitch with non-zero explicit root behaves',{
-  expect_equal(h(5)$primes.affinity,h(5,observation_point = NA,root = 0)$primes.affinity)
+  expect_equal(h(5)$primes.consonance,h(5,observation_point = NA,root = 0)$primes.consonance)
   expect_equal(h(5)$primes.brightness,h(5,observation_point = NA,root = 0)$primes.brightness)
 
-  expect_equal(h(5)$primes.affinity,h(10,observation_point = NA,root = 5)$primes.affinity)
+  expect_equal(h(5)$primes.consonance,h(10,observation_point = NA,root = 5)$primes.consonance)
   expect_equal(h(5)$primes.brightness,h(10,observation_point = NA,root = 5)$primes.brightness)
 })
-test_that('brightness and affinity of the diatonic scales makes sense',{
+test_that('brightness and consonance of the diatonic scales makes sense',{
   expect_true(!is.unsorted(dplyr::bind_rows(diatonic_scales())$primes.brightness))
-  expect_true(!is.unsorted(dplyr::bind_rows(diatonic_scales()[c(1,2,3,4)])$primes.affinity))
-  expect_true(!is.unsorted(dplyr::bind_rows(diatonic_scales()[c(7,6,5,4)])$primes.affinity))
+  expect_true(!is.unsorted(dplyr::bind_rows(diatonic_scales()[c(1,2,3,4)])$primes.consonance))
+  expect_true(!is.unsorted(dplyr::bind_rows(diatonic_scales()[c(7,6,5,4)])$primes.consonance))
 })
 test_that('harmony guesses that a chord containing root and root + 12 has observation_point = 0',{
   expect_equal(locrian$observation_point,NA)
@@ -163,14 +163,14 @@ test_that('harmony guesses that a chord containing root and root + 12 has observ
 test_that('default consonance metric works as expected',{
   minor_triad_stolzenburg2015 = h(c(0,3,7))
   # stolzenburg is default
-  expect_equal(minor_triad_stolzenburg2015$affinity,minor_triad_stolzenburg2015$stolzenburg2015.affinity)
+  expect_equal(minor_triad_stolzenburg2015$consonance,minor_triad_stolzenburg2015$stolzenburg2015.consonance)
   expect_equal(minor_triad_stolzenburg2015$brightness,minor_triad_stolzenburg2015$stolzenburg2015.brightness)
   expect_equal(minor_triad_stolzenburg2015$integer_name,"{0̲:3:7}↑")
   expect_equal(minor_triad_stolzenburg2015$brightness,-0.8684828,tolerance = 0.001)
-  expect_equal(minor_triad_stolzenburg2015$affinity,6.038408,tolerance = 0.001)
+  expect_equal(minor_triad_stolzenburg2015$consonance,6.038408,tolerance = 0.001)
   # can switch default to some other consonance metric and it works
   minor_triad_primes = h(c(0,3,7),default_consonance_metric = 'primes')
-  expect_equal(minor_triad_primes$affinity,minor_triad_primes$primes.affinity)
+  expect_equal(minor_triad_primes$consonance,minor_triad_primes$primes.consonance)
   expect_equal(minor_triad_primes$brightness,minor_triad_primes$primes.brightness)
   expect_equal(minor_triad_primes$brightness,minor_triad_primes$primes.brightness)
 })

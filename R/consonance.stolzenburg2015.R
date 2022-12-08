@@ -2,7 +2,7 @@ consonance.stolzenburg2015.uncached <- function(chord) {
   checkmate::assert_integerish(chord)
 
   #############################################################################
-  # calculate affinity, brightness, consonance and dissonance
+  # calculate brightness, consonance and dissonance
   #
 
   # calculate dissonance from the tonic and octave observation points
@@ -13,17 +13,17 @@ consonance.stolzenburg2015.uncached <- function(chord) {
   # using max dissonance, reverse orientation from dissonance to consonance
   tonic_octave_consonance = stolzenburg2015.max_dissonance() -
     tonic_octave_dissonance
-  # rotate tonic-octave consonance matrix by pi/4 to affinity-brightness matrix
-  affinity_brightness = tonic_octave_consonance %>% rotate(pi/4)
+  # rotate tonic-octave consonance matrix by pi/4 to consonance-brightness matrix
+  consonance_brightness = tonic_octave_consonance %>% rotate(pi/4)
 
-  # store the ABCDs: affinity brightness consonance dissonance
+  # store the brightness consonance and dissonance
   tibble::tibble_row(
     tonic.dissonance  = tonic_octave_dissonance[1,1],
     octave.dissonance = tonic_octave_dissonance[1,2],
     tonic.consonance  = tonic_octave_consonance[1,1],
     octave.consonance = tonic_octave_consonance[1,2],
-    affinity          = affinity_brightness[1,2],
-    brightness        = affinity_brightness[1,1]
+    consonance        = consonance_brightness[1,2],
+    brightness        = consonance_brightness[1,1]
   )
 }
 

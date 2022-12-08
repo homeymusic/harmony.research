@@ -1,6 +1,6 @@
-test_that("interval affinity behaves well",{
-  expect_equal(consonance.primes(0)$affinity,consonance.primes(12)$affinity)
-  purrr::pmap(interval_components(),~expect_equal(consonance.primes(..1)$affinity,..4,info=paste('interval:',..1,'affinity',..4)))
+test_that("interval consonance behaves well",{
+  expect_equal(consonance.primes(0)$consonance,consonance.primes(12)$consonance)
+  purrr::pmap(interval_components(),~expect_equal(consonance.primes(..1)$consonance,..4,info=paste('interval:',..1,'consonance',..4)))
 })
 test_that("interval brightness behaves well",{
   purrr::pmap(interval_components(),~expect_equal(consonance.primes(..1)$brightness,..3))
@@ -28,18 +28,18 @@ test_that('octave complements match as expected',{
 test_that('primes consonance of pitches is symmetrical',{
   M3 = h(c(4))
   m6 = h(c(8))
-  expect_equal(M3$primes.affinity,m6$primes.affinity)
+  expect_equal(M3$primes.consonance,m6$primes.consonance)
   expect_equal(M3$primes.brightness,-m6$primes.brightness)
 })
 test_that('primes consonance of tonic dyads is symmetrical',{
   M3_up = h(c(0,4),0)
   m6_down = h(c(8,12),12)
-  expect_equal(M3_up$primes.affinity,m6_down$primes.affinity)
+  expect_equal(M3_up$primes.consonance,m6_down$primes.consonance)
   expect_equal(M3_up$primes.brightness,-m6_down$primes.brightness)
 
   M3_down = h(c(0,4),12)
   m6_up = h(c(8,12),0)
-  expect_equal(M3_down$primes.affinity, m6_up$primes.affinity)
+  expect_equal(M3_down$primes.consonance, m6_up$primes.consonance)
   expect_equal(M3_down$primes.brightness,-m6_up$primes.brightness)
 
   expect_equal(M3_down$primes.brightness,-M3_up$primes.brightness)
@@ -49,9 +49,9 @@ test_that('tonic triads are up-down symmetrical',{
   M_up = h(c(0,4,7),0)
   M_down = h(-c(0,4,7),12)
   expect_equal(M_up$primes.brightness,-M_down$primes.brightness)
-  expect_equal(M_up$primes.affinity,M_down$primes.affinity)
+  expect_equal(M_up$primes.consonance,M_down$primes.consonance)
   m_up = h(c(0,3,7),0)
   m_down = h(-c(0,3,7),12)
   expect_equal(m_up$primes.brightness,-m_down$primes.brightness)
-  expect_equal(m_up$primes.affinity,m_down$primes.affinity)
+  expect_equal(m_up$primes.consonance,m_down$primes.consonance)
 })
